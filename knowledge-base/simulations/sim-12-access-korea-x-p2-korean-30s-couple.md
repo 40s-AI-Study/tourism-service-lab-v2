@@ -8,6 +8,7 @@ created: 2026-04-17T14:55:00Z
 status: draft
 llm_compatibility: universal
 related: [access-korea, p2-korean-30s-couple]
+aliases: ["AccessKorea × 박민준 & 이수연 (한국 30대 커플)"]
 ---
 
 # SIM-12: AccessKorea × 박민준 & 이수연 (한국 30대 커플)

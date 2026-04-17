@@ -8,6 +8,7 @@ created: 2026-04-17T14:20:00Z
 status: draft
 llm_compatibility: universal
 related: [ai-course-generator, p5-foreign-30s-business-leisure]
+aliases: ["KoreaPath AI × David Park (외국인 30대 블레저)"]
 ---
 
 # SIM-05: KoreaPath AI × David Park (외국인 30대 블레저)

@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["K-Guide Global — 외국인 전용 다국어 통합 한국 관광 가이드"]
 ---
 
 # 아이디어 2: K-Guide Global
@@ -50,3 +51,47 @@ Visit Korea 공식 데이터를 현대적 UX로 재포장해 영·일·중 등 8
 ## 리스크
 - 현지화 품질 (기계번역 한계) — Visit Korea 공식 번역 데이터 사용으로 극복
 - 중국인 대상 WeChat/알리페이 연동은 별도 검토 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/photo-contest-winners|API: 관광공모전(사진) 수상작 정보]]
+- [[tourism-api/tourism-info-japanese|API: 일문 관광정보서비스]]
+- [[tourism-api/audio-guide|API: 관광지 오디오 가이드정보]]
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/tourism-info-chinese-traditional|API: 중문 번체 관광정보서비스]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/tourism-info-english|API: 영문 관광정보서비스]]
+- [[tourism-api/tourism-info-chinese-simplified|API: 중문 간체 관광정보서비스]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen (외국인 배낭)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, K-컬처**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+
+**유사: AI코스, 다국어**
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+

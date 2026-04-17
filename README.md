@@ -65,7 +65,7 @@ tourism-service-lab-v2/
 - **공모전**: https://api.visitkorea.or.kr
 - **API 목록**: https://api.visitkorea.or.kr/#/useUtilExercises
 - **GitHub Project**: https://github.com/users/sinrim11/projects/2/views/1
-- **GitHub Wiki**: https://github.com/sinrim11/tourism-service-lab-v2/wiki
+- **GitHub Wiki**: https://github.com/40s-AI-Study/tourism-service-lab-v2/wiki
 
 ## 커밋 규칙
 

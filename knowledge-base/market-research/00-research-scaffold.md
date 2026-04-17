@@ -8,6 +8,7 @@ author_model: claude-opus-4-7
 category: research
 status: scaffold
 llm_compatibility: universal
+aliases: ["기초 시장 조사 스캐폴드"]
 ---
 
 # 기초 시장 조사 스캐폴드

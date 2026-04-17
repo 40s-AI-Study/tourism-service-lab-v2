@@ -8,6 +8,7 @@ created: 2026-04-17T14:45:00Z
 status: draft
 llm_compatibility: universal
 related: [multilingual-guide, p5-foreign-30s-business-leisure]
+aliases: ["K-Guide Global × David Park (외국인 30대 블레저)"]
 ---
 
 # SIM-10: K-Guide Global × David Park (외국인 30대 블레저)

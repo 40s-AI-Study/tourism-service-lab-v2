@@ -13,6 +13,7 @@ sources:
   - https://knto.or.kr/
   - https://www.mcst.go.kr/kor/s_policy/dept/deptView.jsp
   - https://datalab.visitkorea.or.kr/
+aliases: ["한국 관광 트렌드 통계 (2024-2025)"]
 ---
 
 # 한국 관광 트렌드 통계 (2024-2025)
@@ -129,3 +130,18 @@ sources:
 ---
 
 *이 문서는 CEO가 Phase 3 Stage 1 retry 과정에서 직접 작성. 실제 배포 전 최신 통계로 업데이트 권장.*
+
+---
+
+## 관련 페이지
+
+**페르소나**
+- [[personas/p3-korean-40s-family|최동훈]]
+- [[personas/p2-korean-30s-couple|박민준 & 이수연]]
+- [[personas/p1-korean-20s-solo|김지원]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen]]
+- [[personas/p5-foreign-30s-business-leisure|David Park]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+

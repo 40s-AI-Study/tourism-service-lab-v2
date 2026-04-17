@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["FreeTrip Korea — 무장애·접근성 특화 관광 플랫폼"]
 ---
 
 # 아이디어 4: FreeTrip Korea
@@ -53,3 +54,43 @@ llm_compatibility: universal
 ## 리스크
 - API 데이터 현실과 괴리 (현장 점검 정보가 오래됐을 수 있음) → 크라우드 소싱 보완
 - 앱 인지도 확보 난이도 — 복지관·요양원 B2B 파트너십으로 초기 사용자 확보 전략
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/barrier-free-travel|API: 무장애 여행 정보]]
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/tourism-info-korean|API: 국문 관광정보 서비스]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/tourism-info-english|API: 영문 관광정보서비스]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+

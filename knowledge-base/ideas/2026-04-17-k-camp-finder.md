@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["K-Camp Finder — AI 추천 캠핑·글램핑 플랫폼"]
 ---
 
 ## 한 줄 정의
@@ -58,3 +59,49 @@ llm_compatibility: universal
 >
 > K-Camp Finder가 실시간 혼잡도 예보를 분석해 "이번 주말 가평·춘천권 혼잡 예상 → 정선 덕산기계곡 오토캠핑장 추천"을 제안.
 > 금요일 오후 출발 코스로 '아라리촌 → 화암동굴 탐방 → 캠핑장 도착'을 자동 생성. 출발 D-2에 날씨 알림("토요일 오후 소나기 예상, 타프 준비 필요")과 준비물 체크리스트를 푸시로 발송.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/gocamping|API: 고캠핑 정보 조회서비스]]
+- [[tourism-api/area-tourism-demand-density|API: 지역별 관광 수요 강도]]
+
+**타겟 페르소나**
+- [[personas/p1-korean-20s-solo|김지원 (20대 솔로)]]
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+
+**유사: AI코스, K-컬처**
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 반려동물**
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+
+**유사: AI코스, 캠핑**
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+

@@ -14,6 +14,7 @@ sources:
   - https://knto.or.kr/
   - https://www.mobiinside.co.kr/
   - https://www.opensurvey.co.kr/
+aliases: ["20-40대 한국인 관광 니즈 Raw Data (UXDesigner 입력용)"]
 ---
 
 # 20-40대 한국인 관광 니즈 Raw Data
@@ -186,3 +187,18 @@ sources:
 5. **40대 부모 동반 여행** — 무장애 접근, 편안한 이동, 전통 문화
 
 각 페르소나: 이름/나이/직업 + 여행 목표 + 사용 앱 + Frustration 3개 + 원하는 기능 3개 포함 권장.
+
+---
+
+## 관련 페이지
+
+**페르소나**
+- [[personas/p3-korean-40s-family|최동훈]]
+- [[personas/p2-korean-30s-couple|박민준 & 이수연]]
+- [[personas/p1-korean-20s-solo|김지원]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen]]
+- [[personas/p5-foreign-30s-business-leisure|David Park]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+

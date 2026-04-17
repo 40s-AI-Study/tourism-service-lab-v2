@@ -8,6 +8,7 @@ created: 2026-04-17T14:30:00Z
 status: draft
 llm_compatibility: universal
 related: [multilingual-guide, p2-korean-30s-couple]
+aliases: ["K-Guide Global × 박민준 & 이수연 (한국 30대 커플)"]
 ---
 
 # SIM-07: K-Guide Global × 박민준 & 이수연 (한국 30대 커플)

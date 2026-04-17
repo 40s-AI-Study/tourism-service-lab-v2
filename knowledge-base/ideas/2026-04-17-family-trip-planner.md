@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["FamilyKorea — 가족여행 올인원 스마트 플래너"]
 ---
 
 # 아이디어 8: FamilyKorea
@@ -55,3 +56,34 @@ llm_compatibility: universal
 ## 리스크
 - 맞춤 필터 복잡도 → 초기 버전은 "자녀 연령"과 "노부모 동반" 2개 조건만으로 단순화 가능
 - 교육 콘텐츠 제작 비용 → 초기에는 문화재청 공개 자료 활용
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/barrier-free-travel|API: 무장애 여행 정보]]
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/tourism-info-korean|API: 국문 관광정보 서비스]]
+- [[tourism-api/pet-friendly-travel|API: 반려동물_동반여행_서비스]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+
+**유사: AI코스, 반려동물**
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+

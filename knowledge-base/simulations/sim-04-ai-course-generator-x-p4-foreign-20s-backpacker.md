@@ -8,6 +8,7 @@ created: 2026-04-17T14:15:00Z
 status: draft
 llm_compatibility: universal
 related: [ai-course-generator, p4-foreign-20s-backpacker]
+aliases: ["KoreaPath AI × Emma Chen (외국인 20대 백패커)"]
 ---
 
 # SIM-04: KoreaPath AI × Emma Chen (외국인 20대 백패커)

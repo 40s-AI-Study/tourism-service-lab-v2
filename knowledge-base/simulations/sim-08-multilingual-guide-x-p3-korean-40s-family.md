@@ -8,6 +8,7 @@ created: 2026-04-17T14:35:00Z
 status: draft
 llm_compatibility: universal
 related: [multilingual-guide, p3-korean-40s-family]
+aliases: ["K-Guide Global × 최동훈 (한국 40대 가족)"]
 ---
 
 # SIM-08: K-Guide Global × 최동훈 (한국 40대 가족)

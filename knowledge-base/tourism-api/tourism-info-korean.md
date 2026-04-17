@@ -10,6 +10,7 @@ source: https://api.visitkorea.or.kr/upload/manual/guide/file/1737596499508.zip
 manual_file: knowledge-base/tourism-api/_raw/extracted/tourism-info-korean/
 llm_compatibility: universal
 status: initial-spec
+aliases: ["한국관광공사_국문 관광정보 서비스"]
 ---
 
 # 한국관광공사_국문 관광정보 서비스
@@ -83,3 +84,19 @@ status: initial-spec
 ## 연관 API
 
 (Phase 3에서 아이디어 발산 시 채움)
+
+---
+
+## 관련 페이지
+
+**사용하는 아이디어**
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+
+**카탈로그**
+- [[tourism-api/00-api-catalog|API 카탈로그]]
+

@@ -10,6 +10,7 @@ source: https://api.visitkorea.or.kr/upload/manual/guide/file/1725080563660.zip
 manual_file: knowledge-base/tourism-api/_raw/extracted/medical-tourism/
 llm_compatibility: universal
 status: initial-spec
+aliases: ["한국관광공사_의료관광정보"]
 ---
 
 # 한국관광공사_의료관광정보
@@ -89,3 +90,11 @@ status: initial-spec
 ## 연관 API
 
 (Phase 3에서 아이디어 발산 시 채움)
+
+---
+
+## 관련 페이지
+
+**카탈로그**
+- [[tourism-api/00-api-catalog|API 카탈로그]]
+

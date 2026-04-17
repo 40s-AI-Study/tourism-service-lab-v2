@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["AccessKorea — 무장애 여행 통합 플랫폼"]
 ---
 
 ## 한 줄 정의
@@ -54,3 +55,30 @@ llm_compatibility: universal
 ## 예상 사용 시나리오
 
 > 70세 이정순 씨는 휠체어를 사용하는 남편과 함께 경주 여행을 꿈꿔왔다. AccessKorea에서 "휠체어 사용자·1박 2일·경주"를 입력하자 앱이 휠체어 접근 가능한 불국사 입구 전망대 → 무장애 인증 한식당 → 경주 역사문화관(엘리베이터 완비)을 잇는 코스를 생성한다. 각 명소마다 오디오 가이드가 자동 재생되고, 지도에는 경사로·엘리베이터 위치가 표시된다. 여행 후 남편이 직접 "불국사 입구 휠체어 경사로 상태 양호"라는 리뷰를 남겨 다음 방문자에게 도움을 준다.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/audio-guide|API: 관광지 오디오 가이드정보]]
+- [[tourism-api/barrier-free-travel|API: 무장애 여행 정보]]
+- [[tourism-api/tourism-info-korean|API: 국문 관광정보 서비스]]
+- [[tourism-api/central-attractions-by-municipality|API: 기초지자체 중심 관광지 정보]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+

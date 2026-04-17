@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["KoreaTrend Radar — 관광 빅데이터 기반 실시간 핫플 추천 앱"]
 ---
 
 ## 한 줄 정의
@@ -58,3 +59,38 @@ llm_compatibility: universal
 >
 > 양양 탭 진입 시 "지금 뜨는 이유: 서피비치 주변 신규 카페 3곳 오픈, 인스타 태그 폭증" 요약과 함께 관광 자원 수요 카테고리 분석("음식 42% · 자연 35% · 숙박 23%") 제공.
 > 알림 구독 설정 시 다음 주에도 양양 트렌드 변화를 자동으로 받아볼 수 있음.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/tourism-big-data|API: 관광빅데이터 정보서비스]]
+- [[tourism-api/area-tourism-diversity|API: 지역별 관광 다양성]]
+- [[tourism-api/area-tourism-demand-density|API: 지역별 관광 수요 강도]]
+- [[tourism-api/area-tourism-resource-demand|API: 지역별 관광 자원 수요]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+

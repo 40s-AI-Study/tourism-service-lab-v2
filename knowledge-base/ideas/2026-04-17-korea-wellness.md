@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["KoreaWellness — 번아웃 직장인을 위한 웰니스 관광 큐레이션"]
 ---
 
 ## 한 줄 정의
@@ -53,3 +54,43 @@ llm_compatibility: universal
 ## 예상 사용 시나리오
 
 > 광고 기획사에 다니는 35세 박서연 씨는 최근 극심한 번아웃을 느끼고 있다. KoreaWellness 앱에서 3분 자가진단을 하자 "정서 소진형 번아웃 — 자연 속 정적 활동 추천" 결과가 나온다. AI가 강원도 인제군의 산림욕 치유 프로그램 → 한적한 한옥 스파 숙박 → 한방 체험 클래스를 잇는 2박 3일 코스를 제안한다. 관광 수요 밀도 지표로 해당 지역이 "이번 주말 혼잡도 낮음"으로 표시되어 진짜 쉬어갈 수 있다는 확신을 갖고 예약한다.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/tourism-big-data|API: 관광빅데이터 정보서비스]]
+- [[tourism-api/wellness-tourism|API: 웰니스관광정보]]
+- [[tourism-api/eco-tourism|API: 생태 관광 정보]]
+- [[tourism-api/area-tourism-demand-density|API: 지역별 관광 수요 강도]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, K-컬처**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+
+**유사: AI코스, 에코투어**
+- [[ideas/2026-04-17-eco-trail-korea|EcoTrail Korea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+

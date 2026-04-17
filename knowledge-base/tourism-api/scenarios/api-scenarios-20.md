@@ -11,6 +11,7 @@ total_scenarios: 20
 sources:
   - https://api.visitkorea.or.kr/#/useUtilExercises
   - knowledge-base/tourism-api/00-api-catalog.md
+aliases: ["Visit Korea OpenAPI 조합 시나리오 20개"]
 ---
 
 # Visit Korea OpenAPI 조합 시나리오 20개

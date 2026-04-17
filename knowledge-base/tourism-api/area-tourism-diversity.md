@@ -10,6 +10,7 @@ source: https://api.visitkorea.or.kr/upload/manual/guide/file/manual_areaTarDivS
 manual_file: knowledge-base/tourism-api/_raw/extracted/area-tourism-diversity/
 llm_compatibility: universal
 status: initial-spec
+aliases: ["한국관광공사_지역별 관광 다양성"]
 ---
 
 # 한국관광공사_지역별 관광 다양성
@@ -77,3 +78,17 @@ status: initial-spec
 ## 연관 API
 
 (Phase 3에서 아이디어 발산 시 채움)
+
+---
+
+## 관련 페이지
+
+**사용하는 아이디어**
+- [[ideas/2026-04-17-eco-trail-korea|EcoTrail Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+
+**카탈로그**
+- [[tourism-api/00-api-catalog|API 카탈로그]]
+

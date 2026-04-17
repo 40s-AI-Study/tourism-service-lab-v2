@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["Audio Story Korea — 몰입형 문화재 오디오 스토리텔링 앱"]
 ---
 
 ## 한 줄 정의
@@ -59,3 +60,26 @@ llm_compatibility: universal
 >
 > 앱이 일본어를 자동 감지해 "근정전 오디오 가이드 — 일본어" 즉시 실행. 오디오가 "이곳은 조선왕조의 심장부..."로 시작되는 동안 화면에는 사진 공모전 대상 수상작 슬라이드쇼가 재생됨.
 > 챕터 2 "임진왜란과 복원의 역사" 구간에서 사용자가 일시정지 후 해당 챕터만 반복 청취. 관람 후 앱 내 "오늘 방문한 곳" 기록에 근정전이 자동 저장되고, 다음 방문지 창덕궁 오디오 가이드 미리 다운로드를 권유받음.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/photo-contest-winners|API: 관광공모전(사진) 수상작 정보]]
+- [[tourism-api/tourism-info-japanese|API: 일문 관광정보서비스]]
+- [[tourism-api/audio-guide|API: 관광지 오디오 가이드정보]]
+- [[tourism-api/tourism-info-english|API: 영문 관광정보서비스]]
+- [[tourism-api/tourism-info-chinese-simplified|API: 중문 간체 관광정보서비스]]
+
+**타겟 페르소나**
+- [[personas/p1-korean-20s-solo|김지원 (20대 솔로)]]
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen (외국인 배낭)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+

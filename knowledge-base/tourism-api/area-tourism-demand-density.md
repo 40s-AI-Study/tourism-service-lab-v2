@@ -10,6 +10,7 @@ source: https://api.visitkorea.or.kr/upload/manual/guide/file/manual_areaTarDemD
 manual_file: knowledge-base/tourism-api/_raw/extracted/area-tourism-demand-density/
 llm_compatibility: universal
 status: initial-spec
+aliases: ["한국관광공사_지역별 관광 수요 강도"]
 ---
 
 # 한국관광공사_지역별 관광 수요 강도
@@ -76,3 +77,19 @@ status: initial-spec
 ## 연관 API
 
 (Phase 3에서 아이디어 발산 시 채움)
+
+---
+
+## 관련 페이지
+
+**사용하는 아이디어**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**카탈로그**
+- [[tourism-api/00-api-catalog|API 카탈로그]]
+

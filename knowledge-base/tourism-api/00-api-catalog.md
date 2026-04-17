@@ -9,6 +9,7 @@ category: api
 source: https://api.visitkorea.or.kr/#/useUtilExercises
 total_count: 27
 llm_compatibility: universal
+aliases: ["한국관광공사 OpenAPI 전체 카탈로그"]
 ---
 
 # 한국관광공사 OpenAPI 전체 카탈로그 (27개)

@@ -16,6 +16,7 @@ sources:
   - https://www.tripadvisor.com
   - https://www.klook.com
   - https://korean.visitkorea.or.kr
+aliases: ["기존 관광 서비스 상세 기능 비교 매트릭스"]
 ---
 
 # 기존 관광 서비스 상세 기능 비교 매트릭스
@@ -217,3 +218,18 @@ sources:
 ```
 
 **공백 지점**: 외국인+국내 모두 커버하며, 실시간 데이터 + AI 개인화 + Visit Korea OpenAPI를 통합한 서비스 **없음**
+
+---
+
+## 관련 페이지
+
+**페르소나**
+- [[personas/p3-korean-40s-family|최동훈]]
+- [[personas/p2-korean-30s-couple|박민준 & 이수연]]
+- [[personas/p1-korean-20s-solo|김지원]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen]]
+- [[personas/p5-foreign-30s-business-leisure|David Park]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+

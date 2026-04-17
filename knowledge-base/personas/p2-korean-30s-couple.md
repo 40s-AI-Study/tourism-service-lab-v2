@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T09:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["박민준 & 이수연, 33/31세, 직장인 커플"]
 ---
 
 # P2: 박민준 & 이수연 — 한국 30대 커플
@@ -57,3 +58,30 @@ high — 민준은 앱 신기능에 적극적, 수연은 인스타·핀터레스
 - `wellness-tourism` — 스파·온천 코스 연결
 - `related-attractions` — 숙소 주변 미식·문화 연계
 - `visitor-concentration-forecast` — 인기 식당 덜 붐비는 시간대 안내
+
+---
+
+## 관련 페이지
+
+**기반 리서치**
+- [[market-research/korean-20-40-personas-input|20-40대 한국인 관광 니즈 Raw Data (UXD]]
+- [[market-research/competitive-gaps|경쟁 서비스 Gap 분석 + 기회 영역]]
+- [[market-research/tourism-trends-2025|한국 관광 트렌드 통계 (2024-2025)]]
+- [[market-research/existing-apps-matrix|기존 관광 서비스 상세 기능 비교 매트릭스]]
+- [[market-research/foreign-tourist-needs|외국인 관광객 니즈 분석]]
+
+**관련 아이디어**
+- [[ideas/2026-04-17-eco-trail-korea|EcoTrail Korea]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+

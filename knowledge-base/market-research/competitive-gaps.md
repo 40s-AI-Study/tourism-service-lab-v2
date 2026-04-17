@@ -13,6 +13,7 @@ sources:
   - https://www.mcst.go.kr/kor/s_policy/dept/deptView.jsp
   - https://korean.visitkorea.or.kr
   - https://triple.guide
+aliases: ["경쟁 서비스 Gap 분석 + 기회 영역"]
 ---
 
 # 경쟁 서비스 Gap 분석 + 기회 영역
@@ -161,3 +162,18 @@ sources:
 - **데이터 활용 20점**: 27개 API 중 8-10개 이상 활용 → 만점 노림
 - **서비스 기획력 30점**: 명확한 Gap 해소 + 타겟 명시
 - **가점 2점**: 지역 특화 (제주/부산/강원 중 1개 선택)
+
+---
+
+## 관련 페이지
+
+**페르소나**
+- [[personas/p3-korean-40s-family|최동훈]]
+- [[personas/p2-korean-30s-couple|박민준 & 이수연]]
+- [[personas/p1-korean-20s-solo|김지원]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen]]
+- [[personas/p5-foreign-30s-business-leisure|David Park]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+

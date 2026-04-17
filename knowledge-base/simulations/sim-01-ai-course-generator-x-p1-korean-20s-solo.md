@@ -8,6 +8,7 @@ created: 2026-04-17T14:00:00Z
 status: draft
 llm_compatibility: universal
 related: [ai-course-generator, p1-korean-20s-solo]
+aliases: ["KoreaPath AI × 김지원 (한국 20대 솔로)"]
 ---
 
 # SIM-01: KoreaPath AI × 김지원 (한국 20대 솔로)

@@ -8,6 +8,7 @@ created: 2026-04-17T14:05:00Z
 status: draft
 llm_compatibility: universal
 related: [ai-course-generator, p2-korean-30s-couple]
+aliases: ["KoreaPath AI × 박민준 & 이수연 (한국 30대 커플)"]
 ---
 
 # SIM-02: KoreaPath AI × 박민준 & 이수연 (한국 30대 커플)

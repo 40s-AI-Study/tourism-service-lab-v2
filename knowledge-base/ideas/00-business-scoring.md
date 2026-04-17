@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:30:00Z
 status: approved
 llm_compatibility: universal
+aliases: ["아이디어 10개 사업성 점수화 (Stage 3-B)"]
 ---
 
 # 아이디어 10개 사업성 점수화

@@ -8,6 +8,7 @@ created: 2026-04-17T14:40:00Z
 status: draft
 llm_compatibility: universal
 related: [multilingual-guide, p4-foreign-20s-backpacker]
+aliases: ["K-Guide Global × Emma Chen (외국인 20대 백패커)"]
 ---
 
 # SIM-09: K-Guide Global × Emma Chen (외국인 20대 백패커)

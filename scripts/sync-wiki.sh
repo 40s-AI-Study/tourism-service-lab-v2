@@ -13,7 +13,7 @@ _log() { echo "[sync-wiki] $(date '+%H:%M:%S') $*"; }
 
 if [ ! -d "$WIKI_DIR" ]; then
   _log "ERROR: wiki repo not cloned at $WIKI_DIR"
-  _log "Run: git clone https://github.com/sinrim11/tourism-service-lab-v2.wiki.git $WIKI_DIR"
+  _log "Run: git clone https://github.com/40s-AI-Study/tourism-service-lab-v2.wiki.git $WIKI_DIR"
   exit 1
 fi
 

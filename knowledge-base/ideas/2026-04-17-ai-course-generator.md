@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["KoreaPath AI — 개인화 동선 자동 생성 + 혼잡도 최적화 앱"]
 ---
 
 # 아이디어 1: KoreaPath AI
@@ -51,3 +52,44 @@ llm_compatibility: universal
 ## 리스크
 - LLM 연동 비용 (공모전 단계에서는 규칙 기반 로직으로 대체 가능)
 - API 응답 속도 — 캐싱 전략 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/tourism-big-data|API: 관광빅데이터 정보서비스]]
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/central-attractions-by-municipality|API: 기초지자체 중심 관광지 정보]]
+- [[tourism-api/area-tourism-demand-density|API: 지역별 관광 수요 강도]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen (외국인 배낭)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+

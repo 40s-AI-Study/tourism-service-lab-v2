@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["WellKorea — 웰니스 여행 큐레이터 앱"]
 ---
 
 # 아이디어 5: WellKorea
@@ -55,3 +56,48 @@ llm_compatibility: universal
 ## 리스크
 - 예약 연동 구현 복잡도 (1차 버전은 외부 링크 연동으로 단순화 가능)
 - 글램핑 시즌성 (봄·가을 집중) → 사계절 콘텐츠 확충 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/wellness-tourism|API: 웰니스관광정보]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/gocamping|API: 고캠핑 정보 조회서비스]]
+- [[tourism-api/eco-tourism|API: 생태 관광 정보]]
+- [[tourism-api/durunubi-trails|API: 두루누비 정보 서비스]]
+
+**타겟 페르소나**
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, K-컬처**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 에코투어**
+- [[ideas/2026-04-17-eco-trail-korea|EcoTrail Korea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+
+**유사: AI코스, 다국어**
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+
+**유사: AI코스, 캠핑**
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+

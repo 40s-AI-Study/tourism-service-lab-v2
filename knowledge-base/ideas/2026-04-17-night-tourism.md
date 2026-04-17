@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["NightKorea — 한국 야간 관광 특화 앱"]
 ---
 
 # 아이디어 10: NightKorea
@@ -54,3 +55,38 @@ llm_compatibility: universal
 ## 리스크
 - 야간 안전 관련 정보 제공 책임 (1인 여성 야간 여행 등) — 안전 가이드라인 포함 필요
 - 이벤트 정보 실시간성 확보 — 지자체·관광공사 협업 데이터 파이프라인 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/photo-contest-winners|API: 관광공모전(사진) 수상작 정보]]
+- [[tourism-api/tourism-big-data|API: 관광빅데이터 정보서비스]]
+- [[tourism-api/tourism-photos|API: 관광사진 정보]]
+- [[tourism-api/tourism-info-korean|API: 국문 관광정보 서비스]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/tourism-info-english|API: 영문 관광정보서비스]]
+- [[tourism-api/area-tourism-demand-density|API: 지역별 관광 수요 강도]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+

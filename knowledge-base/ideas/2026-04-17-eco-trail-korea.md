@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["EcoTrail Korea — 친환경 트레킹·자전거·생태관광 올인원 앱"]
 ---
 
 ## 한 줄 정의
@@ -53,3 +54,25 @@ llm_compatibility: universal
 ## 예상 사용 시나리오
 
 > 환경 NGO에서 일하는 27세 이채원 씨는 친구들과 제주 에코 트레킹 2박 3일을 계획한다. EcoTrail Korea에서 "제주·도보·중급"을 선택하자 올레길 특정 구간과 생태관광 인증 곶자왈 해설 투어를 연결한 코스가 생성된다. 탄소발자국 계산기가 자가용 대신 버스+도보 조합 시 1인당 CO₂ 12kg 절감 가능하다고 알려준다. 코스 완주 후 "제로카본 챌린지" 배지를 획득하고, 코스 후기를 올리며 비주류 해안 습지 명소를 다른 사용자에게 소개한다.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/tourism-big-data|API: 관광빅데이터 정보서비스]]
+- [[tourism-api/area-tourism-diversity|API: 지역별 관광 다양성]]
+- [[tourism-api/eco-tourism|API: 생태 관광 정보]]
+- [[tourism-api/durunubi-trails|API: 두루누비 정보 서비스]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 에코투어**
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+

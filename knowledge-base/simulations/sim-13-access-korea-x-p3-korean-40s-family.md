@@ -8,6 +8,7 @@ created: 2026-04-17T15:00:00Z
 status: draft
 llm_compatibility: universal
 related: [access-korea, p3-korean-40s-family]
+aliases: ["AccessKorea × 최동훈 (한국 40대 가족)"]
 ---
 
 # SIM-13: AccessKorea × 최동훈 (한국 40대 가족)

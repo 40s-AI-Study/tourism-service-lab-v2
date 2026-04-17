@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T09:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["David Park, 35, Senior Product Manager (USA)"]
 ---
 
 # P5: David Park — 외국인 30대 비즈니스/여가 혼합 여행자
@@ -59,3 +60,15 @@ very high — PM으로서 UX에 민감, 앱 품질에 높은 기준, 불편한 U
 - `audio-guide` — 영어 현장 오디오 해설 (경복궁, 경주 등)
 - `visitor-concentration-forecast` — 인기 관광지 혼잡도 예측
 - `durunubi-trails` — 제주 올레 등 트레킹 코스 영어 안내
+
+---
+
+## 관련 페이지
+
+**기반 리서치**
+- [[market-research/korean-20-40-personas-input|20-40대 한국인 관광 니즈 Raw Data (UXD]]
+- [[market-research/competitive-gaps|경쟁 서비스 Gap 분석 + 기회 영역]]
+- [[market-research/tourism-trends-2025|한국 관광 트렌드 통계 (2024-2025)]]
+- [[market-research/existing-apps-matrix|기존 관광 서비스 상세 기능 비교 매트릭스]]
+- [[market-research/foreign-tourist-needs|외국인 관광객 니즈 분석]]
+

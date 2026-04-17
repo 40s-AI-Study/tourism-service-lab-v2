@@ -10,6 +10,7 @@ tags: [competition, visitkorea, web-app, 2026]
 status: approved
 llm_compatibility: universal
 source: /Users/sklee01/Downloads/2026_gongo.pdf
+aliases: ["2026 관광데이터 활용 공모전 - ① 웹·앱 개발 부문"]
 ---
 
 # 2026 관광데이터 활용 공모전 - ① 웹·앱 개발 부문

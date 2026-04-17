@@ -10,6 +10,7 @@ source: https://api.visitkorea.or.kr/upload/manual/guide/file/1737596514908.zip
 manual_file: knowledge-base/tourism-api/_raw/extracted/barrier-free-travel/
 llm_compatibility: universal
 status: initial-spec
+aliases: ["한국관광공사_무장애 여행 정보"]
 ---
 
 # 한국관광공사_무장애 여행 정보
@@ -82,3 +83,16 @@ status: initial-spec
 ## 연관 API
 
 (Phase 3에서 아이디어 발산 시 채움)
+
+---
+
+## 관련 페이지
+
+**사용하는 아이디어**
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+
+**카탈로그**
+- [[tourism-api/00-api-catalog|API 카탈로그]]
+

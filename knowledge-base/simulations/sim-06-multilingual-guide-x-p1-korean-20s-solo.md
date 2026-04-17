@@ -8,6 +8,7 @@ created: 2026-04-17T14:25:00Z
 status: draft
 llm_compatibility: universal
 related: [multilingual-guide, p1-korean-20s-solo]
+aliases: ["K-Guide Global × 김지원 (한국 20대 솔로)"]
 ---
 
 # SIM-06: K-Guide Global × 김지원 (한국 20대 솔로)

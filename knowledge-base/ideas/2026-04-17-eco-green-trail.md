@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["GreenTrail Korea — 에코 투어 & 트레킹 가이드"]
 ---
 
 # 아이디어 9: GreenTrail Korea
@@ -53,3 +54,43 @@ llm_compatibility: universal
 ## 리스크
 - 트레일 현장 정보 변경(폐쇄·보수) 빠른 업데이트 체계 필요
 - 외국인 대상 트레킹 안전 정보(응급 연락처·구조 방법) 다국어 제공 의무화 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/area-tourism-diversity|API: 지역별 관광 다양성]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/gocamping|API: 고캠핑 정보 조회서비스]]
+- [[tourism-api/eco-tourism|API: 생태 관광 정보]]
+- [[tourism-api/durunubi-trails|API: 두루누비 정보 서비스]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 캠핑**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+
+**유사: AI코스, 에코투어**
+- [[ideas/2026-04-17-eco-trail-korea|EcoTrail Korea]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+
+**유사: AI코스, 다국어**
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+

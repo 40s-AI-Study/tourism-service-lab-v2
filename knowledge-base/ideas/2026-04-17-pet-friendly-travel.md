@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["PetTrip Korea — 반려동물 동반 여행 전문 플랫폼"]
 ---
 
 # 아이디어 3: PetTrip Korea
@@ -51,3 +52,48 @@ llm_compatibility: universal
 ## 리스크
 - `pet-friendly-travel` API 데이터 최신성 유지 (폐업·정책 변경)
 - 커뮤니티 어뷰징 방지 운영 정책 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/tourism-info-korean|API: 국문 관광정보 서비스]]
+- [[tourism-api/pet-friendly-travel|API: 반려동물_동반여행_서비스]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+
+**타겟 페르소나**
+- [[personas/p1-korean-20s-solo|김지원 (20대 솔로)]]
+- [[personas/p2-korean-30s-couple|박민준·이수연 (30대 커플)]]
+- [[personas/p3-korean-40s-family|최동훈 (40대 가족)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-access-korea|AccessKorea]]
+- [[ideas/2026-04-17-family-trip-planner|FamilyKorea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 반려동물**
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+
+**유사: AI코스, 캠핑**
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+

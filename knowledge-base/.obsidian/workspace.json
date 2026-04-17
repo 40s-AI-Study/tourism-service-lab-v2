@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "70a580dd54d01363",
+    "type": "split",
+    "children": [
+      {
+        "id": "85e08b027896928e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb9c33ba290a0894",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "tourism-api/scenarios/api-scenarios-20.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "api-scenarios-20"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c3f0df409eee3f06",
+    "type": "split",
+    "children": [
+      {
+        "id": "43921c08cfb6573f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7ccb1bcb6fcd3e19",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "6b5cf2d8e9cf9238",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "0cc371599cdc12da",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ca2fa9230a180e0a",
+    "type": "split",
+    "children": [
+      {
+        "id": "80278e27fe796994",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5b80295806ce7a72",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "tourism-api/scenarios/api-scenarios-20.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "api-scenarios-20 의 백링크"
+            }
+          },
+          {
+            "id": "97159fe8fd3216a3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "tourism-api/scenarios/api-scenarios-20.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "api-scenarios-20 의 나가는 링크"
+            }
+          },
+          {
+            "id": "6e6889565adc3139",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "a03ecb55de94aa59",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "1a4aaa193d735a13",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "tourism-api/scenarios/api-scenarios-20.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "api-scenarios-20 의 개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "7ccb1bcb6fcd3e19",
+  "lastOpenFiles": [
+    "simulations/sim-15-access-korea-x-p5-foreign-30s-business-leisure.md",
+    "simulations/sim-14-access-korea-x-p4-foreign-20s-backpacker.md",
+    "simulations/sim-13-access-korea-x-p3-korean-40s-family.md",
+    "simulations/sim-12-access-korea-x-p2-korean-30s-couple.md",
+    "simulations/sim-11-access-korea-x-p1-korean-20s-solo.md",
+    "simulations/sim-10-multilingual-guide-x-p5-foreign-30s-business-leisure.md",
+    "simulations/sim-09-multilingual-guide-x-p4-foreign-20s-backpacker.md",
+    "simulations/sim-08-multilingual-guide-x-p3-korean-40s-family.md",
+    "simulations/sim-07-multilingual-guide-x-p2-korean-30s-couple.md",
+    "simulations/sim-06-multilingual-guide-x-p1-korean-20s-solo.md",
+    "simulations/sim-05-ai-course-generator-x-p5-foreign-30s-business-leisure.md",
+    "simulations/sim-04-ai-course-generator-x-p4-foreign-20s-backpacker.md",
+    "simulations/sim-03-ai-course-generator-x-p3-korean-40s-family.md",
+    "simulations/sim-02-ai-course-generator-x-p2-korean-30s-couple.md",
+    "simulations/sim-01-ai-course-generator-x-p1-korean-20s-solo.md",
+    "tourism-api/00-api-catalog.md",
+    "tourism-api/tourism-info-chinese-simplified.md",
+    "ideas/2026-04-17-kculture-pilgrimage.md"
+  ]
+}

@@ -8,6 +8,7 @@ created: 2026-04-17T15:10:00Z
 status: draft
 llm_compatibility: universal
 related: [access-korea, p5-foreign-30s-business-leisure]
+aliases: ["AccessKorea × David Park (외국인 30대 블레저)"]
 ---
 
 # SIM-15: AccessKorea × David Park (외국인 30대 블레저)

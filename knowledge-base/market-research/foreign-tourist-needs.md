@@ -14,6 +14,7 @@ sources:
   - https://www.tripadvisor.com/Tourism-g294197-South_Korea-Vacations.html
   - https://www.klook.com/en-US/destination/kr-south-korea/
   - https://datalab.visitkorea.or.kr/
+aliases: ["외국인 관광객 니즈 분석"]
 ---
 
 # 외국인 관광객 니즈 분析
@@ -179,3 +180,18 @@ Instagram #Seoul             카카오맵 (한국어라 힘듦)
 - **"Visit Korea + TripAdvisor + Google Maps를 하나로"** — 포지셔닝 메시지
 - 중국어 두 버전 (간체/번체) 분리 제공 — 세심함 어필
 - 할랄 필터, 비건 필터 — 다양성 대응
+
+---
+
+## 관련 페이지
+
+**페르소나**
+- [[personas/p3-korean-40s-family|최동훈]]
+- [[personas/p2-korean-30s-couple|박민준 & 이수연]]
+- [[personas/p1-korean-20s-solo|김지원]]
+- [[personas/p4-foreign-20s-backpacker|Emma Chen]]
+- [[personas/p5-foreign-30s-business-leisure|David Park]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+

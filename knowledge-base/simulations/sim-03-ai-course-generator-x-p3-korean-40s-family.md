@@ -8,6 +8,7 @@ created: 2026-04-17T14:10:00Z
 status: draft
 llm_compatibility: universal
 related: [ai-course-generator, p3-korean-40s-family]
+aliases: ["KoreaPath AI × 최동훈 (한국 40대 가족)"]
 ---
 
 # SIM-03: KoreaPath AI × 최동훈 (한국 40대 가족)

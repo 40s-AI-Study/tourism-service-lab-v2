@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["K-Local Explorer — 지역 특화 숨은 명소 발굴 앱"]
 ---
 
 ## 한 줄 정의
@@ -59,3 +60,37 @@ llm_compatibility: universal
 > K-Local Explorer가 혼잡도 데이터 기반 "이번 주말 경주·안동 혼잡 예상 → 대신 청송 주왕산 달기약수터 주변 추천"을 제안.
 > 해당 명소 화면에는 사진 공모전 대상 수상작 3장이 표시되고, 연관 명소로 '주산지 왕버들 연못'이 연결된 반나절 코스가 자동 생성됨.
 > "화요일 오전 9시 방문 시 혼잡도 최저" 타이밍 안내와 함께 인스타 공유용 감성 카드("경북의 숨은 보석, 청송에서 찾다")가 자동 생성됨.
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/photo-contest-winners|API: 관광공모전(사진) 수상작 정보]]
+- [[tourism-api/related-attractions|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/central-attractions-by-municipality|API: 기초지자체 중심 관광지 정보]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, K-컬처**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-kculture-pilgrimage|K-Universe]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+

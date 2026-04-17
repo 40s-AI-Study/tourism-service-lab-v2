@@ -7,6 +7,7 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
 status: draft
 llm_compatibility: universal
+aliases: ["K-Universe — K-컬처 성지순례 + 팬 여행 앱"]
 ---
 
 # 아이디어 6: K-Universe
@@ -52,3 +53,45 @@ K-팝·K-드라마·K-무비 촬영지 및 팬 명소를 다국어 오디오 가
 ## 리스크
 - 콘텐츠 저작권 (드라마명·아이돌명 상업적 사용) → 관광 정보 범위로 한정
 - 성지 장소 데이터 업데이트 주기 — 크라우드 소싱 + 편집팀 운영 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/photo-contest-winners|API: 관광공모전(사진) 수상작 정보]]
+- [[tourism-api/tourism-info-japanese|API: 일문 관광정보서비스]]
+- [[tourism-api/audio-guide|API: 관광지 오디오 가이드정보]]
+- [[tourism-api/tourism-photos|API: 관광사진 정보]]
+- [[tourism-api/visitor-concentration-forecast|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/tourism-info-english|API: 영문 관광정보서비스]]
+- [[tourism-api/tourism-info-chinese-simplified|API: 중문 간체 관광정보서비스]]
+
+**타겟 페르소나**
+- [[personas/p1-korean-20s-solo|김지원 (20대 솔로)]]
+
+**평가**
+- [[ideas/00-business-scoring|사업성 점수화]]
+
+**대회**
+- [[competition/overview|공모전 개요]]
+
+**유사: AI코스, K-컬처**
+- [[ideas/2026-04-17-k-camp-finder|K-Camp Finder]]
+- [[ideas/2026-04-17-multilingual-guide|K-Guide Global]]
+- [[ideas/2026-04-17-wellness-tour|WellKorea]]
+- [[ideas/2026-04-17-k-local-explorer|K-Local Explorer]]
+- [[ideas/2026-04-17-korea-wellness|KoreaWellness]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/2026-04-17-ai-course-generator|KoreaPath AI]]
+- [[ideas/2026-04-17-barrier-free-travel|FreeTrip Korea]]
+- [[ideas/2026-04-17-korea-trend-radar|KoreaTrend Radar]]
+- [[ideas/2026-04-17-night-tourism|NightKorea]]
+- [[ideas/2026-04-17-pet-friendly-travel|PetTrip Korea]]
+- [[ideas/2026-04-17-hidden-spot-congestion|LocalSecret]]
+
+**유사: AI코스, 다국어**
+- [[ideas/2026-04-17-pet-korea|PetKorea]]
+- [[ideas/2026-04-17-eco-green-trail|GreenTrail Korea]]
+
