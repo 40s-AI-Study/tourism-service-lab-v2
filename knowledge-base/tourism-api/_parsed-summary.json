@@ -1,0 +1,373 @@
+{
+  "area-tourism-demand-density": {
+    "title": "한국관광공사_지역별 관광 수요 강도",
+    "total_lines": 602,
+    "operations_found": [
+      "areaTarExpDsList",
+      "areaTarSjrnDsList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(지역별관광수요강도)_v4.0.docx"
+  },
+  "area-tourism-diversity": {
+    "title": "한국관광공사_지역별 관광 다양성",
+    "total_lines": 785,
+    "operations_found": [
+      "areaExpDivList",
+      "areaIntlDivList",
+      "areaTouDivList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(지역별관광다양성)_v4.0.docx"
+  },
+  "area-tourism-resource-demand": {
+    "title": "한국관광공사_지역별 관광 자원 수요",
+    "total_lines": 602,
+    "operations_found": [
+      "areaCulResDemList",
+      "areaTarSvcDemList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(지역별관광자원수요)_v4.0.docx"
+  },
+  "audio-guide": {
+    "title": "한국관광공사_관광지 오디오 가이드정보",
+    "total_lines": 1897,
+    "operations_found": [
+      "storyBasedList",
+      "storyBasedSyncList",
+      "storyLocationBasedList",
+      "storySearchList",
+      "themeBaseSyncdList",
+      "themeBasedList",
+      "themeBasedSyncList",
+      "themeCategory",
+      "themeLocationBasedList",
+      "themeSearchList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(오디)_v4.1.docx"
+  },
+  "barrier-free-travel": {
+    "title": "한국관광공사_무장애 여행 정보",
+    "total_lines": 5244,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(무장애여행)_v4.3.docx"
+  },
+  "central-attractions-by-municipality": {
+    "title": "한국관광공사_기초지자체 중심 관광지 정보",
+    "total_lines": 441,
+    "operations_found": [
+      "areaBasedList",
+      "areaBasedList1"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(기초지자체_중심관광지정보)_v4.1.docx"
+  },
+  "durunubi-trails": {
+    "title": "한국관광공사_두루누비 정보 서비스",
+    "total_lines": 633,
+    "operations_found": [
+      "courseList",
+      "crsTourInfo",
+      "routeList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(두루누비)_v4.1.docx"
+  },
+  "eco-tourism": {
+    "title": "한국관광공사_생태 관광 정보",
+    "total_lines": 969,
+    "operations_found": [
+      "areaBasedList",
+      "areaBasedList1",
+      "areaBasedSyncList1"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(생태관광)_v4.2.docx"
+  },
+  "gocamping": {
+    "title": "한국관광공사_고캠핑 정보 조회서비스",
+    "total_lines": 2849,
+    "operations_found": [
+      "basedList",
+      "basedSyncList",
+      "firstImageUrl",
+      "imageList",
+      "locationBasedList",
+      "searchList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(고캠핑)_v4.1.docx"
+  },
+  "medical-tourism": {
+    "title": "한국관광공사_의료관광정보",
+    "total_lines": 2955,
+    "operations_found": [
+      "areaBasedList",
+      "corprHsptlInfo",
+      "detailCommon",
+      "hmpgInfo",
+      "insttDevInfo",
+      "lDongListYn",
+      "locationBasedList",
+      "mainMdlcSubjInfo",
+      "mdclTursmDivInfo",
+      "mdclTursmSyncList",
+      "orgImage",
+      "prSnsInfo",
+      "searchKeyword",
+      "specFcltyInfo",
+      "specProcMdlcInfo"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(의료)_v4.1.docx"
+  },
+  "pet-friendly-travel": {
+    "title": "한국관광공사_반려동물_동반여행_서비스",
+    "total_lines": 3354,
+    "operations_found": [
+      "areaBasedList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "etcAcmpyInfo",
+      "lDongListYn",
+      "locationBasedList2",
+      "petTourSyncList2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(반려동물동반여행)_v4.1.docx"
+  },
+  "photo-contest-winners": {
+    "title": "한국관광공사_관광공모전(사진) 수상작 정보",
+    "total_lines": 874,
+    "operations_found": [
+      "enKeyword",
+      "koKeyword",
+      "orgImage",
+      "phokoAwrdList",
+      "phokoAwrdSyncList",
+      "thumbImage"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(관광공모전 수상작).docx"
+  },
+  "related-attractions": {
+    "title": "한국관광공사_관광지별 연관 관광지 정보",
+    "total_lines": 723,
+    "operations_found": [
+      "areaBasedList1",
+      "searchKeyword",
+      "searchKeyword1"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(관광지별연관관광지정보)_v4.1.docx"
+  },
+  "tourism-big-data": {
+    "title": "한국관광공사_관광빅데이터 정보서비스",
+    "total_lines": 596,
+    "operations_found": [
+      "locgoRegnVisitrDDList",
+      "metcoRegnVisitrDDList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(관광빅데이터)_v4.1.docx"
+  },
+  "tourism-info-chinese-simplified": {
+    "title": "한국관광공사_중문 간체 관광정보서비스",
+    "total_lines": 3806,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(중문간체)_v4.4.docx"
+  },
+  "tourism-info-chinese-traditional": {
+    "title": "한국관광공사_중문 번체 관광정보서비스",
+    "total_lines": 3773,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(중문번체)_v4.4.docx"
+  },
+  "tourism-info-english": {
+    "title": "한국관광공사_영문 관광정보서비스",
+    "total_lines": 3886,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(영문)_v4.4.docx"
+  },
+  "tourism-info-french": {
+    "title": "한국관광공사_불어 관광정보서비스",
+    "total_lines": 3871,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(불어)_v4.3.docx"
+  },
+  "tourism-info-german": {
+    "title": "한국관광공사_독어 관광정보서비스",
+    "total_lines": 3860,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(독어)_v4.3.docx"
+  },
+  "tourism-info-japanese": {
+    "title": "한국관광공사_일문 관광정보서비스",
+    "total_lines": 3921,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(일문)_v4.4.docx"
+  },
+  "tourism-info-korean": {
+    "title": "한국관광공사_국문 관광정보 서비스",
+    "total_lines": 4433,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(국문)_v4.4.docx"
+  },
+  "tourism-info-russian": {
+    "title": "한국관광공사_노어 관광정보서비스",
+    "total_lines": 3888,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(노어)_v4.3.docx"
+  },
+  "tourism-info-spanish": {
+    "title": "한국관광공사_서어 관광정보서비스",
+    "total_lines": 3875,
+    "operations_found": [
+      "areaBasedList2",
+      "areaBasedSyncList2",
+      "detailCommon2",
+      "detailImage2",
+      "detailInfo2",
+      "locationBasedList2",
+      "searchFestival2",
+      "searchKeyword2",
+      "subImageYN"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(서어)_v4.3.docx"
+  },
+  "tourism-jobs": {
+    "title": "한국관광공사_관광인_채용정보_서비스",
+    "total_lines": 1668,
+    "operations_found": [
+      "empmnInfoDetail",
+      "empmnInfoList",
+      "empmnInfoNo",
+      "labrrNumInfo",
+      "srchRecruitInfoSeq",
+      "syncList",
+      "tursmEmpmnInfoURL"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(관광채용정보)_v4.0.docx"
+  },
+  "tourism-photos": {
+    "title": "한국관광공사_관광사진 정보",
+    "total_lines": 1023,
+    "operations_found": [
+      "galPhotographyLocation",
+      "galSearchKeyword",
+      "galWebImageUrl",
+      "galleryDetailList1",
+      "galleryList1",
+      "gallerySearchList1",
+      "gallerySyncDetailList1"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(관광사진)_v4.2.docx"
+  },
+  "visitor-concentration-forecast": {
+    "title": "한국관광공사_관광지 집중률 방문자 추이 예측 정보",
+    "total_lines": 660,
+    "operations_found": [
+      "tatsCnctrRateList",
+      "tatsCnctrRatedList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(관광지집중률방문자추이예측정보)_v4.0.docx"
+  },
+  "wellness-tourism": {
+    "title": "한국관광공사_웰니스관광정보",
+    "total_lines": 3485,
+    "operations_found": [
+      "areaBasedList",
+      "detailCommon",
+      "detailImage",
+      "detailInfo",
+      "lDongListYn",
+      "locationBasedList",
+      "orgImage",
+      "searchKeyword",
+      "thumbImage",
+      "wellnessTursmSyncList"
+    ],
+    "manual_file": "한국관광공사_개방데이터_활용매뉴얼(웰니스)_v4.1.docx"
+  }
+}
