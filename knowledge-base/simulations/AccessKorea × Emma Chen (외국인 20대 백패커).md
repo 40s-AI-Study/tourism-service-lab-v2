@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T15:05:00Z
 status: draft
 llm_compatibility: universal
-related: [access-korea, p4-foreign-20s-backpacker]
+related:
+  - "[[AccessKorea - 무장애 여행 통합 플랫폼]]"
+  - "[[Emma Chen, 23, Freelance Photographer (Taiwan)]]"
 aliases: ["AccessKorea × Emma Chen (외국인 20대 백패커)"]
 ---
 

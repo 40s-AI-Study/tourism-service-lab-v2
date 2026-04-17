@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
 status: draft
 llm_compatibility: universal
-related: [ai-course-generator, p1-korean-20s-solo]
+related:
+  - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"
+  - "[[김지원, 25세, 그래픽 디자이너]]"
 aliases: ["KoreaPath AI × 김지원 (한국 20대 솔로)"]
 ---
 

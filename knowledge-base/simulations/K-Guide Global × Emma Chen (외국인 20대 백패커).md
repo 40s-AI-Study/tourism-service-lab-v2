@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:40:00Z
 status: draft
 llm_compatibility: universal
-related: [multilingual-guide, p4-foreign-20s-backpacker]
+related:
+  - "[[K-Guide Global - 외국인 전용 다국어 통합 한국 관광 가이드]]"
+  - "[[Emma Chen, 23, Freelance Photographer (Taiwan)]]"
 aliases: ["K-Guide Global × Emma Chen (외국인 20대 백패커)"]
 ---
 

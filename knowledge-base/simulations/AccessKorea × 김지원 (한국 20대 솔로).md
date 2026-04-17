@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:50:00Z
 status: draft
 llm_compatibility: universal
-related: [access-korea, p1-korean-20s-solo]
+related:
+  - "[[AccessKorea - 무장애 여행 통합 플랫폼]]"
+  - "[[김지원, 25세, 그래픽 디자이너]]"
 aliases: ["AccessKorea × 김지원 (한국 20대 솔로)"]
 ---
 

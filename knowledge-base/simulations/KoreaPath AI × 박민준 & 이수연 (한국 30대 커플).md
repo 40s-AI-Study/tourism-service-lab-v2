@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:05:00Z
 status: draft
 llm_compatibility: universal
-related: [ai-course-generator, p2-korean-30s-couple]
+related:
+  - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"
+  - "[[박민준 & 이수연, 3331세, 직장인 커플]]"
 aliases: ["KoreaPath AI × 박민준 & 이수연 (한국 30대 커플)"]
 ---
 

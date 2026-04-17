@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:20:00Z
 status: draft
 llm_compatibility: universal
-related: [ai-course-generator, p5-foreign-30s-business-leisure]
+related:
+  - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"
+  - "[[David Park, 35, Senior Product Manager (USA)]]"
 aliases: ["KoreaPath AI × David Park (외국인 30대 블레저)"]
 ---
 

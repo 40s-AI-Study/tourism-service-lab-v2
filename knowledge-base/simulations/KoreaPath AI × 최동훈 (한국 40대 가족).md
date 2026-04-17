@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:10:00Z
 status: draft
 llm_compatibility: universal
-related: [ai-course-generator, p3-korean-40s-family]
+related:
+  - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"
+  - "[[최동훈, 44세, 중학교 교사 (초등생 자녀 2명)]]"
 aliases: ["KoreaPath AI × 최동훈 (한국 40대 가족)"]
 ---
 

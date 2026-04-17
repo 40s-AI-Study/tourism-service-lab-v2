@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T15:00:00Z
 status: draft
 llm_compatibility: universal
-related: [access-korea, p3-korean-40s-family]
+related:
+  - "[[AccessKorea - 무장애 여행 통합 플랫폼]]"
+  - "[[최동훈, 44세, 중학교 교사 (초등생 자녀 2명)]]"
 aliases: ["AccessKorea × 최동훈 (한국 40대 가족)"]
 ---
 

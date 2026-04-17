@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:35:00Z
 status: draft
 llm_compatibility: universal
-related: [multilingual-guide, p3-korean-40s-family]
+related:
+  - "[[K-Guide Global - 외국인 전용 다국어 통합 한국 관광 가이드]]"
+  - "[[최동훈, 44세, 중학교 교사 (초등생 자녀 2명)]]"
 aliases: ["K-Guide Global × 최동훈 (한국 40대 가족)"]
 ---
 

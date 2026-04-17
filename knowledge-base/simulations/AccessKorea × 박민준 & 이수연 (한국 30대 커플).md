@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:55:00Z
 status: draft
 llm_compatibility: universal
-related: [access-korea, p2-korean-30s-couple]
+related:
+  - "[[AccessKorea - 무장애 여행 통합 플랫폼]]"
+  - "[[박민준 & 이수연, 3331세, 직장인 커플]]"
 aliases: ["AccessKorea × 박민준 & 이수연 (한국 30대 커플)"]
 ---
 

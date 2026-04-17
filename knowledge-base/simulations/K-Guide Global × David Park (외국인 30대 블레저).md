@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:45:00Z
 status: draft
 llm_compatibility: universal
-related: [multilingual-guide, p5-foreign-30s-business-leisure]
+related:
+  - "[[K-Guide Global - 외국인 전용 다국어 통합 한국 관광 가이드]]"
+  - "[[David Park, 35, Senior Product Manager (USA)]]"
 aliases: ["K-Guide Global × David Park (외국인 30대 블레저)"]
 ---
 

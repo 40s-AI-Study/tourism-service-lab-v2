@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:15:00Z
 status: draft
 llm_compatibility: universal
-related: [ai-course-generator, p4-foreign-20s-backpacker]
+related:
+  - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"
+  - "[[Emma Chen, 23, Freelance Photographer (Taiwan)]]"
 aliases: ["KoreaPath AI × Emma Chen (외국인 20대 백패커)"]
 ---
 

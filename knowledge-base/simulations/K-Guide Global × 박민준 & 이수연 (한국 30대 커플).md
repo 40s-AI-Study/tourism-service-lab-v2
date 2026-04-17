@@ -7,7 +7,9 @@ author_model: claude-sonnet-4-6
 created: 2026-04-17T14:30:00Z
 status: draft
 llm_compatibility: universal
-related: [multilingual-guide, p2-korean-30s-couple]
+related:
+  - "[[K-Guide Global - 외국인 전용 다국어 통합 한국 관광 가이드]]"
+  - "[[박민준 & 이수연, 3331세, 직장인 커플]]"
 aliases: ["K-Guide Global × 박민준 & 이수연 (한국 30대 커플)"]
 ---
 
