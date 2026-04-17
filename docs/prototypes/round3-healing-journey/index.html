@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>치유여정 Korea — 번아웃된 당신을 위한 감성 치유 여행</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #10B981;
+      --accent2: #34D399;
+      --accent3: #6EE7B7;
+      --grad: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+      --grad2: linear-gradient(135deg, #065F46 0%, #064E3B 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.90); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 17px; font-weight: 800; text-decoration: none; color: var(--fg);
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--grad); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    /* SECTIONS */
+    .section { padding: 56px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 10px; }
+    .section-num { font-size: 11px; color: var(--accent); letter-spacing: 0.18em; font-weight: 700; margin-bottom: 6px; }
+    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 8px; line-height: 1.25; }
+    .section-desc { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 28px; }
+
+    /* divider */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* HERO */
+    .hero-section {
+      min-height: 92vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 20%, rgba(16,185,129,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(6,95,70,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 70%, rgba(52,211,153,0.05) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 18px;
+      border: 1px solid rgba(16,185,129,0.4); border-radius: 999px;
+      font-size: 13px; color: var(--accent2);
+      margin-bottom: 28px;
+    }
+    .pulse-dot {
+      width: 7px; height: 7px; background: var(--accent); border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+    .hero-title {
+      font-size: clamp(34px, 6vw, 56px); font-weight: 900;
+      line-height: 1.12; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero-title span {
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.65; margin-bottom: 40px; }
+
+    /* MOCK PHONE UI in Hero */
+    .phone-mock {
+      width: 280px; margin: 0 auto 0;
+      background: #0A0A10; border: 1px solid var(--border);
+      border-radius: 36px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .phone-notch {
+      height: 28px; background: #0A0A10;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .phone-notch-bar { width: 80px; height: 6px; background: #1a1a24; border-radius: 3px; }
+    .phone-screen {
+      background: linear-gradient(170deg, #051C14 0%, #030D09 50%, #060609 100%);
+      padding: 20px 18px 24px;
+      min-height: 460px;
+      display: flex; flex-direction: column;
+    }
+    .phone-header { text-align: center; margin-bottom: 18px; }
+    .phone-header .app-name { font-size: 13px; color: var(--accent2); font-weight: 700; letter-spacing: 0.1em; }
+    .phone-header .app-question { font-size: 17px; font-weight: 800; color: var(--fg); margin-top: 4px; line-height: 1.3; }
+    .phone-scene {
+      height: 110px; border-radius: 14px; overflow: hidden; margin-bottom: 16px;
+      background: linear-gradient(160deg, #052E1C 0%, #03140B 60%, #081208 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 42px; position: relative;
+    }
+    .phone-scene::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(3,13,9,0.8));
+    }
+    .phone-scene-text {
+      position: absolute; bottom: 8px; left: 12px; right: 12px;
+      font-size: 10px; color: rgba(52,211,153,0.7); font-weight: 600; z-index: 1;
+      letter-spacing: 0.05em;
+    }
+
+    .phone-modes { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .mode-btn {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 14px;
+      border-radius: 14px; cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .mode-btn:nth-child(1) { background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.35); }
+    .mode-btn:nth-child(2) { background: rgba(16,185,129,0.06); border-color: rgba(16,185,129,0.15); }
+    .mode-btn:nth-child(3) { background: rgba(16,185,129,0.06); border-color: rgba(16,185,129,0.15); }
+    .mode-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .mode-btn:nth-child(1) .mode-icon { background: rgba(16,185,129,0.2); }
+    .mode-btn:nth-child(2) .mode-icon { background: rgba(16,185,129,0.1); }
+    .mode-btn:nth-child(3) .mode-icon { background: rgba(16,185,129,0.1); }
+    .mode-info { flex: 1; }
+    .mode-name { font-size: 13px; font-weight: 700; color: var(--fg); }
+    .mode-name .mode-badge { display: inline-block; margin-left: 6px; font-size: 9px; background: var(--accent); color: #000; border-radius: 4px; padding: 1px 5px; font-weight: 800; vertical-align: middle; }
+    .mode-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .mode-arrow { color: var(--accent); font-size: 14px; }
+
+    /* §2 Overview */
+    .summary-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 28px;
+      margin-bottom: 28px; border-left: 3px solid var(--accent);
+    }
+    .summary-box p { font-size: 15px; color: var(--muted); line-height: 1.75; }
+    .summary-box p strong { color: var(--fg); }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .persona-badge {
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25);
+      font-size: 13px; color: var(--accent2); font-weight: 500;
+    }
+
+    .diff-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .diff-table th, .diff-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    .diff-table th { color: var(--muted2); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface); }
+    .diff-table tr:last-child td { border-bottom: none; }
+    .diff-table td:first-child { color: var(--muted); }
+    .diff-table td:nth-child(2) { color: var(--muted2); }
+    .diff-table td:last-child { color: var(--accent2); font-weight: 600; }
+    .diff-table tr:hover td { background: rgba(16,185,129,0.03); }
+
+    /* §3 Research */
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 32px; }
+    .market-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 20px; text-align: center;
+    }
+    .market-val { font-size: 26px; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+    .market-label { font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .market-source { font-size: 10px; color: var(--muted2); margin-top: 8px; }
+
+    .bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .bench-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .bench-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .bench-type { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .bench-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .bench-insight { font-size: 12px; color: var(--accent2); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    /* §4 Idea */
+    .fusion-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 32px; }
+    .fusion-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    }
+    .fusion-card.highlight { border-color: var(--accent); background: rgba(16,185,129,0.05); }
+    .fusion-rank { font-size: 11px; color: var(--muted2); letter-spacing: 0.1em; margin-bottom: 8px; }
+    .fusion-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .fusion-score { font-size: 28px; font-weight: 900; color: var(--accent); }
+    .fusion-score-label { font-size: 11px; color: var(--muted2); }
+
+    .axis-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .axis-table th, .axis-table td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    .axis-table th { color: var(--muted2); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface); }
+    .axis-table tr:last-child td { border-bottom: none; }
+    .score-cell { font-size: 18px; font-weight: 800; color: var(--accent); }
+    .score-bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .score-bar { height: 6px; background: var(--border); border-radius: 3px; flex: 1; }
+    .score-bar-fill { height: 100%; background: var(--grad); border-radius: 3px; }
+
+    .total-score-box {
+      background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(52,211,153,0.06) 100%);
+      border: 1px solid rgba(16,185,129,0.4); border-radius: 16px;
+      padding: 24px 28px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    }
+    .total-score-main { font-size: 48px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .total-score-label { font-size: 15px; color: var(--muted); }
+    .total-score-label strong { color: var(--fg); display: block; font-size: 18px; margin-bottom: 4px; }
+
+    /* §5 Evaluation */
+    .eval-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .eval-table th, .eval-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    .eval-table th { color: var(--muted2); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface); }
+    .eval-table tr:last-child td { border-bottom: none; }
+    .eval-max { color: var(--muted2); }
+    .eval-expected { font-weight: 700; color: var(--accent2); font-size: 16px; }
+    .eval-pct-bar { height: 6px; background: var(--border); border-radius: 3px; min-width: 80px; display: inline-block; vertical-align: middle; margin-left: 8px; }
+    .eval-pct-fill { height: 100%; background: var(--grad); border-radius: 3px; }
+
+    .strength-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .strength-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 16px; font-size: 14px; color: var(--muted);
+    }
+    .strength-list li::before { content: '✓'; color: var(--accent); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+    /* §6 Mock UI */
+    .mockui-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+    @media (max-width: 640px) { .mockui-grid { grid-template-columns: 1fr; } }
+
+    .mockui-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    }
+    .mockui-header {
+      padding: 14px 18px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .mockui-header .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockui-header .dot-r { background: #EF4444; }
+    .mockui-header .dot-y { background: #F59E0B; }
+    .mockui-header .dot-g { background: var(--accent); }
+    .mockui-title-bar { flex: 1; text-align: center; font-size: 12px; color: var(--muted2); }
+    .mockui-body { padding: 18px; }
+
+    /* Screen 1: Mode select */
+    .mock-screen-top { text-align: center; margin-bottom: 14px; }
+    .mock-app-icon { font-size: 28px; margin-bottom: 6px; }
+    .mock-app-q { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .mock-app-sub { font-size: 11px; color: var(--muted); }
+
+    .mock-mode-list { display: flex; flex-direction: column; gap: 8px; }
+    .mock-mode-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.2);
+      cursor: pointer;
+    }
+    .mock-mode-item.active { background: rgba(16,185,129,0.16); border-color: var(--accent); }
+    .mock-mode-em { font-size: 18px; }
+    .mock-mode-text { flex: 1; }
+    .mock-mode-title { font-size: 12px; font-weight: 700; color: var(--fg); }
+    .mock-mode-sub { font-size: 10px; color: var(--muted); }
+    .mock-mode-check { font-size: 14px; color: var(--accent); }
+
+    /* Screen 2: Course card */
+    .mock-course-map {
+      height: 90px; border-radius: 10px; margin-bottom: 12px;
+      background: linear-gradient(145deg, #051C14 0%, #03120A 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; position: relative; overflow: hidden;
+    }
+    .mock-course-map-dots {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 60%, rgba(16,185,129,0.3) 0%, transparent 35%),
+                  radial-gradient(circle at 70% 30%, rgba(52,211,153,0.2) 0%, transparent 30%),
+                  radial-gradient(circle at 55% 75%, rgba(16,185,129,0.15) 0%, transparent 25%);
+    }
+    .mock-course-info { font-size: 12px; }
+    .mock-course-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .mock-course-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mock-tag { padding: 3px 8px; border-radius: 6px; font-size: 10px; background: rgba(16,185,129,0.1); color: var(--accent2); border: 1px solid rgba(16,185,129,0.2); }
+
+    /* Screen 3: Audio player */
+    .mock-audio-waveform {
+      height: 50px; border-radius: 8px; margin: 10px 0;
+      background: var(--surface); display: flex; align-items: center; justify-content: center;
+      gap: 3px; padding: 0 12px; overflow: hidden;
+    }
+    .wave-bar {
+      width: 3px; border-radius: 2px; background: rgba(16,185,129,0.3);
+      animation: wave 1.4s ease-in-out infinite;
+    }
+    .wave-bar.active { background: var(--accent); }
+    @keyframes wave {
+      0%,100% { transform: scaleY(1); }
+      50% { transform: scaleY(2.5); }
+    }
+    .wave-bar:nth-child(1) { height: 16px; animation-delay: 0s; }
+    .wave-bar:nth-child(2) { height: 28px; animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { height: 36px; animation-delay: 0.15s; }
+    .wave-bar:nth-child(5) { height: 24px; animation-delay: 0.25s; }
+    .wave-bar:nth-child(6) { height: 32px; animation-delay: 0.05s; }
+    .wave-bar:nth-child(7) { height: 18px; animation-delay: 0.3s; }
+    .wave-bar:nth-child(8) { height: 28px; animation-delay: 0.1s; }
+    .wave-bar:nth-child(9) { height: 22px; animation-delay: 0.2s; }
+    .wave-bar:nth-child(10) { height: 30px; animation-delay: 0.15s; }
+    .wave-bar:nth-child(11) { height: 16px; animation-delay: 0.35s; }
+    .wave-bar:nth-child(12) { height: 26px; animation-delay: 0.05s; }
+
+    .mock-audio-progress { height: 3px; background: var(--border); border-radius: 2px; margin: 6px 0; }
+    .mock-audio-progress-fill { height: 100%; width: 42%; background: var(--grad); border-radius: 2px; }
+    .mock-audio-ctrls { display: flex; justify-content: space-between; align-items: center; }
+    .mock-ctrl-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; }
+    .mock-ctrl-play { width: 36px; height: 36px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .mock-audio-time { font-size: 10px; color: var(--muted2); font-family: monospace; }
+
+    /* Journey */
+    .journey-steps { display: flex; gap: 0; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; }
+    .journey-step { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; }
+    .journey-step-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25);
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .journey-step-label { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.35; }
+    .journey-arrow { flex: 0 0 auto; display: flex; align-items: center; padding-top: 10px; color: var(--muted2); font-size: 16px; }
+
+    /* §7 API */
+    .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .api-table th, .api-table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+    .api-table th { color: var(--muted2); font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--surface); }
+    .api-table tr:last-child td { border-bottom: none; }
+    .api-table tr:hover td { background: rgba(16,185,129,0.03); }
+    .api-num { color: var(--muted2); font-size: 12px; }
+    .api-name { color: var(--fg); font-weight: 600; }
+    .api-code { display: inline-block; font-family: monospace; font-size: 11px; color: var(--accent); background: rgba(16,185,129,0.08); padding: 2px 7px; border-radius: 5px; margin-top: 2px; }
+    .api-role { color: var(--muted); }
+    .freq-badge { display: inline-block; padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+    .freq-high { background: rgba(16,185,129,0.15); color: var(--accent2); }
+    .freq-mid { background: rgba(110,231,183,0.1); color: var(--accent3); }
+    .freq-low { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+    /* §8 Score */
+    .score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .agent-score-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px; text-align: center;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .agent-score-card:hover { border-color: rgba(16,185,129,0.4); transform: translateY(-2px); }
+    .agent-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(16,185,129,0.12); border: 2px solid rgba(16,185,129,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin: 0 auto 10px;
+    }
+    .agent-name { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .agent-score-val { font-size: 26px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .agent-score-denom { font-size: 12px; color: var(--muted2); }
+
+    .avg-score-box {
+      background: linear-gradient(135deg, rgba(16,185,129,0.14) 0%, rgba(52,211,153,0.07) 100%);
+      border: 1px solid rgba(16,185,129,0.45); border-radius: 20px;
+      padding: 32px; text-align: center; margin-bottom: 28px;
+    }
+    .avg-label { font-size: 13px; color: var(--accent2); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+    .avg-val { font-size: 72px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .avg-denom { font-size: 22px; color: var(--muted); margin-top: 4px; }
+    .avg-note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+
+    .consensus-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border: 1px solid var(--border); border-radius: 12px;
+      text-decoration: none; color: var(--muted); font-size: 14px;
+      transition: all 0.15s; background: var(--card);
+    }
+    .consensus-link:hover { border-color: var(--accent); color: var(--fg); }
+    .consensus-link code { font-family: monospace; font-size: 12px; color: var(--accent); }
+
+    footer {
+      margin-top: 60px; padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center; font-size: 13px; color: var(--muted2);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--fg); }
+
+    /* utility */
+    .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    @media (max-width: 640px) {
+      .hero-title { font-size: 30px; }
+      .score-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../">
+    <div class="nav-logo-icon">🌿</div>
+    치유여정 Korea
+  </a>
+  <a class="nav-back" href="../">← 포트폴리오</a>
+  <span class="nav-badge">Round 3 · 1위</span>
+</nav>
+
+<!-- §1 HERO ──────────────────────────────────────────── -->
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      2026 Visit Korea Competition · Round 3 최종 1위
+    </div>
+    <h1 class="hero-title">
+      지치고 번아웃된 당신,<br>
+      <span>어떻게 회복할까요?</span>
+    </h1>
+    <p class="hero-sub">
+      치유여정 Korea — 소리와 침묵, 자연과 감성으로 회복하는<br>번아웃된 20–40대를 위한 치유 모드 선택형 여행 플랫폼
+    </p>
+
+    <!-- Phone Mock -->
+    <div class="phone-mock">
+      <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+      <div class="phone-screen">
+        <div class="phone-header">
+          <div class="app-name">치유여정 Korea 🌿</div>
+          <div class="app-question">어떻게 회복할까요?</div>
+        </div>
+        <div class="phone-scene">
+          🌲
+          <div class="phone-scene-text">북한산 새벽 숲길 · 지금 조용해요</div>
+        </div>
+        <div class="phone-modes">
+          <div class="mode-btn">
+            <div class="mode-icon">🎧</div>
+            <div class="mode-info">
+              <div class="mode-name">들으며 회복 <span class="mode-badge">추천</span></div>
+              <div class="mode-desc">오디오 스토리와 함께 걷기</div>
+            </div>
+            <span class="mode-arrow">›</span>
+          </div>
+          <div class="mode-btn">
+            <div class="mode-icon">🌿</div>
+            <div class="mode-info">
+              <div class="mode-name">쉬며 회복</div>
+              <div class="mode-desc">조용한 공간에서 아무것도 안 하기</div>
+            </div>
+            <span class="mode-arrow">›</span>
+          </div>
+          <div class="mode-btn">
+            <div class="mode-icon">✨</div>
+            <div class="mode-info">
+              <div class="mode-name">발견하며 회복</div>
+              <div class="mode-desc">숨은 명소 탐험으로 설레임 찾기</div>
+            </div>
+            <span class="mode-arrow">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- §2 서비스 개요 ──────────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§2</div>
+  <div class="section-label">서비스 개요 — What</div>
+  <h2 class="section-title">치유여정 Korea란 무엇인가</h2>
+
+  <div class="summary-box">
+    <p>
+      <strong>KoreaWellness + Audio Story Korea + LocalSecret</strong> 3개 서비스를 통합한 감성 치유 여행 플랫폼.
+      <strong>소리와 침묵으로 회복하는 감성 여행</strong>을 핵심 가치로,
+      번아웃된 20–40대가 '어디 갈까?'가 아닌 <strong>'어떻게 회복할까?'</strong>라는 감정 JTBD에서 출발해
+      치유 모드(🎧 들으며 / 🌿 쉬며 / ✨ 발견하며)를 선택하면 맞춤 웰니스 코스, 오디오 스토리, 혼잡 회피 타이밍을 자동으로 큐레이션합니다.
+    </p>
+  </div>
+
+  <div class="section-label" style="margin-bottom:12px;">성향 스펙트럼</div>
+  <div class="badge-row">
+    <span class="persona-badge">🤫 조용한 회복자</span>
+    <span class="persona-badge">🔍 발견 탐험가</span>
+    <span class="persona-badge">🎵 소리 감상가</span>
+    <span class="persona-badge">🌲 자연 힐러</span>
+    <span class="persona-badge">🏙️ 도시 탈출러</span>
+  </div>
+
+  <div class="section-label" style="margin-bottom:12px;">경쟁 서비스 대비 차별화</div>
+  <div class="table-wrap">
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>서비스</th>
+          <th>기존 JTBD</th>
+          <th>치유여정 Korea 차별점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>트리플</td>
+          <td>"어디 갈까?"</td>
+          <td>"어떻게 회복할까?" 감정 JTBD 진입</td>
+        </tr>
+        <tr>
+          <td>야놀자</td>
+          <td>"어디서 잘까? 얼마나 저렴하게?"</td>
+          <td>가격 경쟁 아닌 회복 경험 가치 제안</td>
+        </tr>
+        <tr>
+          <td>Klook</td>
+          <td>"무엇을 체험할까?"</td>
+          <td>체험 큐레이션 → 감정 상태 기반 치유 코스</td>
+        </tr>
+        <tr>
+          <td>Calm / Headspace</td>
+          <td>"명상으로 마음을 안정시키자"</td>
+          <td>앱 안에서 끝나지 않고 실제 장소로 연결</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §3 리서치 근거 ──────────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§3</div>
+  <div class="section-label">리서치 근거 — Why</div>
+  <h2 class="section-title">시장 데이터와 글로벌 벤치마크</h2>
+
+  <div class="market-grid">
+    <div class="market-card">
+      <div class="market-val">$8,940억</div>
+      <div class="market-label">글로벌 웰니스 투어리즘 시장 규모</div>
+      <div class="market-source">GWI Global Wellness Economy Monitor 2025</div>
+    </div>
+    <div class="market-card">
+      <div class="market-val">+9.1%</div>
+      <div class="market-label">연평균 성장률 (CAGR)</div>
+      <div class="market-source">GWI 2025 전망</div>
+    </div>
+    <div class="market-card">
+      <div class="market-val">64%</div>
+      <div class="market-label">2026년 리트리트 여행 계획 MZ세대</div>
+      <div class="market-source">BookRetreats Global Survey 2025</div>
+    </div>
+    <div class="market-card">
+      <div class="market-val">1위</div>
+      <div class="market-label">"비싸도 여행 포기 못 해" 한국 MZ 소비 우선순위</div>
+      <div class="market-source">부킹닷컴 2025.10 트렌드 리포트</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-bottom:16px;">글로벌 벤치마크</div>
+  <div class="bench-grid">
+    <div class="bench-card">
+      <div class="bench-name">Calm</div>
+      <div class="bench-type">명상 · 수면 앱</div>
+      <div class="bench-desc">400만 DAU, 세계 최대 명상 앱. 번아웃 해소를 위한 가이드 명상 콘텐츠 제공.</div>
+      <div class="bench-insight">→ 치유 수요 검증. 단, 앱 안에서만 소비되는 한계.</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-name">Headspace</div>
+      <div class="bench-type">여행 스트레스 케어</div>
+      <div class="bench-desc">'여행 전후 스트레스 명상' 콘텐츠로 여행과 웰니스 연결 시도. United Airlines 기내 콜라보.</div>
+      <div class="bench-insight">→ 여행 + 웰니스 결합 가능성 검증.</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-name">BookRetreats</div>
+      <div class="bench-type">리트리트 예약 플랫폼</div>
+      <div class="bench-desc">전 세계 6,000개 이상 웰니스 리트리트 예약. 요가·명상·디지털 디톡스 특화.</div>
+      <div class="bench-insight">→ 리트리트 수요 급증 데이터 소스.</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-name">KKday Experiences</div>
+      <div class="bench-type">체험 큐레이션</div>
+      <div class="bench-desc">아시아 최대 체험 예약 플랫폼. 감정 테마별 체험 큐레이션 기능 강화 중.</div>
+      <div class="bench-insight">→ 체험 큐레이션 UI/UX 패턴 참고.</div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §4 아이디어 도출 과정 ──────────────────────────── -->
+<div class="section">
+  <div class="section-num">§4</div>
+  <div class="section-label">아이디어 도출 과정 — How</div>
+  <h2 class="section-title">갈래 B 3-서비스 융합 선정 과정</h2>
+
+  <div class="section-desc">Round 3 갈래 B에서 세 서비스를 5축 BA 평가 후 최고 조합을 선발, 6축 강화 점수를 추가 산정했습니다.</div>
+
+  <div class="fusion-cards">
+    <div class="fusion-card">
+      <div class="fusion-rank">융합 소스 1</div>
+      <div class="fusion-name">KoreaWellness</div>
+      <div class="fusion-score">73<span class="fusion-score-label">/100</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;">웰니스 코스 · 5축 기준</div>
+    </div>
+    <div class="fusion-card">
+      <div class="fusion-rank">융합 소스 2</div>
+      <div class="fusion-name">Audio Story Korea</div>
+      <div class="fusion-score">79<span class="fusion-score-label">/100</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;">오디오 스토리텔링 · 5축 기준</div>
+    </div>
+    <div class="fusion-card highlight">
+      <div class="fusion-rank">융합 소스 3 · 최고점</div>
+      <div class="fusion-name">LocalSecret</div>
+      <div class="fusion-score">82<span class="fusion-score-label">/100</span></div>
+      <div style="font-size:12px;color:var(--accent2);margin-top:6px;">숨은 명소 발굴 · 5축 기준</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-bottom:12px;">6축 강화 평가 (치유여정 Korea 통합 결과)</div>
+  <div class="table-wrap" style="margin-bottom:24px;">
+    <table class="axis-table">
+      <thead>
+        <tr>
+          <th>평가 축</th>
+          <th>점수 (/ 10)</th>
+          <th>시각화</th>
+          <th>근거</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>감정 JTBD 명확성</td>
+          <td class="score-cell">10</td>
+          <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div></div></td>
+          <td style="color:var(--muted);font-size:13px;">"어떻게 회복할까?" — 업계 최초 감정 진입점</td>
+        </tr>
+        <tr>
+          <td>성향 다양성</td>
+          <td class="score-cell">9</td>
+          <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div></div></td>
+          <td style="color:var(--muted);font-size:13px;">5가지 성향 스펙트럼, 모드 선택형 UX</td>
+        </tr>
+        <tr>
+          <td>숨은 명소 발굴</td>
+          <td class="score-cell">9</td>
+          <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div></div></td>
+          <td style="color:var(--muted);font-size:13px;">혼잡도 회피 + 지역 다양성 API 결합</td>
+        </tr>
+        <tr>
+          <td>4계절 콘텐츠</td>
+          <td class="score-cell">9</td>
+          <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div></div></td>
+          <td style="color:var(--muted);font-size:13px;">계절 특화 치유 코스 데이터 구성</td>
+        </tr>
+        <tr>
+          <td>이중 렌즈 (내·외국인)</td>
+          <td class="score-cell">9</td>
+          <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:90%"></div></div></div></td>
+          <td style="color:var(--muted);font-size:13px;">영문 API로 K-웰니스 외국인 서비스 동시 지원</td>
+        </tr>
+        <tr>
+          <td>UI 감정 차별화</td>
+          <td class="score-cell">10</td>
+          <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:100%"></div></div></div></td>
+          <td style="color:var(--muted);font-size:13px;">다크 포레스트 테마, 치유 모드별 색상 시스템</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="total-score-box">
+    <div>
+      <div class="total-score-main">138</div>
+    </div>
+    <div>
+      <div class="total-score-label">
+        <strong>통합 BA 점수 138 / 160점 · 1위</strong>
+        5축 기준 82점 (LocalSecret 최고) + 6축 강화 56점 (만점 60점 대비 56점)
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §5 공모전 평가 기준 대응 ────────────────────────── -->
+<div class="section">
+  <div class="section-num">§5</div>
+  <div class="section-label">공모전 평가 기준 대응</div>
+  <h2 class="section-title">2026 Visit Korea 심사 기준 예상 점수</h2>
+
+  <div class="table-wrap" style="margin-bottom:28px;">
+    <table class="eval-table">
+      <thead>
+        <tr>
+          <th>평가 항목</th>
+          <th>만점</th>
+          <th>예상 점수</th>
+          <th>달성률</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>서비스 기획력</td>
+          <td class="eval-max">30</td>
+          <td class="eval-expected">27</td>
+          <td>
+            <span class="eval-pct-bar" style="width:100px"><span class="eval-pct-fill" style="width:90%"></span></span>
+            90%
+          </td>
+        </tr>
+        <tr>
+          <td>서비스 완성도</td>
+          <td class="eval-max">30</td>
+          <td class="eval-expected">26</td>
+          <td>
+            <span class="eval-pct-bar" style="width:100px"><span class="eval-pct-fill" style="width:87%"></span></span>
+            87%
+          </td>
+        </tr>
+        <tr>
+          <td>데이터 활용</td>
+          <td class="eval-max">20</td>
+          <td class="eval-expected">18</td>
+          <td>
+            <span class="eval-pct-bar" style="width:100px"><span class="eval-pct-fill" style="width:90%"></span></span>
+            90%
+          </td>
+        </tr>
+        <tr>
+          <td>서비스 발전성</td>
+          <td class="eval-max">20</td>
+          <td class="eval-expected">17</td>
+          <td>
+            <span class="eval-pct-bar" style="width:100px"><span class="eval-pct-fill" style="width:85%"></span></span>
+            85%
+          </td>
+        </tr>
+        <tr>
+          <td>지역 특화 가점</td>
+          <td class="eval-max">+5</td>
+          <td class="eval-expected" style="color:var(--accent3);">+2</td>
+          <td style="color:var(--muted);font-size:13px;">두루누비·생태관광 지역 연계</td>
+        </tr>
+        <tr style="background:rgba(16,185,129,0.05);">
+          <td style="font-weight:800;color:var(--fg);">합계 (예상)</td>
+          <td class="eval-max" style="font-weight:800;">100+</td>
+          <td style="font-size:20px;font-weight:900;color:var(--accent);">~90점</td>
+          <td style="color:var(--accent2);font-weight:700;">최고 수준 예상</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-label" style="margin-bottom:14px;">심사 강점</div>
+  <ul class="strength-list">
+    <li>감정 JTBD("어떻게 회복할까?") 기반 서비스 기획 — 기존 관광 플랫폼과 명확히 차별화된 진입점 확보</li>
+    <li>KTO OpenAPI 8종 풀 활용 — 오디오 가이드·웰니스·혼잡도·두루누비 등 데이터 다각화로 데이터 활용 평가 최고점 목표</li>
+    <li>3개 서비스 융합으로 단일 서비스 대비 기능 완성도·커버리지 압도적 우위</li>
+    <li>5가지 성향 스펙트럼 + 3가지 치유 모드로 MZ·외국인·시니어 전 세대 포괄 가능</li>
+    <li>웰니스 투어리즘 글로벌 성장($8,940억) 트렌드와 정확히 일치하는 사업 발전성</li>
+    <li>다크 포레스트 감성 UI — 치유 콘셉트를 시각적으로 구현, 심사위원 첫인상 차별화</li>
+  </ul>
+</div>
+<hr class="divider">
+
+<!-- §6 주요 화면 ────────────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§6</div>
+  <div class="section-label">주요 화면 — Mock UI</div>
+  <h2 class="section-title">핵심 기능 3가지 화면 프로토타입</h2>
+
+  <div class="mockui-grid">
+    <!-- Screen 1: Mode Select -->
+    <div class="mockui-card">
+      <div class="mockui-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="mockui-title-bar">기능 1 · 치유 모드 선택 → 코스 추천</span>
+      </div>
+      <div class="mockui-body">
+        <div class="mock-screen-top">
+          <div class="mock-app-icon">🌿</div>
+          <div class="mock-app-q">어떻게 회복할까요?</div>
+          <div class="mock-app-sub">오늘의 기분을 선택해 주세요</div>
+        </div>
+        <div class="mock-mode-list">
+          <div class="mock-mode-item active">
+            <div class="mock-mode-em">🎧</div>
+            <div class="mock-mode-text">
+              <div class="mock-mode-title">들으며 회복</div>
+              <div class="mock-mode-sub">오디오 스토리와 함께 천천히 걷기</div>
+            </div>
+            <span class="mock-mode-check">✓</span>
+          </div>
+          <div class="mock-mode-item">
+            <div class="mock-mode-em">🌿</div>
+            <div class="mock-mode-text">
+              <div class="mock-mode-title">쉬며 회복</div>
+              <div class="mock-mode-sub">아무것도 안 해도 되는 조용한 곳</div>
+            </div>
+          </div>
+          <div class="mock-mode-item">
+            <div class="mock-mode-em">✨</div>
+            <div class="mock-mode-text">
+              <div class="mock-mode-title">발견하며 회복</div>
+              <div class="mock-mode-sub">아직 아무도 모르는 숨은 명소</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px 12px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;font-size:12px;color:var(--accent2);">
+          추천 코스 3개 준비됨 → 북한산 / 남산 / 창덕궁 후원
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2: Audio Story -->
+    <div class="mockui-card">
+      <div class="mockui-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="mockui-title-bar">기능 2 · 위치 기반 오디오 스토리</span>
+      </div>
+      <div class="mockui-body">
+        <div class="mock-course-map">
+          🏯
+          <div class="mock-course-map-dots"></div>
+          <div style="position:absolute;top:8px;right:10px;font-size:10px;color:rgba(52,211,153,0.8);font-weight:600;z-index:1;">● LIVE</div>
+        </div>
+        <div class="mock-course-info">
+          <div class="mock-course-name">창덕궁 후원 — 치유 오디오 코스</div>
+          <div class="mock-course-tags" style="margin:6px 0 10px;">
+            <span class="mock-tag">🎧 오디오 3편</span>
+            <span class="mock-tag">⏱ 80분</span>
+            <span class="mock-tag">🟢 지금 한산함</span>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-bottom:8px;line-height:1.55;">
+          "부용지 연꽃이 피는 계절, 정조는 이 자리에서 혼자 책을 읽었다. 당신도 잠시 멈춰도 좋다…"
+        </div>
+        <div class="mock-audio-waveform">
+          <div class="wave-bar active"></div>
+          <div class="wave-bar active"></div>
+          <div class="wave-bar active"></div>
+          <div class="wave-bar active"></div>
+          <div class="wave-bar active"></div>
+          <div class="wave-bar active"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+        <div class="mock-audio-progress"><div class="mock-audio-progress-fill"></div></div>
+        <div class="mock-audio-ctrls">
+          <span class="mock-audio-time">2:33</span>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div class="mock-ctrl-btn">⏮</div>
+            <div class="mock-ctrl-play">▶</div>
+            <div class="mock-ctrl-btn">⏭</div>
+          </div>
+          <span class="mock-audio-time">6:10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Congestion + Wellness -->
+    <div class="mockui-card">
+      <div class="mockui-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="mockui-title-bar">기능 3 · 혼잡도 회피 + 웰니스 코스</span>
+      </div>
+      <div class="mockui-body">
+        <div style="font-size:13px;font-weight:700;color:var(--fg);margin-bottom:10px;">이번 주말 추천 타이밍</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:10px;">
+            <span style="font-size:12px;color:var(--fg);">토요일 오전 7–9시</span>
+            <span style="font-size:11px;color:var(--accent);font-weight:700;">매우 한산 🟢</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;">
+            <span style="font-size:12px;color:var(--fg);">토요일 오후 2–4시</span>
+            <span style="font-size:11px;color:#F59E0B;font-weight:700;">보통 🟡</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;">
+            <span style="font-size:12px;color:var(--muted);">일요일 낮 12–3시</span>
+            <span style="font-size:11px;color:#EF4444;font-weight:700;">혼잡 🔴</span>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">웰니스 코스 매칭</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="padding:8px 10px;background:var(--surface);border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px;">
+            <span>🌲</span>
+            <span style="flex:1;color:var(--fg);">북한산 숲길 치유 코스</span>
+            <span style="color:var(--accent2);font-size:11px;">4.9★</span>
+          </div>
+          <div style="padding:8px 10px;background:var(--surface);border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px;">
+            <span>🌊</span>
+            <span style="flex:1;color:var(--fg);">한강 해질녘 명상 코스</span>
+            <span style="color:var(--accent2);font-size:11px;">4.8★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 4: Journey record -->
+    <div class="mockui-card">
+      <div class="mockui-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="mockui-title-bar">사용자 여정 플로우</span>
+      </div>
+      <div class="mockui-body">
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="journey-step-icon">📱</div>
+            <div class="journey-step-label">앱 열기</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step">
+            <div class="journey-step-icon">🎯</div>
+            <div class="journey-step-label">모드 선택</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step">
+            <div class="journey-step-icon">🗺️</div>
+            <div class="journey-step-label">코스 추천</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step">
+            <div class="journey-step-icon">🚶</div>
+            <div class="journey-step-label">이동</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step">
+            <div class="journey-step-icon">🎧</div>
+            <div class="journey-step-label">오디오 재생</div>
+          </div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step">
+            <div class="journey-step-icon">✅</div>
+            <div class="journey-step-label">완료 · 기록</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:10px;">
+          <div style="font-size:12px;font-weight:700;color:var(--accent2);margin-bottom:6px;">치유 완료 기록</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">
+            오늘 창덕궁 후원 80분 산책 완료 🌿<br>
+            오디오 스토리 3편 청취 · 방문자 2위 명소 발견<br>
+            <span style="color:var(--accent);">회복 점수 +12 ↑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §7 OpenAPI 활용 ─────────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§7</div>
+  <div class="section-label">OpenAPI 활용</div>
+  <h2 class="section-title">한국관광공사 OpenAPI 8종 활용 계획</h2>
+
+  <div class="table-wrap">
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>API 명칭</th>
+          <th>활용 역할</th>
+          <th>호출 빈도</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="api-num">1</td>
+          <td>
+            <div class="api-name">한국관광공사_관광지 오디오 가이드정보</div>
+            <div><span class="api-code">audio-guide</span></div>
+          </td>
+          <td class="api-role">치유 코스 오디오 스토리 제공 — 장소 도착 시 자동 재생</td>
+          <td><span class="freq-badge freq-high">높음</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">2</td>
+          <td>
+            <div class="api-name">한국관광공사_웰니스관광정보</div>
+            <div><span class="api-code">wellness-tourism</span></div>
+          </td>
+          <td class="api-role">웰니스 코스 데이터 기반 치유 모드 매핑</td>
+          <td><span class="freq-badge freq-high">높음</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">3</td>
+          <td>
+            <div class="api-name">한국관광공사_관광지 집중률 방문자 추이 예측 정보</div>
+            <div><span class="api-code">visitor-concentration-forecast</span></div>
+          </td>
+          <td class="api-role">혼잡 회피 타이밍 제안 — "지금 한산한 명소" 필터링</td>
+          <td><span class="freq-badge freq-mid">중간</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">4</td>
+          <td>
+            <div class="api-name">한국관광공사_지역별 관광 다양성</div>
+            <div><span class="api-code">area-tourism-diversity</span></div>
+          </td>
+          <td class="api-role">지역 숨은 명소 다양성 스코어 계산 및 발견 모드 큐레이션</td>
+          <td><span class="freq-badge freq-mid">중간</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">5</td>
+          <td>
+            <div class="api-name">한국관광공사_생태 관광 정보</div>
+            <div><span class="api-code">eco-tourism</span></div>
+          </td>
+          <td class="api-role">자연 치유 코스 목록 — 🌲 쉬며/자연 힐러 모드 핵심 데이터</td>
+          <td><span class="freq-badge freq-mid">중간</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">6</td>
+          <td>
+            <div class="api-name">한국관광공사_관광공모전(사진) 수상작 정보</div>
+            <div><span class="api-code">photo-contest-winners</span></div>
+          </td>
+          <td class="api-role">치유 풍경 사진 콘텐츠 — 코스 배경 이미지 및 발견 모드 갤러리</td>
+          <td><span class="freq-badge freq-low">낮음</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">7</td>
+          <td>
+            <div class="api-name">한국관광공사_영문 관광정보서비스</div>
+            <div><span class="api-code">tourism-info-english</span></div>
+          </td>
+          <td class="api-role">외국인 K-웰니스 정보 제공 — 이중 렌즈 서비스 구현</td>
+          <td><span class="freq-badge freq-mid">중간</span></td>
+        </tr>
+        <tr>
+          <td class="api-num">8</td>
+          <td>
+            <div class="api-name">한국관광공사_두루누비 정보 서비스</div>
+            <div><span class="api-code">durunubi-trails</span></div>
+          </td>
+          <td class="api-role">치유 트레일 코스 — 도보 여행 길 데이터로 장거리 치유 루트 구성</td>
+          <td><span class="freq-badge freq-mid">중간</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §8 팀 합의 점수 ─────────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§8</div>
+  <div class="section-label">팀 합의 점수</div>
+  <h2 class="section-title">7인 에이전트 팀 최종 평가</h2>
+  <p class="section-desc">Round 3 갈래 B 최종 선정 후 전 에이전트 독립 평가 → 합의 점수</p>
+
+  <div class="score-grid">
+    <div class="agent-score-card">
+      <div class="agent-avatar">🔍</div>
+      <div class="agent-name">리서치님</div>
+      <div class="agent-score-val">9<span class="agent-score-denom">/10</span></div>
+    </div>
+    <div class="agent-score-card">
+      <div class="agent-avatar">💰</div>
+      <div class="agent-name">분석님</div>
+      <div class="agent-score-val">9<span class="agent-score-denom">/10</span></div>
+    </div>
+    <div class="agent-score-card">
+      <div class="agent-avatar">📋</div>
+      <div class="agent-name">기획님</div>
+      <div class="agent-score-val">10<span class="agent-score-denom">/10</span></div>
+    </div>
+    <div class="agent-score-card">
+      <div class="agent-avatar">🎨</div>
+      <div class="agent-name">디자인님</div>
+      <div class="agent-score-val">9<span class="agent-score-denom">/10</span></div>
+    </div>
+    <div class="agent-score-card">
+      <div class="agent-avatar">🎭</div>
+      <div class="agent-name">시뮬님</div>
+      <div class="agent-score-val">10<span class="agent-score-denom">/10</span></div>
+    </div>
+    <div class="agent-score-card">
+      <div class="agent-avatar">🔌</div>
+      <div class="agent-name">엔지니어님</div>
+      <div class="agent-score-val">8<span class="agent-score-denom">/10</span></div>
+    </div>
+    <div class="agent-score-card">
+      <div class="agent-avatar">🎯</div>
+      <div class="agent-name">전략님</div>
+      <div class="agent-score-val">9<span class="agent-score-denom">/10</span></div>
+    </div>
+  </div>
+
+  <div class="avg-score-box">
+    <div class="avg-label">팀 평균 점수</div>
+    <div class="avg-val">9.1</div>
+    <div class="avg-denom">/ 10</div>
+    <div class="avg-note">7인 에이전트 (리서치·분석·기획·디자인·시뮬·엔지니어·전략) 독립 평가 평균 · Round 3 갈래 B 최고점</div>
+  </div>
+
+  <div>
+    <a class="consensus-link" href="../../knowledge-base/reviews/round3-치유여정-korea-consensus.md">
+      📄 합의 전문 보기
+      <code>knowledge-base/reviews/round3-치유여정-korea-consensus.md</code>
+      →
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:8px;">
+    <a href="../">Tourism Service Lab</a>
+    &nbsp;·&nbsp;
+    2026 Visit Korea Competition
+    &nbsp;·&nbsp;
+    Round 3 · 치유여정 Korea
+  </div>
+  <div>Built with Korean Tourism OpenAPI · 한국관광공사 데이터 기반</div>
+</footer>
+
+</body>
+</html>
