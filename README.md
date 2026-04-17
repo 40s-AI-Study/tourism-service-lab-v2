@@ -37,7 +37,7 @@ tourism-service-lab-v2/
 │   ├── simulations/             # 시뮬레이션 결과
 │   └── business/                # 사업성 분석
 ├── company-config/              # Paperclip 회사 설정 스냅샷
-├── deliverables/                # 최종 공모 제출물
+├── docs/deliverables/           # 최종 공모 제출물 (서비스 기획·와이어프레임·사업모델·아키텍처)
 └── scripts/                     # 자동화 스크립트
 ```
 
