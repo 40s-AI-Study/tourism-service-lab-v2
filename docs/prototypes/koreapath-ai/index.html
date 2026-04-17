@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KoreaPath AI — 개인화 동선 자동 생성 + 혼잡도 최적화</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #7C6EFF;
+      --accent2: #38BDF8;
+      --green: #22C55E;
+      --yellow: #F59E0B;
+      --red: #EF4444;
+      --grad: linear-gradient(135deg, #7C6EFF 0%, #38BDF8 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6, 6, 9, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg);
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--grad);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-cta {
+      padding: 8px 20px;
+      background: var(--grad);
+      border: none; border-radius: 999px;
+      color: white; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 88px 24px 64px;
+      text-align: center;
+      max-width: 800px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 18px;
+      border: 1px solid rgba(124, 110, 255, 0.4);
+      border-radius: 999px;
+      font-size: 13px; color: #A78BFA;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #A78BFA;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    h1.hero-title {
+      font-size: clamp(38px, 6.5vw, 68px);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 22px;
+    }
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 17px; color: var(--muted); line-height: 1.65;
+      max-width: 520px; margin: 0 auto 40px;
+    }
+    .hero-buttons {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--grad);
+      border: none; border-radius: 999px;
+      color: white; font-size: 16px; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 8px 32px rgba(124, 110, 255, 0.35);
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 42px rgba(124,110,255,.5); }
+    .btn-secondary {
+      padding: 14px 28px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--fg); font-size: 16px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color 0.18s;
+    }
+    .btn-secondary:hover { border-color: var(--muted); }
+
+    /* ─── STATS ─── */
+    .stats-row {
+      display: flex; gap: 0; justify-content: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center; padding: 32px 40px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 38px; font-weight: 900; letter-spacing: -0.02em;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* ─── SECTION BASE ─── */
+    .section {
+      padding: 80px 24px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-wide {
+      padding: 80px 24px;
+      background: var(--surface);
+    }
+    .section-wide-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.22em; color: var(--accent);
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--muted); line-height: 1.6;
+      max-width: 500px; margin-bottom: 52px;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 24px;
+      position: relative; overflow: hidden;
+    }
+    .step-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: var(--grad);
+    }
+    .step-num {
+      font-size: 56px; font-weight: 900; color: rgba(255,255,255,0.04);
+      position: absolute; top: 8px; right: 14px; line-height: 1;
+    }
+    .step-icon { font-size: 34px; margin-bottom: 18px; }
+    .step-title { font-size: 19px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ─── PHONE FRAMES ─── */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
+    .screen-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .screen-label { font-size: 13px; color: var(--muted2); letter-spacing: 0.08em; }
+
+    .phone-frame {
+      background: #080808;
+      border: 2px solid #2a2a2a;
+      border-radius: 44px;
+      padding: 12px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
+      max-width: 340px; width: 100%;
+    }
+    .phone-screen { background: var(--surface); border-radius: 34px; overflow: hidden; }
+    .phone-notch {
+      background: #080808;
+      height: 26px; border-radius: 0 0 18px 18px;
+      width: 96px; margin: 0 auto 6px;
+    }
+    .app-screen { padding: 14px 14px 20px; min-height: 580px; }
+
+    /* App common */
+    .app-logo-text {
+      font-size: 16px; font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .app-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    /* Screen 1 — Input */
+    .input-greeting { font-size: 19px; font-weight: 800; line-height: 1.3; margin-bottom: 18px; }
+    .input-greeting small { font-size: 13px; color: var(--muted); font-weight: 400; display: block; margin-top: 4px; }
+    .input-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .input-lbl {
+      font-size: 10px; color: var(--muted2);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .input-val {
+      font-size: 14px; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .input-icon { font-size: 16px; }
+    .theme-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip {
+      padding: 4px 11px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      border: 1px solid var(--border); color: var(--muted);
+    }
+    .chip.on { border-color: var(--accent); color: var(--accent); background: rgba(124,110,255,.1); }
+    .gen-btn {
+      width: 100%; padding: 13px;
+      background: var(--grad); border: none; border-radius: 12px;
+      color: white; font-size: 14px; font-weight: 700;
+      margin-top: 14px; cursor: pointer;
+    }
+
+    /* Screen 2 — Course */
+    .course-banner {
+      background: linear-gradient(135deg, rgba(124,110,255,.18), rgba(56,189,248,.18));
+      border: 1px solid rgba(124,110,255,.3);
+      border-radius: 14px; padding: 12px 14px; margin-bottom: 14px;
+    }
+    .course-banner-title { font-size: 14px; font-weight: 800; margin-bottom: 5px; }
+    .course-banner-meta {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      font-size: 11px; color: var(--muted);
+    }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 38px; top: 14px; bottom: 14px; width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      opacity: .25;
+    }
+    .tl-item { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+    .tl-time {
+      font-size: 11px; color: var(--muted2);
+      width: 36px; text-align: right; padding-top: 12px; flex-shrink: 0;
+    }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); margin-top: 12px; flex-shrink: 0;
+      position: relative; z-index: 1;
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .tl-dot.blue { background: var(--accent2); box-shadow: 0 0 8px var(--accent2); }
+    .tl-dot.dim { background: var(--muted2); box-shadow: none; }
+    .tl-card {
+      flex: 1; background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 9px 11px;
+    }
+    .tl-place { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .tl-desc { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 7px; border-radius: 999px;
+      font-size: 10px; font-weight: 700;
+    }
+    .badge-g { background: rgba(34,197,94,.12); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
+    .badge-y { background: rgba(245,158,11,.12); color: var(--yellow); border: 1px solid rgba(245,158,11,.3); }
+    .badge-r { background: rgba(239,68,68,.12); color: var(--red); border: 1px solid rgba(239,68,68,.3); }
+    .course-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .cta-save {
+      flex: 1; padding: 10px;
+      background: var(--grad); border: none; border-radius: 10px;
+      color: white; font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .cta-share {
+      flex: 1; padding: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--fg); font-size: 12px; cursor: pointer;
+    }
+
+    /* Screen 3 — Congestion */
+    .cong-header { text-align: center; margin-bottom: 18px; }
+    .cong-emoji { font-size: 36px; margin-bottom: 6px; }
+    .cong-name { font-size: 17px; font-weight: 800; margin-bottom: 3px; }
+    .cong-sub { font-size: 12px; color: var(--muted); }
+    .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .bar-time { font-size: 10px; color: var(--muted2); width: 34px; text-align: right; flex-shrink: 0; }
+    .bar-track {
+      flex: 1; height: 8px;
+      background: rgba(255,255,255,.06); border-radius: 999px; overflow: hidden;
+    }
+    .bar-fill { height: 100%; border-radius: 999px; }
+    .bar-pct { font-size: 10px; color: var(--muted2); width: 28px; flex-shrink: 0; }
+    .fill-g { background: var(--green); }
+    .fill-y { background: var(--yellow); }
+    .fill-r { background: var(--red); }
+    .best-box {
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.25);
+      border-radius: 12px; padding: 12px 14px;
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 14px;
+    }
+    .best-icon { font-size: 20px; }
+    .best-lbl { font-size: 11px; color: var(--muted); }
+    .best-val { font-size: 13px; font-weight: 700; color: var(--green); }
+    .alert-box {
+      margin-top: 10px; padding: 10px 12px;
+      background: rgba(239,68,68,.07);
+      border: 1px solid rgba(239,68,68,.22);
+      border-radius: 10px; font-size: 11px; color: var(--muted); line-height: 1.5;
+    }
+
+    /* ─── SCENARIOS ─── */
+    .scenarios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .s-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px;
+      transition: transform .15s, border-color .15s;
+    }
+    .s-card:hover { transform: translateY(-3px); border-color: rgba(124,110,255,.4); }
+    .s-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .s-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--grad);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .s-name { font-size: 15px; font-weight: 700; }
+    .s-tag { font-size: 12px; color: var(--muted); }
+    .s-story { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .s-course {
+      background: var(--surface); border-radius: 12px;
+      padding: 12px 14px; font-size: 12px; line-height: 1.8;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    .cl { display: flex; gap: 8px; align-items: baseline; }
+    .ct { color: var(--muted2); flex-shrink: 0; min-width: 40px; }
+    .cp { color: var(--fg); }
+    .cb {
+      font-size: 10px; padding: 1px 5px; border-radius: 4px;
+      margin-left: 5px; flex-shrink: 0;
+    }
+    .score-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .score-pill {
+      padding: 4px 12px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      border: 1px solid var(--border); color: var(--muted);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .sp-pass { border-color: var(--green); color: var(--green); background: rgba(34,197,94,.1); }
+    .sp-cond { border-color: var(--yellow); color: var(--yellow); background: rgba(245,158,11,.1); }
+    .sp-fail { border-color: var(--red); color: var(--red); background: rgba(239,68,68,.1); }
+
+    /* ─── API GRID ─── */
+    .api-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .api-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px;
+      transition: border-color .15s;
+    }
+    .api-card:hover { border-color: rgba(56,189,248,.4); }
+    .api-icon { font-size: 26px; margin-bottom: 10px; }
+    .api-name {
+      font-size: 11px; color: var(--accent2);
+      font-family: ui-monospace, "SF Mono", monospace;
+      margin-bottom: 7px; word-break: break-all;
+    }
+    .api-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 44px 24px;
+      text-align: center; color: var(--muted2); font-size: 13px;
+      line-height: 1.8;
+    }
+    footer strong { color: var(--muted); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 680px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 16px 40px; }
+      .section { padding: 60px 16px; }
+      .section-wide { padding: 60px 16px; }
+      .stat-item { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🗺️</div>
+      KoreaPath AI
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">사용법</a></li>
+      <li><a href="#demo">앱 화면</a></li>
+      <li><a href="#scenarios">시나리오</a></li>
+      <li><a href="#api">API 연동</a></li>
+    </ul>
+    <a href="#demo" class="nav-cta">코스 생성해보기</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <div class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      2026 관광데이터 활용 공모전 · 웹·앱 개발 부문
+    </div>
+    <h1 class="hero-title">
+      5초 입력,<br>
+      <span class="grad-text">완벽한 여행 동선</span>
+    </h1>
+    <p class="hero-sub">
+      목적지·인원·테마를 입력하면 AI가 혼잡도 예측 데이터와 연관 관광지를 분석해
+      최적 동선을 자동으로 완성해 드립니다.
+    </p>
+    <div class="hero-buttons">
+      <a href="#demo" class="btn-primary">🎯 코스 생성 데모 보기</a>
+      <a href="#scenarios" class="btn-secondary">📋 사용 시나리오 보기</a>
+    </div>
+  </div>
+
+  <!-- ─── STATS ─── -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-label">활용 공공 API</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30일</div>
+      <div class="stat-label">혼잡도 예측 기간</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">40초</div>
+      <div class="stat-label">평균 코스 생성 시간</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4개+</div>
+      <div class="stat-label">다국어 지원</div>
+    </div>
+  </div>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="section" id="how">
+    <div class="section-tag">HOW IT WORKS</div>
+    <h2 class="section-title">3단계로 완성되는<br>나만의 여행 코스</h2>
+    <p class="section-sub">복잡한 계획은 AI에게 맡기세요. 여행자는 즐기기만 하면 됩니다.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">✍️</div>
+        <div class="step-title">조건 입력<br>(약 40초)</div>
+        <div class="step-desc">목적지·날짜·인원·테마·예산을 간단히 입력합니다. 솔로 여행부터 노부모 동반 가족까지 다양한 조건을 지원합니다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🤖</div>
+        <div class="step-title">AI 동선 생성<br>(실시간)</div>
+        <div class="step-desc">혼잡도 예측 API + 연관 관광지 데이터 + 이동거리 최적화를 동시에 계산해 최적 코스를 자동으로 만듭니다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">🚀</div>
+        <div class="step-title">여행 출발<br>+ 실시간 재조정</div>
+        <div class="step-desc">현장에서 혼잡도가 급증하면 즉시 대체 동선을 푸시 알림으로 추천합니다. 코스는 링크로 간편하게 공유하세요.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── APP SCREENS ─── -->
+  <section class="section-wide" id="demo">
+    <div class="section-wide-inner">
+      <div class="section-tag">APP PROTOTYPE</div>
+      <h2 class="section-title">앱 화면 미리보기</h2>
+      <p class="section-sub">실제 사용 흐름: 조건 입력 → 코스 생성 → 혼잡도 상세 확인</p>
+      <div class="screens-grid">
+
+        <!-- SCREEN 1: INPUT -->
+        <div class="screen-wrap">
+          <span class="screen-label">01 · 여행 조건 입력</span>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-notch"></div>
+              <div class="app-screen">
+                <div class="app-topbar">
+                  <span class="app-logo-text">KoreaPath AI</span>
+                  <span style="font-size:18px;">🔔</span>
+                </div>
+                <div class="input-greeting">
+                  어디로 떠날까요?
+                  <small>조건을 입력하면 AI가 최적 코스를 만들어 드려요</small>
+                </div>
+                <div class="input-card">
+                  <div class="input-lbl">목적지</div>
+                  <div class="input-val"><span class="input-icon">📍</span> 강릉</div>
+                </div>
+                <div class="input-card">
+                  <div class="input-lbl">일정</div>
+                  <div class="input-val"><span class="input-icon">📅</span> 당일치기 (1일)</div>
+                </div>
+                <div class="input-card">
+                  <div class="input-lbl">인원</div>
+                  <div class="input-val"><span class="input-icon">👤</span> 혼자 여행</div>
+                </div>
+                <div class="input-card">
+                  <div class="input-lbl">여행 테마 (복수 선택 가능)</div>
+                  <div class="theme-chips">
+                    <span class="chip on">☕ 감성카페</span>
+                    <span class="chip on">📸 포토스팟</span>
+                    <span class="chip">🍜 맛집탐방</span>
+                    <span class="chip">🏛️ 역사문화</span>
+                    <span class="chip">🌊 자연힐링</span>
+                  </div>
+                </div>
+                <div class="input-card">
+                  <div class="input-lbl">예산 (교통비 제외)</div>
+                  <div class="input-val"><span class="input-icon">💰</span> 3만원</div>
+                </div>
+                <button class="gen-btn">🤖 AI 코스 생성하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 2: COURSE RESULT -->
+        <div class="screen-wrap">
+          <span class="screen-label">02 · 생성된 최적 코스</span>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-notch"></div>
+              <div class="app-screen">
+                <div class="app-topbar">
+                  <span style="font-size:18px; cursor:pointer;">←</span>
+                  <span style="font-size:13px; font-weight:700;">강릉 당일치기</span>
+                  <span style="font-size:18px;">⋯</span>
+                </div>
+                <div class="course-banner">
+                  <div class="course-banner-title">✨ AI 코스 생성 완료</div>
+                  <div class="course-banner-meta">
+                    <span>📍 강릉</span>
+                    <span>⏱️ 6시간</span>
+                    <span>💰 약 2.7만원</span>
+                    <span>🧍 솔로</span>
+                  </div>
+                </div>
+                <div class="timeline">
+                  <div class="tl-item">
+                    <div class="tl-time">10:00</div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-card">
+                      <div class="tl-place">☕ 안목해변 카페거리</div>
+                      <div class="tl-desc">감성 카페 + 포토스팟</div>
+                      <span class="badge badge-g">🟢 한산 28%</span>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-time">11:30</div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-card">
+                      <div class="tl-place">🍜 강릉 중앙시장</div>
+                      <div class="tl-desc">로컬 먹거리 (약 8천원)</div>
+                      <span class="badge badge-g">🟢 한산 32%</span>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-time">13:00</div>
+                    <div class="tl-dot blue"></div>
+                    <div class="tl-card">
+                      <div class="tl-place">📸 경포호</div>
+                      <div class="tl-desc">인생사진 스팟 (무료)</div>
+                      <span class="badge badge-y">🟡 보통 55%</span>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-time">14:30</div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-card">
+                      <div class="tl-place">🌊 정동진 해안 산책로</div>
+                      <div class="tl-desc">해안 산책 + 석양 뷰</div>
+                      <span class="badge badge-g">🟢 한산 40%</span>
+                    </div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-time">16:00</div>
+                    <div class="tl-dot dim"></div>
+                    <div class="tl-card">
+                      <div class="tl-place">🚂 귀가 (KTX 동해선)</div>
+                      <div class="tl-desc">강릉역 출발</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="course-actions">
+                  <button class="cta-save">💾 코스 저장</button>
+                  <button class="cta-share">📤 링크 공유</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 3: CONGESTION DETAIL -->
+        <div class="screen-wrap">
+          <span class="screen-label">03 · 혼잡도 시간대별 상세</span>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-notch"></div>
+              <div class="app-screen">
+                <div class="app-topbar">
+                  <span style="font-size:18px; cursor:pointer;">←</span>
+                  <span style="font-size:13px; font-weight:700;">혼잡도 상세</span>
+                  <span></span>
+                </div>
+                <div class="cong-header">
+                  <div class="cong-emoji">🏯</div>
+                  <div class="cong-name">경복궁</div>
+                  <div class="cong-sub">서울 종로구 · 오늘 시간대별 예측</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">08:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-g" style="width:28%"></div></div>
+                  <div class="bar-pct">28%</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">10:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-g" style="width:35%"></div></div>
+                  <div class="bar-pct">35%</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">12:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-y" style="width:62%"></div></div>
+                  <div class="bar-pct">62%</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">14:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-r" style="width:85%"></div></div>
+                  <div class="bar-pct" style="color:var(--red);">85%</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">16:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-r" style="width:78%"></div></div>
+                  <div class="bar-pct" style="color:var(--red);">78%</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">18:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-y" style="width:45%"></div></div>
+                  <div class="bar-pct">45%</div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-time">20:00</div>
+                  <div class="bar-track"><div class="bar-fill fill-g" style="width:18%"></div></div>
+                  <div class="bar-pct">18%</div>
+                </div>
+                <div class="best-box">
+                  <div class="best-icon">✅</div>
+                  <div>
+                    <div class="best-lbl">AI 최적 방문 시간</div>
+                    <div class="best-val">오전 8:00 — 10:00 (한산)</div>
+                  </div>
+                </div>
+                <div class="alert-box">
+                  ⚠️ 오후 2시 혼잡도 급증 예측 — 자동으로 대체 코스를 추천합니다
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── USER SCENARIOS ─── -->
+  <section class="section" id="scenarios">
+    <div class="section-tag">USER SCENARIOS</div>
+    <h2 class="section-title">다양한 여행자를 위한<br>맞춤 서비스</h2>
+    <p class="section-sub">페르소나 시뮬레이션 기반 — 실제 사용 시나리오 검증 결과</p>
+    <div class="scenarios-grid">
+
+      <!-- P1: 김지원 -->
+      <div class="s-card">
+        <div class="s-head">
+          <div class="s-avatar">👩‍🎨</div>
+          <div>
+            <div class="s-name">김지원 (25세)</div>
+            <div class="s-tag">한국 20대 솔로 · 프리랜서 그래픽 디자이너</div>
+          </div>
+        </div>
+        <p class="s-story">금요일 밤 인스타 릴스에서 강릉 감성카페 영상을 보고 다음날 당일치기를 결심. 40초 입력으로 예산 3만원 내 최적 코스를 완성해 인스타에 공유.</p>
+        <div class="s-course">
+          <div class="cl"><span class="ct">10:00</span><span class="cp">안목해변 카페거리 <span class="cb badge-g">🟢한산</span></span></div>
+          <div class="cl"><span class="ct">11:30</span><span class="cp">강릉 중앙시장 (8천원)</span></div>
+          <div class="cl"><span class="ct">13:00</span><span class="cp">경포호 인생사진 스팟</span></div>
+          <div class="cl"><span class="ct">14:30</span><span class="cp">정동진 해안 산책</span></div>
+          <div class="cl"><span class="ct">16:00</span><span class="cp">KTX 귀가</span></div>
+        </div>
+        <div class="score-row">
+          <span class="score-pill sp-pass">✅ PASS</span>
+          <span class="score-pill">유용성 9/10</span>
+          <span class="score-pill">총점 25/30</span>
+        </div>
+      </div>
+
+      <!-- P3: 최동훈 -->
+      <div class="s-card">
+        <div class="s-head">
+          <div class="s-avatar" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">👨‍👩‍👧‍👦</div>
+          <div>
+            <div class="s-name">최동훈 (44세)</div>
+            <div class="s-tag">한국 40대 가족 · 중학교 교사</div>
+          </div>
+        </div>
+        <p class="s-story">여름방학 경주 2박 3일 가족여행. 초등생 자녀 2명 + 70대 장인어른 동반. 60초 입력으로 교육적 체험 위주의 3일 코스를 완성.</p>
+        <div class="s-course">
+          <div class="cl"><span class="ct">Day1</span><span class="cp">불국사 → 황리단길 → 첨성대</span></div>
+          <div class="cl"><span class="ct">Day2</span><span class="cp">도예 공방 체험 → 경주박물관 AR</span></div>
+          <div class="cl"><span class="ct">Day3</span><span class="cp">대릉원 (평지 · 노부모 편의)</span></div>
+        </div>
+        <div class="score-row">
+          <span class="score-pill sp-cond">⚠️ COND. PASS</span>
+          <span class="score-pill">유용성 7/10</span>
+          <span class="score-pill">총점 22/30</span>
+        </div>
+      </div>
+
+      <!-- P4: Emma Chen -->
+      <div class="s-card">
+        <div class="s-head">
+          <div class="s-avatar" style="background:linear-gradient(135deg,#10B981,#06B6D4);">📷</div>
+          <div>
+            <div class="s-name">Emma Chen (23세)</div>
+            <div class="s-tag">외국인 20대 백패커 · 대만 여행 크리에이터</div>
+          </div>
+        </div>
+        <p class="s-story">전주 한옥마을 당일 방문. 혼잡도 배지(🟢) 덕분에 오전 9시 한적한 사진 촬영 성공. 다국어 UI 미지원이 결정적 장벽 — i18n 추가 시 즉시 PASS 전환 가능.</p>
+        <div class="s-course">
+          <div class="cl"><span class="ct">09:00</span><span class="cp">한옥마을 포토스팟 <span class="cb badge-g">🟢한산</span></span></div>
+          <div class="cl"><span class="ct">11:00</span><span class="cp">전통 음식 코스 탐방</span></div>
+          <div class="cl"><span class="ct">14:00</span><span class="cp">Dcard 여행 리뷰 업로드</span></div>
+        </div>
+        <div class="score-row">
+          <span class="score-pill sp-fail">❌ FAIL</span>
+          <span class="score-pill">다국어 지원 개선 계획 ✓</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── API SECTION ─── -->
+  <section class="section-wide" id="api">
+    <div class="section-wide-inner">
+      <div class="section-tag">OPEN API</div>
+      <h2 class="section-title">5개 공공데이터 API<br>실시간 연동</h2>
+      <p class="section-sub">한국관광공사 Open API를 직접 활용해 신뢰도 높은 데이터를 제공합니다.</p>
+      <div class="api-grid">
+        <div class="api-card">
+          <div class="api-icon">🔗</div>
+          <div class="api-name">related-attractions</div>
+          <div class="api-desc">함께 방문하는 연관 관광지 데이터 (상위 50위) — AI 코스 연결의 핵심 소스</div>
+        </div>
+        <div class="api-card">
+          <div class="api-icon">📊</div>
+          <div class="api-name">visitor-concentration-forecast</div>
+          <div class="api-desc">향후 30일 관광지 혼잡도 예측 — 🟢🟡🔴 배지의 데이터 소스</div>
+        </div>
+        <div class="api-card">
+          <div class="api-icon">🏛️</div>
+          <div class="api-name">central-attractions-by-municipality</div>
+          <div class="api-desc">지자체별 핵심 관광지 100위 — 지역 맞춤 코스 생성 기반 데이터</div>
+        </div>
+        <div class="api-card">
+          <div class="api-icon">📈</div>
+          <div class="api-name">tourism-big-data</div>
+          <div class="api-desc">관광 빅데이터 트렌드 — 시즌별 인기 지역·테마 분석에 활용</div>
+        </div>
+        <div class="api-card">
+          <div class="api-icon">🗾</div>
+          <div class="api-name">area-tourism-demand-density</div>
+          <div class="api-desc">지역별 관광 수요 밀집도 — 숨은 명소와 핫플 균형 조정</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div style="font-size:28px;margin-bottom:10px;">🗺️</div>
+    <strong>KoreaPath AI</strong> — 개인화 동선 자동 생성 + 혼잡도 최적화 앱<br>
+    2026 관광데이터 활용 공모전 · 웹·앱 개발 부문 출품작<br>
+    Tourism Service Lab · <a href="/docs/prototypes/index.html" style="color:var(--accent2);text-decoration:none;">← 포트폴리오로 돌아가기</a>
+  </footer>
+
+</body>
+</html>

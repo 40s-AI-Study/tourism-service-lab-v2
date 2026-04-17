@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tourism Service Lab · Prototype Portfolio</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #09090B;
+    --card: #18181B;
+    --border: #27272A;
+    --fg: #FAFAFA;
+    --muted: #A1A1AA;
+    --muted2: #71717A;
+    --accent: #38BDF8;
+    --pass: #22C55E;
+    --pending: #F59E0B;
+  }
+  html, body { background: var(--bg); min-height: 100vh; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    color: var(--fg);
+    padding: 48px 24px 80px;
+    max-width: 1280px; margin: 0 auto;
+  }
+
+  header { margin-bottom: 40px; text-align: center; }
+  .eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.22em;
+    margin-bottom: 18px;
+  }
+  h1 { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .subtitle { font-size: 17px; color: var(--muted); margin-top: 12px; }
+
+  .status-bar {
+    display: flex; gap: 16px; justify-content: center;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 999px;
+    font-size: 13px;
+  }
+  .status-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.pass { background: var(--pass); box-shadow: 0 0 8px var(--pass); }
+  .dot.pending { background: var(--pending); box-shadow: 0 0 8px var(--pending); }
+
+  .section-title {
+    margin: 40px 0 16px;
+    font-size: 14px; color: var(--muted2);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.15s, border-color 0.15s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex; flex-direction: column;
+    min-height: 200px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.5);
+  }
+  .card.placeholder {
+    opacity: 0.55;
+    cursor: not-allowed;
+    border-style: dashed;
+  }
+  .card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .card-emoji { font-size: 32px; }
+  .card-tag {
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+  }
+  .tag-pass { color: var(--pass); border: 1px solid var(--pass); }
+  .tag-pending { color: var(--pending); border: 1px solid var(--pending); }
+  .card-title {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.45;
+    flex: 1;
+  }
+  .card-meta {
+    font-size: 12px; color: var(--muted2);
+    margin-top: 12px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted2);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+  }
+  .empty-icon { font-size: 48px; margin-bottom: 12px; }
+
+  footer {
+    margin-top: 60px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--muted2);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">TOURISM SERVICE LAB</div>
+    <h1>Prototype <em>Portfolio</em></h1>
+    <p class="subtitle">시뮬레이션 통과 아이디어 — 서비스 시안 뷰어</p>
+
+    <div class="status-bar">
+      <span class="status-pill"><span class="dot pass"></span>PASS: <strong>1</strong></span>
+      <span class="status-pill"><span class="dot pending"></span>에이전트 작업 중</span>
+    </div>
+  </header>
+
+  <div class="section-title">Round 1 · 채택 아이디어</div>
+  <div class="grid">
+    <a class="card" href="koreapath-ai/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🎯</div>
+        <span class="card-tag tag-pass">PASS</span>
+      </div>
+      <div class="card-title">KoreaPath AI</div>
+      <div class="card-desc">개인화 동선 자동 생성 + 혼잡도 최적화</div>
+      <div class="card-meta">prototypes/koreapath-ai/ (live)</div>
+    </a>
+    <div class="card placeholder">
+      <div class="card-head">
+        <div class="card-emoji">🌐</div>
+        <span class="card-tag tag-pending">AGENT WORKING</span>
+      </div>
+      <div class="card-title">K-Guide Global</div>
+      <div class="card-desc">외국인 전용 다국어 통합 관광 가이드</div>
+      <div class="card-meta">prototypes/k-guide-global/ (pending)</div>
+    </div>
+    <div class="card placeholder">
+      <div class="card-head">
+        <div class="card-emoji">♿</div>
+        <span class="card-tag tag-pending">AGENT WORKING</span>
+      </div>
+      <div class="card-title">FreeTrip Korea</div>
+      <div class="card-desc">무장애·접근성 특화 관광 플랫폼</div>
+      <div class="card-meta">prototypes/freetrip-korea/ (pending)</div>
+    </div>
+    <div class="card placeholder">
+      <div class="card-head">
+        <div class="card-emoji">🗺️</div>
+        <span class="card-tag tag-pending">AGENT WORKING</span>
+      </div>
+      <div class="card-title">LocalSecret</div>
+      <div class="card-desc">혼잡 회피 + 숨은 명소 발견</div>
+      <div class="card-meta">prototypes/local-secret/ (pending)</div>
+    </div>
+  </div>
+
+  <div class="section-title">Round 2 · 시뮬레이션 통과 대기</div>
+  <div class="empty">
+    <div class="empty-icon">⏳</div>
+    <div>아직 시뮬레이션 결과 없음</div>
+    <div style="margin-top:6px;font-size:12px;">🎭 시뮬님이 Round 2 아이디어 10개 × 페르소나 시뮬레이션 진행 중</div>
+  </div>
+
+  <footer>
+    Tourism Service Lab · 2026 관광데이터 활용 공모전 · 자동 업데이트됨 (이 페이지는 에이전트가 갱신)
+  </footer>
+
+</body>
+</html>
