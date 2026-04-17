@@ -248,9 +248,9 @@ llm_compatibility: universal
 
 ## 참조
 
-- [personas/김지원, 25세, 그래픽 디자이너](/knowledge-base/personas/김지원,%2025세,%20그래픽%20디자이너.md)
-- [personas/박민준 & 이수연, 33/31세, 직장인 커플](/knowledge-base/personas/박민준%20&%20이수연,%203331세,%20직장인%20커플.md)
-- [personas/최동훈, 44세, 중학교 교사](/knowledge-base/personas/최동훈,%2044세,%20중학교%20교사%20(초등생%20자녀%202명).md)
-- [personas/Emma Chen, 23, Freelance Photographer](/knowledge-base/personas/Emma%20Chen,%2023,%20Freelance%20Photographer%20(Taiwan).md)
-- [personas/David Park, 35, Senior Product Manager](/knowledge-base/personas/David%20Park,%2035,%20Senior%20Product%20Manager%20(USA).md)
-- [ideas/아이디어 10개 사업성 점수화 (Stage 3-B)](/knowledge-base/ideas/아이디어%2010개%20사업성%20점수화%20(Stage%203-B).md)
+- [[김지원, 25세, 그래픽 디자이너]]
+- [[박민준 & 이수연, 3331세, 직장인 커플]]
+- [[최동훈, 44세, 중학교 교사 (초등생 자녀 2명)]]
+- [[Emma Chen, 23, Freelance Photographer (Taiwan)]]
+- [[David Park, 35, Senior Product Manager (USA)]]
+- [[아이디어 10개 사업성 점수화 (Stage 3-B)]]
