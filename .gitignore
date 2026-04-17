@@ -1,0 +1,51 @@
+# Secrets
+*.key
+*.pem
+.env
+.env.local
+.env.*.local
+secrets/
+*_token
+*_secret
+*api_key*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OMC / local LLM wiki (synced separately via script)
+.omc/wiki/
+.omc/state/
+.omc/logs/
+
+# Paperclip instance data (large binaries, secrets)
+.paperclip/
+*.db
+*.db-shm
+*.db-wal
+
+# Temp
+tmp/
+/tmp/
+*.tmp
+*.bak
+
+# Downloaded API manuals (large zip/pdf, regenerate from source)
+knowledge-base/tourism-api/_raw/
