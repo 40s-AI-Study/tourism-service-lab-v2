@@ -85,12 +85,6 @@
     transform: translateY(-2px);
     border-color: rgba(56, 189, 248, 0.5);
   }
-  .card.placeholder {
-    opacity: 0.45;
-    cursor: not-allowed;
-    border-style: dashed;
-    pointer-events: none;
-  }
   .card-head {
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 12px;
@@ -103,7 +97,6 @@
     letter-spacing: 0.06em;
   }
   .tag-pass { color: var(--pass); border: 1px solid var(--pass); }
-  .tag-pending { color: var(--pending); border: 1px solid var(--pending); }
   .card-title {
     font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
     line-height: 1.2;
@@ -124,15 +117,6 @@
     font-size: 12px; font-weight: 700;
     color: var(--pass);
   }
-
-  .empty {
-    text-align: center;
-    padding: 48px 20px;
-    color: var(--muted2);
-    border: 1px dashed var(--border);
-    border-radius: 16px;
-  }
-  .empty-icon { font-size: 40px; margin-bottom: 12px; }
 
   footer {
     margin-top: 60px; padding-top: 24px;
@@ -159,9 +143,9 @@
     <p class="subtitle">시뮬레이션 통과 아이디어 — 서비스 시안 뷰어 · 2026 관광데이터 활용 공모전</p>
 
     <div class="status-bar">
-      <span class="status-pill"><span class="dot pass"></span>PASS 완료: <strong>6개</strong></span>
-      <span class="status-pill"><span class="dot pending"></span>Round 2 작업 중: <strong>4개+</strong></span>
-      <span class="status-pill">총 시뮬 검증: <strong>10개</strong></span>
+      <span class="status-pill"><span class="dot pass"></span>Round 1 완료: <strong>6개</strong></span>
+      <span class="status-pill"><span class="dot pass"></span>Round 2 완료: <strong>6개</strong></span>
+      <span class="status-pill">총 시뮬 검증: <strong>12개</strong></span>
     </div>
   </header>
 
@@ -248,60 +232,86 @@
 
   </div>
 
-  <div class="section-title">Round 2 · 시뮬레이션 통과 아이디어 (제작 중)</div>
+  <div class="section-title">Round 2 · 신규 PASS 아이디어 (6/6 라이브)</div>
   <div class="grid">
 
-    <div class="card placeholder">
+    <a class="card" href="korea-festival-live/index.html">
       <div class="card-head">
-        <div class="card-emoji">🌐</div>
-        <span class="card-tag tag-pending">IN PROGRESS</span>
+        <div class="card-emoji">🎪</div>
+        <span class="card-tag tag-pass">PASS 10/10</span>
       </div>
-      <div class="card-title">K-Guide Global</div>
-      <div class="card-desc">외국인 전용 다국어 통합 한국 관광 가이드. 방한 외래객 1,620만 명 타겟.</div>
+      <div class="card-title">KoreaFestival Live</div>
+      <div class="card-desc">실시간 축제·이벤트 여행 레이더. 전국 축제 혼잡도 예측 + 방문 가치 점수 + 연관 코스 자동 생성.</div>
       <div class="card-meta">
-        <span>k-guide-global/ (building)</span>
-        <span class="card-score">44/50pt</span>
+        <span>korea-festival-live/ (live)</span>
+        <span class="card-score">7 APIs</span>
       </div>
-    </div>
+    </a>
 
-    <div class="card placeholder">
+    <a class="card" href="taste-data-korea/index.html">
       <div class="card-head">
-        <div class="card-emoji">♿</div>
-        <span class="card-tag tag-pending">IN PROGRESS</span>
+        <div class="card-emoji">🍜</div>
+        <span class="card-tag tag-pass">PASS 9/10</span>
       </div>
-      <div class="card-title">AccessKorea</div>
-      <div class="card-desc">무장애 여행 통합 플랫폼. 시니어·장애인 특화, barrier-free-travel API 독점 활용.</div>
+      <div class="card-title">TasteData Korea</div>
+      <div class="card-desc">빅데이터 기반 로컬 미식 여행 큐레이터. 신용카드 실소비 데이터로 광고 없는 현지인 맛집 발굴.</div>
       <div class="card-meta">
-        <span>access-korea/ (building)</span>
-        <span class="card-score">40/50pt</span>
+        <span>taste-data-korea/ (live)</span>
+        <span class="card-score">8 APIs</span>
       </div>
-    </div>
+    </a>
 
-    <div class="card placeholder">
+    <a class="card" href="photo-hunt-korea/index.html">
       <div class="card-head">
-        <div class="card-emoji">🧘</div>
-        <span class="card-tag tag-pending">IN PROGRESS</span>
+        <div class="card-emoji">📸</div>
+        <span class="card-tag tag-pass">PASS 7/10</span>
       </div>
-      <div class="card-title">KoreaWellness</div>
-      <div class="card-desc">번아웃 직장인을 위한 웰니스 관광 큐레이션. 치유·힐링 테마 특화 서비스.</div>
+      <div class="card-title">PhotoHunt Korea</div>
+      <div class="card-desc">AI 포토 스팟 큐레이터 & 포토 투어 앱. 공식 사진 DB × 혼잡도 예측 × 골든 타임 촬영 최적화.</div>
       <div class="card-meta">
-        <span>korea-wellness/ (building)</span>
-        <span class="card-score">36/50pt</span>
+        <span>photo-hunt-korea/ (live)</span>
+        <span class="card-score">7 APIs</span>
       </div>
-    </div>
+    </a>
 
-    <div class="card placeholder">
+    <a class="card" href="korea-work-wander/index.html">
       <div class="card-head">
-        <div class="card-emoji">🏕</div>
-        <span class="card-tag tag-pending">IN PROGRESS</span>
+        <div class="card-emoji">💻</div>
+        <span class="card-tag tag-pass">PASS 7/10</span>
       </div>
-      <div class="card-title">K-Camp Finder</div>
-      <div class="card-desc">AI 추천 캠핑·글램핑 플랫폼. 날씨·혼잡도 연동 캠핑지 추천 서비스.</div>
+      <div class="card-title">KoreaWork & Wander</div>
+      <div class="card-desc">디지털 노마드 워케이션 인텔리전스. 유럽·중남미 4개국어 + 글램핑 작업 환경 매칭.</div>
       <div class="card-meta">
-        <span>k-camp-finder/ (building)</span>
-        <span class="card-score">35/50pt</span>
+        <span>korea-work-wander/ (live)</span>
+        <span class="card-score">8 APIs</span>
       </div>
-    </div>
+    </a>
+
+    <a class="card" href="korea-demand-atlas/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🗺️</div>
+        <span class="card-tag tag-pass">PASS 7/10</span>
+      </div>
+      <div class="card-title">KoreaDemand Atlas</div>
+      <div class="card-desc">관광 수요 강도 기반 지역 발굴 플랫폼. 빅데이터 지수 4종 완전 통합 — "뜨기 전 지역" 발견.</div>
+      <div class="card-meta">
+        <span>korea-demand-atlas/ (live)</span>
+        <span class="card-score">8 APIs</span>
+      </div>
+    </a>
+
+    <a class="card" href="silver-trail-korea/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🌿</div>
+        <span class="card-tag tag-pass">PASS 6/10</span>
+      </div>
+      <div class="card-title">SilverTrail Korea</div>
+      <div class="card-desc">액티브 시니어 슬로우 트래블 플랫폼. 체력별 트레일 · 건강 관광 · 핸즈프리 오디오 역사 해설.</div>
+      <div class="card-meta">
+        <span>silver-trail-korea/ (live)</span>
+        <span class="card-score">7 APIs</span>
+      </div>
+    </a>
 
   </div>
 
