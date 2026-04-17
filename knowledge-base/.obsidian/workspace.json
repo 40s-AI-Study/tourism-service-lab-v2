@@ -11,14 +11,10 @@
             "id": "cb9c33ba290a0894",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "tourism-api/scenarios/api-scenarios-20.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "api-scenarios-20"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tourism-api/scenarios/api-scenarios-20.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "api-scenarios-20 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "tourism-api/scenarios/api-scenarios-20.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "api-scenarios-20 의 나가는 링크"
+              "title": "나가는 링크"
             }
           },
           {
@@ -185,23 +179,31 @@
   },
   "active": "7ccb1bcb6fcd3e19",
   "lastOpenFiles": [
-    "simulations/sim-15-access-korea-x-p5-foreign-30s-business-leisure.md",
-    "simulations/sim-14-access-korea-x-p4-foreign-20s-backpacker.md",
-    "simulations/sim-13-access-korea-x-p3-korean-40s-family.md",
-    "simulations/sim-12-access-korea-x-p2-korean-30s-couple.md",
-    "simulations/sim-11-access-korea-x-p1-korean-20s-solo.md",
-    "simulations/sim-10-multilingual-guide-x-p5-foreign-30s-business-leisure.md",
-    "simulations/sim-09-multilingual-guide-x-p4-foreign-20s-backpacker.md",
-    "simulations/sim-08-multilingual-guide-x-p3-korean-40s-family.md",
-    "simulations/sim-07-multilingual-guide-x-p2-korean-30s-couple.md",
-    "simulations/sim-06-multilingual-guide-x-p1-korean-20s-solo.md",
-    "simulations/sim-05-ai-course-generator-x-p5-foreign-30s-business-leisure.md",
-    "simulations/sim-04-ai-course-generator-x-p4-foreign-20s-backpacker.md",
-    "simulations/sim-03-ai-course-generator-x-p3-korean-40s-family.md",
-    "simulations/sim-02-ai-course-generator-x-p2-korean-30s-couple.md",
-    "simulations/sim-01-ai-course-generator-x-p1-korean-20s-solo.md",
-    "tourism-api/00-api-catalog.md",
-    "tourism-api/tourism-info-chinese-simplified.md",
-    "ideas/2026-04-17-kculture-pilgrimage.md"
+    "tourism-api/한국관광공사_웰니스관광정보.md",
+    "tourism-api/한국관광공사_관광지 집중률 방문자 추이 예측 정보.md",
+    "tourism-api/한국관광공사_관광사진 정보.md",
+    "tourism-api/한국관광공사_관광인_채용정보_서비스.md",
+    "tourism-api/한국관광공사_서어 관광정보서비스.md",
+    "tourism-api/한국관광공사_노어 관광정보서비스.md",
+    "tourism-api/한국관광공사_국문 관광정보 서비스.md",
+    "tourism-api/한국관광공사_일문 관광정보서비스.md",
+    "tourism-api/한국관광공사_독어 관광정보서비스.md",
+    "tourism-api/한국관광공사_불어 관광정보서비스.md",
+    "tourism-api/한국관광공사_영문 관광정보서비스.md",
+    "tourism-api/한국관광공사_중문 번체 관광정보서비스.md",
+    "tourism-api/한국관광공사_중문 간체 관광정보서비스.md",
+    "tourism-api/한국관광공사_관광빅데이터 정보서비스.md",
+    "tourism-api/scenarios/Visit Korea OpenAPI 조합 시나리오 20개.md",
+    "tourism-api/한국관광공사_관광지별 연관 관광지 정보.md",
+    "tourism-api/한국관광공사_관광공모전(사진) 수상작 정보.md",
+    "tourism-api/한국관광공사_반려동물_동반여행_서비스.md",
+    "tourism-api/한국관광공사_의료관광정보.md",
+    "tourism-api/한국관광공사_고캠핑 정보 조회서비스.md",
+    "tourism-api/한국관광공사_생태 관광 정보.md",
+    "tourism-api/한국관광공사_두루누비 정보 서비스.md",
+    "tourism-api/한국관광공사_기초지자체 중심 관광지 정보.md",
+    "tourism-api/한국관광공사_무장애 여행 정보.md",
+    "tourism-api/한국관광공사_관광지 오디오 가이드정보.md",
+    "tourism-api/한국관광공사_지역별 관광 자원 수요.md"
   ]
 }

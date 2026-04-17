@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "bece2cf7cc94fbb9",
+        "id": "015c98b7405f4777",
         "type": "tabs",
         "children": [
           {
-            "id": "0869f2c42389a66e",
+            "id": "135c77b2f5eb1221",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "그래프 뷰"
+              "type": "markdown",
+              "state": {
+                "file": "knowledge-base/ideas/K-Universe - K-컬처 성지순례 + 팬 여행 앱.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "K-Universe - K-컬처 성지순례 + 팬 여행 앱"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "knowledge-base/ideas/K-Universe - K-컬처 성지순례 + 팬 여행 앱.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "백링크"
+              "title": "K-Universe - K-컬처 성지순례 + 팬 여행 앱 의 백링크"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "knowledge-base/ideas/K-Universe - K-컬처 성지순례 + 팬 여행 앱.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "나가는 링크"
+              "title": "K-Universe - K-컬처 성지순례 + 팬 여행 앱 의 나가는 링크"
             }
           },
           {
@@ -150,12 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "knowledge-base/ideas/K-Universe - K-컬처 성지순례 + 팬 여행 앱.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "개요"
+              "title": "K-Universe - K-컬처 성지순례 + 팬 여행 앱 의 개요"
             }
           }
         ]
@@ -176,11 +183,34 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "0869f2c42389a66e",
+  "active": "135c77b2f5eb1221",
   "lastOpenFiles": [
-    "knowledge-base/simulations/sim-15-access-korea-x-p5-foreign-30s-business-leisure.md",
-    "knowledge-base/simulations/sim-14-access-korea-x-p4-foreign-20s-backpacker.md",
-    "knowledge-base/simulations/sim-13-access-korea-x-p3-korean-40s-family.md",
-    "knowledge-base/simulations/sim-12-access-korea-x-p2-korean-30s-couple.md"
+    "knowledge-base/tourism-api/한국관광공사_일문 관광정보서비스.md",
+    "docs/wiki/README.md",
+    "docs/wiki/Home.md",
+    "docs/wiki/09.-Deliverables.md",
+    "docs/wiki/08.-Business-Analysis.md",
+    "docs/wiki/07.-Ideas-and-Simulations.md",
+    "docs/wiki/06.-Personas.md",
+    "docs/wiki/05.-Market-Research.md",
+    "docs/wiki/04.-API-Knowledge.md",
+    "docs/wiki/03.-Agent-Roster.md",
+    "docs/wiki/02.-Company-Structure.md",
+    "docs/wiki/01.-Project-Overview.md",
+    "docs/wiki",
+    "knowledge-base/ideas/2026-04-17-night-tourism.md",
+    "knowledge-base/tourism-api/한국관광공사_웰니스관광정보.md",
+    "knowledge-base/tourism-api/한국관광공사_관광지 집중률 방문자 추이 예측 정보.md",
+    "knowledge-base/tourism-api/한국관광공사_관광사진 정보.md",
+    "knowledge-base/tourism-api/한국관광공사_관광인_채용정보_서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_서어 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_노어 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_국문 관광정보 서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_독어 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_불어 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_영문 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_중문 번체 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_중문 간체 관광정보서비스.md",
+    "knowledge-base/tourism-api/한국관광공사_관광빅데이터 정보서비스.md"
   ]
 }

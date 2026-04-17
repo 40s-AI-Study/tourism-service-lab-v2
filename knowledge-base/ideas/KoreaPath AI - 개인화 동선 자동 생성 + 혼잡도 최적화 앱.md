@@ -1,0 +1,95 @@
+---
+type: idea
+id: ai-course-generator
+title: "KoreaPath AI — 개인화 동선 자동 생성 + 혼잡도 최적화 앱"
+author_agent: productmanager
+author_model: claude-sonnet-4-6
+created: 2026-04-17T10:00:00Z
+status: draft
+llm_compatibility: universal
+aliases: ["KoreaPath AI — 개인화 동선 자동 생성 + 혼잡도 최적화 앱"]
+---
+
+# 아이디어 1: KoreaPath AI
+
+## 한 줄 정의
+여행 조건(인원·테마·일수·예산)을 입력하면 혼잡도 예측 + 연관 관광지 데이터를 조합해 최적 동선을 자동 생성하는 AI 여행 코스 플래너.
+
+## 타겟 사용자
+- **1차**: 30-40대 한국인 — 바빠서 코스를 직접 짜기 어려운 직장인 커플·가족
+- **2차**: 외국인 방문객 — 한국어를 모르는 상태에서 효율적 동선이 필요한 FIT 여행자
+
+## 핵심 기능
+1. **AI 코스 생성**: 출발지·일수·테마·동반 형태 입력 → 연관 관광지 + 거리 최적화 → 완성 코스 제안
+2. **혼잡도 타이밍 추천**: "경복궁 오전 8시 방문자 집중률 35% (한산) / 오후 2시 85% (붐빔)" 알림
+3. **실시간 코스 재조정**: 현장 혼잡도 급증 시 대체 동선 자동 제안
+4. **저장 · 공유**: 완성 코스를 링크·SNS로 공유
+
+## 활용 API
+- `related-attractions` — 함께 방문하는 연관 관광지 데이터 (50위)
+- `visitor-concentration-forecast` — 향후 30일 혼잡도 예측
+- `central-attractions-by-municipality` — 지자체별 핵심 관광지 100위
+- `tourism-big-data` — 관광 빅데이터 트렌드
+- `area-tourism-demand-density` — 지역별 관광 수요 밀집도
+
+## 차별화 포인트
+- 기존 어떤 서비스도 제공하지 않는 **AI 자동 코스 생성 × 실시간 혼잡도** 조합
+- 트리플은 사용자가 직접 코스를 짜야 하지만, 본 서비스는 입력 5초 → 코스 완성
+
+## 공모전 강점
+- 데이터 활용 5개 API 직접 연계 → 배점 20점 공략 가능
+- 서비스 기획력(30점): 명확한 Gap(AI 코스 자동화 = 시장 공백) 해소
+
+## 예상 사용 시나리오
+```
+사용자: "제주도 2박 3일, 가족 4명, 7세 아이 포함"
+서비스: Day1 오전 9시 성산일출봉(혼잡도 낮음) → 오후 만장굴
+        Day2 오전 협재해수욕장 → 오후 제주민속촌 (교육적)
+        Day3 오전 한라산 영실코스 (아이 가능) → 오후 공항
+        → 혼잡도·이동거리·아이 체력 모두 고려
+```
+
+## 리스크
+- LLM 연동 비용 (공모전 단계에서는 규칙 기반 로직으로 대체 가능)
+- API 응답 속도 — 캐싱 전략 필요
+
+---
+
+## 관련 페이지
+
+**활용 API**
+- [[tourism-api/한국관광공사_관광빅데이터 정보서비스|API: 관광빅데이터 정보서비스]]
+- [[tourism-api/한국관광공사_관광지별 연관 관광지 정보|API: 관광지별 연관 관광지 정보]]
+- [[tourism-api/한국관광공사_관광지 집중률 방문자 추이 예측 정보|API: 관광지 집중률 방문자 추이 예측 정보]]
+- [[tourism-api/한국관광공사_기초지자체 중심 관광지 정보|API: 기초지자체 중심 관광지 정보]]
+- [[tourism-api/한국관광공사_지역별 관광 수요 강도|API: 지역별 관광 수요 강도]]
+
+**타겟 페르소나**
+- [[personas/최동훈, 44세, 중학교 교사 (초등생 자녀 2명)|최동훈 (40대 가족)]]
+- [[personas/Emma Chen, 23, Freelance Photographer (Taiwan)|Emma Chen (외국인 배낭)]]
+
+**평가**
+- [[ideas/아이디어 10개 사업성 점수화 (Stage 3-B)|사업성 점수화]]
+
+**대회**
+- [[competition/2026 관광데이터 활용 공모전 - ① 웹·앱 개발 부문|공모전 개요]]
+
+**유사: AI코스, 가족여행**
+- [[ideas/K-Camp Finder - AI 추천 캠핑·글램핑 플랫폼|K-Camp Finder]]
+- [[ideas/FreeTrip Korea - 무장애·접근성 특화 관광 플랫폼|FreeTrip Korea]]
+- [[ideas/PetTrip Korea - 반려동물 동반 여행 전문 플랫폼|PetTrip Korea]]
+- [[ideas/AccessKorea - 무장애 여행 통합 플랫폼|AccessKorea]]
+- [[ideas/FamilyKorea - 가족여행 올인원 스마트 플래너|FamilyKorea]]
+
+**유사: AI코스, 혼잡회피**
+- [[ideas/KoreaTrend Radar - 관광 빅데이터 기반 실시간 핫플 추천 앱|KoreaTrend Radar]]
+- [[ideas/K-Universe - K-컬처 성지순례 + 팬 여행 앱|K-Universe]]
+- [[ideas/PetKorea - 반려동물 동반 여행 올인원 앱|PetKorea]]
+- [[ideas/NightKorea - 한국 야간 관광 특화 앱|NightKorea]]
+- [[ideas/K-Guide Global - 외국인 전용 다국어 통합 한국 관광 가이드|K-Guide Global]]
+- [[ideas/WellKorea - 웰니스 여행 큐레이터 앱|WellKorea]]
+- [[ideas/GreenTrail Korea - 에코 투어 & 트레킹 가이드|GreenTrail Korea]]
+- [[ideas/LocalSecret - 혼잡 회피 + 숨은 명소 발견 앱|LocalSecret]]
+- [[ideas/K-Local Explorer - 지역 특화 숨은 명소 발굴 앱|K-Local Explorer]]
+- [[ideas/KoreaWellness - 번아웃 직장인을 위한 웰니스 관광 큐레이션|KoreaWellness]]
+

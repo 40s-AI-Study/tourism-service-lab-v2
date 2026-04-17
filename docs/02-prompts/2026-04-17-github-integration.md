@@ -10,7 +10,7 @@ summary: GitHub 전면 연동 + AI 스터디 히스토리 보존 요구
 
 ## 원문
 
-> 추가로 현재 설계한모든 내용과 회사를 어떻게 구성해야하는지 그리고 해당 프로젝트에 대한 진행해야할 업무등을 https://github.com/users/sinrim11/projects/2/views/1 에 정리하고 그리고 해당 프로젝트의 진행방향 설계 필요 요소 세팅 등등에 프로젝트 관련된 내용들은 https://github.com/40s-AI-Study/tourism-service-lab-v2/wiki 해당 wiki 에 정리해주세요.
+> 추가로 현재 설계한모든 내용과 회사를 어떻게 구성해야하는지 그리고 해당 프로젝트에 대한 진행해야할 업무등을 https://github.com/users/sinrim11/projects/2/views/1 에 정리하고 그리고 해당 프로젝트의 진행방향 설계 필요 요소 세팅 등등에 프로젝트 관련된 내용들은 docs/wiki/ 해당 wiki 에 정리해주세요.
 >
 > 현재 정리하는 내용들은 모두 팀원과 공유할것이며 해당 내용을 참고하여 서로 브레인 스토밍을 할겁니다.
 >
@@ -19,7 +19,7 @@ summary: GitHub 전면 연동 + AI 스터디 히스토리 보존 요구
 ## 핵심 요청 정리
 
 1. **GitHub Project**: https://github.com/users/sinrim11/projects/2/views/1 — 설계/구성/업무 관리
-2. **GitHub Wiki**: https://github.com/40s-AI-Study/tourism-service-lab-v2/wiki — 프로젝트 방향/설계/세팅
+2. **GitHub Wiki**: docs/wiki/ — 프로젝트 방향/설계/세팅
 3. **GitHub Repo**: https://github.com/40s-AI-Study/tourism-service-lab-v2 — llm-wiki 미러
 4. **팀원 공유**: 여러 사람이 참고 + 브레인스토밍
 5. **AI 스터디**: 모든 프롬프트, 계획, 히스토리를 GitHub에 기록
