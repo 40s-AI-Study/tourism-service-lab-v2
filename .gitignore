@@ -31,9 +31,16 @@ venv/
 *.swp
 
 # OMC / local LLM wiki (synced separately via script)
-.omc/wiki/
-.omc/state/
-.omc/logs/
+.omc/
+
+# Obsidian workspace state (per-user, not shared)
+.obsidian/workspace.json
+.obsidian/graph.json
+knowledge-base/.obsidian/workspace.json
+
+# Obsidian scratch files
+/*.canvas
+/2026-*.md
 
 # Paperclip instance data (large binaries, secrets)
 .paperclip/
