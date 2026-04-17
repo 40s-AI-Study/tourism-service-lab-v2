@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetKorea — 반려동물 동반 여행 올인원</title>
+  <style>
+    :root {
+      --bg: #0A060F;
+      --surface: #120A1A;
+      --card: #180F22;
+      --border: #271A35;
+      --fg: #FAF0FF;
+      --muted: #B088CC;
+      --muted2: #7055AA;
+      --accent: #C084FC;
+      --accent2: #F0ABFC;
+      --green: #4ADE80;
+      --grad: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,6,15,0.9); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 760px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(192,132,252,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .pass-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+    h1 { font-size: 40px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 13px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    /* Pet filter */
+    .pet-select { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+    .pet-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 12px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; }
+    .pet-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(192,132,252,0.08); }
+    .pet-btn .pet-icon { font-size: 24px; }
+    .size-chips { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+    .size-chip { padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); cursor: pointer; }
+    .size-chip.active { border-color: var(--accent2); color: var(--accent2); }
+
+    /* Spot cards */
+    .spot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .spot-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+    .spot-card:hover { border-color: rgba(192,132,252,0.5); transform: translateY(-2px); }
+    .spot-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .spot-emoji { font-size: 32px; }
+    .spot-tags { display: flex; gap: 4px; }
+    .spot-tag { padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+    .tag-dog { background: rgba(96,165,250,0.15); color: #60A5FA; border: 1px solid rgba(96,165,250,0.25); }
+    .tag-cat { background: rgba(249,168,212,0.15); color: #F9A8D4; border: 1px solid rgba(249,168,212,0.25); }
+    .tag-free { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .tag-size { background: rgba(192,132,252,0.1); color: var(--accent); border: 1px solid rgba(192,132,252,0.2); }
+    .spot-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .spot-region { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .spot-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .spot-meta { display: flex; gap: 10px; }
+    .spot-meta-item { font-size: 12px; color: var(--muted2); }
+
+    /* Checklist */
+    .checklist-box { background: rgba(192,132,252,0.04); border: 1px solid rgba(192,132,252,0.15); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+    .checklist-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+    .check-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-icon { width: 20px; height: 20px; background: rgba(74,222,128,0.15); border: 1px solid var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--green); flex-shrink: 0; }
+    .check-text { font-size: 14px; color: var(--fg); }
+    .check-note { font-size: 12px; color: var(--muted2); margin-top: 2px; }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(192,132,252,0.06); border: 1px solid rgba(192,132,252,0.2); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    footer { margin-top: 60px; padding: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">
+    <div class="nav-logo-icon">🐾</div>
+    PetKorea
+  </a>
+  <a class="nav-back" href="../">← 포트폴리오</a>
+  <span class="nav-badge">PASS 39/50</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="pass-dot"></span> 시뮬레이션 통과 · Round 1</div>
+  <h1>우리 강아지도,<br><span>함께 여행합니다</span></h1>
+  <p class="hero-sub">반려동물 600만 가구의 여행을 바꿉니다.<br>PetKorea — 펫 프렌들리 숙소·카페·공원을 한 번에.</p>
+  <div class="hero-actions">
+    <button class="btn-primary">🐾 반려 여행 시작</button>
+    <button class="btn-secondary">🏨 펫 숙소 찾기</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-val">12,000+</div><div class="stat-label">펫 프렌들리 장소</div></div>
+    <div class="stat-box"><div class="stat-val">600만</div><div class="stat-label">반려동물 가구</div></div>
+    <div class="stat-box"><div class="stat-val">7개</div><div class="stat-label">반려동물 카테고리</div></div>
+    <div class="stat-box"><div class="stat-val">39pt</div><div class="stat-label">시뮬 점수</div></div>
+  </div>
+
+  <div class="section-label">우리 아이 정보 설정</div>
+  <div class="pet-select">
+    <button class="pet-btn active"><span class="pet-icon">🐕</span>강아지</button>
+    <button class="pet-btn"><span class="pet-icon">🐈</span>고양이</button>
+    <button class="pet-btn"><span class="pet-icon">🐰</span>소동물</button>
+    <button class="pet-btn"><span class="pet-icon">🦜</span>조류</button>
+    <div class="size-chips">
+      <span class="size-chip active">소형</span>
+      <span class="size-chip">중형</span>
+      <span class="size-chip">대형</span>
+    </div>
+  </div>
+
+  <div class="section-label">펫 프렌들리 추천 장소</div>
+  <div class="spot-grid">
+    <div class="spot-card">
+      <div class="spot-head">
+        <span class="spot-emoji">🏕</span>
+        <div class="spot-tags">
+          <span class="spot-tag tag-dog">🐕 반려견</span>
+          <span class="spot-tag tag-size">소·중·대형</span>
+        </div>
+      </div>
+      <div class="spot-region">강원 · 가평</div>
+      <div class="spot-name">펫 프렌들리 글램핑 파크</div>
+      <div class="spot-desc">노리치 전용 반려견 수영장 + 도그런 포함. 목줄 없이 뛰어놀 수 있는 100평 마당.</div>
+      <div class="spot-meta">
+        <span class="spot-meta-item">🏠 숙박</span>
+        <span class="spot-meta-item">🐾 도그런</span>
+        <span class="spot-meta-item">★4.9</span>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-head">
+        <span class="spot-emoji">☕</span>
+        <div class="spot-tags">
+          <span class="spot-tag tag-dog">🐕 반려견</span>
+          <span class="spot-tag tag-cat">🐈 반려묘</span>
+          <span class="spot-tag tag-free">입장 무료</span>
+        </div>
+      </div>
+      <div class="spot-region">서울 · 성수</div>
+      <div class="spot-name">도그카페 성수 플래그십</div>
+      <div class="spot-desc">실내 도그런 구비 대형 카페. 반려견 동반 입장 시 강아지 간식 서비스. 포토존 완비.</div>
+      <div class="spot-meta">
+        <span class="spot-meta-item">☕ 카페</span>
+        <span class="spot-meta-item">📷 포토존</span>
+        <span class="spot-meta-item">★4.8</span>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-head">
+        <span class="spot-emoji">🌊</span>
+        <div class="spot-tags">
+          <span class="spot-tag tag-dog">🐕 반려견</span>
+          <span class="spot-tag tag-size">소·중형만</span>
+        </div>
+      </div>
+      <div class="spot-region">경기 · 화성</div>
+      <div class="spot-name">전곡항 반려견 해변 공원</div>
+      <div class="spot-desc">국내 최초 반려견 전용 해변. 수질검사 정기 실시. 4월~10월 오픈. 주차 편리.</div>
+      <div class="spot-meta">
+        <span class="spot-meta-item">🏖 해변</span>
+        <span class="spot-meta-item">🌊 수영 가능</span>
+        <span class="spot-meta-item">★5.0</span>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-head">
+        <span class="spot-emoji">🏨</span>
+        <div class="spot-tags">
+          <span class="spot-tag tag-dog">🐕 반려견</span>
+          <span class="spot-tag tag-size">소·중·대형</span>
+        </div>
+      </div>
+      <div class="spot-region">제주 · 서귀포</div>
+      <div class="spot-name">제주 펫 리조트 풀빌라</div>
+      <div class="spot-desc">프라이빗 정원 + 반려견 전용 풀장. 수의사 픽업 서비스. 유기견 입양 연계 프로그램.</div>
+      <div class="spot-meta">
+        <span class="spot-meta-item">🏨 리조트</span>
+        <span class="spot-meta-item">🏊 전용 풀장</span>
+        <span class="spot-meta-item">★4.8</span>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-head">
+        <span class="spot-emoji">🌿</span>
+        <div class="spot-tags">
+          <span class="spot-tag tag-dog">🐕 반려견</span>
+          <span class="spot-tag tag-free">무료 입장</span>
+        </div>
+      </div>
+      <div class="spot-region">서울 · 한강</div>
+      <div class="spot-name">뚝섬 한강공원 반려견 놀이터</div>
+      <div class="spot-desc">목줄 없는 대·소형견 분리 운동장. 서울시 공식 지정 펫 존. 24시간 개방.</div>
+      <div class="spot-meta">
+        <span class="spot-meta-item">🌿 공원</span>
+        <span class="spot-meta-item">⏰ 24시간</span>
+        <span class="spot-meta-item">★4.7</span>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-head">
+        <span class="spot-emoji">🍽</span>
+        <div class="spot-tags">
+          <span class="spot-tag tag-dog">🐕 반려견</span>
+          <span class="spot-tag tag-cat">🐈 반려묘</span>
+        </div>
+      </div>
+      <div class="spot-region">부산 · 해운대</div>
+      <div class="spot-name">해운대 펫 프렌들리 레스토랑</div>
+      <div class="spot-desc">오션뷰 야외 테라스 전 좌석 반려동물 동반 가능. 반려동물 전용 메뉴 별도 운영.</div>
+      <div class="spot-meta">
+        <span class="spot-meta-item">🍽 레스토랑</span>
+        <span class="spot-meta-item">🌊 오션뷰</span>
+        <span class="spot-meta-item">★4.9</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">여행 전 체크리스트 — 강아지 소형견 기준</div>
+  <div class="checklist-box">
+    <div class="checklist-title">🐾 반려견 동반 여행 필수 준비사항</div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div><div class="check-text">광견병 예방접종 증명서 지참</div><div class="check-note">숙소 체크인 시 대부분 요구. 최근 1년 이내</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div><div class="check-text">동물등록번호 확인 (마이크로칩 또는 외장형)</div><div class="check-note">2022년부터 의무화. 분실 시 빠른 귀환</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div><div class="check-text">이동장 또는 슬링백 준비 (실내 공간 이동 시)</div><div class="check-note">펫 프렌들리 카페도 이동 중 이동장 필수인 경우 있음</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div><div class="check-text">배변봉투 10개 이상 지참</div><div class="check-note">공공장소 배변 처리는 법적 의무. 미처리 시 과태료</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div><div class="check-text">평소 먹는 사료 + 간식 충분히 준비</div><div class="check-note">낯선 환경 스트레스 완화. 여행지 구매 어려울 수 있음</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px">
+    <div class="section-label">활용 Visit Korea OpenAPI</div>
+    <div class="api-chips">
+      <span class="api-chip">pet-friendly-tourism</span>
+      <span class="api-chip">area-based-list</span>
+      <span class="api-chip">detail-common</span>
+      <span class="api-chip">search-keyword</span>
+      <span class="api-chip">detail-intro</span>
+      <span class="api-chip">nearby-tourism</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../">← Tourism Service Lab 포트폴리오</a> · 2026 관광데이터 활용 공모전 출품작 · PetKorea
+</footer>
+
+</body>
+</html>

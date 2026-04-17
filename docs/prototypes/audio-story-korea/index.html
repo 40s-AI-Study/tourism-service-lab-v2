@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Story Korea — 몰입형 문화재 오디오 스토리텔링</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #F59E0B;
+      --accent2: #FB923C;
+      --green: #22C55E;
+      --grad: linear-gradient(135deg, #F59E0B 0%, #FB923C 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 760px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .pass-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+    h1 { font-size: 40px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .section { padding: 48px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 13px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; }
+    .section-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+    .section-desc { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+
+    /* Player UI */
+    .player-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 24px;
+    }
+    .player-header { padding: 20px 24px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); }
+    .player-thumb { width: 64px; height: 64px; border-radius: 12px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .player-meta h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .player-meta p { font-size: 13px; color: var(--muted); }
+    .player-body { padding: 20px 24px; }
+    .progress-bar { height: 4px; background: var(--border); border-radius: 4px; margin: 12px 0; cursor: pointer; }
+    .progress-fill { height: 100%; width: 38%; background: var(--grad); border-radius: 4px; }
+    .player-controls { display: flex; align-items: center; justify-content: space-between; }
+    .player-time { font-size: 13px; color: var(--muted); font-family: monospace; }
+    .ctrl-btns { display: flex; align-items: center; gap: 16px; }
+    .ctrl-btn { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%; background: transparent; color: var(--fg); cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .ctrl-btn.play { width: 48px; height: 48px; background: var(--grad); border: none; border-radius: 50%; font-size: 18px; }
+    .lang-btns { display: flex; gap: 6px; }
+    .lang-btn { padding: 4px 10px; border-radius: 6px; font-size: 12px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; }
+    .lang-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(245,158,11,0.08); }
+
+    /* Story cards */
+    .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .story-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+    .story-card:hover { border-color: rgba(245,158,11,0.5); transform: translateY(-2px); }
+    .story-card.active { border-color: var(--accent); background: rgba(245,158,11,0.05); }
+    .story-num { font-size: 11px; color: var(--muted2); letter-spacing: 0.15em; margin-bottom: 8px; }
+    .story-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .story-excerpt { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .story-info { display: flex; gap: 12px; }
+    .story-tag { font-size: 11px; color: var(--muted2); display: flex; align-items: center; gap: 4px; }
+
+    /* Map section */
+    .map-placeholder { height: 320px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; color: var(--muted); margin-bottom: 24px; }
+    .map-placeholder .map-icon { font-size: 48px; }
+
+    /* Stats */
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    /* API badge */
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    footer { margin-top: 60px; padding: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--fg); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">
+    <div class="nav-logo-icon">🎧</div>
+    Audio Story Korea
+  </a>
+  <a class="nav-back" href="../">← 포트폴리오</a>
+  <span class="nav-badge">PASS 37/50</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="pass-dot"></span> 시뮬레이션 통과 · Round 1</div>
+  <h1>문화재가 <span>이야기로</span><br>살아 숨쉰다</h1>
+  <p class="hero-sub">경복궁 근정전 앞에 서면 조선 태종의 목소리가 들린다.<br>Audio Story Korea — 몰입형 AI 오디오 스토리텔링으로 역사를 체험하세요.</p>
+  <div class="hero-actions">
+    <button class="btn-primary">▶ 데모 체험</button>
+    <button class="btn-secondary">📋 기획서 보기</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-val">1,240+</div><div class="stat-label">콘텐츠 수</div></div>
+    <div class="stat-box"><div class="stat-val">8개</div><div class="stat-label">지원 언어</div></div>
+    <div class="stat-box"><div class="stat-val">4.9★</div><div class="stat-label">사용자 만족도</div></div>
+    <div class="stat-box"><div class="stat-val">37pt</div><div class="stat-label">시뮬 점수</div></div>
+  </div>
+
+  <div class="section-label">NOW PLAYING</div>
+  <div class="player-card">
+    <div class="player-header">
+      <div class="player-thumb">🏯</div>
+      <div class="player-meta">
+        <h3>경복궁 — 근정전의 아침</h3>
+        <p>조선 건국 서사 · 한국어 · 김채원 목소리</p>
+      </div>
+      <div class="lang-btns" style="margin-left:auto">
+        <button class="lang-btn active">한국어</button>
+        <button class="lang-btn">EN</button>
+        <button class="lang-btn">日本語</button>
+        <button class="lang-btn">中文</button>
+      </div>
+    </div>
+    <div class="player-body">
+      <p style="font-size:15px;color:var(--muted);line-height:1.7;font-style:italic;">"1395년 가을, 정도전이 이 돌 위에 처음 발을 딛던 날. 500년 왕조의 첫 번째 조회가 열리려 하고 있었다. 저 기둥 사이로 스며드는 아침 햇살은 — 지금 당신이 보는 것과 꼭 같았다."</p>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="player-controls">
+        <span class="player-time">2:14 / 5:47</span>
+        <div class="ctrl-btns">
+          <button class="ctrl-btn">⏮</button>
+          <button class="ctrl-btn">⏪</button>
+          <button class="ctrl-btn play">⏸</button>
+          <button class="ctrl-btn">⏩</button>
+          <button class="ctrl-btn">⏭</button>
+        </div>
+        <span class="player-time">×1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">스토리 목록 — 경복궁 컬렉션</div>
+  <div class="story-grid">
+    <div class="story-card active">
+      <div class="story-num">Episode 01</div>
+      <div class="story-title">🏯 근정전의 아침</div>
+      <div class="story-excerpt">조선 건국과 첫 번째 조회. 정도전과 태조 이성계의 이야기.</div>
+      <div class="story-info">
+        <span class="story-tag">⏱ 5:47</span>
+        <span class="story-tag">★ 4.9</span>
+        <span class="story-tag">🌐 8개 언어</span>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-num">Episode 02</div>
+      <div class="story-title">🔥 임진왜란의 기억</div>
+      <div class="story-excerpt">1592년 왜군의 침략과 궁궐 소실. 300년의 폐허가 된 경복궁.</div>
+      <div class="story-info">
+        <span class="story-tag">⏱ 7:23</span>
+        <span class="story-tag">★ 4.8</span>
+        <span class="story-tag">🌐 8개 언어</span>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-num">Episode 03</div>
+      <div class="story-title">👑 흥선대원군과 재건</div>
+      <div class="story-excerpt">1868년 270년 만의 복원. 7,700칸, 10년의 공사.</div>
+      <div class="story-info">
+        <span class="story-tag">⏱ 6:11</span>
+        <span class="story-tag">★ 4.7</span>
+        <span class="story-tag">🌐 8개 언어</span>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-num">Episode 04</div>
+      <div class="story-title">🌙 밤의 경복궁</div>
+      <div class="story-excerpt">야간 개장 특별 에피소드. 달빛 아래 궁궐의 미스터리.</div>
+      <div class="story-info">
+        <span class="story-tag">⏱ 4:55</span>
+        <span class="story-tag">★ 5.0</span>
+        <span class="story-tag">🌐 8개 언어</span>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-num">Episode 05</div>
+      <div class="story-title">🎭 조선의 일상</div>
+      <div class="story-excerpt">궁녀, 내시, 호위무사의 하루. 역사 속 보통 사람들의 삶.</div>
+      <div class="story-info">
+        <span class="story-tag">⏱ 8:04</span>
+        <span class="story-tag">★ 4.6</span>
+        <span class="story-tag">🌐 8개 언어</span>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-num">Episode 06</div>
+      <div class="story-title">🏛 건축의 비밀</div>
+      <div class="story-excerpt">단청의 색 배합, 기둥의 배치. 조선 목조 건축의 철학.</div>
+      <div class="story-info">
+        <span class="story-tag">⏱ 6:38</span>
+        <span class="story-tag">★ 4.8</span>
+        <span class="story-tag">🌐 8개 언어</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px">
+    <div class="section-label">활용 Visit Korea OpenAPI</div>
+    <div class="api-chips">
+      <span class="api-chip">cultural-heritage-info</span>
+      <span class="api-chip">audio-guide-content</span>
+      <span class="api-chip">multilingual-tour-info</span>
+      <span class="api-chip">area-based-list</span>
+      <span class="api-chip">detail-intro</span>
+      <span class="api-chip">detail-common</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../">← Tourism Service Lab 포트폴리오</a> · 2026 관광데이터 활용 공모전 출품작 · Audio Story Korea
+</footer>
+
+</body>
+</html>

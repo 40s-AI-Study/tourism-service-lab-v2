@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Local Explorer — 지역 특화 숨은 명소 발굴</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #10B981;
+      --accent2: #34D399;
+      --grad: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+      --grad2: linear-gradient(135deg, #059669 0%, #10B981 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 760px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(16,185,129,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .pass-dot { width: 7px; height: 7px; background: #22C55E; border-radius: 50%; box-shadow: 0 0 8px #22C55E; }
+    h1 { font-size: 40px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 13px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    /* Search Bar */
+    .search-bar { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; display: flex; gap: 12px; align-items: center; margin-bottom: 24px; }
+    .search-input { flex: 1; background: transparent; border: none; color: var(--fg); font-size: 15px; outline: none; }
+    .search-input::placeholder { color: var(--muted2); }
+    .search-btn { padding: 8px 20px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 14px; font-weight: 600; cursor: pointer; }
+    .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .filter-chip { padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px; font-size: 13px; color: var(--muted); cursor: pointer; }
+    .filter-chip.active { border-color: var(--accent); color: var(--accent); background: rgba(16,185,129,0.08); }
+
+    /* Spot cards */
+    .spot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .spot-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+    .spot-card:hover { border-color: rgba(16,185,129,0.5); transform: translateY(-2px); }
+    .spot-img { height: 140px; background: linear-gradient(135deg, #0d2818 0%, #1a4a2e 100%); display: flex; align-items: center; justify-content: center; font-size: 48px; position: relative; }
+    .spot-badge { position: absolute; top: 12px; right: 12px; padding: 4px 10px; background: rgba(16,185,129,0.9); border-radius: 999px; font-size: 11px; font-weight: 700; color: white; }
+    .spot-body { padding: 16px; }
+    .spot-region { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .spot-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .spot-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .spot-meta { display: flex; gap: 10px; }
+    .spot-tag { font-size: 11px; color: var(--muted2); }
+
+    /* Local tip */
+    .tip-box { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 24px; }
+    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
+    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    footer { margin-top: 60px; padding: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">
+    <div class="nav-logo-icon">🗺️</div>
+    K-Local Explorer
+  </a>
+  <a class="nav-back" href="../">← 포트폴리오</a>
+  <span class="nav-badge">PASS 37/50</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="pass-dot"></span> 시뮬레이션 통과 · Round 1</div>
+  <h1>로컬만 아는 <span>숨은 명소</span>,<br>AI가 찾아드립니다</h1>
+  <p class="hero-sub">관광객 0%, 현지인 100% 추천 스팟.<br>K-Local Explorer — 빅데이터가 발굴한 지역 특화 비밀 장소.</p>
+  <div class="hero-actions">
+    <button class="btn-primary">🗺 지금 탐험하기</button>
+    <button class="btn-secondary">📍 내 주변 보기</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-val">8,400+</div><div class="stat-label">등록 명소</div></div>
+    <div class="stat-box"><div class="stat-val">229개</div><div class="stat-label">지역 커버리지</div></div>
+    <div class="stat-box"><div class="stat-val">94%</div><div class="stat-label">재방문 의향</div></div>
+    <div class="stat-box"><div class="stat-val">37pt</div><div class="stat-label">시뮬 점수</div></div>
+  </div>
+
+  <div class="section-label">명소 탐색</div>
+  <div class="search-bar">
+    <span style="font-size:18px">🔍</span>
+    <input class="search-input" placeholder="지역명, 테마, 키워드 검색 (예: 강릉 감성카페, 전주 숨은 골목...)" value="강릉 혼잡 없는 감성 카페">
+    <button class="search-btn">탐색</button>
+  </div>
+  <div class="filter-chips">
+    <button class="filter-chip active">전체</button>
+    <button class="filter-chip">카페/식당</button>
+    <button class="filter-chip">자연/공원</button>
+    <button class="filter-chip">문화/예술</button>
+    <button class="filter-chip">야간 명소</button>
+    <button class="filter-chip">포토스팟</button>
+    <button class="filter-chip">가족 동반</button>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">🏠 LOCAL TIP</div>
+    <div class="tip-text">강릉 현지인이 추천하는 이번 주 핫스팟 → <strong>사천진 해변 북쪽 모래사장</strong>. 경포보다 파도가 잔잔하고 주차 무료. 토요일 오전 7-9시가 가장 한산합니다.</div>
+  </div>
+
+  <div class="spot-grid">
+    <div class="spot-card">
+      <div class="spot-img">🌅
+        <span class="spot-badge">혼잡도 낮음</span>
+      </div>
+      <div class="spot-body">
+        <div class="spot-region">강원 · 강릉</div>
+        <div class="spot-name">사천진 해변 북쪽 모래사장</div>
+        <div class="spot-desc">경포 대신 현지인이 찾는 조용한 해변. 커피거리에서 차로 5분.</div>
+        <div class="spot-meta">
+          <span class="spot-tag">📷 포토스팟</span>
+          <span class="spot-tag">🚗 주차 무료</span>
+          <span class="spot-tag">⭐ 4.8</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-img">☕
+        <span class="spot-badge">로컬 픽</span>
+      </div>
+      <div class="spot-body">
+        <div class="spot-region">강원 · 강릉</div>
+        <div class="spot-name">테라로사 본점 골목길</div>
+        <div class="spot-desc">테라로사 맞은편 숨겨진 골목 카페들. 현지인만 아는 독립 로스터리 밀집 구역.</div>
+        <div class="spot-meta">
+          <span class="spot-tag">☕ 로컬 카페</span>
+          <span class="spot-tag">🚶 도보권</span>
+          <span class="spot-tag">⭐ 4.9</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-img">🎨
+        <span class="spot-badge">신규 발굴</span>
+      </div>
+      <div class="spot-body">
+        <div class="spot-region">전북 · 전주</div>
+        <div class="spot-name">풍남문 안쪽 골목 한옥마을</div>
+        <div class="spot-desc">관광객이 몰리는 경기전 대신 풍남문 안쪽 실제 주민 거주 한옥 골목. 전통 생활문화 체험.</div>
+        <div class="spot-meta">
+          <span class="spot-tag">🏯 문화유산</span>
+          <span class="spot-tag">📸 인생샷</span>
+          <span class="spot-tag">⭐ 4.7</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-img">🌿
+        <span class="spot-badge">숨은 명소</span>
+      </div>
+      <div class="spot-body">
+        <div class="spot-region">경남 · 남해</div>
+        <div class="spot-name">창선·삼천포대교 해돋이 포인트</div>
+        <div class="spot-desc">일출 명소 알려지지 않은 각도. 다리와 해돋이가 겹치는 황금 구도. 현지 사진작가 전용 스팟.</div>
+        <div class="spot-meta">
+          <span class="spot-tag">🌅 일출 명소</span>
+          <span class="spot-tag">📷 전문가 픽</span>
+          <span class="spot-tag">⭐ 5.0</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-img">🍜
+        <span class="spot-badge">현지인 맛집</span>
+      </div>
+      <div class="spot-body">
+        <div class="spot-region">경북 · 경주</div>
+        <div class="spot-name">황오동 재래시장 순대국 골목</div>
+        <div class="spot-desc">황리단길 붐비는 퓨전식당 대신 경주 현지인이 30년 단골로 다니는 시장 국밥골목.</div>
+        <div class="spot-meta">
+          <span class="spot-tag">🍲 로컬 맛집</span>
+          <span class="spot-tag">💰 가성비</span>
+          <span class="spot-tag">⭐ 4.8</span>
+        </div>
+      </div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-img">🌸
+        <span class="spot-badge">계절 특선</span>
+      </div>
+      <div class="spot-body">
+        <div class="spot-region">충남 · 서산</div>
+        <div class="spot-name">서산 해미읍성 벚꽃 터널</div>
+        <div class="spot-desc">경주·진해는 인파지만 해미읍성 성벽 안 벚꽃 길은 4월에도 여유롭고 역사적 배경 완벽.</div>
+        <div class="spot-meta">
+          <span class="spot-tag">🌸 벚꽃 명소</span>
+          <span class="spot-tag">🏰 문화유산</span>
+          <span class="spot-tag">⭐ 4.9</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px">
+    <div class="section-label">활용 Visit Korea OpenAPI</div>
+    <div class="api-chips">
+      <span class="api-chip">area-based-list</span>
+      <span class="api-chip">search-keyword</span>
+      <span class="api-chip">detail-common</span>
+      <span class="api-chip">area-tourism-demand-density</span>
+      <span class="api-chip">visitor-concentration-forecast</span>
+      <span class="api-chip">related-attractions</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="../">← Tourism Service Lab 포트폴리오</a> · 2026 관광데이터 활용 공모전 출품작 · K-Local Explorer
+</footer>
+
+</body>
+</html>

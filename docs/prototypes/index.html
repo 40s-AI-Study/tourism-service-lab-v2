@@ -65,7 +65,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 18px;
   }
 
@@ -86,9 +86,10 @@
     border-color: rgba(56, 189, 248, 0.5);
   }
   .card.placeholder {
-    opacity: 0.55;
+    opacity: 0.45;
     cursor: not-allowed;
     border-style: dashed;
+    pointer-events: none;
   }
   .card-head {
     display: flex; align-items: center; justify-content: space-between;
@@ -117,22 +118,36 @@
     font-size: 12px; color: var(--muted2);
     margin-top: 12px;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-score {
+    font-size: 12px; font-weight: 700;
+    color: var(--pass);
   }
 
   .empty {
     text-align: center;
-    padding: 60px 20px;
+    padding: 48px 20px;
     color: var(--muted2);
     border: 1px dashed var(--border);
     border-radius: 16px;
   }
-  .empty-icon { font-size: 48px; margin-bottom: 12px; }
+  .empty-icon { font-size: 40px; margin-bottom: 12px; }
 
   footer {
     margin-top: 60px; padding-top: 24px;
     border-top: 1px solid var(--border);
     font-size: 13px; color: var(--muted2);
     text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    h1 { font-size: 30px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 641px) and (max-width: 1023px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -141,59 +156,153 @@
   <header>
     <div class="eyebrow">TOURISM SERVICE LAB</div>
     <h1>Prototype <em>Portfolio</em></h1>
-    <p class="subtitle">시뮬레이션 통과 아이디어 — 서비스 시안 뷰어</p>
+    <p class="subtitle">시뮬레이션 통과 아이디어 — 서비스 시안 뷰어 · 2026 관광데이터 활용 공모전</p>
 
     <div class="status-bar">
-      <span class="status-pill"><span class="dot pass"></span>PASS: <strong>1</strong></span>
-      <span class="status-pill"><span class="dot pending"></span>에이전트 작업 중</span>
+      <span class="status-pill"><span class="dot pass"></span>PASS 완료: <strong>6개</strong></span>
+      <span class="status-pill"><span class="dot pending"></span>Round 2 작업 중: <strong>4개+</strong></span>
+      <span class="status-pill">총 시뮬 검증: <strong>10개</strong></span>
     </div>
   </header>
 
-  <div class="section-title">Round 1 · 채택 아이디어</div>
+  <div class="section-title">Round 1 · 채택 아이디어 (6/6 라이브)</div>
   <div class="grid">
+
     <a class="card" href="koreapath-ai/index.html">
       <div class="card-head">
         <div class="card-emoji">🎯</div>
         <span class="card-tag tag-pass">PASS</span>
       </div>
       <div class="card-title">KoreaPath AI</div>
-      <div class="card-desc">개인화 동선 자동 생성 + 혼잡도 최적화</div>
-      <div class="card-meta">prototypes/koreapath-ai/ (live)</div>
+      <div class="card-desc">개인화 동선 자동 생성 + 혼잡도 최적화. AI가 조건에 맞는 최적 코스를 즉시 구성.</div>
+      <div class="card-meta">
+        <span>koreapath-ai/ (live)</span>
+        <span class="card-score">44/50pt</span>
+      </div>
     </a>
+
+    <a class="card" href="audio-story-korea/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🎧</div>
+        <span class="card-tag tag-pass">PASS</span>
+      </div>
+      <div class="card-title">Audio Story Korea</div>
+      <div class="card-desc">몰입형 문화재 오디오 스토리텔링. 1,240개 콘텐츠, 8개 언어 지원.</div>
+      <div class="card-meta">
+        <span>audio-story-korea/ (live)</span>
+        <span class="card-score">37/50pt</span>
+      </div>
+    </a>
+
+    <a class="card" href="k-local-explorer/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🗺️</div>
+        <span class="card-tag tag-pass">PASS</span>
+      </div>
+      <div class="card-title">K-Local Explorer</div>
+      <div class="card-desc">지역 특화 숨은 명소 발굴. 관광객 0%, 현지인 100% 추천 스팟 8,400개.</div>
+      <div class="card-meta">
+        <span>k-local-explorer/ (live)</span>
+        <span class="card-score">37/50pt</span>
+      </div>
+    </a>
+
+    <a class="card" href="korea-trend-radar/index.html">
+      <div class="card-head">
+        <div class="card-emoji">📡</div>
+        <span class="card-tag tag-pass">PASS</span>
+      </div>
+      <div class="card-title">KoreaTrend Radar</div>
+      <div class="card-desc">관광 빅데이터 기반 실시간 핫플 추천. 방한객 이동 데이터 + SNS 버즈량 실시간 분석.</div>
+      <div class="card-meta">
+        <span>korea-trend-radar/ (live)</span>
+        <span class="card-score">39/50pt</span>
+      </div>
+    </a>
+
+    <a class="card" href="eco-trail-korea/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🌿</div>
+        <span class="card-tag tag-pass">PASS</span>
+      </div>
+      <div class="card-title">EcoTrail Korea</div>
+      <div class="card-desc">친환경 트레킹·자전거·생태관광 올인원. 탄소 발자국 -42%, 3,200개 생태 코스.</div>
+      <div class="card-meta">
+        <span>eco-trail-korea/ (live)</span>
+        <span class="card-score">35/50pt</span>
+      </div>
+    </a>
+
+    <a class="card" href="pet-korea/index.html">
+      <div class="card-head">
+        <div class="card-emoji">🐾</div>
+        <span class="card-tag tag-pass">PASS</span>
+      </div>
+      <div class="card-title">PetKorea</div>
+      <div class="card-desc">반려동물 동반 여행 올인원. 반려동물 가구 600만 시장, 펫 프렌들리 장소 12,000개.</div>
+      <div class="card-meta">
+        <span>pet-korea/ (live)</span>
+        <span class="card-score">39/50pt</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-title">Round 2 · 시뮬레이션 통과 아이디어 (제작 중)</div>
+  <div class="grid">
+
     <div class="card placeholder">
       <div class="card-head">
         <div class="card-emoji">🌐</div>
-        <span class="card-tag tag-pending">AGENT WORKING</span>
+        <span class="card-tag tag-pending">IN PROGRESS</span>
       </div>
       <div class="card-title">K-Guide Global</div>
-      <div class="card-desc">외국인 전용 다국어 통합 관광 가이드</div>
-      <div class="card-meta">prototypes/k-guide-global/ (pending)</div>
+      <div class="card-desc">외국인 전용 다국어 통합 한국 관광 가이드. 방한 외래객 1,620만 명 타겟.</div>
+      <div class="card-meta">
+        <span>k-guide-global/ (building)</span>
+        <span class="card-score">44/50pt</span>
+      </div>
     </div>
+
     <div class="card placeholder">
       <div class="card-head">
         <div class="card-emoji">♿</div>
-        <span class="card-tag tag-pending">AGENT WORKING</span>
+        <span class="card-tag tag-pending">IN PROGRESS</span>
       </div>
-      <div class="card-title">FreeTrip Korea</div>
-      <div class="card-desc">무장애·접근성 특화 관광 플랫폼</div>
-      <div class="card-meta">prototypes/freetrip-korea/ (pending)</div>
+      <div class="card-title">AccessKorea</div>
+      <div class="card-desc">무장애 여행 통합 플랫폼. 시니어·장애인 특화, barrier-free-travel API 독점 활용.</div>
+      <div class="card-meta">
+        <span>access-korea/ (building)</span>
+        <span class="card-score">40/50pt</span>
+      </div>
     </div>
+
     <div class="card placeholder">
       <div class="card-head">
-        <div class="card-emoji">🗺️</div>
-        <span class="card-tag tag-pending">AGENT WORKING</span>
+        <div class="card-emoji">🧘</div>
+        <span class="card-tag tag-pending">IN PROGRESS</span>
       </div>
-      <div class="card-title">LocalSecret</div>
-      <div class="card-desc">혼잡 회피 + 숨은 명소 발견</div>
-      <div class="card-meta">prototypes/local-secret/ (pending)</div>
+      <div class="card-title">KoreaWellness</div>
+      <div class="card-desc">번아웃 직장인을 위한 웰니스 관광 큐레이션. 치유·힐링 테마 특화 서비스.</div>
+      <div class="card-meta">
+        <span>korea-wellness/ (building)</span>
+        <span class="card-score">36/50pt</span>
+      </div>
     </div>
-  </div>
 
-  <div class="section-title">Round 2 · 시뮬레이션 통과 대기</div>
-  <div class="empty">
-    <div class="empty-icon">⏳</div>
-    <div>아직 시뮬레이션 결과 없음</div>
-    <div style="margin-top:6px;font-size:12px;">🎭 시뮬님이 Round 2 아이디어 10개 × 페르소나 시뮬레이션 진행 중</div>
+    <div class="card placeholder">
+      <div class="card-head">
+        <div class="card-emoji">🏕</div>
+        <span class="card-tag tag-pending">IN PROGRESS</span>
+      </div>
+      <div class="card-title">K-Camp Finder</div>
+      <div class="card-desc">AI 추천 캠핑·글램핑 플랫폼. 날씨·혼잡도 연동 캠핑지 추천 서비스.</div>
+      <div class="card-meta">
+        <span>k-camp-finder/ (building)</span>
+        <span class="card-score">35/50pt</span>
+      </div>
+    </div>
+
   </div>
 
   <footer>
