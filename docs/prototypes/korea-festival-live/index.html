@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KoreaFestival Live — 실시간 축제·이벤트 여행 레이더</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #FF6B35;
+      --accent2: #FFD166;
+      --green: #22C55E;
+      --yellow: #F59E0B;
+      --red: #EF4444;
+      --grad: linear-gradient(135deg, #FF6B35 0%, #FFD166 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      background: var(--bg); color: var(--fg);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.85); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-cta { padding: 8px 20px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; }
+
+    .hero { padding: 88px 24px 64px; text-align: center; max-width: 800px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(255,107,53,0.4); border-radius: 999px; font-size: 13px; color: #FF8C5A; margin-bottom: 28px; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF8C5A; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    h1.hero-title { font-size: clamp(38px,6.5vw,68px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 22px; }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 520px; margin: 0 auto 40px; }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 8px 32px rgba(255,107,53,0.35); transition: transform 0.18s; }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary { padding: 14px 28px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+
+    .stats-row { display: flex; gap: 0; justify-content: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .stat-item { text-align: center; padding: 32px 40px; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 38px; font-weight: 900; letter-spacing: -0.02em; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    .section { padding: 80px 24px; max-width: 1200px; margin: 0 auto; }
+    .section-wide { padding: 80px 24px; background: var(--surface); }
+    .section-wide-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-size: clamp(28px,4vw,44px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 14px; }
+    .section-sub { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 500px; margin-bottom: 52px; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 20px; }
+    .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 24px; position: relative; overflow: hidden; }
+    .step-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: var(--grad); }
+    .step-num { font-size: 56px; font-weight: 900; color: rgba(255,255,255,0.04); position: absolute; top: 8px; right: 14px; line-height: 1; }
+    .step-icon { font-size: 34px; margin-bottom: 18px; }
+    .step-title { font-size: 19px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 20px; }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 24px; transition: transform .15s, border-color .15s; }
+    .feature-card:hover { transform: translateY(-3px); border-color: rgba(255,107,53,0.4); }
+    .feature-icon { font-size: 36px; margin-bottom: 16px; }
+    .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .ftag { padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 1px solid rgba(255,107,53,0.35); color: #FF8C5A; background: rgba(255,107,53,0.08); }
+
+    .scenarios-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 20px; }
+    .s-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; transition: transform .15s, border-color .15s; }
+    .s-card:hover { transform: translateY(-3px); border-color: rgba(255,107,53,0.4); }
+    .s-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .s-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .s-name { font-size: 15px; font-weight: 700; }
+    .s-tag { font-size: 12px; color: var(--muted); }
+    .s-story { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .s-course { background: var(--surface); border-radius: 12px; padding: 12px 14px; font-size: 12px; line-height: 1.8; font-family: ui-monospace,"SF Mono",Menlo,monospace; }
+    .cl { display: flex; gap: 8px; align-items: baseline; }
+    .ct { color: var(--muted2); flex-shrink: 0; min-width: 40px; }
+    .cp { color: var(--fg); }
+    .score-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .score-pill { padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 1px solid var(--border); color: var(--muted); display: flex; align-items: center; gap: 4px; }
+    .sp-pass { border-color: var(--green); color: var(--green); background: rgba(34,197,94,.1); }
+
+    .api-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 16px; }
+    .api-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; transition: border-color .15s; }
+    .api-card:hover { border-color: rgba(255,209,102,.4); }
+    .api-icon { font-size: 26px; margin-bottom: 10px; }
+    .api-name { font-size: 11px; color: var(--accent2); font-family: ui-monospace,"SF Mono",monospace; margin-bottom: 7px; word-break: break-all; }
+    .api-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+    footer { border-top: 1px solid var(--border); padding: 44px 24px; text-align: center; color: var(--muted2); font-size: 13px; line-height: 1.8; }
+    footer strong { color: var(--muted); }
+    @media (max-width:680px) { nav { padding: 0 16px; } .nav-links { display: none; } .hero { padding: 60px 16px 40px; } .section { padding: 60px 16px; } .section-wide { padding: 60px 16px; } .stat-item { padding: 24px 20px; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🎪</div>
+      KoreaFestival Live
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">사용법</a></li>
+      <li><a href="#features">기능</a></li>
+      <li><a href="#scenarios">시나리오</a></li>
+      <li><a href="#api">API</a></li>
+    </ul>
+    <a href="#features" class="nav-cta">축제 탐색하기</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      2026 관광데이터 활용 공모전 · PASS 10/10
+    </div>
+    <h1 class="hero-title">
+      이번 주말,<br>
+      <span class="grad-text">어떤 축제가 있을까?</span>
+    </h1>
+    <p class="hero-sub">
+      전국 축제·이벤트를 실시간으로 추적하고 혼잡도 예측·방문 가치 점수·연관 관광 코스를 자동 생성하는 축제 특화 레이더 앱.
+    </p>
+    <div class="hero-buttons">
+      <a href="#features" class="btn-primary">🎪 축제 레이더 보기</a>
+      <a href="#scenarios" class="btn-secondary">📋 시나리오 보기</a>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">활용 공공 API</div></div>
+    <div class="stat-item"><div class="stat-num">30일</div><div class="stat-label">혼잡도 예측 기간</div></div>
+    <div class="stat-item"><div class="stat-num">전국</div><div class="stat-label">지역 축제 커버</div></div>
+    <div class="stat-item"><div class="stat-num">4개+</div><div class="stat-label">체류 코스 타입</div></div>
+  </div>
+
+  <section class="section" id="how">
+    <div class="section-tag">HOW IT WORKS</div>
+    <h2 class="section-title">3단계로 완성되는<br>나만의 축제 여행</h2>
+    <p class="section-sub">흩어진 지자체 축제 정보를 한 곳에서. 혼잡도까지 예측해 최적 방문일을 알려드립니다.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">📅</div>
+        <div class="step-title">날짜·지역·테마<br>선택</div>
+        <div class="step-desc">달력 뷰 + 지도 뷰로 이번 주말 근처 축제를 한눈에. 봄꽃·여름바다·가을단풍·겨울눈꽃 시즌 필터 제공.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">📊</div>
+        <div class="step-title">혼잡도 예측 +<br>방문 가치 점수</div>
+        <div class="step-desc">30일 방문자 집중률 예측으로 "축제 첫날 vs 마지막 날" 혼잡도 비교. 지역 다양성 지수로 "체류 가치" 자동 평가.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">🗺️</div>
+        <div class="step-title">축제 + 주변 코스<br>자동 생성</div>
+        <div class="step-desc">연관 관광지 API로 축제장 주변 맛집·숙박·명소를 자동 연결. 당일 3시간 / 반나절 / 1박 2일 코스 선택.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wide" id="features">
+    <div class="section-wide-inner">
+      <div class="section-tag">CORE FEATURES</div>
+      <h2 class="section-title">축제 여행의 모든 것</h2>
+      <p class="section-sub">전국 분산된 축제 정보를 데이터로 통합해 스마트한 축제 여행을 만듭니다.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">전국 축제 레이더</div>
+          <div class="feature-desc">문화체육관광부·한국관광공사 공식 축제 DB를 달력 + 지도 이중 뷰로 제공. 문화·음식·음악·전통 테마별 필터로 나에게 맞는 축제 즉시 발견.</div>
+          <div class="feature-tags"><span class="ftag">tourism-info-korean</span><span class="ftag">tourism-info-english</span></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">혼잡도 예측 & 최적 방문일</div>
+          <div class="feature-desc">30일 방문자 집중률 예측으로 "갔다가 발 디딜 틈 없는" 경험 방지. 축제 첫날·주말·평일 혼잡도 비교 후 최적 방문일 자동 추천.</div>
+          <div class="feature-tags"><span class="ftag">visitor-concentration-forecast</span><span class="ftag">area-tourism-demand-density</span></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⭐</div>
+          <div class="feature-title">지역 다양성 & 체류 가치</div>
+          <div class="feature-desc">축제 지역의 관광 다양성 지수로 "축제 이후 얼마나 더 있을 수 있나"를 별점으로 표시. 빅데이터 실제 방문 패턴으로 신뢰도 보증.</div>
+          <div class="feature-tags"><span class="ftag">area-tourism-diversity</span><span class="ftag">tourism-big-data</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scenarios">
+    <div class="section-tag">USER SCENARIOS</div>
+    <h2 class="section-title">다양한 여행자를 위한<br>축제 여행</h2>
+    <p class="section-sub">페르소나 시뮬레이션 기반 — 실제 사용 시나리오 검증 결과</p>
+    <div class="scenarios-grid">
+      <div class="s-card">
+        <div class="s-head">
+          <div class="s-avatar">👩</div>
+          <div>
+            <div class="s-name">이수빈 (28세)</div>
+            <div class="s-tag">한국 20대 솔로 · 콘텐츠 마케터</div>
+          </div>
+        </div>
+        <p class="s-story">금요일 퇴근 후 "이번 주말 뭐 하지?" 고민. 앱 열자마자 진주남강유등축제 혼잡도 예측 확인. 토요일 오전이 🟢 한산 → 즉시 결정. 주변 비빔밥 골목 + 진주성 반나절 코스 자동 생성.</p>
+        <div class="s-course">
+          <div class="cl"><span class="ct">10:00</span><span class="cp">남강유등축제 입장 🟢한산</span></div>
+          <div class="cl"><span class="ct">12:00</span><span class="cp">진주 중앙시장 비빔밥</span></div>
+          <div class="cl"><span class="ct">14:00</span><span class="cp">진주성 역사 산책</span></div>
+          <div class="cl"><span class="ct">19:00</span><span class="cp">유등 야경 감상</span></div>
+        </div>
+        <div class="score-row">
+          <span class="score-pill sp-pass">✅ PASS</span>
+          <span class="score-pill">유용성 10/10</span>
+          <span class="score-pill">총점 28/30</span>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-head">
+          <div class="s-avatar" style="background:linear-gradient(135deg,#10B981,#06B6D4);">🌍</div>
+          <div>
+            <div class="s-name">Lucas Martin (31세)</div>
+            <div class="s-tag">프랑스 외국인 관광객 · 한국 문화 팬</div>
+          </div>
+        </div>
+        <p class="s-story">K-드라마에서 본 전통 축제를 직접 경험하고 싶어 방한. 영문 필터로 화천산천어축제 검색 → 방문자 패턴 빅데이터로 "현지인도 즐기는 찐 축제" 확인. 주변 강원 음식 코스까지 영문으로 제공.</p>
+        <div class="s-course">
+          <div class="cl"><span class="ct">09:00</span><span class="cp">산천어 낚시 체험</span></div>
+          <div class="cl"><span class="ct">11:30</span><span class="cp">얼음 조각 전시</span></div>
+          <div class="cl"><span class="ct">13:00</span><span class="cp">화천 로컬 식당</span></div>
+          <div class="cl"><span class="ct">15:00</span><span class="cp">춘천 닭갈비 코스</span></div>
+        </div>
+        <div class="score-row">
+          <span class="score-pill sp-pass">✅ PASS</span>
+          <span class="score-pill">유용성 9/10</span>
+          <span class="score-pill">총점 26/30</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wide" id="api">
+    <div class="section-wide-inner">
+      <div class="section-tag">OPEN API</div>
+      <h2 class="section-title">7개 공공데이터 API<br>실시간 연동</h2>
+      <p class="section-sub">한국관광공사 Open API를 직접 활용해 신뢰도 높은 축제 데이터를 제공합니다.</p>
+      <div class="api-grid">
+        <div class="api-card"><div class="api-icon">🏮</div><div class="api-name">tourism-info-korean</div><div class="api-desc">전국 문화·계절·음식 축제 공식 정보 (국문)</div></div>
+        <div class="api-card"><div class="api-icon">🌐</div><div class="api-name">tourism-info-english</div><div class="api-desc">외국인 대상 축제 영문 안내</div></div>
+        <div class="api-card"><div class="api-icon">📊</div><div class="api-name">visitor-concentration-forecast</div><div class="api-desc">축제 개최지 30일 방문자 집중률 예측 → 최적 방문일</div></div>
+        <div class="api-card"><div class="api-icon">💰</div><div class="api-name">area-tourism-demand-density</div><div class="api-desc">축제 지역 전반적 관광 소비 강도 분석</div></div>
+        <div class="api-card"><div class="api-icon">🎨</div><div class="api-name">area-tourism-diversity</div><div class="api-desc">축제 지역 관광 다양성 지수 → 체류 가치 평가</div></div>
+        <div class="api-card"><div class="api-icon">🔗</div><div class="api-name">related-attractions</div><div class="api-desc">축제장 주변 연관 관광지·맛집·숙박 자동 연결</div></div>
+        <div class="api-card"><div class="api-icon">📱</div><div class="api-name">tourism-big-data</div><div class="api-desc">이동통신·신용카드 데이터 기반 축제 실제 방문 패턴</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="font-size:28px;margin-bottom:10px;">🎪</div>
+    <strong>KoreaFestival Live</strong> — 실시간 축제·이벤트 여행 레이더<br>
+    2026 관광데이터 활용 공모전 · 웹·앱 개발 부문 출품작 · PASS 10/10<br>
+    Tourism Service Lab · <a href="../index.html" style="color:var(--accent2);text-decoration:none;">← 포트폴리오로 돌아가기</a>
+  </footer>
+
+</body>
+</html>
