@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round 4 — 관광 정서 복원 아이디어 24개</title>
+<style>
+  :root {
+    --bg: #0f0f13;
+    --card-bg: #1a1a24;
+    --card-hover: #22223a;
+    --accent: #7c6aef;
+    --accent2: #f06595;
+    --gold: #ffd43b;
+    --text: #e4e4ef;
+    --muted: #8888a0;
+    --border: #2a2a3a;
+    --top8-glow: rgba(124,106,239,0.15);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+
+  .hero-banner {
+    text-align:center; padding:60px 24px 40px;
+    background:linear-gradient(135deg, #1a1030 0%, #0f0f13 60%, #0d1520 100%);
+    border-bottom:1px solid var(--border);
+  }
+  .hero-banner h1 { font-size:2.2rem; font-weight:800; margin-bottom:8px; }
+  .hero-banner h1 span { background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero-banner p { color:var(--muted); font-size:1rem; max-width:600px; margin:0 auto; }
+  .hero-banner .stats { display:flex; gap:32px; justify-content:center; margin-top:24px; flex-wrap:wrap; }
+  .hero-banner .stat { text-align:center; }
+  .hero-banner .stat .num { font-size:2rem; font-weight:800; color:var(--accent); }
+  .hero-banner .stat .label { font-size:0.8rem; color:var(--muted); }
+
+  .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+  .section-title {
+    font-size:1.4rem; font-weight:700; margin:48px 0 8px; padding-left:12px;
+    border-left:4px solid var(--accent);
+  }
+  .section-subtitle { color:var(--muted); font-size:0.9rem; margin-bottom:24px; padding-left:16px; }
+
+  /* Top 8 grid */
+  .top8-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:48px;
+  }
+  .top8-card {
+    background:var(--card-bg); border:1px solid var(--accent); border-radius:12px;
+    padding:20px; position:relative; overflow:hidden; transition:transform .2s, box-shadow .2s;
+    box-shadow:0 0 20px var(--top8-glow);
+  }
+  .top8-card:hover { transform:translateY(-3px); box-shadow:0 8px 30px var(--top8-glow); }
+  .top8-card .badge {
+    position:absolute; top:12px; right:12px; background:var(--accent);
+    color:#fff; font-size:0.7rem; font-weight:700; padding:3px 10px; border-radius:20px;
+  }
+  .top8-card .cat-tag {
+    font-size:0.75rem; color:var(--accent2); font-weight:600; margin-bottom:6px; text-transform:uppercase;
+  }
+  .top8-card h3 { font-size:1.1rem; font-weight:700; margin-bottom:6px; }
+  .top8-card .hero-q { font-style:italic; color:var(--gold); font-size:0.9rem; margin-bottom:8px; }
+  .top8-card .emotion { font-size:0.8rem; color:var(--muted); margin-bottom:10px; }
+  .top8-card .score-row { display:flex; gap:12px; font-size:0.8rem; }
+  .top8-card .score-row .score { background:#2a2a3a; padding:3px 8px; border-radius:6px; }
+  .top8-card .sim-bar { margin-top:10px; }
+  .top8-card .sim-bar .bar-label { font-size:0.75rem; color:var(--muted); margin-bottom:4px; }
+  .top8-card .sim-bar .bar-track { height:6px; background:#2a2a3a; border-radius:3px; overflow:hidden; }
+  .top8-card .sim-bar .bar-fill { height:100%; border-radius:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+
+  /* Category sections */
+  .cat-section { margin-bottom:40px; }
+  .cat-header {
+    display:flex; align-items:center; gap:12px; margin-bottom:12px;
+    padding:8px 12px; background:var(--card-bg); border-radius:8px; border:1px solid var(--border);
+  }
+  .cat-header .cat-icon { font-size:1.5rem; }
+  .cat-header .cat-name { font-weight:700; font-size:1rem; }
+  .cat-header .cat-count { color:var(--muted); font-size:0.85rem; }
+
+  .idea-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px; }
+  .idea-card {
+    background:var(--card-bg); border:1px solid var(--border); border-radius:10px;
+    padding:16px; transition:border-color .2s, transform .2s; cursor:default;
+  }
+  .idea-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .idea-card h4 { font-size:0.95rem; font-weight:600; margin-bottom:6px; }
+  .idea-card .desc { font-size:0.82rem; color:var(--muted); line-height:1.5; }
+  .idea-card .file-ref { font-size:0.7rem; color:#555; margin-top:8px; font-family:monospace; }
+
+  .legend { text-align:center; padding:40px 20px; color:var(--muted); font-size:0.8rem; border-top:1px solid var(--border); margin-top:40px; }
+  .legend a { color:var(--accent); text-decoration:none; }
+
+  @media(max-width:640px) {
+    .hero-banner h1 { font-size:1.5rem; }
+    .top8-grid, .idea-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-banner">
+  <h1><span>Round 4</span> — 관광 정서 복원</h1>
+  <p>기술·기능 중심이 아닌 <strong>관광 고유의 정서·설렘·비일상감</strong>을 살린 아이디어 24개</p>
+  <div class="stats">
+    <div class="stat"><div class="num">24</div><div class="label">아이디어</div></div>
+    <div class="stat"><div class="num">8</div><div class="label">카테고리</div></div>
+    <div class="stat"><div class="num">8</div><div class="label">대표 선정</div></div>
+    <div class="stat"><div class="num">40</div><div class="label">시뮬레이션</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <h2 class="section-title">카테고리 대표 Top 8</h2>
+  <p class="section-subtitle">BA 간이 점수 + 시뮬 5인 검증 결과. 관광 정서 공감도 평균 포함.</p>
+
+  <div class="top8-grid">
+
+    <div class="top8-card">
+      <div class="badge">C3 · 25점</div>
+      <div class="cat-tag">문화 &amp; K-컬처</div>
+      <h3>K-Universe</h3>
+      <div class="hero-q">"오늘 어느 아티스트를 만나러 가요?"</div>
+      <div class="emotion">몰입 · 감동 · 팬심 충족</div>
+      <div class="score-row">
+        <span class="score">감정차별화 10</span>
+        <span class="score">시장+트렌드 8</span>
+        <span class="score">API+공모전 7</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 6.6/10 · PASS 3/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:66%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C5 · 24점</div>
+      <div class="cat-tag">웰니스 &amp; 감정 치유</div>
+      <h3>감정나침반 Korea</h3>
+      <div class="hero-q">"지금 기분이 어때요?"</div>
+      <div class="emotion">위로 · 이해받음 · 따뜻함</div>
+      <div class="score-row">
+        <span class="score">감정차별화 10</span>
+        <span class="score">시장+트렌드 8</span>
+        <span class="score">API+공모전 6</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 6.6/10 · PASS 3/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:66%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C2 · 24점</div>
+      <div class="cat-tag">숨은명소 &amp; 로컬 발굴</div>
+      <h3>LocalSecret v2</h3>
+      <div class="hero-q">"지금 어떤 발견을 원하세요?"</div>
+      <div class="emotion">특별함 · 발견의 희열</div>
+      <div class="score-row">
+        <span class="score">감정차별화 9</span>
+        <span class="score">시장+트렌드 8</span>
+        <span class="score">API+공모전 7</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 7.2/10 · PASS 3/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C8 · 24점</div>
+      <div class="cat-tag">데이터 &amp; 미식 특화</div>
+      <h3>TasteData Korea</h3>
+      <div class="hero-q">"무엇을 드시고 싶어요?"</div>
+      <div class="emotion">신뢰 · 확신 · 발견 기대감</div>
+      <div class="score-row">
+        <span class="score">감정차별화 7</span>
+        <span class="score">시장+트렌드 9</span>
+        <span class="score">API+공모전 8</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 7.4/10 · PASS 4+1/5 (최고)</div>
+        <div class="bar-track"><div class="bar-fill" style="width:74%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C7 · 24점</div>
+      <div class="cat-tag">무장애 &amp; 포용 관광</div>
+      <h3>AccessKorea</h3>
+      <div class="hero-q">"누구와 함께하는 여행인가요?"</div>
+      <div class="emotion">안도 · 해방 · 소속감</div>
+      <div class="score-row">
+        <span class="score">감정차별화 9</span>
+        <span class="score">시장+트렌드 7</span>
+        <span class="score">API+공모전 8</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 6.0/10 · PASS 2+1/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C1 · 23점</div>
+      <div class="cat-tag">AI 개인화 &amp; 동선</div>
+      <h3>KoreaPath AI</h3>
+      <div class="hero-q">"오늘 어디로 갈까요? AI가 30초 만에."</div>
+      <div class="emotion">편안함 · 안도 · 해방감</div>
+      <div class="score-row">
+        <span class="score">감정차별화 7</span>
+        <span class="score">시장+트렌드 8</span>
+        <span class="score">API+공모전 8</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 6.0/10 · PASS 3+1/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C6 · 23점</div>
+      <div class="cat-tag">야간 &amp; 축제·이벤트</div>
+      <h3>NightKorea</h3>
+      <div class="hero-q">"오늘 밤을 어떻게 물들일까요?"</div>
+      <div class="emotion">설렘 · 도시 에너지 · 일탈감</div>
+      <div class="score-row">
+        <span class="score">감정차별화 9</span>
+        <span class="score">시장+트렌드 7</span>
+        <span class="score">API+공모전 7</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 6.0/10 · PASS 3/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+
+    <div class="top8-card">
+      <div class="badge">C4 · 22점</div>
+      <div class="cat-tag">에코 &amp; 자연 아웃도어</div>
+      <h3>GreenTrail Korea</h3>
+      <div class="hero-q">"이번 봄, 어떤 길을 걷고 싶으세요?"</div>
+      <div class="emotion">치유 · 광활함 · 계절 체감</div>
+      <div class="score-row">
+        <span class="score">감정차별화 8</span>
+        <span class="score">시장+트렌드 7</span>
+        <span class="score">API+공모전 7</span>
+      </div>
+      <div class="sim-bar">
+        <div class="bar-label">시뮬 공감도 6.2/10 · PASS 3+1/5</div>
+        <div class="bar-track"><div class="bar-fill" style="width:62%"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">신규 24개 아이디어 — 카테고리별 그리드</h2>
+  <p class="section-subtitle">PM이 발산한 8카테고리 × 3개. 관심 있는 아이디어에 대해 프로토타입 제작을 요청해주세요.</p>
+
+  <!-- 1. 감정-힐링-여행 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🧘</span>
+      <span class="cat-name">감정 · 힐링 · 여행</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>감정 상태 기반 맞춤 여행지 추천</h4>
+        <div class="desc">"오늘 어떤 기분인가요?" 감정 태그 선택 → 감정에 최적화된 여행지·체험 추천. Calm/Headspace 감정 온보딩 UX를 여행 앱에 적용.</div>
+        <div class="file-ref">mood-travel-matcher.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>번아웃 회복 맞춤 국내여행 코스 큐레이터</h4>
+        <div class="desc">번아웃 수준 자가진단 → 회복 단계별 여행 코스 자동 추천. 웰니스 관광과 심리 회복을 결합.</div>
+        <div class="file-ref">burnout-escape-planner.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>웰니스 리트리트 통합 예약 플랫폼</h4>
+        <div class="desc">명상, 요가, 산사 체험, 삼림욕 등 웰니스 관광 정보를 한 곳에 모아 숙박과 함께 예약. BookRetreats 한국판.</div>
+        <div class="file-ref">healing-retreat-finder.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 혼잡도-회피-스마트동선 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🗺</span>
+      <span class="cat-name">혼잡도 회피 · 스마트 동선</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>AI 연관 관광지 동선 자동 최적화</h4>
+        <div class="desc">여행 조건 입력 → 혼잡도 예측 + 연관 관광지 기반 AI 최적 동선 자동 생성. 30초 코스 추천.</div>
+        <div class="file-ref">smart-route-optimizer.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>혼잡 피크 회피 방문 타이밍 추천앱</h4>
+        <div class="desc">방문자 집중도 예측 데이터로 "언제 가면 한적한지" 최적 타이밍 추천. 주간/시간대별 혼잡도 캘린더.</div>
+        <div class="file-ref">peak-avoidance-planner.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>붐비는 명소 대신 나만의 유사 명소 추천</h4>
+        <div class="desc">인기 관광지와 유사한 분위기·테마의 비수도권 대안 명소 추천. 혼잡도 비교 시각화.</div>
+        <div class="file-ref">crowd-free-alternative.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 미식-로컬탐험 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🍜</span>
+      <span class="cat-name">미식 · 로컬 탐험</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>빅데이터 기반 진짜 숨은 맛집 발굴기</h4>
+        <div class="desc">신용카드·이동통신 빅데이터로 현지인 재방문율 높은 진짜 맛집 발굴. 광고 블로그 배제.</div>
+        <div class="file-ref">hidden-restaurant-finder.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>제철 식재료 &amp; 지역 음식 시즌 캘린더</h4>
+        <div class="desc">지역별 제철 식재료 캘린더 + 해당 식재료를 활용하는 로컬 맛집·시장 연결.</div>
+        <div class="file-ref">food-season-calendar.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>지역 특산 맛집 루트 자동 생성기</h4>
+        <div class="desc">선택한 지역의 특산물 기반 미식 동선 자동 생성. 시장→식당→체험 연결 루트.</div>
+        <div class="file-ref">local-food-trail.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 체험-웰니스-관광 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🎋</span>
+      <span class="cat-name">체험 · 웰니스 · 관광</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>생태관광 + 트레일 아웃도어 여행 앱</h4>
+        <div class="desc">두루누비 도보여행길 + 생태관광 + 글램핑을 연계한 4계절 에코 투어 통합 플랫폼.</div>
+        <div class="file-ref">eco-trail-explorer.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>전통 체험 예약 통합 플랫폼</h4>
+        <div class="desc">한옥 숙박, 전통 공예, 한복 체험, 사찰 스테이 등 한국 전통 문화 체험 원스톱 예약.</div>
+        <div class="file-ref">hands-on-culture-booking.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>웰니스 관광 + 명상/요가 + 숙박 통합 플래너</h4>
+        <div class="desc">웰니스 관광지·프로그램·숙박을 한 번에 설계하는 플래너. 개인 웰니스 목표 기반 추천.</div>
+        <div class="file-ref">wellness-tour-planner.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 외국인-한국-여행 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🌏</span>
+      <span class="cat-name">외국인 · 한국 여행</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>K-문화 주제별 심층 체험 투어 큐레이션</h4>
+        <div class="desc">K-팝, K-드라마, K-뷰티 등 주제별 팬 관광 코스 큐레이션. 촬영지·성지순례 통합.</div>
+        <div class="file-ref">k-culture-deep-dive.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>한국 첫 방문 외국인 AI 여행 가이드</h4>
+        <div class="desc">한국 첫 방문 외국인을 위한 AI 컨시어지. 다국어 지원, 교통·문화·예절 가이드 통합.</div>
+        <div class="file-ref">korea-first-timer-guide.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>외국인 긴급상황 대응 + 의료관광 통합앱</h4>
+        <div class="desc">여행 중 긴급상황(의료·분실·사고) 다국어 대응 + 의료관광 정보 통합.</div>
+        <div class="file-ref">multilingual-safety-guide.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 숨은명소-비수도권 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🔍</span>
+      <span class="cat-name">숨은명소 · 비수도권</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>KTO 잠재관광지 기반 비수도권 숨은 명소 발굴</h4>
+        <div class="desc">한국관광공사 잠재관광지 데이터 + 다양성지수로 아직 알려지지 않은 비수도권 보석 추천.</div>
+        <div class="file-ref">hidden-gem-scout.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>SNS/블로그 UGC 기반 실시간 숨은 명소 발굴</h4>
+        <div class="desc">SNS·블로그 UGC 크롤링으로 새로 뜨는 숨은 명소 실시간 발굴. 트렌드 선점.</div>
+        <div class="file-ref">ugc-hidden-spot.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>관광 다양성 지수 기반 지방 여행 촉진 앱</h4>
+        <div class="desc">지역별 관광 다양성 지수 시각화 → 수도권 집중 해소, 지방 관광 활성화 유도.</div>
+        <div class="file-ref">regional-diversity-trip.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 반려동물-동반여행 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">🐾</span>
+      <span class="cat-name">반려동물 · 동반 여행</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>반려동물 동반 여행 올인원 통합 앱</h4>
+        <div class="desc">반려동물 동반 가능 숙소·식당·관광지 통합 검색 + 여행 코스 생성. 펫 프렌들리 인증.</div>
+        <div class="file-ref">pet-travel-all-in-one.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>반려동물 맞춤 여행 코스 생성기</h4>
+        <div class="desc">반려동물 크기·성격·건강 상태 기반 맞춤 코스 추천. 이동 거리·난이도 고려.</div>
+        <div class="file-ref">pet-route-planner.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>여행 중 반려동물 긴급 동물병원 안내</h4>
+        <div class="desc">여행 중 반려동물 긴급상황 시 근처 24시 동물병원·펫시터 실시간 안내.</div>
+        <div class="file-ref">pet-emergency-locator.md</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 무장애-접근성-여행 -->
+  <div class="cat-section">
+    <div class="cat-header">
+      <span class="cat-icon">♿</span>
+      <span class="cat-name">무장애 · 접근성 · 여행</span>
+      <span class="cat-count">3개 아이디어</span>
+    </div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <h4>무장애 여행 통합 정보 앱</h4>
+        <div class="desc">장애인·시니어·영유아 동반 가족을 위한 무장애 관광 통합 정보 + AI 코스 추천.</div>
+        <div class="file-ref">barrier-free-journey.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>휠체어 접근 가능 실시간 관광 동선 지도</h4>
+        <div class="desc">실시간 휠체어 접근성 데이터 기반 관광 동선 지도. 경사도·엘리베이터·화장실 정보.</div>
+        <div class="file-ref">wheelchair-route-map.md</div>
+      </div>
+      <div class="idea-card">
+        <h4>시니어 특화 여행 설계 컴패니언</h4>
+        <div class="desc">시니어 건강 상태·체력·관심사 기반 여행 코스 설계. 큰 글씨·음성 안내 UI.</div>
+        <div class="file-ref">senior-travel-companion.md</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="legend">
+  <p>Round 4 — 2026-04-19 | 공모전 D-17</p>
+  <p>설계 프롬프트: <code>docs/00-plans/2026-04-19-round4-prompt.md</code></p>
+  <p>BA 점수: <code>knowledge-base/business/scoring-2026-04-19.md</code></p>
+  <p>Hero Screen: <code>deliverables/wireframes/round4-hero-screens.md</code></p>
+  <p>시뮬레이션: <code>knowledge-base/simulations/round4-카테고리대표8-페르소나5-시뮬.md</code></p>
+  <p style="margin-top:12px; color:#555;">프로토타입 HTML은 사용자 관심 표시 후 제작합니다.</p>
+</div>
+
+</body>
+</html>
