@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidden Gem Scout — KTO 강소형 데이터로 숨겨진 한국 발굴</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #F59E0B;
+      --accent2: #FCD34D;
+      --grad: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
+      --grad2: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: #1a0a00; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
+    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-title { font-size: 12px; color: var(--muted2); }
+    .mockup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+    .mockup-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .mockup-card-name { font-size: 14px; font-weight: 700; }
+    .mockup-card-badge { font-size: 10px; padding: 2px 8px; background: rgba(245,158,11,0.2); color: var(--accent); border-radius: 999px; }
+    .mockup-card-sub { font-size: 12px; color: var(--muted); }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
+    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .research-item:last-child { border-bottom: none; }
+    .research-num { width: 28px; height: 28px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .research-content { flex: 1; }
+    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
+    .ba-score { font-size: 20px; font-weight: 800; }
+    .ba-score.high { color: var(--accent); }
+    .ba-score.mid { color: #A855F7; }
+    .ba-score.low { color: var(--muted); }
+    .ba-total { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .ba-total-label { font-size: 15px; font-weight: 700; }
+    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
+    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+
+    .criteria-table { width: 100%; border-collapse: collapse; }
+    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
+    .criteria-table tr:last-child td { border-bottom: none; }
+    .criteria-score { font-weight: 800; color: var(--accent); }
+
+    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
+    .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
+    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
+    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: #1a0a00; }
+    .journey-label { font-size: 12px; color: var(--muted); }
+
+    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
+    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
+    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+    .mock-item-icon { font-size: 18px; }
+    .mock-item-name { font-weight: 600; font-size: 13px; }
+    .mock-item-sub { color: var(--muted); font-size: 11px; }
+    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
+    .mock-tag-accent { background: rgba(245,158,11,0.2); color: var(--accent); }
+    .mock-tag-first { background: rgba(239,68,68,0.2); color: #EF4444; }
+    .mock-tag-green { background: rgba(16,185,129,0.2); color: #10B981; }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 16px; margin-bottom: 16px; }
+    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .score-meta { flex: 1; }
+    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    .score-reason { font-size: 15px; line-height: 1.6; }
+    .score-stars { color: #F59E0B; font-size: 20px; letter-spacing: 2px; }
+
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { font-weight: 700; color: var(--accent); }
+
+    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: var(--accent); }
+    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .ai-reason:last-child { border-bottom: none; }
+    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #1a0a00; }
+    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .ai-reason-text strong { color: var(--fg); }
+
+    .tip-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
+    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
+    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
+
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .badge-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+    .badge-icon { font-size: 20px; }
+
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
+
+    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .stats-row { gap: 10px; }
+      .stat-val { font-size: 22px; }
+      .score-big { font-size: 40px; }
+      .mock-phones { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../">
+    <div class="nav-logo-icon">🧭</div>
+    Hidden Gem Scout
+  </a>
+  <a class="nav-back" href="../../">← 포트폴리오</a>
+  <span class="nav-badge">BA 100/130 · 2위</span>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="live-dot"></span>
+    Round 7 · 전체 2위 · companion AI · KTO 독점 DB
+  </div>
+  <h1>Hidden Gem<br><span>Scout</span></h1>
+  <p class="hero-sub">KTO 강소형 데이터 독점 + 개척자 배지로<br>숨겨진 한국을 발굴</p>
+  <div class="hero-actions">
+    <button class="btn-primary">🧭 잠재관광지 발굴하기</button>
+    <button class="btn-secondary">서비스 소개 보기</button>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#FF5F56"></div>
+      <div class="mockup-dot" style="background:#FFBD2E"></div>
+      <div class="mockup-dot" style="background:#27C93F"></div>
+      <span class="mockup-title">강소형 잠재관광지 2,400개소 · 실시간 발굴</span>
+    </div>
+    <div class="mockup-card">
+      <div class="mockup-card-header">
+        <div>
+          <div class="mockup-card-name">🌿 영월 요선암 돌개구멍</div>
+          <div class="mockup-card-sub">강원 영월군 · 방문자 0명 · 강소형 등재</div>
+        </div>
+        <span class="mockup-card-badge">FIRST 🥇</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">AI 추천 · "오늘 첫 방문자가 되세요"</div>
+    </div>
+    <div class="mockup-card">
+      <div class="mockup-card-header">
+        <div>
+          <div class="mockup-card-name">🏔️ 무주 나제통문 비경</div>
+          <div class="mockup-card-sub">전북 무주군 · 주간 방문 3명</div>
+        </div>
+        <span class="mockup-card-badge">희귀</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">지역 주민 제보 · 숨은 절경</div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:var(--accent);margin-top:8px">+ 2,400곳+ 잠재관광지 탐색 중 🔍</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- HERO STATS -->
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val">2,400+</div>
+      <div class="stat-label">KTO 강소형 잠재관광지</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">78%</div>
+      <div class="stat-label">상위 50곳 방문 집중도</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">60%</div>
+      <div class="stat-label">문체부 지방 방문율 목표</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">+300%</div>
+      <div class="stat-label">SNS 인증샷 후 방문자 증가</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">BA 100</div>
+      <div class="stat-label">전체 2위 · /130점</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: 서비스 개요 -->
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <div class="section-title">서비스 개요 <span>(What)</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">ONE-LINE PITCH</div>
+    <div class="tip-text">한국관광공사 강소형 잠재관광지 2,400개소 DB를 독점 활용해, 방문자가 극소하거나 0명인 숨은 명소를 AI가 발굴·추천하고 "첫 방문자" 배지 게임화로 지역분산 관광을 활성화하는 탐험형 여행 플랫폼</div>
+  </div>
+
+  <div class="card-row">
+    <div class="persona-box">
+      <div class="persona-avatar">🧗</div>
+      <div class="persona-name">박지수, 34세 · 대전 거주</div>
+      <div class="persona-tag"># 탐험형 여행자 · 국내 여행</div>
+      <div class="persona-desc">매주 주말 새로운 곳을 찾아 전국을 다님. 유명 관광지는 이미 다 가봄. 아무도 모르는 "진짜 숨은 명소"를 먼저 발굴하고 싶어함.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">🌏</div>
+      <div class="persona-name">Alex, 29세 · 미국 시카고</div>
+      <div class="persona-tag"># 외국인 독립여행 · 장기 체류</div>
+      <div class="persona-desc">3주 한국 여행 계획. 서울·부산은 이미 가봄. 현지인만 아는 진짜 한국을 경험하고 싶지만 정보 접근이 어려움.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">📸</div>
+      <div class="persona-name">이세연, 27세 · 서울 거주</div>
+      <div class="persona-tag"># 사진 작가 · SNS 인플루언서</div>
+      <div class="persona-desc">인스타 팔로워 8만명. 아무도 찍지 않은 새로운 배경을 찾는 것이 직업적 과제. 독점 장소 발굴이 콘텐츠 경쟁력.</div>
+    </div>
+  </div>
+
+  <div class="badge-row">
+    <div class="badge-item"><span class="badge-icon">🥇</span><span>첫 방문자 배지</span></div>
+    <div class="badge-item"><span class="badge-icon">🗺️</span><span>개척자 칭호</span></div>
+    <div class="badge-item"><span class="badge-icon">🌿</span><span>강소형 탐험가</span></div>
+    <div class="badge-item"><span class="badge-icon">📸</span><span>SNS 인증 보상</span></div>
+    <div class="badge-item"><span class="badge-icon">🏘️</span><span>지역분산 미션</span></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: 리서치 근거 -->
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <div class="section-title">리서치 근거 <span>(Why)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <div class="research-stat">국내 관광지 상위 50곳 방문 집중도 78%</div>
+        <div class="research-desc">전국 관광지 방문의 78%가 상위 50개 인기 관광지에 몰림. 나머지 수천 개 관광지는 방문자 부족으로 지역 경제 활성화 실패.</div>
+        <div class="research-source">출처: 한국관광공사 관광지집중률 예측 데이터 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <div class="research-stat">강소형 잠재관광지 2,400개소 미발굴</div>
+        <div class="research-desc">한국관광공사가 발굴·등재한 강소형 잠재관광지 2,400개소 이상이 있으나, 방문자 정보·접근로·콘텐츠 부족으로 사실상 방치 상태.</div>
+        <div class="research-source">출처: 한국관광공사 강소형관광지 사업보고서 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <div class="research-stat">비수도권 방문율 60% 달성 — 정부 목표 (2026)</div>
+        <div class="research-desc">문화체육관광부가 2026년까지 지방 방문율 60% 이상을 목표로 수도권 집중 관광 분산 정책 추진 중. 플랫폼과 정책 방향 일치.</div>
+        <div class="research-source">출처: 문화체육관광부 관광진흥기본계획 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">04</div>
+      <div class="research-content">
+        <div class="research-stat">20-30대 "새로운 곳 발굴" 여행 동기 1위 56%</div>
+        <div class="research-desc">국내 여행을 계획하는 20-30대의 56%가 "아직 가보지 못한 새로운 곳 발굴"을 1순위 동기로 응답. 유명 관광지 재방문 욕구 낮음.</div>
+        <div class="research-source">출처: 한국관광공사 여행트렌드 리포트 2025</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">05</div>
+      <div class="research-content">
+        <div class="research-stat">SNS 인증샷 관광지 효과: 방문자 300% 증가</div>
+        <div class="research-desc">SNS에 처음 알려진 숨은 명소가 바이럴 후 3개월 이내 방문자가 평균 300% 이상 증가한 사례 다수 확인. 게임화 + SNS 인증은 바이럴 핵심 메커니즘.</div>
+        <div class="research-source">출처: 한국관광공사 SNS 관광 효과 분석 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: 아이디어 도출 과정 -->
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <div class="section-title">아이디어 도출 과정</div>
+
+  <div class="tip-box">
+    <div class="tip-label">IDEATION ROUND</div>
+    <div class="tip-text">Round 4 브레인스토밍 → 강소형관광지 API 독점 활용 아이디어 발굴 → BA 매트릭스 130점 스코어링 → 최종 2위 선정. 지역 분산 관광 10점 만점이 핵심 강점. 사업성 출처: 문화체육관광부·한국관광공사·DART.</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score high">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score high">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score high">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score high">10/10</div></div>
+    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score low">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score high">8/10</div></div>
+  </div>
+  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score mid">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score mid">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score mid">7/10</div></div>
+  </div>
+  <div class="ba-total">
+    <div>
+      <div class="ba-total-label">BA 총점 (소계 81 + 보너스 19)</div>
+      <div class="ba-rank">전체 2위 · 지역 분산 10점 만점 · 공모전 부합 9점</div>
+    </div>
+    <div class="ba-total-val">100/130</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: 공모전 심사 기준 -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
+
+  <div class="card">
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>심사 기준</th>
+          <th>배점</th>
+          <th>대응 전략</th>
+          <th>자체 평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
+          <td><span class="criteria-score">30점</span></td>
+          <td>KTO 강소형 잠재관광지 DB 독점 활용이라는 명확한 차별화. 게임화(배지·랭킹)와 AI 발굴을 결합한 신개념 탐험 플랫폼. 경쟁 서비스 없음.</td>
+          <td><span class="criteria-score">26/30</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>강소형잠재관광지정보 API가 핵심 데이터 소스. 관광지집중률 예측·방문자통계·위치기반 API로 실시간 혼잡도와 발굴 가치 산정.</td>
+          <td><span class="criteria-score">22/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>지방 소멸 위기 대응 · 비수도권 관광 활성화 · 지역 소상공인 매출 직접 연결. 문체부 2026 목표와 정확히 정합. BA 지역분산 10/10.</td>
+          <td><span class="criteria-score">23/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
+          <td><span class="criteria-score">20점</span></td>
+          <td>공개 API 기반 MVP 5개월 구현 가능. 배지 시스템은 표준 게임화 로직. AI 추천은 협업 필터링 + KTO API 조합으로 구현 복잡도 낮음.</td>
+          <td><span class="criteria-score">17/20</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 6: 주요 화면 Mock UI -->
+<div class="section">
+  <div class="section-label">Section 06</div>
+  <div class="section-title">주요 화면 <span>Mock UI</span></div>
+
+  <div class="journey-steps">
+    <div class="journey-step">
+      <div class="journey-num">1</div>
+      <div class="journey-label">위치·선호<br>입력</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">2</div>
+      <div class="journey-label">AI 발굴<br>리스트</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">3</div>
+      <div class="journey-label">장소 상세<br>확인</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">4</div>
+      <div class="journey-label">방문 인증<br>사진 업로드</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">5</div>
+      <div class="journey-label">배지 획득<br>랭킹 등록</div>
+    </div>
+  </div>
+
+  <div class="mock-phones">
+    <div class="mock-phone">
+      <div class="mock-header">🔍 AI 발굴 리스트</div>
+      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">현재 위치 기준 · 방문자 극소 순</div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🌿</span>
+        <div>
+          <div class="mock-item-name">영월 요선암 돌개구멍</div>
+          <div class="mock-item-sub">강원 영월 · 2시간 거리</div>
+          <span class="mock-tag mock-tag-first">첫 방문자 도전</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🏔️</span>
+        <div>
+          <div class="mock-item-name">무주 나제통문 비경</div>
+          <div class="mock-item-sub">전북 무주 · 주 3명</div>
+          <span class="mock-tag mock-tag-accent">개척자 배지 가능</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🪨</span>
+        <div>
+          <div class="mock-item-name">봉화 청옥산 억새밭</div>
+          <div class="mock-item-sub">경북 봉화 · 월 12명</div>
+          <span class="mock-tag mock-tag-green">AI 추천</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">📍 장소 상세</div>
+      <div style="text-align:center;padding:20px;background:rgba(245,158,11,0.08);border-radius:12px;margin-bottom:12px">
+        <div style="font-size:28px">🌿</div>
+        <div style="font-size:14px;font-weight:700;margin-top:6px">영월 요선암 돌개구멍</div>
+        <div style="font-size:11px;color:var(--accent);margin-top:4px">강소형 잠재관광지 #0847</div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px">
+        한반도 지형의 특이한 지질 현상. 하천 침식으로 생긴 원형 구멍들이 암반 위에 펼쳐진 자연 조각품. 방문자 기록 없음.
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🕐</span>
+        <div><div class="mock-item-name">예상 방문 시간</div><div class="mock-item-sub">약 2시간 · 주차 가능</div></div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">🏆 나의 탐험 기록</div>
+      <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:14px;margin-bottom:10px;text-align:center">
+        <div style="font-size:28px">🧭</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">잠재 개척자 Lv.3</div>
+        <div style="font-size:11px;color:var(--muted)">7곳 발굴 완료 · 랭킹 #1,204</div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🥇</span>
+        <div><div class="mock-item-name">첫 방문자 배지 × 3</div><div class="mock-item-sub">요선암·나제통문·청옥산</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🗺️</span>
+        <div><div class="mock-item-name">커버한 도 · 4개</div><div class="mock-item-sub">강원·전북·경북·충남</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 7: OpenAPI 활용 -->
+<div class="section">
+  <div class="section-label">Section 07</div>
+  <div class="section-title">OpenAPI <span>활용</span></div>
+
+  <div class="card">
+    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">강소형잠재관광지정보 API가 서비스의 핵심 데이터 소스. 경쟁 서비스가 동일 API를 활용하지 않아 진입장벽 구축. 집중률 예측 + 방문자통계로 "진짜 숨은 곳" 실시간 검증.</div>
+    <div class="api-chips">
+      <span class="api-chip">한국관광공사_강소형잠재관광지정보</span>
+      <span class="api-chip">한국관광공사_관광지집중률방문자추이예측정보</span>
+      <span class="api-chip">한국관광공사_국문관광정보서비스</span>
+      <span class="api-chip">한국관광공사_관광지방문자통계</span>
+      <span class="api-chip">한국관광공사_위치기반관광정보서비스</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">강소형잠재관광지정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">핵심 DB. 2,400개소 좌표·특성·접근로 정보. 타 서비스 미활용 독점 데이터.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">집중률·방문자추이예측</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">인기 관광지 혼잡도 예측 → "지금 가장 한적한 곳" 실시간 역산.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">위치기반관광정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">현재 위치 반경 탐색. 도보·차량 거리 필터링. 오프라인 지도 캐싱.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 8: 팀 합의 점수 -->
+<div class="section">
+  <div class="section-label">Section 08</div>
+  <div class="section-title">팀 합의 <span>점수</span></div>
+
+  <div class="score-display">
+    <div class="score-big">8.2</div>
+    <div class="score-meta">
+      <div class="score-label">팀 합의 점수 / 10점</div>
+      <div class="score-stars">★★★★☆</div>
+      <div class="score-reason" style="margin-top:8px">공모전 목적(관광 활성화·지역 분산)에 가장 직접적으로 부합하는 아이디어. KTO 강소형 DB 독점 접근이라는 명확한 데이터 차별화가 팀 신뢰도 높임.</div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>공모전 취지(지역균형·관광활성화) 최적 정합</li>
+        <li>KTO API 독점 활용 → 진입장벽 구축</li>
+        <li>게임화(배지) → 유저 리텐션 자연 발생</li>
+        <li>지역 분산 10/10 · 공모전 부합 9/10</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>이중 타겟 6점 → 외국어 버전 단계적 추가</li>
+        <li>사업성 6점 → 지자체 B2G 파트너십 확대</li>
+        <li>접근성 정보 부족 → 방문자 크라우드소싱</li>
+        <li>바이럴 후 혼잡 역설 → 입장 예약 시스템</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 9: 객관 사업성 -->
+<div class="section">
+  <div class="section-label">Section 09</div>
+  <div class="section-title">객관 <span>사업성</span></div>
+
+  <div class="card">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>규모</th>
+          <th>산정 근거</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TAM</strong></td>
+          <td class="highlight">31.7조원</td>
+          <td style="font-size:13px;color:var(--muted)">국내 여행 지출 총액 (문화체육관광부 2024 국민여행조사)</td>
+        </tr>
+        <tr>
+          <td><strong>SAM</strong></td>
+          <td class="highlight">4.75조원</td>
+          <td style="font-size:13px;color:var(--muted)">액티브 탐험형 여행자 15% × 앱 사용율 = 4.75조원</td>
+        </tr>
+        <tr>
+          <td><strong>SOM</strong></td>
+          <td class="highlight">950억원</td>
+          <td style="font-size:13px;color:var(--muted)">Y3 이내 2% 점유율 목표</td>
+        </tr>
+        <tr>
+          <td><strong>Y1 매출</strong></td>
+          <td class="highlight">20.3억원</td>
+          <td style="font-size:13px;color:var(--muted)">B2C: 월 30만 MAU × 프리미엄 5% × 9,900원 × 12 = 17.8억<br>B2G: 지자체 파트너십 50건 × 500만 = 2.5억</td>
+        </tr>
+        <tr>
+          <td><strong>BEP</strong></td>
+          <td class="highlight">24개월</td>
+          <td style="font-size:13px;color:var(--muted)">Y2 달성 예상. 초기 개발비 7억 + 마케팅 3억 = 10억 회수</td>
+        </tr>
+        <tr>
+          <td><strong>주요 경쟁사</strong></td>
+          <td colspan="2" style="font-size:13px;color:var(--muted)">트리플 MAU 300만 · 매출 180억(2023 DART) · 여기어때 GMV 1.2조 — 강소형 잠재관광지 특화 서비스 없음</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 10: AI 차별화 -->
+<div class="section">
+  <div class="section-label">Section 10</div>
+  <div class="section-title">AI <span>차별화</span></div>
+
+  <div class="ai-branch-badge">🤖 AI Branch: companion</div>
+
+  <div class="card">
+    <div class="ai-reason">
+      <div class="ai-reason-num">1</div>
+      <div class="ai-reason-text">
+        <strong>실시간 방문자 데이터 분석 → "지금 이 순간 가장 한적한 곳" 동적 추천</strong><br>
+        KTO 관광지집중률 예측 API + 실시간 방문자 통계를 AI가 실시간 처리해 "지금 막 혼잡해진 곳은 제외하고, 진짜 한적한 곳"을 동적으로 추천. 사람이 수작업으로 전국 2,400곳을 실시간 모니터링하는 것은 불가능.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">2</div>
+      <div class="ai-reason-text">
+        <strong>사용자 이동 패턴 + 선호 지형 학습 → 개인화 발굴 루트</strong><br>
+        "산을 좋아하고 수도권에서 차로 2시간 이내, 혼자 여행"이라는 조건을 누적 학습해 점점 더 맞춤화된 강소형 관광지를 추천. 방문 후 피드백으로 벡터 임베딩 업데이트.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">3</div>
+      <div class="ai-reason-text">
+        <strong>지역 주민 제보 + SNS 데이터 크롤링 자동 통합</strong><br>
+        앱 내 주민 제보 채널 + 공개 SNS 게시물에서 "새로운 숨은 명소" 신호를 AI가 자동 감지·분류·DB 등재. 수백만 건 SNS를 사람이 수동 검토하는 것은 물리적 불가.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <strong style="color:var(--fg)">Hidden Gem Scout</strong> — 2026 한국관광공사 관광 서비스 공모전
+  </div>
+  <div>BA Score 100/130 (전체 2위) · 팀 합의 8.2/10 · AI Branch: companion</div>
+  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
+</footer>
+
+</body>
+</html>

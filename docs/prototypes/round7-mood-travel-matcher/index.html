@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Travel Matcher — 감정이 곧 목적지</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #EC4899;
+      --accent2: #F9A8D4;
+      --grad: linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%);
+      --grad2: linear-gradient(135deg, #BE185D 0%, #EC4899 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(236,72,153,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
+    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-title { font-size: 12px; color: var(--muted2); }
+    .emotion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .emotion-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; }
+    .emotion-btn.active { border-color: var(--accent); background: rgba(236,72,153,0.1); }
+    .emotion-icon { font-size: 22px; margin-bottom: 4px; }
+    .emotion-label { font-size: 11px; color: var(--muted); }
+    .mockup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+    .mockup-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .mockup-card-name { font-size: 14px; font-weight: 700; }
+    .mockup-card-badge { font-size: 10px; padding: 2px 8px; background: rgba(236,72,153,0.2); color: var(--accent); border-radius: 999px; }
+    .mockup-card-sub { font-size: 12px; color: var(--muted); }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
+    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .research-item:last-child { border-bottom: none; }
+    .research-num { width: 28px; height: 28px; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .research-content { flex: 1; }
+    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
+    .ba-score { font-size: 20px; font-weight: 800; }
+    .ba-score.high { color: var(--accent); }
+    .ba-score.mid { color: #F59E0B; }
+    .ba-score.low { color: var(--muted); }
+    .ba-total { background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .ba-total-label { font-size: 15px; font-weight: 700; }
+    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
+    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+
+    .criteria-table { width: 100%; border-collapse: collapse; }
+    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
+    .criteria-table tr:last-child td { border-bottom: none; }
+    .criteria-score { font-weight: 800; color: var(--accent); }
+
+    .mood-selector { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+    .mood-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 10px; text-align: center; }
+    .mood-emoji { font-size: 30px; margin-bottom: 8px; }
+    .mood-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .mood-sub { font-size: 11px; color: var(--muted); }
+
+    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
+    .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
+    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
+    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: white; }
+    .journey-label { font-size: 12px; color: var(--muted); }
+
+    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
+    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
+    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+    .mock-item-icon { font-size: 18px; }
+    .mock-item-name { font-weight: 600; font-size: 13px; }
+    .mock-item-sub { color: var(--muted); font-size: 11px; }
+    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
+    .mock-tag-accent { background: rgba(236,72,153,0.2); color: var(--accent); }
+    .mock-tag-blue { background: rgba(56,189,248,0.2); color: #38BDF8; }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(236,72,153,0.08); border: 1px solid rgba(236,72,153,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.2); border-radius: 16px; margin-bottom: 16px; }
+    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .score-meta { flex: 1; }
+    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    .score-stars { color: #EC4899; font-size: 20px; letter-spacing: 2px; }
+
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { font-weight: 700; color: var(--accent); }
+
+    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.4); color: var(--accent); }
+    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .ai-reason:last-child { border-bottom: none; }
+    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
+    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .ai-reason-text strong { color: var(--fg); }
+
+    .tip-box { background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
+    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
+    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
+
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
+
+    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .stats-row { gap: 10px; }
+      .stat-val { font-size: 22px; }
+      .score-big { font-size: 40px; }
+      .mock-phones { flex-direction: column; }
+      .mood-selector { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../">
+    <div class="nav-logo-icon">💗</div>
+    Mood Travel Matcher
+  </a>
+  <a class="nav-back" href="../../">← 포트폴리오</a>
+  <span class="nav-badge">BA 99/130 · 공동 3위</span>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="live-dot"></span>
+    Round 7 · 공동 3위 · companion AI · JTBD·UX 10점 만점
+  </div>
+  <h1>Mood Travel<br><span>Matcher</span></h1>
+  <p class="hero-sub">"오늘 기분?" 하나로 완성되는 여행지 매칭<br>감정이 곧 목적지</p>
+  <div class="hero-actions">
+    <button class="btn-primary">💗 지금 기분 선택하기</button>
+    <button class="btn-secondary">서비스 소개 보기</button>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#FF5F56"></div>
+      <div class="mockup-dot" style="background:#FFBD2E"></div>
+      <div class="mockup-dot" style="background:#27C93F"></div>
+      <span class="mockup-title">지금 기분으로 여행지 매칭 중...</span>
+    </div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:12px">오늘 기분을 선택하세요 ✨</div>
+    <div class="emotion-grid">
+      <div class="emotion-btn active">
+        <div class="emotion-icon">😌</div>
+        <div class="emotion-label">위로</div>
+      </div>
+      <div class="emotion-btn">
+        <div class="emotion-icon">🌟</div>
+        <div class="emotion-label">설렘</div>
+      </div>
+      <div class="emotion-btn">
+        <div class="emotion-icon">⚡</div>
+        <div class="emotion-label">활력</div>
+      </div>
+      <div class="emotion-btn">
+        <div class="emotion-icon">🍃</div>
+        <div class="emotion-label">고요</div>
+      </div>
+      <div class="emotion-btn">
+        <div class="emotion-icon">🔭</div>
+        <div class="emotion-label">호기심</div>
+      </div>
+      <div class="emotion-btn">
+        <div class="emotion-icon">🎉</div>
+        <div class="emotion-label">신남</div>
+      </div>
+    </div>
+    <div style="padding:10px;background:var(--grad);border-radius:10px;text-align:center;font-size:13px;font-weight:700;color:white">AI 여행지 3곳 즉시 매칭 →</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- HERO STATS -->
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val">73%</div>
+      <div class="stat-label">MZ 번아웃 경험률</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">61%</div>
+      <div class="stat-label">감정적 이유로 여행 계획</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">$8,940억</div>
+      <div class="stat-label">웰니스 투어리즘 시장 (GWI)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">+43%</div>
+      <div class="stat-label">힐링 여행 검색 증가율</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">BA 99</div>
+      <div class="stat-label">공동 3위 · /130점</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: 서비스 개요 -->
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <div class="section-title">서비스 개요 <span>(What)</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">ONE-LINE PITCH</div>
+    <div class="tip-text">앱 진입 즉시 "지금 기분" 감정(설렘/위로/활력/고요/호기심) 선택 하나로, AI가 감정 벡터·계절·날씨·동행자 변수를 조합해 감정 최적 여행지 3곳을 즉시 매칭하고 감정 여행 일지를 기록하는 MZ 감성 웰니스 여행 플랫폼</div>
+  </div>
+
+  <div class="card-row">
+    <div class="persona-box">
+      <div class="persona-avatar">💆‍♀️</div>
+      <div class="persona-name">김하은, 26세 · 서울 마포구</div>
+      <div class="persona-tag"># 직장인 번아웃 · 즉흥 여행</div>
+      <div class="persona-desc">매일 야근에 지침. 주말 새벽 2시에 갑자기 "어디든 가고 싶다" 충동. 어디를 가야 할지 모르고 검색조차 힘든 상태.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">🧘</div>
+      <div class="persona-name">정민서, 31세 · 부산 거주</div>
+      <div class="persona-tag"># 웰니스 여행자 · 감성 중시</div>
+      <div class="persona-desc">힐링 여행을 즐기지만 매번 검색·비교에 30분 이상 소비. 기분에 딱 맞는 곳을 즉시 추천받고 싶어함.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">💑</div>
+      <div class="persona-name">이준혁·박지은, 29·27세 · 커플</div>
+      <div class="persona-tag"># 커플 여행 · 감정 공유</div>
+      <div class="persona-desc">둘의 감정이 다를 때 여행지 결정에서 갈등 발생. "오늘 우리 둘 기분에 딱 맞는 곳"을 AI가 중재해 추천해주길 원함.</div>
+    </div>
+  </div>
+
+  <div class="mood-selector">
+    <div class="mood-card">
+      <div class="mood-emoji">😌</div>
+      <div class="mood-name">위로</div>
+      <div class="mood-sub">조용한 자연·온천</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">🌟</div>
+      <div class="mood-name">설렘</div>
+      <div class="mood-sub">새로운 도시·축제</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">⚡</div>
+      <div class="mood-name">활력</div>
+      <div class="mood-sub">액티비티·등산</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">🍃</div>
+      <div class="mood-name">고요</div>
+      <div class="mood-sub">사찰·해안 절벽</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">🔭</div>
+      <div class="mood-name">호기심</div>
+      <div class="mood-sub">박물관·숨은 명소</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: 리서치 근거 -->
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <div class="section-title">리서치 근거 <span>(Why)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <div class="research-stat">번아웃 경험 MZ세대 73%</div>
+        <div class="research-desc">국내 MZ세대 10명 중 7명이 심각한 번아웃 경험. 번아웃 해소 방법 1위는 "여행"(52%). 감정 회복을 목적으로 한 여행 수요 급증.</div>
+        <div class="research-source">출처: 한국직업능력연구원 MZ세대 직무 스트레스 조사 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <div class="research-stat">"감정적 이유로 여행 계획" 응답 61%</div>
+        <div class="research-desc">국내 여행을 계획하는 MZ세대의 61%가 "감정·기분 전환"을 여행 계획의 주된 이유로 응답. 이성적·계획적 여행보다 감성적 즉흥 여행 선호 급증.</div>
+        <div class="research-source">출처: 한국관광공사 MZ세대 여행트렌드 리포트 2025</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <div class="research-stat">웰니스 투어리즘 글로벌 시장 $8,940억 · 연 10% 성장</div>
+        <div class="research-desc">글로벌 웰니스 투어리즘 시장이 2025년 $8,940억 규모로 성장. 한국 시장도 연 12% 이상 성장 추세. 힐링·치유·명상 여행 카테고리 주도.</div>
+        <div class="research-source">출처: Global Wellness Institute (GWI) 2025 Wellness Tourism Report</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">04</div>
+      <div class="research-content">
+        <div class="research-stat">힐링·치유 여행 검색량 전년比 43% 증가</div>
+        <div class="research-desc">네이버 데이터랩 기준 "힐링 여행", "치유 여행", "감성 여행지" 검색량이 전년 대비 43% 급증. 특히 20-30대 심야 시간대 검색 집중.</div>
+        <div class="research-source">출처: 네이버 데이터랩 여행 카테고리 트렌드 분석 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">05</div>
+      <div class="research-content">
+        <div class="research-stat">감성 콘텐츠 앱 평균 세션 시간 일반 앱比 2.3배</div>
+        <div class="research-desc">감성·힐링 테마 앱의 사용자 평균 세션 시간이 일반 여행앱보다 2.3배 길고 재방문율 1.8배 높음. 감성 기반 UX의 리텐션 효과 검증.</div>
+        <div class="research-source">출처: App Annie Mobile Analytics Report 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: 아이디어 도출 과정 -->
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <div class="section-title">아이디어 도출 과정</div>
+
+  <div class="tip-box">
+    <div class="tip-label">IDEATION ROUND</div>
+    <div class="tip-text">Round 4 브레인스토밍 → "감정 × 여행지" 매칭이라는 독창적 UX 아이디어 도출 → BA 매트릭스 스코어링. JTBD 충족 10점, UX 완성도 10점 — 사용자 니즈 대응 항목 모두 최고점. 공동 3위 선정. 사업성 출처: GWI·문체부·App Annie.</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score high">10/10</div></div>
+    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score high">10/10</div></div>
+    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score low">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score low">5/10</div></div>
+    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score low">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score mid">7/10</div></div>
+  </div>
+  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score low">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score high">9/10</div></div>
+  </div>
+  <div class="ba-total">
+    <div>
+      <div class="ba-total-label">BA 총점 (소계 77 + 보너스 22)</div>
+      <div class="ba-rank">공동 3위 · JTBD·UX 각 10점 만점 · 편의성 9점</div>
+    </div>
+    <div class="ba-total-val">99/130</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: 공모전 심사 기준 -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
+
+  <div class="card">
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>심사 기준</th>
+          <th>배점</th>
+          <th>대응 전략</th>
+          <th>자체 평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
+          <td><span class="criteria-score">30점</span></td>
+          <td>"감정 선택 1번으로 여행지 매칭"이라는 세계 최초의 감정 기반 여행 UX. 기존 여행앱 모두 목적지 검색·날짜 선택 방식. 패러다임 전환 제안.</td>
+          <td><span class="criteria-score">25/30</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>웰니스관광정보·문화시설·축제행사·날씨연계 API 조합으로 감정별 최적 장소 매핑. 날씨 API로 "흐린 날 위로 여행지" 등 실시간 최적화.</td>
+          <td><span class="criteria-score">18/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>MZ 번아웃·정신 건강 위기 대응. 감성 여행으로 관광 수요 연중 분산. 지방 힐링 명소 발굴로 지역 관광 활성화에 기여.</td>
+          <td><span class="criteria-score">20/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
+          <td><span class="criteria-score">20점</span></td>
+          <td>감정 분류(5종)는 단순 룰베이스로 MVP 구현 가능. LLM 기반 감정 매칭은 단계적 도입. 날씨·API 연동 표준 기술. 4개월 MVP 가능.</td>
+          <td><span class="criteria-score">17/20</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 6: 주요 화면 Mock UI -->
+<div class="section">
+  <div class="section-label">Section 06</div>
+  <div class="section-title">주요 화면 <span>Mock UI</span></div>
+
+  <div class="journey-steps">
+    <div class="journey-step">
+      <div class="journey-num">1</div>
+      <div class="journey-label">앱 진입<br>감정 선택</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">2</div>
+      <div class="journey-label">조건 추가<br>날씨·동행</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">3</div>
+      <div class="journey-label">AI 매칭<br>3곳 추천</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">4</div>
+      <div class="journey-label">여행 후<br>감정 일지</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">5</div>
+      <div class="journey-label">감정 히스토리<br>패턴 분석</div>
+    </div>
+  </div>
+
+  <div class="mock-phones">
+    <div class="mock-phone">
+      <div class="mock-header">💗 감정 선택 → 조건 설정</div>
+      <div style="background:rgba(236,72,153,0.08);border-radius:12px;padding:14px;margin-bottom:12px;text-align:center">
+        <div style="font-size:24px;margin-bottom:6px">😌</div>
+        <div style="font-size:14px;font-weight:700">오늘 기분: 위로가 필요해</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">조용하고 따뜻한 곳으로 가고 싶어</div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">추가 조건 (선택)</div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🌦️</span>
+        <div><div class="mock-item-name">현재 날씨: 흐림 13°C</div><div class="mock-item-sub">AI가 날씨 자동 감지</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">👤</span>
+        <div><div class="mock-item-name">동행: 혼자</div><div class="mock-item-sub">1인 여행 최적화</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🚗</span>
+        <div><div class="mock-item-name">이동 가능 거리: 2시간</div></div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">✨ AI 매칭 결과 3곳</div>
+      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">위로 + 흐린 날씨 + 혼자 + 2시간 이내</div>
+      <div class="mock-item" style="border:1px solid var(--accent)">
+        <span class="mock-item-icon">♨️</span>
+        <div>
+          <div class="mock-item-name">#1 수안보 온천 힐링 숲</div>
+          <div class="mock-item-sub">충북 충주 · 1시간 40분</div>
+          <span class="mock-tag mock-tag-accent">감정 매칭 98%</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🍵</span>
+        <div>
+          <div class="mock-item-name">#2 하동 차밭 명상 코스</div>
+          <div class="mock-item-sub">경남 하동 · 2시간</div>
+          <span class="mock-tag mock-tag-blue">웰니스 TOP</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🌊</span>
+        <div>
+          <div class="mock-item-name">#3 고성 공룡해변 산책로</div>
+          <div class="mock-item-sub">강원 고성 · 1시간 50분</div>
+          <span class="mock-tag mock-tag-accent">비가 와도 OK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">📖 감정 여행 일지</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">지난 3개월 감정 여행 기록</div>
+      <div class="mock-item">
+        <span class="mock-item-icon">😌</span>
+        <div><div class="mock-item-name">수안보 온천 힐링 숲</div><div class="mock-item-sub">2024.11.03 · 위로 여행 · ★★★★★</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">⚡</span>
+        <div><div class="mock-item-name">설악산 공룡능선</div><div class="mock-item-sub">2024.10.12 · 활력 여행 · ★★★★☆</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🌟</span>
+        <div><div class="mock-item-name">전주 한옥마을 야경</div><div class="mock-item-sub">2024.09.28 · 설렘 여행 · ★★★★★</div></div>
+      </div>
+      <div style="margin-top:10px;padding:10px;background:rgba(236,72,153,0.08);border-radius:10px;font-size:12px;color:var(--accent)">
+        AI 인사이트: 흐린 날 혼자 여행 시 온천·숲 선호 패턴 발견 🔍
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 7: OpenAPI 활용 -->
+<div class="section">
+  <div class="section-label">Section 07</div>
+  <div class="section-title">OpenAPI <span>활용</span></div>
+
+  <div class="card">
+    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">감정별 여행지 매핑을 위해 웰니스관광·문화시설·축제행사·날씨연계 API를 조합. 날씨 실시간 연동이 감정 × 날씨 다변수 최적화의 핵심.</div>
+    <div class="api-chips">
+      <span class="api-chip">한국관광공사_국문관광정보서비스</span>
+      <span class="api-chip">한국관광공사_웰니스관광정보서비스</span>
+      <span class="api-chip">한국관광공사_문화시설관광정보</span>
+      <span class="api-chip">한국관광공사_축제공연행사</span>
+      <span class="api-chip">한국관광공사_날씨연계관광정보</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">웰니스관광정보서비스</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">"위로·고요" 감정 매칭 핵심. 온천·명상·산림치유 장소 DB 제공.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">날씨연계관광정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">현재 날씨를 감정 변수에 통합. "흐린 날 위로 여행지" 실시간 필터링.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">축제공연행사</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">"설렘·신남" 감정에 현재 진행 중인 축제·공연 실시간 연동.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 8: 팀 합의 점수 -->
+<div class="section">
+  <div class="section-label">Section 08</div>
+  <div class="section-title">팀 합의 <span>점수</span></div>
+
+  <div class="score-display">
+    <div class="score-big">8.1</div>
+    <div class="score-meta">
+      <div class="score-label">팀 합의 점수 / 10점</div>
+      <div class="score-stars">★★★★☆</div>
+      <div class="score-reason" style="margin-top:8px">JTBD·UX 항목 모두 10점 만점. 사용자가 실제로 원하는 것을 가장 명확히 해결하는 아이디어. 번아웃 세대의 여행 니즈를 감성적으로 포착.</div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>JTBD·UX 각 10/10 — 사용자 니즈 가장 직관적 해결</li>
+        <li>번아웃 MZ 세대 = 명확하고 거대한 타겟</li>
+        <li>진입 장벽 최소화 (감정 선택 1번 = 즉시 추천)</li>
+        <li>감정 일지 → 장기 리텐션·재방문 자연 발생</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>API 활용 6점 → 날씨연계·웰니스 API 강화</li>
+        <li>지역 분산 5점 → 지방 힐링 명소 DB 확충</li>
+        <li>감정 분류 단순화 위험 → 세분화 단계적 적용</li>
+        <li>모방 용이성 → 감정 이력 데이터 네트워크 효과</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 9: 객관 사업성 -->
+<div class="section">
+  <div class="section-label">Section 09</div>
+  <div class="section-title">객관 <span>사업성</span></div>
+
+  <div class="card">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>규모</th>
+          <th>산정 근거</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TAM</strong></td>
+          <td class="highlight">4.2조원</td>
+          <td style="font-size:13px;color:var(--muted)">힐링·웰니스 여행 국내 시장 규모 (문화체육관광부 2024)</td>
+        </tr>
+        <tr>
+          <td><strong>SAM</strong></td>
+          <td class="highlight">1.68조원</td>
+          <td style="font-size:13px;color:var(--muted)">MZ세대 여행앱 사용자 2,800만 × 감성여행 관심도 40% = 1.68조원</td>
+        </tr>
+        <tr>
+          <td><strong>SOM</strong></td>
+          <td class="highlight">504억원</td>
+          <td style="font-size:13px;color:var(--muted)">Y3 이내 3% 점유율 목표</td>
+        </tr>
+        <tr>
+          <td><strong>Y1 매출</strong></td>
+          <td class="highlight">33.3억원</td>
+          <td style="font-size:13px;color:var(--muted)">B2C: 월 80만 설치 × 전환율 4% × 7,900원 × 12 = 30.3억<br>관광지 제휴: 100건 × 300만 = 3억</td>
+        </tr>
+        <tr>
+          <td><strong>BEP</strong></td>
+          <td class="highlight">15개월</td>
+          <td style="font-size:13px;color:var(--muted)">Y1 Q4 달성 예상. 초기 개발비 6억 + 마케팅 4억 = 10억 투자 회수</td>
+        </tr>
+        <tr>
+          <td><strong>주요 경쟁사</strong></td>
+          <td colspan="2" style="font-size:13px;color:var(--muted)">트리플 매출 180억 · 마이리얼트립 430억(2023 DART) — 감정 기반 매칭 서비스 없음. 직접 경쟁 아님</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 10: AI 차별화 -->
+<div class="section">
+  <div class="section-label">Section 10</div>
+  <div class="section-title">AI <span>차별화</span></div>
+
+  <div class="ai-branch-badge">🤖 AI Branch: companion</div>
+
+  <div class="card">
+    <div class="ai-reason">
+      <div class="ai-reason-num">1</div>
+      <div class="ai-reason-text">
+        <strong>감정 + 날씨 + 실시간 혼잡도 + 계절 다변수 동시 최적화</strong><br>
+        감정(5종) × 날씨(맑음·흐림·비·눈) × 혼잡도(실시간) × 계절 × 동행(혼자·커플·가족) 수십 가지 변수를 AI가 실시간 동시 계산해 최적 여행지 3곳 추출. 사람이 이 조합을 즉각 처리하는 것은 물리적 불가.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">2</div>
+      <div class="ai-reason-text">
+        <strong>감정 여행 이력 학습 → "지난번 위로가 필요했을 때 좋아한 곳" 기억</strong><br>
+        사용자의 감정 × 여행지 만족도 이력을 누적 학습해 재방문 시 더 정확한 개인화 추천 제공. "당신은 위로 여행에서 온천을 좋아하고 혼잡한 곳을 피하는 패턴"을 AI가 자동 발견.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">3</div>
+      <div class="ai-reason-text">
+        <strong>24/7 즉각 응답 — 새벽 충동 여행 계획도 즉시 처리</strong><br>
+        번아웃 직장인이 새벽 2시에 "지금 어디라도 가고 싶다" 충동을 느낄 때 AI가 즉시 감정 분석 + 여행지 추천 제공. 사람 상담사는 새벽에 불가능하고, 일반 검색엔진은 감정 맥락 이해 불가.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <strong style="color:var(--fg)">Mood Travel Matcher</strong> — 2026 한국관광공사 관광 서비스 공모전
+  </div>
+  <div>BA Score 99/130 (공동 3위) · 팀 합의 8.1/10 · AI Branch: companion</div>
+  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
+</footer>
+
+</body>
+</html>

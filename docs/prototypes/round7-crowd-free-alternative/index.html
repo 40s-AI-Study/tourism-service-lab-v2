@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crowd-Free Alternative — Round 7 프로토타입</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060609; --surface: #0D0D13; --card: #13131A; --border: #1E1E28;
+    --fg: #F4F4F8; --muted: #9898AC; --muted2: #5E5E72;
+    --accent: #0EA5E9;
+    --accent-dim: #0284C7;
+    --accent-soft: rgba(14,165,233,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif; line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6,6,9,0.85); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; color: var(--fg); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .round-badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .nav-back { color: var(--muted); font-size: 13px; text-decoration: none; border: 1px solid var(--border); padding: 4px 12px; border-radius: 6px; transition: color 0.2s, border-color 0.2s; }
+  .nav-back:hover { color: var(--fg); border-color: var(--muted2); }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  .hero { padding: 96px 0 80px; text-align: center; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(14,165,233,0.12) 0%, transparent 70%); }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-soft); border: 1px solid rgba(14,165,233,0.25); color: var(--accent); font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 20px; margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(36px,7vw,68px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+  .hero h1 .grad { background: linear-gradient(135deg, var(--accent) 0%, #7DD3FC 60%, #E0F2FE 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-tagline { font-size: 18px; color: var(--muted); margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+  .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .btn-primary { background: var(--accent); color: #fff; font-weight: 700; font-size: 15px; padding: 12px 28px; border-radius: 10px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--fg); font-weight: 600; font-size: 15px; padding: 12px 28px; border-radius: 10px; border: 1px solid var(--border); text-decoration: none; cursor: pointer; transition: border-color 0.2s, transform 0.1s; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .mock-device { width: 290px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 16px; box-shadow: 0 0 60px rgba(14,165,233,0.1), 0 32px 64px rgba(0,0,0,0.6); }
+  .mock-screen { background: var(--surface); border-radius: 18px; padding: 16px; min-height: 400px; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 48px; }
+  .stat-box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 16px; text-align: center; }
+  .stat-num { font-size: 26px; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 12px; color: var(--muted); }
+
+  .section-label { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+  h2 { font-size: clamp(22px,3.5vw,32px); font-weight: 800; margin-bottom: 16px; }
+  h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  p { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 12px; }
+
+  .cards-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .card-icon { font-size: 28px; margin-bottom: 12px; }
+  .card h3 { font-size: 14px; margin-bottom: 8px; }
+  .card p { font-size: 13px; margin: 0; }
+
+  .data-points { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .data-point { display: flex; align-items: flex-start; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .data-num { font-size: 20px; font-weight: 800; color: var(--accent); min-width: 80px; line-height: 1.2; }
+  .data-desc { font-size: 13px; color: var(--muted); }
+  .data-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+
+  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .score-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .score-name { font-size: 12px; color: var(--muted2); margin-bottom: 6px; }
+  .score-val { font-size: 20px; font-weight: 800; color: var(--accent); }
+  .score-bar-wrap { background: var(--border); border-radius: 4px; height: 5px; margin-top: 8px; }
+  .score-bar { height: 5px; border-radius: 4px; background: linear-gradient(90deg, var(--accent), #7DD3FC); }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+  th { background: var(--card); color: var(--accent); font-size: 12px; font-weight: 700; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  td { padding: 14px 16px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--fg); font-weight: 600; width: 130px; }
+  .score-pill { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+
+  .screens-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
+  .screen-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+  .screen-step { font-size: 10px; font-weight: 700; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .screen-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .screen-body { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .screen-ui { background: var(--surface); border-radius: 10px; padding: 10px; margin-top: 10px; }
+
+  .api-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .api-item { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .api-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .api-name { font-size: 13px; font-weight: 600; color: var(--fg); }
+  .api-desc { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+
+  .fin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  .fin-table th { background: var(--surface); color: var(--muted); font-size: 11px; font-weight: 600; padding: 10px 14px; text-align: left; border: 1px solid var(--border); text-transform: uppercase; }
+  .fin-table td { padding: 12px 14px; font-size: 13px; color: var(--muted); border: 1px solid var(--border); }
+  .fin-table td:first-child { color: var(--fg); font-weight: 600; }
+  .fin-highlight { color: var(--accent) !important; font-weight: 700 !important; }
+
+  .branch-box { background: var(--accent-soft); border: 1px solid rgba(14,165,233,0.3); border-radius: 16px; padding: 28px; margin-top: 24px; }
+  .branch-title { font-size: 22px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+  .branch-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .reasons { display: flex; flex-direction: column; gap: 12px; }
+  .reason { display: flex; align-items: flex-start; gap: 12px; }
+  .reason-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .reason-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* Crowd level indicator */
+  .crowd-level { display: flex; gap: 3px; }
+  .crowd-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* Alternative card */
+  .alt-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-bottom: 8px; position: relative; }
+  .alt-card-accent { border-left: 3px solid var(--accent); }
+
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
+  .footer-logo { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+  .footer-logo span { color: var(--accent); }
+  .footer-meta { font-size: 12px; color: var(--muted2); }
+
+  @media (max-width: 700px) {
+    .stats-row { grid-template-columns: repeat(2,1fr); }
+    .cards-3 { grid-template-columns: 1fr; }
+    .screens-row { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 16px; }
+    .container { padding: 0 16px; }
+    section { padding: 48px 0; }
+    .hero { padding: 64px 0 56px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">🧭 <span>Crowd-Free</span> Alternative</a>
+  <div class="nav-right">
+    <a href="../../index.html" class="nav-back">← 목록으로</a>
+    <span class="round-badge">Round 7</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">🗺 혼잡 명소 입력 → 유사 저혼잡 대안 3곳 즉시</div>
+    <h1>
+      <span class="grad">Crowd-Free</span><br>
+      Alternative
+    </h1>
+    <p class="hero-tagline">혼잡 명소 입력 → 분위기 유사 저혼잡 대안 3곳 즉시. KTO 혼잡도 예측 데이터 + AI로 지역분산 관광 직접 기여.</p>
+    <div class="hero-cta">
+      <a href="#overview" class="btn-primary">서비스 알아보기</a>
+      <a href="#mock-ui" class="btn-secondary">화면 미리보기</a>
+    </div>
+
+    <!-- MOCK APP -->
+    <div class="mock-device">
+      <div class="mock-screen">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-size:13px;font-weight:700">🧭 대안 명소 찾기</span>
+          <span style="font-size:9px;color:var(--muted2)">실시간 혼잡도 연동</span>
+        </div>
+
+        <!-- Input -->
+        <div style="background:var(--bg);border:1px solid rgba(14,165,233,0.4);border-radius:10px;padding:10px;margin-bottom:12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px">🔍</span>
+          <span style="font-size:11px;color:var(--muted)">경복궁 너무 복잡해요...</span>
+        </div>
+
+        <!-- Crowd warning -->
+        <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:10px;margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <span style="font-size:10px;font-weight:700;color:#EF4444">🔴 경복궁 현재 혼잡</span>
+          </div>
+          <div style="display:flex;gap-6px;align-items:center;gap:4px">
+            <span style="font-size:9px;color:var(--muted2)">혼잡도</span>
+            <div class="crowd-level">
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:var(--border)"></div>
+            </div>
+            <span style="font-size:9px;color:#EF4444;font-weight:600">매우 혼잡 (일 2.3만명)</span>
+          </div>
+        </div>
+
+        <!-- Alternatives -->
+        <div style="font-size:10px;font-weight:700;color:var(--accent);margin-bottom:8px">✨ AI 추천 유사 대안 3곳</div>
+
+        <div class="alt-card alt-card-accent">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-size:11px;font-weight:700">1. 창덕궁</div>
+              <div style="font-size:9px;color:var(--muted2)">종로 · 조선 궁궐 · 유사도 94%</div>
+            </div>
+            <div style="text-align:right">
+              <div class="crowd-level" style="justify-content:flex-end">
+                <div class="crowd-dot" style="background:#22C55E"></div>
+                <div class="crowd-dot" style="background:#22C55E"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+              </div>
+              <div style="font-size:9px;color:#22C55E;font-weight:600">여유</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alt-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-size:11px;font-weight:700">2. 덕수궁</div>
+              <div style="font-size:9px;color:var(--muted2)">중구 · 조선 궁궐 · 유사도 88%</div>
+            </div>
+            <div style="text-align:right">
+              <div class="crowd-level" style="justify-content:flex-end">
+                <div class="crowd-dot" style="background:#22C55E"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+              </div>
+              <div style="font-size:9px;color:#22C55E;font-weight:600">한산</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alt-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-size:11px;font-weight:700">3. 경희궁</div>
+              <div style="font-size:9px;color:var(--muted2)">종로 · 조선 궁궐 · 유사도 82%</div>
+            </div>
+            <div style="text-align:right">
+              <div class="crowd-level" style="justify-content:flex-end">
+                <div class="crowd-dot" style="background:#22C55E"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+                <div class="crowd-dot" style="background:var(--border)"></div>
+              </div>
+              <div style="font-size:9px;color:#22C55E;font-weight:600">매우 한산</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num">72%</div><div class="stat-label">관광지 혼잡 불만족 응답률</div></div>
+      <div class="stat-box"><div class="stat-num">89%</div><div class="stat-label">혼잡 회피 여행 검색량 증가</div></div>
+      <div class="stat-box"><div class="stat-num">58%</div><div class="stat-label">비수도권 정보 부족 응답</div></div>
+      <div class="stat-box"><div class="stat-num">2.1조</div><div class="stat-label">국내 여행 앱 시장 규모</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: 서비스 개요 -->
+<section id="overview">
+  <div class="container">
+    <div class="section-label">Section 01 — 서비스 개요</div>
+    <h2>What: 혼잡 명소 → 유사 저혼잡 대안 즉시 추천</h2>
+    <p>"경복궁 너무 복잡해요" 입력 시 → AI가 분위기·테마·접근성 유사한 저혼잡 대안 3곳 즉시 추천. KTO 혼잡도 예측 데이터 + 연관 관광지 API 핵심 활용. 정부 지역분산 관광 정책과 직접 연계.</p>
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-icon">🚶</div>
+        <h3>타겟 페르소나 A</h3>
+        <p>한국인 20-40대 혼잡 회피형 여행자. 주말마다 붐비는 명소에 지친 MZ세대. "남들 안 가는 한적한 곳" 적극 탐색.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <h3>타겟 페르소나 B</h3>
+        <p>주말·연휴 단기 여행자. 혼잡도 사전 확인 후 여행 계획 세우는 계획형 여행자. 대기시간 낭비 최소화 추구.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>타겟 페르소나 C</h3>
+        <p>지방 지자체 관광 담당자. 수도권 관광 집중 완화를 위해 지역 대안 명소 홍보 채널 필요. B2G 파트너십 대상.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: 리서치 근거 -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">Section 02 — 리서치 근거</div>
+    <h2>Why: 데이터로 본 혼잡도 회피 수요</h2>
+    <div class="data-points">
+      <div class="data-point">
+        <div class="data-num">2.3만명</div>
+        <div><div class="data-desc">경복궁 일 평균 방문객. 명동 일 15만명. 주요 관광지 혼잡도 임계점 초과</div><div class="data-source">출처: KTO 2024</div></div>
+      </div>
+      <div class="data-point">
+        <div class="data-num">72%</div>
+        <div><div class="data-desc">관광지 혼잡 불만족 응답 — "다음엔 안 가겠다" 이탈 수요 절대적</div><div class="data-source">출처: 한국관광공사 만족도 조사 2024</div></div>
+      </div>
+      <div class="data-point">
+        <div class="data-num">+89%</div>
+        <div><div class="data-desc">혼잡 회피 여행 트렌드 검색량 전년 대비 89% 급증 — 수요 폭발적 성장</div><div class="data-source">출처: 네이버 데이터랩 2024</div></div>
+      </div>
+      <div class="data-point">
+        <div class="data-num">58%</div>
+        <div><div class="data-desc">비수도권 관광지 방문 의향 있으나 정보 부족 응답 — 대안 정보 갈증 실증</div><div class="data-source">출처: 문체부 2024</div></div>
+      </div>
+      <div class="data-point">
+        <div class="data-num">60%</div>
+        <div><div class="data-desc">정부 분산관광 목표 — 2026년 지방 방문율 60% 달성 국정과제. 정책 수혜 직접 대상</div><div class="data-source">출처: 문체부 국정과제 2024</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: 아이디어 도출 과정 -->
+<section id="ideation">
+  <div class="container">
+    <div class="section-label">Section 03 — 아이디어 도출 과정</div>
+    <h2>Round 4 BA 평가 프로세스</h2>
+    <p>지역 연계 9점 최상위 — 지역분산 관광 직접 기여. 공모전 정책 방향과 완벽 일치. 총 BA 96/130.</p>
+    <div class="score-grid">
+      <div class="score-item">
+        <div class="score-name">총 BA 점수</div>
+        <div class="score-val">96 / 130</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:73.8%"></div></div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">소계 (100점)</div>
+        <div class="score-val">76 / 100</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:76%"></div></div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">보너스 (30점)</div>
+        <div class="score-val">20 / 30</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:66.7%"></div></div>
+      </div>
+      <div class="score-item">
+        <div class="score-name">팀 합의 점수</div>
+        <div class="score-val">7.8 / 10</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:78%"></div></div>
+      </div>
+    </div>
+    <table style="margin-top:24px">
+      <thead><tr><th>항목</th><th>배점</th><th>획득</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td>JTBD 명확성</td><td>10</td><td><span class="score-pill">8</span></td><td>혼잡 회피 JTBD 단순 명확</td></tr>
+        <tr><td>트렌드 부합</td><td>10</td><td><span class="score-pill">8</span></td><td>혼잡 회피 검색 +89% 트렌드 완벽 정합</td></tr>
+        <tr><td>API 활용</td><td>10</td><td><span class="score-pill">8</span></td><td>혼잡도 예측 + 연관관광지 API 핵심 활용</td></tr>
+        <tr><td>공모전 적합</td><td>10</td><td><span class="score-pill">8</span></td><td>분산관광 국정과제 직접 기여</td></tr>
+        <tr><td>지역 연계</td><td>10</td><td><span class="score-pill">9</span></td><td>지방 대안 명소 발굴 핵심 기능</td></tr>
+        <tr><td>편의성 보너스</td><td>10</td><td><span class="score-pill">8</span></td><td>입력 1회 → 대안 3곳 즉시 단순 UX</td></tr>
+        <tr><td>AI 차별화 보너스</td><td>10</td><td><span class="score-pill">7</span></td><td>다변수 실시간 처리 AI 독자성</td></tr>
+        <tr><td>사업성 보너스</td><td>10</td><td><span class="score-pill">5</span></td><td>B2G 수익화 구체화 필요</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 4: 공모전 심사 기준 -->
+<section id="criteria">
+  <div class="container">
+    <div class="section-label">Section 04 — 공모전 심사 기준 대응</div>
+    <h2>2026 공모전 4대 심사 기준</h2>
+    <table>
+      <thead><tr><th>심사 기준</th><th>배점</th><th>Crowd-Free 대응</th><th>강점</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>기획력</td>
+          <td>30점</td>
+          <td>혼잡 명소 → 유사 대안 즉시 추천이라는 단순·명확한 핵심 기능 설계. 방문 이력 학습 개인화. 72시간 사전 혼잡 경보로 여행 계획 지원.</td>
+          <td><span class="score-pill">HIGH</span></td>
+        </tr>
+        <tr>
+          <td>데이터 활용</td>
+          <td>25점</td>
+          <td>관광공사 혼잡도 예측 + 연관관광지 추천 + 집중률 방문자 추이 예측 3종 API 핵심 연동. KTO 고유 데이터 최대 활용.</td>
+          <td><span class="score-pill">VERY HIGH ★</span></td>
+        </tr>
+        <tr>
+          <td>사회적 가치</td>
+          <td>25점</td>
+          <td>수도권 관광 집중 완화 → 지방 경제 활성화. 정부 2026 분산관광 60% 국정과제 직접 기여. 혼잡 피해 지역 관광지 과부하 해소.</td>
+          <td><span class="score-pill">HIGH</span></td>
+        </tr>
+        <tr>
+          <td>구현 가능성</td>
+          <td>20점</td>
+          <td>단순 검색 → 추천 플로우 MVP 3개월 개발 가능. KTO 혼잡도 API 즉시 활용. 지자체 B2G 계약 정책 수요 명확. BEP 20개월.</td>
+          <td><span class="score-pill">HIGH</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: 주요 화면 Mock UI -->
+<section id="mock-ui">
+  <div class="container">
+    <div class="section-label">Section 05 — 주요 화면 Mock UI</div>
+    <h2>사용자 여정 5단계</h2>
+    <div class="screens-row">
+      <div class="screen-card">
+        <div class="screen-step">Step 1</div>
+        <div class="screen-title">🔍 혼잡 명소 입력</div>
+        <div class="screen-body">가려던 장소 검색 또는 음성 입력. 실시간 혼잡도 즉시 확인 + 혼잡 수준 시각화.</div>
+        <div class="screen-ui">
+          <div style="font-size:10px;color:var(--muted2);margin-bottom:4px">입력</div>
+          <div style="font-size:11px;font-weight:600;margin-bottom:6px">"경복궁 혼잡해요"</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div class="crowd-level">
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:#EF4444"></div>
+              <div class="crowd-dot" style="background:var(--border)"></div>
+            </div>
+            <span style="font-size:9px;color:#EF4444;font-weight:600">매우 혼잡</span>
+          </div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-step">Step 2</div>
+        <div class="screen-title">✨ AI 대안 3곳 즉시</div>
+        <div class="screen-body">유사도·혼잡도·이동 거리·날씨 종합 → 분위기 유사 저혼잡 대안 3곳 랭킹 제시.</div>
+        <div class="screen-ui">
+          <div style="font-size:10px;font-weight:700;color:var(--accent);margin-bottom:6px">AI 추천 대안</div>
+          <div style="font-size:10px;color:var(--fg);margin-bottom:2px">1. 창덕궁 <span style="color:#22C55E;font-size:9px">여유</span></div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:2px">2. 덕수궁 <span style="color:#22C55E;font-size:9px">한산</span></div>
+          <div style="font-size:10px;color:var(--muted)">3. 경희궁 <span style="color:#22C55E;font-size:9px">매우 한산</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-step">Step 3</div>
+        <div class="screen-title">📊 혼잡도 예측 차트</div>
+        <div class="screen-body">선택 대안 명소의 시간대별·요일별 혼잡도 예측 그래프. 최적 방문 시간 자동 표시.</div>
+        <div class="screen-ui">
+          <div style="font-size:10px;font-weight:700;margin-bottom:6px">창덕궁 혼잡도 예측</div>
+          <div style="display:flex;gap:2px;align-items:flex-end;height:30px">
+            <div style="flex:1;background:rgba(14,165,233,0.3);border-radius:2px 2px 0 0;height:30%"></div>
+            <div style="flex:1;background:rgba(14,165,233,0.4);border-radius:2px 2px 0 0;height:45%"></div>
+            <div style="flex:1;background:rgba(14,165,233,0.6);border-radius:2px 2px 0 0;height:70%"></div>
+            <div style="flex:1;background:rgba(14,165,233,0.8);border-radius:2px 2px 0 0;height:100%"></div>
+            <div style="flex:1;background:rgba(14,165,233,0.5);border-radius:2px 2px 0 0;height:55%"></div>
+            <div style="flex:1;background:rgba(14,165,233,0.2);border-radius:2px 2px 0 0;height:25%"></div>
+          </div>
+          <div style="font-size:9px;color:var(--accent);margin-top:4px">최적 방문: 오전 10-11시</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-step">Step 4</div>
+        <div class="screen-title">🧠 방문 이력 학습</div>
+        <div class="screen-body">이전 방문 패턴 학습 → "지난번 한적하다고 좋아했던 곳과 비슷한 곳" 점점 정확한 개인화.</div>
+        <div class="screen-ui">
+          <div style="font-size:10px;font-weight:700;margin-bottom:4px">나의 여행 패턴</div>
+          <div style="font-size:9px;color:var(--muted);margin-bottom:3px">선호: 조용한 문화 명소</div>
+          <div style="font-size:9px;color:var(--muted);margin-bottom:3px">비선호: 붐비는 상업 거리</div>
+          <div style="font-size:9px;color:var(--accent)">→ 맞춤 대안 정확도 92%</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-step">Step 5</div>
+        <div class="screen-title">⏰ 72시간 사전 경보</div>
+        <div class="screen-body">주말·공휴일 72시간 전 혼잡 예측 알림. 계획 단계에서 사전 대안 탐색 유도.</div>
+        <div class="screen-ui">
+          <div style="background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.25);border-radius:8px;padding:8px">
+            <div style="font-size:10px;font-weight:700;color:var(--accent);margin-bottom:3px">⏰ 주말 혼잡 예고</div>
+            <div style="font-size:9px;color:var(--muted)">이번 주말 남산타워 예상 매우 혼잡</div>
+            <div style="font-size:9px;color:var(--accent);margin-top:3px;font-weight:600">→ 지금 대안 탐색하기</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: OpenAPI -->
+<section id="openapi">
+  <div class="container">
+    <div class="section-label">Section 06 — OpenAPI 활용</div>
+    <h2>Visit Korea 공공 API 연동</h2>
+    <p>KTO 혼잡도 예측 + 연관관광지 추천 API는 이 서비스의 핵심 기술 기반. 공공 데이터 활용도 최상위.</p>
+    <div class="api-list">
+      <div class="api-item"><div class="api-dot"></div><div><div class="api-name">한국관광공사_관광지혼잡도예측정보</div><div class="api-desc">전국 주요 관광지 시간대별·요일별 혼잡도 예측 데이터 — 서비스 핵심 기반 API</div></div></div>
+      <div class="api-item"><div class="api-dot"></div><div><div class="api-name">한국관광공사_연관관광지추천서비스</div><div class="api-desc">특정 관광지와 테마·분위기 유사한 연관 관광지 추천 — 대안 생성 핵심 API</div></div></div>
+      <div class="api-item"><div class="api-dot"></div><div><div class="api-name">한국관광공사_국문관광정보서비스</div><div class="api-desc">전국 관광지 기본 정보 — 대안 명소 상세 정보 표시용 베이스 데이터</div></div></div>
+      <div class="api-item"><div class="api-dot"></div><div><div class="api-name">한국관광공사_관광지집중률방문자추이예측정보</div><div class="api-desc">관광지별 방문자 집중률 추이 및 예측 — 72시간 사전 경보 생성에 활용</div></div></div>
+      <div class="api-item"><div class="api-dot"></div><div><div class="api-name">한국관광공사_위치기반관광정보서비스</div><div class="api-desc">GPS 기반 현재 위치 주변 저혼잡 대안 명소 실시간 탐색</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: 팀 합의 점수 -->
+<section id="team-score">
+  <div class="container">
+    <div class="section-label">Section 07 — 팀 합의 점수</div>
+    <h2>팀 내부 평가: 7.8 / 10</h2>
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>선정 이유 (강점)</h3>
+        <p>지역 연계 9점 최강. 단순 UX — 혼잡 명소 입력 1회로 완결. KTO API 활용도 최상. 분산관광 국정과제 정책 수혜 대상.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚠️</div>
+        <h3>리스크</h3>
+        <p>사업성 점수 5점 — B2G 수익화 구체화 필요. 네이버지도·카카오맵 혼잡도 기능 경쟁 리스크. 유사도 알고리즘 품질 관건.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>성장 기회</h3>
+        <p>지자체 80곳 관광 파트너십 계약 시 B2G 수익 안정화. 지방 소멸 위기 지역 관광 활성화 정부 보조금 연계 가능.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: 객관 사업성 -->
+<section id="business">
+  <div class="container">
+    <div class="section-label">Section 08 — 객관 사업성</div>
+    <h2>TAM / SAM / SOM 및 재무 요약</h2>
+    <table class="fin-table">
+      <thead><tr><th>구분</th><th>규모</th><th>산출 근거</th></tr></thead>
+      <tbody>
+        <tr><td>TAM</td><td class="fin-highlight">2.1조원</td><td>국내 여행 앱 시장 전체 (통계청 정보통신업조사 2024)</td></tr>
+        <tr><td>SAM</td><td class="fin-highlight">6,300억원</td><td>주말 단기여행 이용자 1,800만 × 앱 전환 30%</td></tr>
+        <tr><td>SOM (Y3)</td><td class="fin-highlight">189억원</td><td>SAM 3% 점유 목표 (출시 3년차)</td></tr>
+      </tbody>
+    </table>
+    <table class="fin-table" style="margin-top:16px">
+      <thead><tr><th>수익 항목</th><th>연간 매출</th><th>상세</th></tr></thead>
+      <tbody>
+        <tr><td>프리미엄 구독 (B2C)</td><td>17.1억원</td><td>월 60만 MAU × 프리미엄 3% × 7,900원 × 12개월</td></tr>
+        <tr><td>지자체 관광 파트너십 (B2G)</td><td>8억원</td><td>80건 × 평균 1,000만원 계약</td></tr>
+        <tr><td>1년 합산 매출</td><td class="fin-highlight">25.1억원</td><td>BEP 달성 기준 (20개월 예상)</td></tr>
+      </tbody>
+    </table>
+    <table class="fin-table" style="margin-top:16px">
+      <thead><tr><th>경쟁사</th><th>현황</th><th>차별점</th></tr></thead>
+      <tbody>
+        <tr><td>네이버지도 여행 탭</td><td>무료 · 광고 수익</td><td>혼잡도 → 대안 자동 추천 기능 없음</td></tr>
+        <tr><td>카카오맵 혼잡도</td><td>기능 일부만 제공</td><td>유사 대안 추천 없음 · 개인화 없음</td></tr>
+        <tr><td>Crowd-Free Alt.</td><td>전용 앱 · 25.1억 (Y1)</td><td>혼잡 → 대안 즉시 · 개인화 · 72시간 예보 통합</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 9: AI 차별화 -->
+<section id="ai-diff">
+  <div class="container">
+    <div class="section-label">Section 09 — AI 차별화</div>
+    <h2>AI Branch 선언</h2>
+    <div class="branch-box">
+      <div class="branch-title">🤝 Companion AI</div>
+      <div class="branch-sub">단순 혼잡도 표시를 넘어 사용자의 여행 패턴을 학습하고 최적 대안을 함께 찾아주는 개인화 동반자 AI.</div>
+      <div class="reasons">
+        <div class="reason">
+          <div class="reason-num">1</div>
+          <div class="reason-text"><strong style="color:var(--fg)">실시간 다변수 대안 도출:</strong> 혼잡도 + 날씨 + 대중교통 거리 + 주차 가능 여부 + 유사도 점수 5개 변수 동시 처리 → 즉시 최적 대안 3곳 랭킹. 단순 지도 앱 필터링으로 불가능.</div>
+        </div>
+        <div class="reason">
+          <div class="reason-num">2</div>
+          <div class="reason-text"><strong style="color:var(--fg)">방문 이력 개인화 학습:</strong> 과거 방문 패턴 · 만족도 피드백 지속 학습 → "지난번 한적하다고 좋아했던 곳과 비슷한 곳" 점점 정확해지는 개인화 추천. 정적 알고리즘 불가.</div>
+        </div>
+        <div class="reason">
+          <div class="reason-num">3</div>
+          <div class="reason-text"><strong style="color:var(--fg)">주말·연휴 패턴 사전 예측:</strong> 공휴일·연휴 전 72시간 혼잡도 패턴 학습 → 사전 경보 생성. 여행 계획 단계에서 혼잡 회피 의사결정 지원 — 사후 대응이 아닌 사전 동반자 역할.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🧭 <span>Crowd-Free</span> Alternative</div>
+  <div class="footer-meta" style="margin-top:8px">2026 한국관광 공모전 Round 7 프로토타입 · BA Score 96/130 · 팀 합의 7.8/10</div>
+  <div class="footer-meta" style="margin-top:4px">혼잡 명소 → 유사 저혼잡 대안 즉시 · KTO 혼잡도 API 핵심 활용 · 분산관광 국정과제 기여</div>
+</footer>
+
+</body>
+</html>

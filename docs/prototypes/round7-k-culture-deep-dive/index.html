@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Culture Deep Dive — 팬덤이 걷는 K-팝·드라마 성지순례</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #A855F7;
+      --accent2: #C084FC;
+      --grad: linear-gradient(135deg, #A855F7 0%, #C084FC 100%);
+      --grad2: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(168,85,247,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .live-dot { width: 7px; height: 7px; background: #A855F7; border-radius: 50%; box-shadow: 0 0 8px #A855F7; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
+    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-title { font-size: 12px; color: var(--muted2); }
+    .mockup-search { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; font-size: 13px; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .mockup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+    .mockup-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .mockup-card-name { font-size: 14px; font-weight: 700; }
+    .mockup-card-badge { font-size: 10px; padding: 2px 8px; background: rgba(168,85,247,0.2); color: var(--accent); border-radius: 999px; }
+    .mockup-card-sub { font-size: 12px; color: var(--muted); }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
+    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .research-item:last-child { border-bottom: none; }
+    .research-num { width: 28px; height: 28px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .research-content { flex: 1; }
+    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
+    .ba-score { font-size: 20px; font-weight: 800; }
+    .ba-score.high { color: var(--accent); }
+    .ba-score.mid { color: #F59E0B; }
+    .ba-score.low { color: var(--muted); }
+    .ba-total { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .ba-total-label { font-size: 15px; font-weight: 700; }
+    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
+    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+
+    .criteria-table { width: 100%; border-collapse: collapse; }
+    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
+    .criteria-table tr:last-child td { border-bottom: none; }
+    .criteria-score { font-weight: 800; color: var(--accent); }
+
+    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
+    .journey-step { flex: 1; min-width: 120px; text-align: center; position: relative; }
+    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
+    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: white; }
+    .journey-label { font-size: 12px; color: var(--muted); }
+
+    .screen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .screen-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+    .screen-icon { font-size: 28px; margin-bottom: 10px; }
+    .screen-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .screen-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
+    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
+    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+    .mock-item-icon { font-size: 18px; }
+    .mock-item-name { font-weight: 600; }
+    .mock-item-sub { color: var(--muted); font-size: 11px; }
+    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
+    .mock-tag-accent { background: rgba(168,85,247,0.2); color: var(--accent); }
+    .mock-tag-green { background: rgba(16,185,129,0.2); color: #10B981; }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.2); border-radius: 16px; margin-bottom: 16px; }
+    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .score-meta { flex: 1; }
+    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    .score-reason { font-size: 15px; line-height: 1.6; }
+    .score-stars { color: #F59E0B; font-size: 20px; letter-spacing: 2px; }
+
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { font-weight: 700; color: var(--accent); }
+
+    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: var(--accent); }
+    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .ai-reason:last-child { border-bottom: none; }
+    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
+    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .ai-reason-text strong { color: var(--fg); }
+
+    .tip-box { background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
+    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
+    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
+
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
+
+    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .stats-row { gap: 10px; }
+      .stat-val { font-size: 22px; }
+      .score-big { font-size: 40px; }
+      .mock-phones { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../">
+    <div class="nav-logo-icon">🎤</div>
+    K-Culture Deep Dive
+  </a>
+  <a class="nav-back" href="../../">← 포트폴리오</a>
+  <span class="nav-badge">BA 102/130 · 1위</span>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="live-dot"></span>
+    Round 7 · 전체 1위 · companion AI
+  </div>
+  <h1>K-Culture<br><span>Deep Dive</span></h1>
+  <p class="hero-sub">팬덤이 사랑하는 K-팝·드라마 성지를,<br>직접 걷는 감동</p>
+  <div class="hero-actions">
+    <button class="btn-primary">🎵 성지순례 루트 만들기</button>
+    <button class="btn-secondary">서비스 소개 보기</button>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#FF5F56"></div>
+      <div class="mockup-dot" style="background:#FFBD2E"></div>
+      <div class="mockup-dot" style="background:#27C93F"></div>
+      <span class="mockup-title">AI 성지순례 루트 · 실시간 팬 업데이트</span>
+    </div>
+    <div class="mockup-search">🔍 아이돌·드라마·영화 이름 검색...</div>
+    <div class="mockup-card">
+      <div class="mockup-card-header">
+        <div>
+          <div class="mockup-card-name">🏢 HYBE 사옥 앞 광장</div>
+          <div class="mockup-card-sub">용산구 · 서울 · 팬 방문 1,240명/주</div>
+        </div>
+        <span class="mockup-card-badge">HOT 🔥</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">BTS·뉴진스·르세라핌 최신 성지</div>
+    </div>
+    <div class="mockup-card">
+      <div class="mockup-card-header">
+        <div>
+          <div class="mockup-card-name">📺 이태원 클라쓰 포차 촬영지</div>
+          <div class="mockup-card-sub">이태원 · 실제 영업중 · 넷플릭스 연계</div>
+        </div>
+        <span class="mockup-card-badge">드라마</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">리얼 촬영 세트·소품 전시</div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:var(--accent);margin-top:8px">+ AI가 팬 커뮤니티 실시간 분석 중 ✨</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- HERO STATS -->
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val">1,732만</div>
+      <div class="stat-label">2024 방한 외래객 (KTO)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">4.2조</div>
+      <div class="stat-label">한류 관광 경제효과</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">$13B</div>
+      <div class="stat-label">K-팝 글로벌 시장 (Billboard)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">+47%</div>
+      <div class="stat-label">드라마 촬영지 방문 증가율</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">BA 102</div>
+      <div class="stat-label">전체 1위 · /130점</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: 서비스 개요 -->
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <div class="section-title">서비스 개요 <span>(What)</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">ONE-LINE PITCH</div>
+    <div class="tip-text">K-팝 콘서트 장소·드라마 촬영지·아이돌 데뷔 스팟을 실시간 팬 커뮤니티 데이터와 공식 Visit Korea API로 큐레이션하고, AI companion이 팬 취향을 분석해 맞춤 성지순례 루트를 즉시 생성하는 한류 관광 플랫폼</div>
+  </div>
+
+  <div class="card-row">
+    <div class="persona-box">
+      <div class="persona-avatar">👩‍🎤</div>
+      <div class="persona-name">Yuki, 24세 · 일본 오사카</div>
+      <div class="persona-tag"># K-팝 팬덤 · 첫 방한</div>
+      <div class="persona-desc">BTS·뉴진스 팬. HYBE 사옥부터 멤버들이 다녀간 카페까지 완벽 성지순례 원함. 한국어 모르고 지하철 낯설어 불안.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">🧑‍💻</div>
+      <div class="persona-name">김민준, 28세 · 서울 거주</div>
+      <div class="persona-tag"># 드라마 팬덤 · 국내 여행</div>
+      <div class="persona-desc">넷플릭스 한국드라마 매니아. 촬영지를 찾아다니지만 정보가 SNS에 흩어져 있어 매번 직접 찾아야 함.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">👨‍👩‍👧</div>
+      <div class="persona-name">Chen Wei, 36세 · 상하이</div>
+      <div class="persona-tag"># 가족 여행 · K-드라마 팬</div>
+      <div class="persona-desc">딸과 함께 방한. 이상한 변호사 우영우·사랑의 불시착 촬영지 방문 계획. 중국어 지원 절실.</div>
+    </div>
+  </div>
+  <div class="tag-row">
+    <span class="tag">🎵 K-팝 성지</span>
+    <span class="tag">📺 드라마 촬영지</span>
+    <span class="tag">🗺️ AI 루트 생성</span>
+    <span class="tag">🌐 5개국어</span>
+    <span class="tag">📱 실시간 팬 데이터</span>
+    <span class="tag">🏆 팬덤 배지</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: 리서치 근거 -->
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <div class="section-title">리서치 근거 <span>(Why)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <div class="research-stat">방한 외래객 1,732만명 · K-culture 팬 비중 35% 추정</div>
+        <div class="research-desc">2024년 방한 외래관광객 1,732만명 중 K-culture 관련 방문 목적이 35%를 차지. 606만명 이상이 K-팝·드라마를 여행 동기로 지목.</div>
+        <div class="research-source">출처: 한국관광공사(KTO) 2024 외래관광객 실태조사</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <div class="research-stat">한류 관광 경제효과 4.2조원</div>
+        <div class="research-desc">한류 콘텐츠 연계 관광 소비가 4.2조원 규모로 추정. 공연·촬영지·팬덤 굿즈 소비 포함. 전년 대비 18% 성장.</div>
+        <div class="research-source">출처: 한국문화관광연구원 2024 한류 관광 경제효과 분석</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <div class="research-stat">K-팝 글로벌 시장 $13B (Billboard 2024)</div>
+        <div class="research-desc">K-팝 음악 + 파생 산업(굿즈·투어·콘서트) 총 시장 $130억. 글로벌 팬클럽 멤버 5억명 돌파. 아시아·북미·중남미 순.</div>
+        <div class="research-source">출처: Billboard K-Pop Market Report 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">04</div>
+      <div class="research-content">
+        <div class="research-stat">드라마 촬영지 방문객 전년比 47% 증가</div>
+        <div class="research-desc">넷플릭스·디즈니+ 한국 오리지널 시리즈 성공으로 촬영지 방문 수요 급증. 이태원·전주·경주 등 주요 지점 혼잡도 급상승.</div>
+        <div class="research-source">출처: 한국관광공사(KTO) 관광지별 방문자 통계 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">05</div>
+      <div class="research-content">
+        <div class="research-stat">MZ세대 여행 결정 요인 1위 "SNS 성지"</div>
+        <div class="research-desc">국내외 MZ세대가 여행 목적지를 결정할 때 가장 중요한 요인으로 "SNS에서 본 성지" 응답이 1위. 공식 관광청 추천보다 2.3배 신뢰.</div>
+        <div class="research-source">출처: 여행신문·한국관광공사 MZ여행트렌드 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: 아이디어 도출 과정 -->
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <div class="section-title">아이디어 도출 과정</div>
+
+  <div class="tip-box">
+    <div class="tip-label">IDEATION ROUND</div>
+    <div class="tip-text">Round 4 브레인스토밍 → BA 매트릭스 130점 만점 스코어링 → 팀 합의 투표 순으로 최종 선정. 총 23개 아이디어 중 상위 10개 심층 검토 후 K-Culture Deep Dive 최종 채택.</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score high">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">10/10</div></div>
+    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score low">6/10</div></div>
+    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score low">6/10</div></div>
+  </div>
+  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score high">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score mid">7/10</div></div>
+  </div>
+  <div class="ba-total">
+    <div>
+      <div class="ba-total-label">BA 총점 (소계 80 + 보너스 22)</div>
+      <div class="ba-rank">전체 아이디어 중 1위 · 사업성 출처: KTO·Billboard·한국문화관광연구원</div>
+    </div>
+    <div class="ba-total-val">102/130</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: 공모전 심사 기준 -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
+
+  <div class="card">
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>심사 기준</th>
+          <th>배점</th>
+          <th>대응 전략</th>
+          <th>자체 평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
+          <td><span class="criteria-score">30점</span></td>
+          <td>팬덤 커뮤니티 실시간 분석 + Visit Korea API 결합이라는 독자적 접근법. 기존 여행앱과 명확히 차별화된 K-culture 전문 플랫폼 포지셔닝.</td>
+          <td><span class="criteria-score">27/30</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>한국관광공사 5개 API 직접 연동. 국문·영문·다국어·문화정보·혼잡도 API 전 분야 커버. 실시간 혼잡도 데이터로 방문 타이밍 최적화.</td>
+          <td><span class="criteria-score">23/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>외국인 방한 촉진으로 관광 수지 개선. K-문화 성지 전국 분산 추천으로 수도권 집중 완화. 지역 소상공인 연계 경제 효과.</td>
+          <td><span class="criteria-score">20/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
+          <td><span class="criteria-score">20점</span></td>
+          <td>Visit Korea 공개 API + LLM 기반 루트 생성 → 6개월 MVP 출시 가능. 팬 커뮤니티 크롤링은 단계적 확장. React Native 앱 + 서버리스 아키텍처.</td>
+          <td><span class="criteria-score">18/20</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 6: 주요 화면 Mock UI -->
+<div class="section">
+  <div class="section-label">Section 06</div>
+  <div class="section-title">주요 화면 <span>Mock UI</span></div>
+
+  <div class="journey-steps">
+    <div class="journey-step">
+      <div class="journey-num">1</div>
+      <div class="journey-label">온보딩<br>취향 입력</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">2</div>
+      <div class="journey-label">AI 분석<br>루트 생성</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">3</div>
+      <div class="journey-label">성지 탐색<br>실시간 현황</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">4</div>
+      <div class="journey-label">방문 인증<br>배지 획득</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">5</div>
+      <div class="journey-label">커뮤니티<br>공유</div>
+    </div>
+  </div>
+
+  <div class="mock-phones">
+    <div class="mock-phone">
+      <div class="mock-header">🎵 온보딩 — 취향 선택</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px">좋아하는 K-culture 장르를 선택하세요</div>
+      <div class="mock-item" style="border:1px solid var(--accent)">
+        <span class="mock-item-icon">🎤</span>
+        <div><div class="mock-item-name">K-팝 아이돌</div><div class="mock-item-sub">BTS·뉴진스·아이브·르세라핌</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">📺</span>
+        <div><div class="mock-item-name">K-드라마 촬영지</div><div class="mock-item-sub">넷플릭스·tvN·KBS 명소</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🎬</span>
+        <div><div class="mock-item-name">K-무비 성지</div><div class="mock-item-sub">기생충·오징어게임 로케이션</div></div>
+      </div>
+      <div style="margin-top:12px;padding:10px;background:var(--grad);border-radius:10px;text-align:center;font-size:13px;font-weight:700;color:white">AI 루트 생성하기 →</div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">🗺️ AI 생성 루트</div>
+      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">✨ BTS 팬덤 맞춤 · 서울 1일 코스</div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🏢</span>
+        <div>
+          <div class="mock-item-name">HYBE 사옥</div>
+          <div class="mock-item-sub">09:00 · 용산구 · 20분 예상</div>
+          <span class="mock-tag mock-tag-accent">현재 혼잡 낮음</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">☕</span>
+        <div>
+          <div class="mock-item-name">멤버 단골 카페 (홍대)</div>
+          <div class="mock-item-sub">10:30 · 팬 실시간 인증 42건</div>
+          <span class="mock-tag mock-tag-green">팬 HOT</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🎸</span>
+        <div>
+          <div class="mock-item-name">Butter MV 촬영 골목</div>
+          <div class="mock-item-sub">13:00 · 성수동 · 도보 5분</div>
+          <span class="mock-tag mock-tag-accent">독점 정보</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">🏆 배지 & 팬덤 랭킹</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">나의 성지순례 기록</div>
+      <div style="text-align:center;padding:16px;background:rgba(168,85,247,0.1);border-radius:12px;margin-bottom:10px">
+        <div style="font-size:32px">🥇</div>
+        <div style="font-size:14px;font-weight:700;margin-top:6px">BTS 레전드 팬</div>
+        <div style="font-size:12px;color:var(--muted)">성지 12곳 방문 완료</div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">📍</span>
+        <div><div class="mock-item-name">방문 완료 12곳</div><div class="mock-item-sub">서울 9 · 경기 2 · 부산 1</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">👥</span>
+        <div><div class="mock-item-name">팬덤 랭킹 #847</div><div class="mock-item-sub">전체 팬 중 상위 3%</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 7: OpenAPI 활용 -->
+<div class="section">
+  <div class="section-label">Section 07</div>
+  <div class="section-title">OpenAPI <span>활용</span></div>
+
+  <div class="card">
+    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">한국관광공사 Visit Korea 공공 데이터포털 5개 API를 핵심 데이터 인프라로 활용. 실시간 혼잡도·다국어·문화정보를 결합해 AI 루트 생성 엔진에 공급.</div>
+    <div class="api-chips">
+      <span class="api-chip">한국관광공사_국문관광정보서비스</span>
+      <span class="api-chip">한국관광공사_영문관광정보서비스</span>
+      <span class="api-chip">한국관광공사_다국어관광정보서비스</span>
+      <span class="api-chip">한국관광공사_한국문화정보_체험관광정보</span>
+      <span class="api-chip">한국관광공사_관광지혼잡도정보</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">국문·영문·다국어 관광정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">성지 장소 기본 정보 · 주소 · 운영시간 · 입장료 5개국어 동시 제공</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">한국문화정보_체험관광정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">K-문화 체험 프로그램 · 팬 미팅 이벤트 · 공연 정보 연동</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지혼잡도정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">실시간 혼잡도 분석 → 방문 최적 시간대 AI 추천 · 대기 시간 예측</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 8: 팀 합의 점수 -->
+<div class="section">
+  <div class="section-label">Section 08</div>
+  <div class="section-title">팀 합의 <span>점수</span></div>
+
+  <div class="score-display">
+    <div class="score-big">8.5</div>
+    <div class="score-meta">
+      <div class="score-label">팀 합의 점수 / 10점</div>
+      <div class="score-stars">★★★★☆</div>
+      <div class="score-reason" style="margin-top:8px">K-팝·한류의 글로벌 팬덤 폭발적 성장과 방한 관광 수요가 맞닿는 최적 타이밍. BA 전체 1위(102점)와 팀 합의 최고점이 일치하는 가장 강력한 아이디어.</div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>K-팝 글로벌 시장 $13B · 팬덤 관광 수요 명확</li>
+        <li>Visit Korea API 5종 모두 직접 활용 가능</li>
+        <li>외국인·국내인 이중 타겟으로 시장 극대화</li>
+        <li>실시간 팬 커뮤니티 데이터 = 진입장벽 구축</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>지역 분산 점수 6점 → 지방 성지 DB 확충</li>
+        <li>SNS 크롤링 규제 → 공개 API 우선 + 제보 시스템</li>
+        <li>팬덤 변동성 → 다양한 아이돌 커버로 분산</li>
+        <li>경쟁사 모방 → 팬 커뮤니티 네트워크 효과 선점</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 9: 객관 사업성 -->
+<div class="section">
+  <div class="section-label">Section 09</div>
+  <div class="section-title">객관 <span>사업성</span></div>
+
+  <div class="card">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>규모</th>
+          <th>산정 근거</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TAM</strong><br><span style="font-size:11px;color:var(--muted)">전체 시장</span></td>
+          <td class="highlight">29.3조원</td>
+          <td style="font-size:13px;color:var(--muted)">방한 외래객 1,732만 × 평균지출 $1,690 = 29.3조원 (KTO 2024)</td>
+        </tr>
+        <tr>
+          <td><strong>SAM</strong><br><span style="font-size:11px;color:var(--muted)">서비스 가능 시장</span></td>
+          <td class="highlight">6.2조원</td>
+          <td style="font-size:13px;color:var(--muted)">K-culture 팬 35% × 여행앱 사용 60% = 363만명 → 6.2조원</td>
+        </tr>
+        <tr>
+          <td><strong>SOM</strong><br><span style="font-size:11px;color:var(--muted)">획득 가능 시장</span></td>
+          <td class="highlight">3,100억원</td>
+          <td style="font-size:13px;color:var(--muted)">Y3 이내 5% 점유율 목표 → 3,100억원</td>
+        </tr>
+        <tr>
+          <td><strong>Y1 매출</strong><br><span style="font-size:11px;color:var(--muted)">1년차 예상 매출</span></td>
+          <td class="highlight">37.8억원</td>
+          <td style="font-size:13px;color:var(--muted)">B2C: 월 50만 설치 × 전환율 3% × 9,900원 × 12 = 17.8억<br>B2B: 관광청 파트너 20건 × 1억 = 20억</td>
+        </tr>
+        <tr>
+          <td><strong>BEP</strong><br><span style="font-size:11px;color:var(--muted)">손익분기점</span></td>
+          <td class="highlight">18개월</td>
+          <td style="font-size:13px;color:var(--muted)">Y2 Q2 달성 예상. 초기 개발비 8억 + 마케팅 5억 = 13억 투자 회수</td>
+        </tr>
+        <tr>
+          <td><strong>주요 경쟁사</strong></td>
+          <td colspan="2" style="font-size:13px;color:var(--muted)">마이리얼트립 매출 430억(2023 DART) · 클룩 한국 GMV 2,400억(2023) — K-culture 특화 서비스 없어 직접 경쟁 아님</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 10: AI 차별화 -->
+<div class="section">
+  <div class="section-label">Section 10</div>
+  <div class="section-title">AI <span>차별화</span></div>
+
+  <div class="ai-branch-badge">🤖 AI Branch: companion</div>
+
+  <div class="card">
+    <div class="ai-reason">
+      <div class="ai-reason-num">1</div>
+      <div class="ai-reason-text">
+        <strong>실시간 팬 커뮤니티 분석 → 24/7 성지 업데이트</strong><br>
+        트위터·위버스·팬카페 등 수백만 건 게시물을 AI가 실시간 분석해 "어제 멤버가 다녀간 카페"를 즉시 DB에 반영. 사람이 수작업으로 24시간 모니터링하는 것은 물리적으로 불가능한 규모.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">2</div>
+      <div class="ai-reason-text">
+        <strong>다국어 5개 언어 동시 처리 + 현지 교통 실시간 최적화</strong><br>
+        한국어·영어·일본어·중국어·스페인어 5개 언어로 동시 응답하며, 실시간 대중교통 API를 결합해 "지금 어디서 어떻게 이동"을 즉각 계산. 단순 번역이 아닌 문화적 맥락 포함 해설 제공.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">3</div>
+      <div class="ai-reason-text">
+        <strong>팬 취향 벡터 임베딩으로 배우·그룹·장르별 개인화 루트 분기</strong><br>
+        사용자가 좋아하는 아이돌·드라마·영화를 벡터 공간에 임베딩해 "이 취향이라면 여기도 좋아할 것"을 추론. 과거 방문 패턴까지 학습해 재방문 시 새로운 성지를 자동 업데이트.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <strong style="color:var(--fg)">K-Culture Deep Dive</strong> — 2026 한국관광공사 관광 서비스 공모전
+  </div>
+  <div>BA Score 102/130 (전체 1위) · 팀 합의 8.5/10 · AI Branch: companion</div>
+  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
+</footer>
+
+</body>
+</html>

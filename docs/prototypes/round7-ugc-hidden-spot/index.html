@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UGC Hidden Spot — AI가 포착하는 바이럴 직전 숨은 명소</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #10B981;
+      --accent2: #34D399;
+      --grad: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+      --grad2: linear-gradient(135deg, #059669 0%, #10B981 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(16,185,129,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
+    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-title { font-size: 12px; color: var(--muted2); }
+    .signal-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; margin-bottom: 10px; font-size: 12px; }
+    .signal-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px var(--accent); }
+    .signal-label { color: var(--accent); font-weight: 600; }
+    .signal-val { color: var(--muted); margin-left: auto; }
+    .mockup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+    .mockup-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .mockup-card-name { font-size: 14px; font-weight: 700; }
+    .mockup-card-badge { font-size: 10px; padding: 2px 8px; background: rgba(16,185,129,0.2); color: var(--accent); border-radius: 999px; }
+    .mockup-card-sub { font-size: 12px; color: var(--muted); }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
+    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .research-item:last-child { border-bottom: none; }
+    .research-num { width: 28px; height: 28px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .research-content { flex: 1; }
+    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
+    .ba-score { font-size: 20px; font-weight: 800; }
+    .ba-score.high { color: var(--accent); }
+    .ba-score.mid { color: #F59E0B; }
+    .ba-score.low { color: var(--muted); }
+    .ba-total { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .ba-total-label { font-size: 15px; font-weight: 700; }
+    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
+    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+
+    .criteria-table { width: 100%; border-collapse: collapse; }
+    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
+    .criteria-table tr:last-child td { border-bottom: none; }
+    .criteria-score { font-weight: 800; color: var(--accent); }
+
+    .viral-meter { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
+    .viral-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .viral-name { font-size: 14px; font-weight: 700; }
+    .viral-score-badge { padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .viral-score-high { background: rgba(239,68,68,0.2); color: #EF4444; }
+    .viral-score-mid { background: rgba(245,158,11,0.2); color: #F59E0B; }
+    .viral-score-low { background: rgba(16,185,129,0.2); color: var(--accent); }
+    .viral-bar-wrap { background: var(--border); border-radius: 999px; height: 6px; margin-bottom: 6px; overflow: hidden; }
+    .viral-bar { height: 100%; background: var(--grad); border-radius: 999px; }
+    .viral-meta { font-size: 11px; color: var(--muted); display: flex; gap: 12px; }
+
+    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
+    .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
+    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
+    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: white; }
+    .journey-label { font-size: 12px; color: var(--muted); }
+
+    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
+    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
+    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+    .mock-item-icon { font-size: 18px; }
+    .mock-item-name { font-weight: 600; font-size: 13px; }
+    .mock-item-sub { color: var(--muted); font-size: 11px; }
+    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
+    .mock-tag-accent { background: rgba(16,185,129,0.2); color: var(--accent); }
+    .mock-tag-red { background: rgba(239,68,68,0.2); color: #EF4444; }
+    .mock-tag-yellow { background: rgba(245,158,11,0.2); color: #F59E0B; }
+
+    .sns-platform { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .sns-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+    .sns-emoji { font-size: 18px; }
+    .sns-name { font-weight: 600; }
+    .sns-count { font-size: 11px; color: var(--muted); }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; margin-bottom: 16px; }
+    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .score-meta { flex: 1; }
+    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    .score-stars { color: #10B981; font-size: 20px; letter-spacing: 2px; }
+
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { font-weight: 700; color: var(--accent); }
+
+    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; }
+    .ai-branch-aionly { background: rgba(16,185,129,0.15); border: 2px solid rgba(16,185,129,0.5); color: var(--accent); }
+    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .ai-reason:last-child { border-bottom: none; }
+    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
+    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .ai-reason-text strong { color: var(--fg); }
+
+    .tip-box { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
+    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
+    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
+
+    .aionly-highlight { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; font-size: 14px; color: var(--accent); font-weight: 600; }
+
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
+
+    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .stats-row { gap: 10px; }
+      .stat-val { font-size: 22px; }
+      .score-big { font-size: 40px; }
+      .mock-phones { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../">
+    <div class="nav-logo-icon">📡</div>
+    UGC Hidden Spot
+  </a>
+  <a class="nav-back" href="../../">← 포트폴리오</a>
+  <span class="nav-badge">BA 98/130 · ai-only</span>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="live-dot"></span>
+    Round 7 · AI-only 브랜치 · 바이럴 예측 엔진
+  </div>
+  <h1>UGC Hidden<br><span>Spot</span></h1>
+  <p class="hero-sub">SNS 속 진짜 숨은 명소 — AI가 바이럴 신호 포착<br>남들보다 48시간 먼저 아는 독점 경험</p>
+  <div class="hero-actions">
+    <button class="btn-primary">📡 바이럴 신호 탐지하기</button>
+    <button class="btn-secondary">서비스 소개 보기</button>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#FF5F56"></div>
+      <div class="mockup-dot" style="background:#FFBD2E"></div>
+      <div class="mockup-dot" style="background:#27C93F"></div>
+      <span class="mockup-title">실시간 SNS 바이럴 신호 탐지</span>
+    </div>
+    <div class="signal-bar">
+      <div class="signal-dot"></div>
+      <span class="signal-label">바이럴 신호 감지 중</span>
+      <span class="signal-val">인스타 · 유튜브 · 틱톡 분석</span>
+    </div>
+    <div class="mockup-card">
+      <div class="mockup-card-header">
+        <div>
+          <div class="mockup-card-name">🌊 강릉 숨은 해변 "거울못"</div>
+          <div class="mockup-card-sub">강원 강릉 · 게시물 급증 +340% · 48시간 내 바이럴</div>
+        </div>
+        <span class="mockup-card-badge">VIRAL ⚡</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">AI 예측 신뢰도 94% · 지금 가면 한적</div>
+    </div>
+    <div class="mockup-card">
+      <div class="mockup-card-header">
+        <div>
+          <div class="mockup-card-name">🏚️ 전주 구도심 벽화 골목</div>
+          <div class="mockup-card-sub">전북 전주 · 틱톡 게시물 12,400건 · 진짜 숨은 곳</div>
+        </div>
+        <span class="mockup-card-badge">진짜</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">협찬 아님 · 자연 발생 버즈 확인</div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:var(--accent);margin-top:8px">+ 수억 건 SNS 실시간 분석 중 📡</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- HERO STATS -->
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val">2.3배</div>
+      <div class="stat-label">인플루언서 SNS 신뢰도 우위</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">23%</div>
+      <div class="stat-label">인스타 → 실제 방문 전환율</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">90억뷰</div>
+      <div class="stat-label">TikTok 한국 여행 월간 조회</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">+500%</div>
+      <div class="stat-label">바이럴 후 3개월 방문자 증가</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">BA 98</div>
+      <div class="stat-label">98/130 · ai-only 브랜치</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: 서비스 개요 -->
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <div class="section-title">서비스 개요 <span>(What)</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">ONE-LINE PITCH</div>
+    <div class="tip-text">인스타그램·유튜브·틱톡 게시물에서 AI가 실시간 "바이럴 직전" 장소 신호를 포착해, 공식 관광지가 아닌 UGC 기반 숨은 명소를 24-48시간 앞서 발굴하고 "협찬 광고 vs 진짜 숨은 곳"을 자동 구분하는 SNS 여행 인텔리전스 플랫폼</div>
+  </div>
+
+  <div class="card-row">
+    <div class="persona-box">
+      <div class="persona-avatar">📸</div>
+      <div class="persona-name">이채린, 23세 · 서울 거주</div>
+      <div class="persona-tag"># SNS 여행 콘텐츠 크리에이터</div>
+      <div class="persona-desc">인스타 팔로워 5만명. 아무도 모르는 곳을 먼저 찍어야 경쟁력. 이미 유명해진 장소는 가치 없음. "남들보다 48시간 먼저 아는" 정보가 필요.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">🎥</div>
+      <div class="persona-name">박태양, 27세 · 유튜버</div>
+      <div class="persona-tag"># 여행 유튜버 · 숨은 명소 채널</div>
+      <div class="persona-desc">구독자 12만명. "아무도 몰랐던 비밀 장소" 시리즈가 핵심 콘텐츠. 매번 수동으로 SNS를 뒤져야 해서 콘텐츠 발굴에 1주일씩 소비.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">🧑‍🤝‍🧑</div>
+      <div class="persona-name">MZ 트렌드세터 그룹</div>
+      <div class="persona-tag"># 트렌드 헌터 · 첫 발굴 자랑</div>
+      <div class="persona-desc">주말마다 "아직 뜨지 않은" 장소를 찾아다니는 20대 집단. SNS 바이럴 예측을 선점하는 것이 사회적 지위 신호.</div>
+    </div>
+  </div>
+
+  <div class="sns-platform">
+    <div class="sns-item"><span class="sns-emoji">📸</span><div><div class="sns-name">Instagram</div><div class="sns-count">한국 MAU 2,100만</div></div></div>
+    <div class="sns-item"><span class="sns-emoji">🎵</span><div><div class="sns-name">TikTok</div><div class="sns-count">여행 월 90억뷰</div></div></div>
+    <div class="sns-item"><span class="sns-emoji">▶️</span><div><div class="sns-name">YouTube</div><div class="sns-count">여행 채널 8만개+</div></div></div>
+    <div class="sns-item"><span class="sns-emoji">📌</span><div><div class="sns-name">Pinterest</div><div class="sns-count">한국 MAU 350만</div></div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: 리서치 근거 -->
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <div class="section-title">리서치 근거 <span>(Why)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <div class="research-stat">SNS 여행 정보 신뢰도: 공식 관광청 대비 인플루언서 SNS 2.3배 높음</div>
+        <div class="research-desc">여행 정보 신뢰도 조사에서 인플루언서 SNS 게시물이 공식 관광청 홈페이지보다 2.3배 높은 신뢰도 기록. 특히 20-30대에서 더욱 뚜렷.</div>
+        <div class="research-source">출처: DMO 글로벌 여행 소비자 신뢰 리포트 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <div class="research-stat">인스타그램 게시물 → 실제 방문 전환율 평균 23%</div>
+        <div class="research-desc">인스타그램에서 여행지 관련 게시물을 본 사용자 중 23%가 실제로 해당 장소를 방문. 비디오 콘텐츠는 전환율 31%로 더 높음.</div>
+        <div class="research-source">출처: Meta Business 여행 카테고리 인사이트 리포트 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <div class="research-stat">국내 여행 콘텐츠 인플루언서 팔로워 합계 4,200만</div>
+        <div class="research-desc">네이버 블로그·인스타그램 기준 국내 여행 콘텐츠 인플루언서 팔로워 총합 4,200만명. 이들이 생산하는 UGC가 공식 관광 정보 소비를 압도.</div>
+        <div class="research-source">출처: 2024 네이버·인스타그램 여행 콘텐츠 생태계 분석</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">04</div>
+      <div class="research-content">
+        <div class="research-stat">"바이럴 명소" 발굴 후 3개월내 방문자 500% 증가</div>
+        <div class="research-desc">SNS에서 처음 알려진 숨은 명소가 바이럴된 후 3개월 이내 방문자 수가 평균 500% 이상 폭증한 사례 다수. 선점자 효과가 뚜렷.</div>
+        <div class="research-source">출처: 한국관광공사 SNS 기반 관광지 방문 트렌드 분석 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">05</div>
+      <div class="research-content">
+        <div class="research-stat">TikTok 여행 콘텐츠 한국 월간 조회수 90억뷰</div>
+        <div class="research-desc">틱톡에서 한국 관련 여행 콘텐츠 월간 누적 조회 90억뷰. 이 중 "숨은 명소", "현지인 맛집", "아무도 모르는" 태그 게시물 성장률 YoY 280%.</div>
+        <div class="research-source">출처: TikTok Korea 콘텐츠 트렌드 리포트 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: 아이디어 도출 과정 -->
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <div class="section-title">아이디어 도출 과정</div>
+
+  <div class="tip-box">
+    <div class="tip-label">IDEATION ROUND</div>
+    <div class="tip-text">Round 4 → SNS 바이럴 신호 분석이라는 아이디어 발굴 → "협찬 vs 진짜" 자동 구분 기능으로 차별화 강화 → BA 매트릭스 스코어링. 트렌드 부합 9점·지역 분산 9점 강점. ai-only 브랜치로 분류 — AI 없이는 서비스 자체 성립 불가. 사업성 출처: 방통위·Meta·TikTok.</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score low">6/10</div></div>
+  </div>
+  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score mid">7/10</div></div>
+  </div>
+  <div class="ba-total">
+    <div>
+      <div class="ba-total-label">BA 총점 (소계 77 + 보너스 21)</div>
+      <div class="ba-rank">트렌드 부합 9점 · 지역 분산 9점 · ai-only 선언</div>
+    </div>
+    <div class="ba-total-val">98/130</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: 공모전 심사 기준 -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
+
+  <div class="card">
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>심사 기준</th>
+          <th>배점</th>
+          <th>대응 전략</th>
+          <th>자체 평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
+          <td><span class="criteria-score">30점</span></td>
+          <td>AI로만 가능한 "48시간 바이럴 예측" + "협찬 vs 진짜 자동 구분"이라는 독창적 가치 제안. 기존 어떤 여행 서비스도 제공하지 않는 SNS 인텔리전스 기능.</td>
+          <td><span class="criteria-score">23/30</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>관광지방문자통계·집중률예측 API로 SNS 버즈량과 실제 방문 데이터를 교차 검증. 공공 데이터 + SNS 빅데이터 결합이 핵심 알고리즘.</td>
+          <td><span class="criteria-score">20/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>SNS 기반 숨은 명소 발굴 → 지방 소도시 자연 바이럴 → 지역분산 관광 촉진. 크리에이터 경제 활성화로 지역 관광 콘텐츠 생산 증가.</td>
+          <td><span class="criteria-score">20/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
+          <td><span class="criteria-score">20점</span></td>
+          <td>SNS 공개 API 크롤링 + NLP 감성 분석 + KTO API 교차 검증 아키텍처. SNS API 정책 변경 리스크 있으나 공개 데이터 범위 내 MVP 구현 가능.</td>
+          <td><span class="criteria-score">17/20</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 6: 주요 화면 Mock UI -->
+<div class="section">
+  <div class="section-label">Section 06</div>
+  <div class="section-title">주요 화면 <span>Mock UI</span></div>
+
+  <div class="journey-steps">
+    <div class="journey-step">
+      <div class="journey-num">1</div>
+      <div class="journey-label">SNS 신호<br>실시간 탐지</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">2</div>
+      <div class="journey-label">진짜/협찬<br>자동 구분</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">3</div>
+      <div class="journey-label">바이럴 예측<br>48시간 선점</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">4</div>
+      <div class="journey-label">방문·인증<br>콘텐츠 생성</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">5</div>
+      <div class="journey-label">선점 기록<br>랭킹 노출</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div style="font-size:14px;font-weight:700;margin-bottom:12px">실시간 바이럴 미터 — 현재 감지 중인 장소</div>
+    <div class="viral-meter">
+      <div class="viral-header">
+        <span class="viral-name">🌊 강릉 숨은 해변 "거울못"</span>
+        <span class="viral-score-badge viral-score-high">D-48h 바이럴 예측</span>
+      </div>
+      <div class="viral-bar-wrap"><div class="viral-bar" style="width:92%"></div></div>
+      <div class="viral-meta"><span>버즈 신호 92%</span><span>인스타 게시물 +340% (72h)</span><span>진짜 여부 ✓ 확인</span></div>
+    </div>
+    <div class="viral-meter">
+      <div class="viral-header">
+        <span class="viral-name">🏚️ 전주 구도심 벽화 골목</span>
+        <span class="viral-score-badge viral-score-mid">바이럴 진행 중</span>
+      </div>
+      <div class="viral-bar-wrap"><div class="viral-bar" style="width:67%"></div></div>
+      <div class="viral-meta"><span>버즈 신호 67%</span><span>틱톡 게시물 12,400건</span><span>협찬 없음 ✓ 자연 버즈</span></div>
+    </div>
+    <div class="viral-meter">
+      <div class="viral-header">
+        <span class="viral-name">🏔️ 제주 오름 신규 발굴지</span>
+        <span class="viral-score-badge viral-score-low">초기 신호 감지</span>
+      </div>
+      <div class="viral-bar-wrap"><div class="viral-bar" style="width:31%"></div></div>
+      <div class="viral-meta"><span>버즈 신호 31%</span><span>유튜브 쇼츠 38건</span><span>검증 중...</span></div>
+    </div>
+  </div>
+
+  <div class="mock-phones">
+    <div class="mock-phone">
+      <div class="mock-header">🔍 협찬 vs 진짜 구분</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">AI 자동 진위 분석 결과</div>
+      <div class="mock-item" style="border:1px solid rgba(16,185,129,0.4)">
+        <span class="mock-item-icon">✅</span>
+        <div>
+          <div class="mock-item-name">강릉 거울못</div>
+          <div class="mock-item-sub">자연 발생 버즈 · 다계정 패턴 없음</div>
+          <span class="mock-tag mock-tag-accent">진짜 숨은 곳</span>
+        </div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">⚠️</span>
+        <div>
+          <div class="mock-item-name">서울 OO카페</div>
+          <div class="mock-item-sub">동시 다발 게시 패턴 감지</div>
+          <span class="mock-tag mock-tag-red">협찬 의심</span>
+        </div>
+      </div>
+      <div class="mock-item" style="border:1px solid rgba(16,185,129,0.4)">
+        <span class="mock-item-icon">✅</span>
+        <div>
+          <div class="mock-item-name">전주 벽화 골목</div>
+          <div class="mock-item-sub">지역 주민 게시물 다수</div>
+          <span class="mock-tag mock-tag-accent">로컬 인증</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">📡 바이럴 예측 대시보드</div>
+      <div style="background:rgba(16,185,129,0.06);border-radius:10px;padding:12px;margin-bottom:10px">
+        <div style="font-size:11px;color:var(--accent);margin-bottom:4px">이번 주 선점 기회</div>
+        <div style="font-size:14px;font-weight:700">3곳 발굴됨</div>
+        <div style="font-size:11px;color:var(--muted)">모두 48시간 내 바이럴 예측</div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">⏰</span>
+        <div><div class="mock-item-name">거울못 · D-18h</div><div class="mock-item-sub">지금 가면 선점 가능</div><span class="mock-tag mock-tag-yellow">긴급</span></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">📅</span>
+        <div><div class="mock-item-name">전주 골목 · D-36h</div><div class="mock-item-sub">주말 전 방문 추천</div></div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">🏆 선점자 랭킹</div>
+      <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:14px;margin-bottom:10px;text-align:center">
+        <div style="font-size:28px">🥇</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">트렌드 헌터 Lv.4</div>
+        <div style="font-size:11px;color:var(--muted)">바이럴 선점 11회 · 전국 Top 2%</div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">⚡</span>
+        <div><div class="mock-item-name">선점 기록 11회</div><div class="mock-item-sub">평균 바이럴 38시간 전 방문</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">📸</span>
+        <div><div class="mock-item-name">내 콘텐츠 누적 조회</div><div class="mock-item-sub">340만뷰 · 팔로워 +2,400</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 7: OpenAPI 활용 -->
+<div class="section">
+  <div class="section-label">Section 07</div>
+  <div class="section-title">OpenAPI <span>활용</span></div>
+
+  <div class="card">
+    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">KTO 관광지방문자통계·집중률예측 API로 SNS 버즈량과 실제 방문 데이터를 교차 검증. 공공 데이터를 기준선으로 삼아 "진짜 숨은 곳 vs 이미 유명한 곳"을 판별하는 알고리즘 핵심 데이터.</div>
+    <div class="api-chips">
+      <span class="api-chip">한국관광공사_관광지방문자통계</span>
+      <span class="api-chip">한국관광공사_국문관광정보서비스</span>
+      <span class="api-chip">한국관광공사_관광지집중률예측</span>
+      <span class="api-chip">한국관광공사_위치기반관광정보서비스</span>
+      <span class="api-chip">(외부) Instagram Graph API</span>
+      <span class="api-chip">(외부) YouTube Data API v3</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지방문자통계</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">실제 방문자 수 기준선. SNS 버즈量 vs 실방문 비율 역산해 "진짜 숨은 곳" 판별.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지집중률예측</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">예측 혼잡도로 "지금 가면 아직 한적" 여부 판단. 선점 타이밍 정확도 향상.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">SNS API 연동</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">Instagram·YouTube 공개 API로 게시물 급증 패턴 실시간 감지. 공개 범위 내 합법 수집.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 8: 팀 합의 점수 -->
+<div class="section">
+  <div class="section-label">Section 08</div>
+  <div class="section-title">팀 합의 <span>점수</span></div>
+
+  <div class="score-display">
+    <div class="score-big">8.0</div>
+    <div class="score-meta">
+      <div class="score-label">팀 합의 점수 / 10점</div>
+      <div class="score-stars">★★★★☆</div>
+      <div class="score-reason" style="margin-top:8px">ai-only 브랜치 선언 — AI 없이는 서비스 자체 성립 불가. SNS 바이럴 예측이라는 기술적 차별화가 명확. 크리에이터 경제와 관광의 교차점.</div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>ai-only — AI 없이는 서비스 자체 불가</li>
+        <li>SNS 크리에이터 경제와 관광의 완벽 결합</li>
+        <li>트렌드 부합·지역 분산 각 9점 강점</li>
+        <li>광고 수익 모델로 무료 유저 확보 용이</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>SNS API 정책 변경 → 공개 데이터 크롤링 대안</li>
+        <li>사회 가치 6점 → 지역 소상공인 연계 강화</li>
+        <li>협찬 구분 오류 → 사람 검수 레이어 추가</li>
+        <li>바이럴 후 혼잡 → 방문자 분산 시스템 연계</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 9: 객관 사업성 -->
+<div class="section">
+  <div class="section-label">Section 09</div>
+  <div class="section-title">객관 <span>사업성</span></div>
+
+  <div class="card">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>규모</th>
+          <th>산정 근거</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TAM</strong></td>
+          <td class="highlight">2.8조원</td>
+          <td style="font-size:13px;color:var(--muted)">국내 SNS 광고 + 관광 마케팅 시장 (방송통신위원회 2024)</td>
+        </tr>
+        <tr>
+          <td><strong>SAM</strong></td>
+          <td class="highlight">7,000억원</td>
+          <td style="font-size:13px;color:var(--muted)">여행 인플루언서 + 트렌드 헌터 약 200만명 → 7,000억원</td>
+        </tr>
+        <tr>
+          <td><strong>SOM</strong></td>
+          <td class="highlight">350억원</td>
+          <td style="font-size:13px;color:var(--muted)">Y3 이내 5% 점유율 목표</td>
+        </tr>
+        <tr>
+          <td><strong>Y1 매출</strong></td>
+          <td class="highlight">24.4억원</td>
+          <td style="font-size:13px;color:var(--muted)">광고: 월 40만 MAU × RPM $3 × 12개월 = 14.4억<br>브랜드 협찬: 50건 × 2,000만원 = 10억</td>
+        </tr>
+        <tr>
+          <td><strong>BEP</strong></td>
+          <td class="highlight">18개월</td>
+          <td style="font-size:13px;color:var(--muted)">Y2 달성 예상. 초기 개발비 8억 + AI 인프라 4억 = 12억 투자 회수</td>
+        </tr>
+        <tr>
+          <td><strong>주요 경쟁사</strong></td>
+          <td colspan="2" style="font-size:13px;color:var(--muted)">Pinterest 한국 MAU 350만 · Instagram 여행 계정 광고 CPM $8 — SNS 바이럴 예측 서비스 없음. 블루오션 포지셔닝</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 10: AI 차별화 -->
+<div class="section">
+  <div class="section-label">Section 10</div>
+  <div class="section-title">AI <span>차별화</span></div>
+
+  <div class="ai-branch-badge ai-branch-aionly">🤖 AI Branch: ai-only — AI 없이는 서비스 자체 존재 불가</div>
+
+  <div class="aionly-highlight">
+    ai-only 선언 근거: 수억 건 SNS 게시물 실시간 분석 + 바이럴 패턴 감지 + 협찬 자동 구분은 사람이 수작업으로 절대 수행 불가능한 규모와 속도의 작업입니다. 이 서비스는 AI가 곧 서비스입니다.
+  </div>
+
+  <div class="card">
+    <div class="ai-reason">
+      <div class="ai-reason-num">1</div>
+      <div class="ai-reason-text">
+        <strong>수억 건 SNS 게시물 실시간 분석 → 사람이 수동으로 절대 불가능한 규모</strong><br>
+        인스타그램·유튜브·틱톡에서 매일 생성되는 수억 건의 게시물을 AI가 24/7 실시간 스캔해 "위치 태그된 장소 + 급증 패턴"을 감지. 10명의 에디터팀이 365일 작업해도 하루치 데이터의 0.001%도 처리 불가.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">2</div>
+      <div class="ai-reason-text">
+        <strong>버즈量 vs 실방문 비율 역산 알고리즘 → "진짜 숨은 곳 vs 협찬 광고" 자동 구분</strong><br>
+        KTO 실방문자 통계와 SNS 게시물 수를 교차 분석해 "버즈量 대비 방문자가 비정상적으로 많으면 협찬, 게시물 수 대비 방문자가 적으면 진짜 숨은 곳"이라는 역산 모델. 계정 생성일·게시 패턴·해시태그 분포까지 다변수 분류. 사람이 직관으로 판단 불가.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">3</div>
+      <div class="ai-reason-text">
+        <strong>48시간 바이럴 예측 모델 → 사람 직관으로 불가능한 신호 선제 포착</strong><br>
+        게시물 증가 속도·공유 패턴·팔로워 확산 경로·시간대 분포 등 수십 가지 지표를 조합해 "이 장소가 48시간 내 바이럴될 확률 92%"를 사전 예측. 과거 바이럴 사례 10만건 학습 기반 시계열 모델. 어떤 사람도 이 속도와 정확도로 예측 불가.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <strong style="color:var(--fg)">UGC Hidden Spot</strong> — 2026 한국관광공사 관광 서비스 공모전
+  </div>
+  <div>BA Score 98/130 · 팀 합의 8.0/10 · AI Branch: ai-only</div>
+  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
+</footer>
+
+</body>
+</html>
