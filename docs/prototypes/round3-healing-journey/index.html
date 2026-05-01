@@ -422,6 +422,160 @@
       .hero-title { font-size: 30px; }
       .score-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
     }
+
+    /* §6 Interactive Prototype */
+    .proto-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .proto-screen-labels { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .proto-slabel {
+      padding: 5px 12px; border-radius: 999px; font-size: 11px;
+      background: var(--card); border: 1px solid var(--border); color: var(--muted);
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .proto-slabel.active { background: rgba(16,185,129,0.1); border-color: var(--accent); color: var(--accent2); font-weight: 700; }
+    .proto-phone {
+      width: 320px; background: #080810;
+      border: 1.5px solid #1E1E2C; border-radius: 40px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .proto-notch { height: 28px; background: #080810; display: flex; align-items: center; justify-content: center; }
+    .proto-notch-bar { width: 76px; height: 5px; background: #18181F; border-radius: 3px; }
+    .proto-screen { display: none; flex-direction: column; min-height: 580px; background: linear-gradient(170deg,#051C14 0%,#030D09 50%,#060609 100%); }
+    .proto-screen.active { display: flex; }
+    .proto-sbar {
+      height: 50px; display: flex; align-items: center; padding: 0 14px; gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(6,6,9,0.75); backdrop-filter: blur(12px); flex-shrink: 0;
+    }
+    .proto-back {
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; background: rgba(255,255,255,0.06); font-size: 13px;
+      cursor: pointer; color: var(--muted); transition: all 0.15s; border: none;
+    }
+    .proto-back:hover { color: var(--fg); background: rgba(255,255,255,0.1); }
+    .proto-stitle { flex: 1; font-size: 13px; font-weight: 700; color: var(--fg); }
+    .proto-sbadge { font-size: 10px; padding: 3px 8px; border-radius: 6px; background: rgba(16,185,129,0.15); color: var(--accent2); font-weight: 600; }
+    .proto-body { flex: 1; padding: 14px 14px 8px; overflow-y: auto; max-height: 478px; }
+    .proto-tabbar {
+      height: 54px; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: space-around;
+      background: rgba(6,6,9,0.92); padding-bottom: 4px; flex-shrink: 0;
+    }
+    .ptab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--muted2); cursor: pointer; }
+    .ptab.active { color: var(--accent); }
+    .ptab-icon { font-size: 18px; line-height: 1; }
+    /* mode buttons */
+    .pmodeBtn {
+      display: flex; align-items: center; gap: 12px; padding: 13px 14px;
+      border-radius: 14px; background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.18);
+      margin-bottom: 10px; cursor: pointer; transition: all 0.18s;
+    }
+    .pmodeBtn:hover, .pmodeBtn.sel { background: rgba(16,185,129,0.17); border-color: var(--accent); }
+    .pmodeIcon { width: 42px; height: 42px; border-radius: 12px; background: rgba(16,185,129,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .pmodeInfo { flex: 1; }
+    .pmodeName { font-size: 13px; font-weight: 700; color: var(--fg); }
+    .pmodeSub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .pmodeArr { color: var(--accent); font-size: 14px; }
+    /* course card */
+    .pcourseCard {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; margin-bottom: 10px; overflow: hidden;
+      cursor: pointer; transition: border-color 0.15s;
+    }
+    .pcourseCard:hover { border-color: rgba(16,185,129,0.45); }
+    .pcThumb {
+      height: 72px; display: flex; align-items: center; justify-content: center; font-size: 34px;
+      background: linear-gradient(145deg,#052E1C 0%,#03140B 100%); position: relative;
+    }
+    .pcThumbBadge { position: absolute; top: 6px; right: 8px; font-size: 10px; font-weight: 700; }
+    .pcBody { padding: 9px 12px 10px; }
+    .pcName { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 5px; }
+    .pcTags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 4px; }
+    .pctag { font-size: 10px; padding: 2px 7px; border-radius: 5px; background: rgba(16,185,129,0.1); color: var(--accent2); border: 1px solid rgba(16,185,129,0.2); }
+    .pcCong { font-size: 10px; padding: 2px 8px; border-radius: 5px; font-weight: 700; }
+    .cLow { background: rgba(16,185,129,0.15); color: var(--accent); }
+    .cMid { background: rgba(245,158,11,0.15); color: #F59E0B; }
+    .cHigh { background: rgba(239,68,68,0.1); color: #EF4444; }
+    /* api badge */
+    .apiBadge {
+      display: flex; align-items: center; gap: 6px; padding: 6px 10px;
+      background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 8px; font-size: 10px; color: var(--muted); margin-top: 8px; flex-wrap: wrap;
+    }
+    .apiBadge code { font-family: monospace; color: var(--accent2); font-size: 9px; }
+    /* CTA */
+    .pCta {
+      width: 100%; padding: 13px; background: var(--grad); border: none;
+      border-radius: 12px; font-size: 14px; font-weight: 800; color: #000;
+      cursor: pointer; margin-top: 10px; transition: opacity 0.15s; display: block;
+    }
+    .pCta:hover { opacity: 0.88; }
+    .pCta.sec { background: rgba(16,185,129,0.12); color: var(--accent2); border: 1px solid rgba(16,185,129,0.3); font-weight: 700; }
+    /* detail */
+    .pDetailHero { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 44px; background: linear-gradient(145deg,#052E1C 0%,#03140B 100%); position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+    .pLiveBadge { position: absolute; top: 8px; right: 10px; font-size: 10px; color: var(--accent); font-weight: 700; background: rgba(6,6,9,0.7); padding: 2px 7px; border-radius: 5px; }
+    .pStars { color: #F59E0B; font-size: 12px; }
+    .pInfoRow { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+    .pInfoChip { padding: 5px 10px; background: rgba(255,255,255,0.05); border-radius: 8px; font-size: 11px; color: var(--muted); }
+    .pPreview { background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15); border-radius: 10px; padding: 10px 12px; margin: 10px 0; }
+    .pPreviewText { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.55; margin-bottom: 8px; }
+    .pCongList { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .pCongRow { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-radius: 8px; font-size: 12px; }
+    .pCongRow.best { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); }
+    .pCongRow.mid { background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+    .pCongRow.bad { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); }
+    /* time slots */
+    .timeSlot { display: flex; align-items: center; justify-content: space-between; padding: 11px 13px; border-radius: 10px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+    .timeSlot.best { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.35); }
+    .timeSlot.normal { background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+    .timeSlot.selected { background: rgba(16,185,129,0.2); border: 1.5px solid var(--accent); }
+    /* waveform */
+    .pWave { height: 44px; border-radius: 8px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; gap: 3px; padding: 0 10px; overflow: hidden; margin: 8px 0; }
+    .pWaveBar { width: 3px; border-radius: 2px; background: rgba(16,185,129,0.3); animation: wave 1.4s ease-in-out infinite; }
+    .pWaveBar.on { background: var(--accent); }
+    @keyframes wave { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(2.5)} }
+    .pProgress { height: 3px; background: var(--border); border-radius: 2px; margin: 4px 0; }
+    .pProgressFill { height: 100%; width: 40%; background: var(--grad); border-radius: 2px; }
+    .pAudioCtrls { display: flex; justify-content: space-between; align-items: center; }
+    .pCtrlBtn { width: 30px; height: 30px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; }
+    .pPlayBtn { width: 40px; height: 40px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; }
+    .pTimeLabel { font-size: 10px; color: var(--muted2); font-family: monospace; }
+    /* completion */
+    .pCompletionRing {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: conic-gradient(var(--accent) 0% 78%, rgba(255,255,255,0.06) 78%);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px; position: relative;
+    }
+    .pCompletionRing::before { content:''; position:absolute; inset:8px; background:#030D09; border-radius:50%; }
+    .pCompletionInner { position: relative; z-index: 1; text-align: center; }
+    .pStatRow { display: flex; gap: 10px; margin: 10px 0; }
+    .pStat { flex: 1; text-align: center; background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px 6px; }
+    .pStatVal { font-size: 18px; font-weight: 900; color: var(--accent); }
+    .pStatLbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+    .pNextCard { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.18); border-radius: 12px; padding: 10px 12px; margin-top: 10px; cursor: pointer; }
+    /* dots */
+    .proto-dots { display: flex; gap: 7px; justify-content: center; }
+    .proto-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.15s; }
+    .proto-dot.active { background: var(--accent); width: 20px; border-radius: 4px; }
+    /* filter bar */
+    .filterBar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; -webkit-overflow-scrolling: touch; }
+    .filterBar::-webkit-scrollbar { display: none; }
+    .fChip { flex-shrink: 0; padding: 5px 12px; border-radius: 999px; font-size: 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); cursor: pointer; white-space: nowrap; }
+    .fChip.on { background: rgba(16,185,129,0.12); border-color: var(--accent); color: var(--accent2); }
+    /* step dots */
+    .stepDots { display: flex; gap: 5px; justify-content: center; margin-bottom: 14px; }
+    .stepDot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
+    .stepDot.done { background: var(--accent); }
+    .stepDot.cur { background: var(--accent2); width: 18px; border-radius: 3px; }
+    /* location banner */
+    .locBanner { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+    .locBannerTop { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .locBannerSub { font-size: 11px; color: var(--accent2); }
+    /* map placeholder */
+    .pMapArea { height: 110px; border-radius: 12px; background: linear-gradient(145deg,#031510 0%,#040E07 100%); display: flex; align-items: center; justify-content: center; font-size: 40px; position: relative; overflow: hidden; margin-bottom: 10px; }
+    .pMapDots { position: absolute; inset: 0; background: radial-gradient(circle at 35% 60%,rgba(16,185,129,0.25) 0%,transparent 38%), radial-gradient(circle at 65% 35%,rgba(52,211,153,0.18) 0%,transparent 30%), radial-gradient(circle at 55% 75%,rgba(16,185,129,0.12) 0%,transparent 22%); }
+    .pMapPin { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); font-size: 14px; }
+    @media (max-width: 400px) { .proto-phone { width: 290px; } }
   </style>
 </head>
 <body>
@@ -792,200 +946,430 @@
 </div>
 <hr class="divider">
 
-<!-- §6 주요 화면 ────────────────────────────────────── -->
+<!-- §6 인터랙티브 프로토타입 ───────────────────────── -->
 <div class="section">
   <div class="section-num">§6</div>
-  <div class="section-label">주요 화면 — Mock UI</div>
-  <h2 class="section-title">핵심 기능 3가지 화면 프로토타입</h2>
+  <div class="section-label">인터랙티브 프로토타입 — 6개 화면</div>
+  <h2 class="section-title">모바일 앱 전체 플로우 직접 체험</h2>
+  <p class="section-desc">화면을 클릭·탭해 앱 흐름을 경험하세요. Visit Korea OpenAPI 픽스처 데이터 반영 · 모바일 우선 반응형</p>
 
-  <div class="mockui-grid">
-    <!-- Screen 1: Mode Select -->
-    <div class="mockui-card">
-      <div class="mockui-header">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="mockui-title-bar">기능 1 · 치유 모드 선택 → 코스 추천</span>
-      </div>
-      <div class="mockui-body">
-        <div class="mock-screen-top">
-          <div class="mock-app-icon">🌿</div>
-          <div class="mock-app-q">어떻게 회복할까요?</div>
-          <div class="mock-app-sub">오늘의 기분을 선택해 주세요</div>
+  <div class="proto-wrap">
+
+    <!-- Screen labels -->
+    <div class="proto-screen-labels" id="protoLabels">
+      <span class="proto-slabel active" onclick="protoGo(1)">S1 홈</span>
+      <span class="proto-slabel" onclick="protoGo(2)">S2 코스 추천</span>
+      <span class="proto-slabel" onclick="protoGo(3)">S3 코스 상세</span>
+      <span class="proto-slabel" onclick="protoGo(4)">S4 일정 선택</span>
+      <span class="proto-slabel" onclick="protoGo(5)">S5 진행 중</span>
+      <span class="proto-slabel" onclick="protoGo(6)">S6 완료</span>
+    </div>
+
+    <!-- Phone frame -->
+    <div class="proto-phone">
+      <div class="proto-notch"><div class="proto-notch-bar"></div></div>
+
+      <!-- ── Screen 1: 홈 / 치유 모드 선택 ── -->
+      <div class="proto-screen active" id="ps1">
+        <div class="proto-sbar">
+          <span class="proto-stitle">🌿 치유여정 Korea</span>
+          <span class="proto-sbadge">오늘 · 토요일</span>
         </div>
-        <div class="mock-mode-list">
-          <div class="mock-mode-item active">
-            <div class="mock-mode-em">🎧</div>
-            <div class="mock-mode-text">
-              <div class="mock-mode-title">들으며 회복</div>
-              <div class="mock-mode-sub">오디오 스토리와 함께 천천히 걷기</div>
+        <div class="proto-body">
+          <div style="text-align:center;margin-bottom:16px;">
+            <div style="font-size:22px;font-weight:900;color:var(--fg);margin-bottom:4px;">지금 어떻게 회복할까요?</div>
+            <div style="font-size:12px;color:var(--muted);">오늘 기분을 선택하면 맞춤 코스를 추천해 드려요</div>
+          </div>
+
+          <div style="height:70px;border-radius:12px;background:linear-gradient(145deg,#051C14 0%,#03140B 100%);display:flex;align-items:center;justify-content:center;font-size:38px;position:relative;overflow:hidden;margin-bottom:14px;">
+            🌲
+            <div style="position:absolute;inset:0;background:radial-gradient(circle at 40% 60%,rgba(16,185,129,0.2) 0%,transparent 50%)"></div>
+            <div style="position:absolute;bottom:6px;left:10px;right:10px;font-size:9px;color:rgba(52,211,153,0.7);font-weight:600;z-index:1;">북한산 새벽 숲길 · 지금 조용해요 🟢</div>
+          </div>
+
+          <div class="pmodeBtn sel" onclick="protoGo(2)">
+            <div class="pmodeIcon">🎧</div>
+            <div class="pmodeInfo">
+              <div class="pmodeName">들으며 회복 <span style="font-size:9px;background:var(--accent);color:#000;border-radius:4px;padding:1px 5px;font-weight:800;margin-left:4px;">추천</span></div>
+              <div class="pmodeSub">오디오 스토리와 함께 천천히 걷기</div>
             </div>
-            <span class="mock-mode-check">✓</span>
+            <span class="pmodeArr">›</span>
           </div>
-          <div class="mock-mode-item">
-            <div class="mock-mode-em">🌿</div>
-            <div class="mock-mode-text">
-              <div class="mock-mode-title">쉬며 회복</div>
-              <div class="mock-mode-sub">아무것도 안 해도 되는 조용한 곳</div>
+
+          <div class="pmodeBtn" onclick="protoGo(2)">
+            <div class="pmodeIcon">🌿</div>
+            <div class="pmodeInfo">
+              <div class="pmodeName">쉬며 회복</div>
+              <div class="pmodeSub">아무것도 안 해도 되는 조용한 곳</div>
+            </div>
+            <span class="pmodeArr">›</span>
+          </div>
+
+          <div class="pmodeBtn" onclick="protoGo(2)">
+            <div class="pmodeIcon">✨</div>
+            <div class="pmodeInfo">
+              <div class="pmodeName">발견하며 회복</div>
+              <div class="pmodeSub">아직 아무도 모르는 숨은 명소</div>
+            </div>
+            <span class="pmodeArr">›</span>
+          </div>
+
+          <div class="apiBadge">
+            <span>📡 API</span>
+            <code>wellness-tourism</code>
+            <code>visitor-concentration-forecast</code>
+          </div>
+        </div>
+        <div class="proto-tabbar">
+          <div class="ptab active"><span class="ptab-icon">🏠</span>홈</div>
+          <div class="ptab"><span class="ptab-icon">🗺️</span>코스</div>
+          <div class="ptab"><span class="ptab-icon">🎧</span>오디오</div>
+          <div class="ptab"><span class="ptab-icon">👤</span>내기록</div>
+        </div>
+      </div>
+
+      <!-- ── Screen 2: 코스 추천 결과 ── -->
+      <div class="proto-screen" id="ps2">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(1)">←</button>
+          <span class="proto-stitle">🎧 들으며 회복</span>
+          <span class="proto-sbadge">3개 추천</span>
+        </div>
+        <div class="proto-body">
+          <div class="filterBar">
+            <span class="fChip on">🟢 한산한 곳 먼저</span>
+            <span class="fChip">⭐ 별점순</span>
+            <span class="fChip">📍 거리순</span>
+            <span class="fChip">🌿 자연 코스</span>
+          </div>
+
+          <div class="pcourseCard" onclick="protoGo(3)">
+            <div class="pcThumb">🏯<div class="pMapDots"></div><span class="pcThumbBadge cLow">🟢 지금 한산</span></div>
+            <div class="pcBody">
+              <div class="pcName">창덕궁 후원 명상 오디오 코스</div>
+              <div class="pcTags">
+                <span class="pctag">⏱ 80분</span>
+                <span class="pctag">📍 2.3km</span>
+                <span class="pctag">🎧 오디오 3편</span>
+                <span class="pctag pcCong cLow">🟢 매우 한산</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);">audio-guide · wellness-tourism API · <span style="color:#F59E0B;">★4.9</span> (847개 리뷰)</div>
             </div>
           </div>
-          <div class="mock-mode-item">
-            <div class="mock-mode-em">✨</div>
-            <div class="mock-mode-text">
-              <div class="mock-mode-title">발견하며 회복</div>
-              <div class="mock-mode-sub">아직 아무도 모르는 숨은 명소</div>
+
+          <div class="pcourseCard" onclick="protoGo(3)">
+            <div class="pcThumb">🌲<div class="pMapDots"></div><span class="pcThumbBadge cMid">🟡 보통</span></div>
+            <div class="pcBody">
+              <div class="pcName">북한산 둘레길 힐링 트레일</div>
+              <div class="pcTags">
+                <span class="pctag">⏱ 120분</span>
+                <span class="pctag">📍 4.1km</span>
+                <span class="pctag">🎧 오디오 5편</span>
+                <span class="pctag pcCong cMid">🟡 보통</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);">durunubi-trails · eco-tourism API · <span style="color:#F59E0B;">★4.7</span> (523개 리뷰)</div>
             </div>
           </div>
+
+          <div class="pcourseCard" onclick="protoGo(3)">
+            <div class="pcThumb">🌊<div class="pMapDots"></div><span class="pcThumbBadge cLow">🟢 한산</span></div>
+            <div class="pcBody">
+              <div class="pcName">남산 야경 감성 힐링 코스</div>
+              <div class="pcTags">
+                <span class="pctag">⏱ 60분</span>
+                <span class="pctag">📍 1.8km</span>
+                <span class="pctag">🎧 오디오 2편</span>
+                <span class="pctag pcCong cLow">🟢 한산</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);">eco-tourism · audio-guide API · <span style="color:#F59E0B;">★4.8</span> (612개 리뷰)</div>
+            </div>
+          </div>
+
+          <div class="apiBadge">
+            <span>📡 API</span>
+            <code>visitor-concentration-forecast</code>
+            <code>area-tourism-diversity</code>
+          </div>
         </div>
-        <div style="margin-top:14px;padding:10px 12px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;font-size:12px;color:var(--accent2);">
-          추천 코스 3개 준비됨 → 북한산 / 남산 / 창덕궁 후원
+        <div class="proto-tabbar">
+          <div class="ptab"><span class="ptab-icon">🏠</span>홈</div>
+          <div class="ptab active"><span class="ptab-icon">🗺️</span>코스</div>
+          <div class="ptab"><span class="ptab-icon">🎧</span>오디오</div>
+          <div class="ptab"><span class="ptab-icon">👤</span>내기록</div>
         </div>
       </div>
+
+      <!-- ── Screen 3: 코스 상세 ── -->
+      <div class="proto-screen" id="ps3">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(2)">←</button>
+          <span class="proto-stitle">창덕궁 후원</span>
+          <span style="font-size:16px;cursor:pointer;">🤍</span>
+        </div>
+        <div class="proto-body">
+          <div class="pDetailHero">
+            🏯
+            <div class="pMapDots"></div>
+            <span class="pLiveBadge">● LIVE 🟢 한산</span>
+          </div>
+
+          <div style="font-size:15px;font-weight:800;color:var(--fg);margin-bottom:4px;">창덕궁 후원 명상 오디오 코스</div>
+          <div style="font-size:12px;margin-bottom:6px;"><span class="pStars">★★★★★</span> <span style="color:var(--fg);font-weight:700;">4.9</span> <span style="color:var(--muted);">(847개 리뷰)</span></div>
+
+          <div class="pInfoRow">
+            <span class="pInfoChip">⏱ 80분</span>
+            <span class="pInfoChip">📍 2.3km</span>
+            <span class="pInfoChip">🎧 오디오 3편</span>
+            <span class="pInfoChip">🏛️ 유네스코 등재</span>
+          </div>
+
+          <div class="pPreview">
+            <div style="font-size:11px;color:var(--accent2);font-weight:700;margin-bottom:6px;">🎧 오디오 스토리 미리듣기</div>
+            <div class="pPreviewText">"부용지 연꽃이 피는 계절, 정조는 이 자리에서 혼자 책을 읽었다. 당신도 잠시 멈춰도 좋다…"</div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;">▶</div>
+              <div style="flex:1;height:3px;background:var(--border);border-radius:2px;"><div style="width:0%;height:100%;background:var(--grad);border-radius:2px;"></div></div>
+              <span style="font-size:10px;color:var(--muted2);font-family:monospace;">0:00 / 6:10</span>
+            </div>
+          </div>
+
+          <div style="font-size:12px;font-weight:700;color:var(--fg);margin-bottom:8px;">혼잡도 예보 (이번 주말)</div>
+          <div class="pCongList">
+            <div class="pCongRow best">
+              <span style="color:var(--fg);font-size:12px;">토 오전 7–9시</span>
+              <span style="font-size:11px;color:var(--accent);font-weight:700;">매우 한산 🟢 추천</span>
+            </div>
+            <div class="pCongRow mid">
+              <span style="color:var(--fg);font-size:12px;">토 오전 9–11시</span>
+              <span style="font-size:11px;color:#F59E0B;font-weight:700;">보통 🟡</span>
+            </div>
+            <div class="pCongRow bad">
+              <span style="color:var(--muted);font-size:12px;">토 오후 1–4시</span>
+              <span style="font-size:11px;color:#EF4444;font-weight:700;">혼잡 🔴</span>
+            </div>
+          </div>
+
+          <div class="apiBadge">
+            <span>📡 API</span>
+            <code>audio-guide</code>
+            <code>wellness-tourism</code>
+            <code>visitor-concentration</code>
+          </div>
+
+          <button class="pCta" onclick="protoGo(4)">예약하기 →</button>
+        </div>
+      </div>
+
+      <!-- ── Screen 4: 방문 일정 선택 ── -->
+      <div class="proto-screen" id="ps4">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(3)">←</button>
+          <span class="proto-stitle">방문 일정 선택</span>
+        </div>
+        <div class="proto-body">
+          <div class="stepDots">
+            <span class="stepDot done"></span>
+            <span class="stepDot done"></span>
+            <span class="stepDot done"></span>
+            <span class="stepDot cur"></span>
+            <span class="stepDot"></span>
+            <span class="stepDot"></span>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:14px;display:flex;gap:12px;align-items:center;">
+            <span style="font-size:24px;">🏯</span>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--fg);">창덕궁 후원 명상 코스</div>
+              <div style="font-size:11px;color:var(--muted);">80분 · 2.3km · 🎧 오디오 3편</div>
+            </div>
+          </div>
+
+          <div style="font-size:12px;color:var(--muted2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;font-weight:600;">이번 주 추천 시간대</div>
+
+          <div class="timeSlot best selected" id="slot1" onclick="selectSlot(1)">
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--fg);">토요일 오전 7:00</div>
+              <div style="font-size:10px;color:var(--accent);">혼잡도 데이터 기반 최적 타이밍</div>
+            </div>
+            <span style="font-size:11px;color:var(--accent);font-weight:700;">🟢 매우 한산 ✓</span>
+          </div>
+
+          <div class="timeSlot normal" id="slot2" onclick="selectSlot(2)">
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--fg);">토요일 오전 9:00</div>
+              <div style="font-size:10px;color:var(--muted);">일반 입장 시간</div>
+            </div>
+            <span style="font-size:11px;color:#F59E0B;font-weight:700;">🟡 보통</span>
+          </div>
+
+          <div class="timeSlot normal" id="slot3" onclick="selectSlot(3)">
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--muted);">일요일 오전 8:00</div>
+              <div style="font-size:10px;color:var(--muted);">다음 주말</div>
+            </div>
+            <span style="font-size:11px;color:var(--accent);font-weight:700;">🟢 한산</span>
+          </div>
+
+          <div style="margin-top:12px;padding:10px 12px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:10px;">
+            <div style="font-size:11px;color:var(--accent2);font-weight:700;margin-bottom:3px;">✓ 선택됨: 토요일 오전 7:00</div>
+            <div style="font-size:11px;color:var(--muted);">visitor-concentration-forecast API 기반 추천</div>
+          </div>
+
+          <div class="apiBadge">
+            <span>📡 API</span>
+            <code>visitor-concentration-forecast</code>
+          </div>
+
+          <button class="pCta" onclick="protoGo(5)">출발 확정하기 →</button>
+        </div>
+      </div>
+
+      <!-- ── Screen 5: 진행 중 — 오디오 재생 ── -->
+      <div class="proto-screen" id="ps5">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(4)" style="font-size:11px;width:auto;padding:0 10px;border-radius:8px;">✕ 종료</button>
+          <span class="proto-stitle">창덕궁 후원 코스</span>
+          <span style="font-size:12px;color:var(--accent2);cursor:pointer;">지도 🗺️</span>
+        </div>
+        <div class="proto-body">
+          <div class="pMapArea">
+            🏯
+            <div class="pMapDots"></div>
+            <div class="pMapPin">📍</div>
+            <div style="position:absolute;top:8px;left:10px;font-size:10px;color:var(--accent);font-weight:700;background:rgba(6,6,9,0.75);padding:2px 7px;border-radius:5px;">● LIVE</div>
+          </div>
+
+          <div class="locBanner">
+            <div class="locBannerTop">📍 현재: 인정전 앞 광장</div>
+            <div class="locBannerSub">→ 다음 포인트: 부용지 <strong>450m</strong> · 도보 약 6분</div>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div>
+                <div style="font-size:11px;color:var(--accent2);font-weight:600;margin-bottom:2px;">🎧 오디오 스토리 1 / 3</div>
+                <div style="font-size:13px;font-weight:700;color:var(--fg);">창덕궁의 봄 — 정조의 서재</div>
+              </div>
+              <span style="font-size:10px;color:var(--muted);background:rgba(255,255,255,0.05);padding:3px 8px;border-radius:6px;">audio-guide</span>
+            </div>
+
+            <div class="pWave">
+              <div class="pWaveBar on" style="height:16px;animation-delay:0s"></div>
+              <div class="pWaveBar on" style="height:28px;animation-delay:.1s"></div>
+              <div class="pWaveBar on" style="height:22px;animation-delay:.2s"></div>
+              <div class="pWaveBar on" style="height:36px;animation-delay:.15s"></div>
+              <div class="pWaveBar on" style="height:24px;animation-delay:.25s"></div>
+              <div class="pWaveBar on" style="height:30px;animation-delay:.05s"></div>
+              <div class="pWaveBar" style="height:18px;animation-delay:.3s"></div>
+              <div class="pWaveBar" style="height:26px;animation-delay:.1s"></div>
+              <div class="pWaveBar" style="height:20px;animation-delay:.2s"></div>
+              <div class="pWaveBar" style="height:32px;animation-delay:.15s"></div>
+              <div class="pWaveBar" style="height:14px;animation-delay:.35s"></div>
+              <div class="pWaveBar" style="height:24px;animation-delay:.05s"></div>
+            </div>
+            <div class="pProgress"><div class="pProgressFill"></div></div>
+            <div class="pAudioCtrls">
+              <span class="pTimeLabel">2:33</span>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <div class="pCtrlBtn">⏮</div>
+                <div class="pPlayBtn">⏸</div>
+                <div class="pCtrlBtn">⏭</div>
+              </div>
+              <span class="pTimeLabel">6:10</span>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;font-size:11px;color:var(--muted2);text-align:center;">포인트 도착 시 자동으로 다음 스토리 재생</div>
+
+          <div class="apiBadge" style="margin-top:8px;">
+            <span>📡 API</span>
+            <code>audio-guide</code>
+            <code>wellness-tourism</code>
+          </div>
+
+          <button class="pCta" onclick="protoGo(6)" style="margin-top:8px;">코스 완료하기 ✓</button>
+        </div>
+      </div>
+
+      <!-- ── Screen 6: 치유 완료 / 기록 ── -->
+      <div class="proto-screen" id="ps6">
+        <div class="proto-sbar">
+          <span class="proto-stitle" style="text-align:center;width:100%;">치유 여정 완료 🌿</span>
+        </div>
+        <div class="proto-body" style="text-align:center;">
+          <div class="pCompletionRing">
+            <div class="pCompletionInner">
+              <div style="font-size:18px;font-weight:900;color:var(--accent);">+12</div>
+              <div style="font-size:9px;color:var(--muted);">회복 점수</div>
+            </div>
+          </div>
+
+          <div style="font-size:15px;font-weight:800;color:var(--fg);margin-bottom:4px;">창덕궁 후원 80분 완료!</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">2026.05.03 토요일 오전 7:00 – 8:20</div>
+
+          <div class="pStatRow">
+            <div class="pStat">
+              <div class="pStatVal">80분</div>
+              <div class="pStatLbl">⏱ 산책 시간</div>
+            </div>
+            <div class="pStat">
+              <div class="pStatVal">3편</div>
+              <div class="pStatLbl">🎧 오디오</div>
+            </div>
+            <div class="pStat">
+              <div class="pStatVal">1.8km</div>
+              <div class="pStatLbl">🚶 이동 거리</div>
+            </div>
+          </div>
+
+          <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:10px;margin:10px 0;text-align:left;">
+            <div style="font-size:11px;color:var(--accent2);font-weight:700;margin-bottom:4px;">✨ 숨은 명소 발견!</div>
+            <div style="font-size:11px;color:var(--muted);">방문자 상위 2위 미기록 명소 — 부용지 북쪽 정자<br><span style="color:var(--muted2);">area-tourism-diversity API 데이터 기반</span></div>
+          </div>
+
+          <div style="text-align:left;margin-bottom:8px;">
+            <div style="font-size:11px;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">다음 추천 코스</div>
+            <div class="pNextCard" onclick="protoGo(1)">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:12px;font-weight:700;color:var(--fg);">🌲 북한산 둘레길 힐링 트레일</div>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px;">durunubi-trails API · 120분 · ★4.7</div>
+                </div>
+                <span style="color:var(--accent);font-size:14px;">›</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="apiBadge">
+            <span>📡 API</span>
+            <code>photo-contest-winners</code>
+            <code>area-tourism-diversity</code>
+          </div>
+
+          <button class="pCta" onclick="protoGo(1)" style="margin-top:8px;">기록 저장 ✓</button>
+          <button class="pCta sec" onclick="protoGo(1)" style="margin-top:6px;">새 코스 시작하기</button>
+        </div>
+        <div class="proto-tabbar">
+          <div class="ptab"><span class="ptab-icon">🏠</span>홈</div>
+          <div class="ptab"><span class="ptab-icon">🗺️</span>코스</div>
+          <div class="ptab"><span class="ptab-icon">🎧</span>오디오</div>
+          <div class="ptab active"><span class="ptab-icon">👤</span>내기록</div>
+        </div>
+      </div>
+
+    </div><!-- /proto-phone -->
+
+    <!-- Dot navigation -->
+    <div class="proto-dots" id="protoDots">
+      <span class="proto-dot active" onclick="protoGo(1)"></span>
+      <span class="proto-dot" onclick="protoGo(2)"></span>
+      <span class="proto-dot" onclick="protoGo(3)"></span>
+      <span class="proto-dot" onclick="protoGo(4)"></span>
+      <span class="proto-dot" onclick="protoGo(5)"></span>
+      <span class="proto-dot" onclick="protoGo(6)"></span>
     </div>
 
-    <!-- Screen 2: Audio Story -->
-    <div class="mockui-card">
-      <div class="mockui-header">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="mockui-title-bar">기능 2 · 위치 기반 오디오 스토리</span>
-      </div>
-      <div class="mockui-body">
-        <div class="mock-course-map">
-          🏯
-          <div class="mock-course-map-dots"></div>
-          <div style="position:absolute;top:8px;right:10px;font-size:10px;color:rgba(52,211,153,0.8);font-weight:600;z-index:1;">● LIVE</div>
-        </div>
-        <div class="mock-course-info">
-          <div class="mock-course-name">창덕궁 후원 — 치유 오디오 코스</div>
-          <div class="mock-course-tags" style="margin:6px 0 10px;">
-            <span class="mock-tag">🎧 오디오 3편</span>
-            <span class="mock-tag">⏱ 80분</span>
-            <span class="mock-tag">🟢 지금 한산함</span>
-          </div>
-        </div>
-        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-bottom:8px;line-height:1.55;">
-          "부용지 연꽃이 피는 계절, 정조는 이 자리에서 혼자 책을 읽었다. 당신도 잠시 멈춰도 좋다…"
-        </div>
-        <div class="mock-audio-waveform">
-          <div class="wave-bar active"></div>
-          <div class="wave-bar active"></div>
-          <div class="wave-bar active"></div>
-          <div class="wave-bar active"></div>
-          <div class="wave-bar active"></div>
-          <div class="wave-bar active"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-        </div>
-        <div class="mock-audio-progress"><div class="mock-audio-progress-fill"></div></div>
-        <div class="mock-audio-ctrls">
-          <span class="mock-audio-time">2:33</span>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <div class="mock-ctrl-btn">⏮</div>
-            <div class="mock-ctrl-play">▶</div>
-            <div class="mock-ctrl-btn">⏭</div>
-          </div>
-          <span class="mock-audio-time">6:10</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Screen 3: Congestion + Wellness -->
-    <div class="mockui-card">
-      <div class="mockui-header">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="mockui-title-bar">기능 3 · 혼잡도 회피 + 웰니스 코스</span>
-      </div>
-      <div class="mockui-body">
-        <div style="font-size:13px;font-weight:700;color:var(--fg);margin-bottom:10px;">이번 주말 추천 타이밍</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:10px;">
-            <span style="font-size:12px;color:var(--fg);">토요일 오전 7–9시</span>
-            <span style="font-size:11px;color:var(--accent);font-weight:700;">매우 한산 🟢</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;">
-            <span style="font-size:12px;color:var(--fg);">토요일 오후 2–4시</span>
-            <span style="font-size:11px;color:#F59E0B;font-weight:700;">보통 🟡</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;">
-            <span style="font-size:12px;color:var(--muted);">일요일 낮 12–3시</span>
-            <span style="font-size:11px;color:#EF4444;font-weight:700;">혼잡 🔴</span>
-          </div>
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">웰니스 코스 매칭</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="padding:8px 10px;background:var(--surface);border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px;">
-            <span>🌲</span>
-            <span style="flex:1;color:var(--fg);">북한산 숲길 치유 코스</span>
-            <span style="color:var(--accent2);font-size:11px;">4.9★</span>
-          </div>
-          <div style="padding:8px 10px;background:var(--surface);border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px;">
-            <span>🌊</span>
-            <span style="flex:1;color:var(--fg);">한강 해질녘 명상 코스</span>
-            <span style="color:var(--accent2);font-size:11px;">4.8★</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Screen 4: Journey record -->
-    <div class="mockui-card">
-      <div class="mockui-header">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="mockui-title-bar">사용자 여정 플로우</span>
-      </div>
-      <div class="mockui-body">
-        <div class="journey-steps">
-          <div class="journey-step">
-            <div class="journey-step-icon">📱</div>
-            <div class="journey-step-label">앱 열기</div>
-          </div>
-          <div class="journey-arrow">→</div>
-          <div class="journey-step">
-            <div class="journey-step-icon">🎯</div>
-            <div class="journey-step-label">모드 선택</div>
-          </div>
-          <div class="journey-arrow">→</div>
-          <div class="journey-step">
-            <div class="journey-step-icon">🗺️</div>
-            <div class="journey-step-label">코스 추천</div>
-          </div>
-          <div class="journey-arrow">→</div>
-          <div class="journey-step">
-            <div class="journey-step-icon">🚶</div>
-            <div class="journey-step-label">이동</div>
-          </div>
-          <div class="journey-arrow">→</div>
-          <div class="journey-step">
-            <div class="journey-step-icon">🎧</div>
-            <div class="journey-step-label">오디오 재생</div>
-          </div>
-          <div class="journey-arrow">→</div>
-          <div class="journey-step">
-            <div class="journey-step-icon">✅</div>
-            <div class="journey-step-label">완료 · 기록</div>
-          </div>
-        </div>
-        <div style="margin-top:16px;padding:12px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:10px;">
-          <div style="font-size:12px;font-weight:700;color:var(--accent2);margin-bottom:6px;">치유 완료 기록</div>
-          <div style="font-size:12px;color:var(--muted);line-height:1.6;">
-            오늘 창덕궁 후원 80분 산책 완료 🌿<br>
-            오디오 스토리 3편 청취 · 방문자 2위 명소 발견<br>
-            <span style="color:var(--accent);">회복 점수 +12 ↑</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </div><!-- /proto-wrap -->
 </div>
 <hr class="divider">
 
@@ -1157,5 +1541,39 @@
   <div>Built with Korean Tourism OpenAPI · 한국관광공사 데이터 기반</div>
 </footer>
 
+<script>
+(function () {
+  var cur = 1;
+
+  function protoGo(n) {
+    // screens
+    document.querySelectorAll('.proto-screen').forEach(function (s, i) {
+      s.classList.toggle('active', i + 1 === n);
+    });
+    // dots
+    document.querySelectorAll('.proto-dot').forEach(function (d, i) {
+      d.classList.toggle('active', i + 1 === n);
+    });
+    // labels
+    document.querySelectorAll('.proto-slabel').forEach(function (l, i) {
+      l.classList.toggle('active', i + 1 === n);
+    });
+    cur = n;
+    // scroll phone body to top
+    var body = document.querySelector('#ps' + n + ' .proto-body');
+    if (body) body.scrollTop = 0;
+  }
+
+  window.protoGo = protoGo;
+
+  window.selectSlot = function (n) {
+    document.querySelectorAll('.timeSlot').forEach(function (s) {
+      s.classList.remove('selected');
+    });
+    var el = document.getElementById('slot' + n);
+    if (el) el.classList.add('selected');
+  };
+})();
+</script>
 </body>
 </html>
