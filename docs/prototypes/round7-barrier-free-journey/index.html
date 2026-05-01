@@ -840,6 +840,63 @@ AI 경로 최적화 (자체 알고리즘: 장애유형 × 경사도 × 엘리베
   </div>
 </section>
 
+<!-- SECTION 14: 실제 동작 화면 허브 -->
+<section id="screens">
+  <div class="container">
+    <div class="section-label">Section 14 — 실제 구현 화면</div>
+    <h2>5단계 인터랙티브 프로토타입</h2>
+    <p>각 화면은 실제 동작하는 HTML/CSS/JS로 구현됐습니다. 화면을 클릭하면 해당 단계를 직접 체험할 수 있습니다.</p>
+    <div class="screens-row" style="grid-template-columns:repeat(3,1fr);margin-top:28px">
+      <a href="screen-01-profile.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 01</div>
+          <div class="screen-title">⚙️ 접근성 프로파일 설정</div>
+          <div class="screen-body">6개 장애 유형 토글 선택. 중증도 설정. 보조기기 태그 입력. AI 탐색 시작 CTA.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-02-route.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 02</div>
+          <div class="screen-title">🗺 AI 접근성 경로 탐색</div>
+          <div class="screen-body">SVG 맵 시각화. API 로딩 애니메이션. 3개 경로 비교카드 (접근성 점수·거리·태그).</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-03-alerts.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 03</div>
+          <div class="screen-title">⚠️ 실시간 접근성 알림</div>
+          <div class="screen-body">엘리베이터 고장 알림 + 우회 경로 패널. 8초 후 신규 알림 자동 추가. 시설 현황 ticker.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-04-spot.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 04</div>
+          <div class="screen-title">📍 관광지 접근성 상세</div>
+          <div class="screen-body">시설현황·구역별·사진·리뷰 탭 전환. 시설 상태 표시. 구역 접근성 점수. 실사용자 리뷰.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-05-emergency.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 05</div>
+          <div class="screen-title">🆘 긴급 지원 연결</div>
+          <div class="screen-body">SOS 버튼 누르면 4단계 발송 애니메이션. 119·복지관·보호자 연결. GPS 좌표 표시.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <div class="screen-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-style:dashed">
+        <div style="font-size:28px;margin-bottom:8px">♿</div>
+        <div class="screen-title" style="font-size:13px">경로: 01→02→03→04→05</div>
+        <div class="screen-body" style="font-size:11px;margin-top:6px">Screen 01 프로파일 설정부터<br>시작하면 전체 여정 체험 가능</div>
+        <a href="screen-01-profile.html" style="margin-top:12px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:8px 16px;border-radius:10px;text-decoration:none">전체 여정 시작 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">♿ <span>Barrier-Free</span> Journey</div>

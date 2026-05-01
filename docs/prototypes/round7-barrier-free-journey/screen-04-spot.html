@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Barrier-Free Journey — 관광지 접근성 정보</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060609; --surface: #0D0D13; --card: #13131A; --border: #1E1E28;
+    --fg: #F4F4F8; --muted: #9898AC; --muted2: #5E5E72;
+    --accent: #6366F1; --accent-soft: rgba(99,102,241,0.08);
+    --red: #EF4444; --green: #22C55E; --yellow: #EAB308;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: 'Pretendard', system-ui, sans-serif; min-height: 100vh; display: flex; justify-content: center; padding: 20px 0 40px; }
+  .phone { width: 390px; min-height: 844px; background: var(--surface); border-radius: 40px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px var(--border); }
+  .status-bar { height: 44px; background: var(--surface); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; font-size: 12px; font-weight: 600; }
+  .status-icons { display: flex; gap: 6px; }
+  .nav-bar { height: 52px; background: rgba(13,13,19,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; padding: 0 20px; }
+  .nav-back { width: 32px; height: 32px; border-radius: 50%; background: var(--card); display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--border); text-decoration: none; color: var(--fg); font-size: 14px; flex-shrink: 0; }
+  .nav-title { font-size: 16px; font-weight: 700; }
+  .nav-step { margin-left: auto; font-size: 12px; color: var(--muted); }
+  .progress { display: flex; justify-content: center; gap: 8px; padding: 14px 0; }
+  .prog-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: all 0.3s; }
+  .prog-dot.done { background: rgba(34,197,94,0.6); }
+  .prog-dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+
+  /* Hero */
+  .spot-hero { height: 180px; background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 50%, #16213e 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .hero-illust { font-size: 80px; opacity: 0.3; user-select: none; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%); }
+  .hero-score { position: absolute; top: 16px; right: 16px; background: rgba(6,6,9,0.85); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; text-align: center; }
+  .hero-score-num { font-size: 28px; font-weight: 800; color: var(--green); line-height: 1; }
+  .hero-score-label { font-size: 10px; color: var(--muted); }
+  .hero-badges { position: absolute; bottom: 16px; left: 16px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .hero-badge { background: rgba(6,6,9,0.8); border: 1px solid rgba(99,102,241,0.3); color: var(--accent); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+
+  /* Tab bar */
+  .tab-bar { display: flex; border-bottom: 1px solid var(--border); }
+  .tab { flex: 1; padding: 14px 0; font-size: 13px; font-weight: 600; color: var(--muted); text-align: center; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* Content */
+  .tab-content { display: none; padding: 16px 20px; overflow-y: auto; max-height: 500px; }
+  .tab-content.active { display: block; }
+
+  /* Facility grid */
+  .facility-section { margin-bottom: 20px; }
+  .facility-section-title { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .facility-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .facility-item { background: var(--card); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); }
+  .fac-icon { font-size: 18px; flex-shrink: 0; }
+  .fac-info { flex: 1; min-width: 0; }
+  .fac-name { font-size: 12px; font-weight: 600; }
+  .fac-detail { font-size: 10px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fac-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .fac-ok { background: var(--green); }
+  .fac-na { background: var(--red); }
+  .fac-partial { background: var(--yellow); }
+
+  /* Zone detail */
+  .zone-list { display: flex; flex-direction: column; gap: 10px; }
+  .zone-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .zone-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .zone-name { font-size: 14px; font-weight: 700; }
+  .zone-score-pill { margin-left: auto; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+  .z-high { background: rgba(34,197,94,0.15); color: var(--green); }
+  .z-mid { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .z-low { background: rgba(239,68,68,0.15); color: var(--red); }
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .zone-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 600; }
+  .zt-ok { background: rgba(34,197,94,0.1); color: var(--green); }
+  .zt-no { background: rgba(239,68,68,0.1); color: var(--red); }
+  .zt-info { background: var(--accent-soft); color: var(--accent); }
+
+  /* Photo gallery (mock) */
+  .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 16px; }
+  .photo-cell { aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition: transform 0.2s; position: relative; }
+  .photo-cell:hover { transform: scale(1.02); }
+  .photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(6,6,9,0.7); font-size: 10px; color: var(--fg); padding: 4px 6px; font-weight: 600; }
+
+  /* Reviews */
+  .review-list { display: flex; flex-direction: column; gap: 12px; }
+  .review-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .review-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .reviewer-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); border: 1px solid rgba(99,102,241,0.2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .reviewer-name { font-size: 13px; font-weight: 700; }
+  .reviewer-type { font-size: 11px; color: var(--muted); }
+  .review-date { margin-left: auto; font-size: 10px; color: var(--muted2); }
+  .review-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .review-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .review-tag { font-size: 10px; background: var(--border); color: var(--muted); padding: 3px 8px; border-radius: 20px; }
+
+  /* CTA */
+  .cta-row { padding: 16px 20px; display: flex; gap: 10px; }
+  .btn-primary { flex: 2; padding: 16px; border-radius: 14px; border: none; background: var(--accent); color: #fff; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
+  .btn-emergency { flex: 1; padding: 16px; border-radius: 14px; border: 1px solid rgba(239,68,68,0.4); background: rgba(239,68,68,0.08); color: var(--red); font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status-bar">
+    <span>10:02</span>
+    <span style="font-weight:800;color:var(--accent)">♿ BFJ</span>
+    <div class="status-icons"><span>●●●</span><span>WiFi</span><span>88%</span></div>
+  </div>
+  <div class="nav-bar">
+    <a href="screen-03-alerts.html" class="nav-back">←</a>
+    <span class="nav-title">경복궁 접근성 정보</span>
+    <span class="nav-step">4 / 5</span>
+  </div>
+  <div class="progress">
+    <div class="prog-dot done"></div>
+    <div class="prog-dot done"></div>
+    <div class="prog-dot done"></div>
+    <div class="prog-dot active"></div>
+    <div class="prog-dot"></div>
+  </div>
+
+  <div class="spot-hero">
+    <div class="hero-illust">🏯</div>
+    <div class="hero-overlay"></div>
+    <div class="hero-score">
+      <div class="hero-score-num">89</div>
+      <div class="hero-score-label">접근성 점수</div>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge">♿ 휠체어 적합</span>
+      <span class="hero-badge">🔊 음성 안내</span>
+      <span class="hero-badge">🅿️ 장애인 주차</span>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab(this,'facilities')">시설 현황</div>
+    <div class="tab" onclick="switchTab(this,'zones')">구역별</div>
+    <div class="tab" onclick="switchTab(this,'photos')">사진</div>
+    <div class="tab" onclick="switchTab(this,'reviews')">리뷰</div>
+  </div>
+
+  <!-- TAB 1: Facilities -->
+  <div class="tab-content active" id="tab-facilities">
+    <div class="facility-section">
+      <div class="facility-section-title">이동 편의</div>
+      <div class="facility-grid">
+        <div class="facility-item">
+          <span class="fac-icon">🅿️</span>
+          <div class="fac-info"><div class="fac-name">장애인 주차</div><div class="fac-detail">정문 50m · 8자리</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">♿</span>
+          <div class="fac-info"><div class="fac-name">경사로</div><div class="fac-detail">경사 6° · 포장</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">🛗</span>
+          <div class="fac-info"><div class="fac-name">엘리베이터</div><div class="fac-detail">2호기 정상운행</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">🚶</span>
+          <div class="fac-info"><div class="fac-name">보도 단차</div><div class="fac-detail">전 구간 1cm 이하</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+      </div>
+    </div>
+    <div class="facility-section">
+      <div class="facility-section-title">편의 시설</div>
+      <div class="facility-grid">
+        <div class="facility-item">
+          <span class="fac-icon">🚻</span>
+          <div class="fac-info"><div class="fac-name">장애인 화장실</div><div class="fac-detail">3개소</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">🛋️</span>
+          <div class="fac-info"><div class="fac-name">휴게 벤치</div><div class="fac-detail">150m마다</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">⠿</span>
+          <div class="fac-info"><div class="fac-name">점자 안내판</div><div class="fac-detail">주요 5개소</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">🔊</span>
+          <div class="fac-info"><div class="fac-name">청각 보조 기기</div><div class="fac-detail">미설치</div></div>
+          <div class="fac-status fac-na"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">👁</span>
+          <div class="fac-info"><div class="fac-name">음성 해설</div><div class="fac-detail">앱 연동 QR</div></div>
+          <div class="fac-status fac-ok"></div>
+        </div>
+        <div class="facility-item">
+          <span class="fac-icon">🍼</span>
+          <div class="fac-info"><div class="fac-name">수유실</div><div class="fac-detail">방문자센터 내</div></div>
+          <div class="fac-status fac-partial"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: Zones -->
+  <div class="tab-content" id="tab-zones">
+    <div class="zone-list">
+      <div class="zone-item">
+        <div class="zone-header">
+          <span style="font-size:20px">🏛️</span>
+          <span class="zone-name">정문 ~ 근정전</span>
+          <span class="zone-score-pill z-high">94점</span>
+        </div>
+        <div class="zone-tags">
+          <span class="zone-tag zt-ok">경사로 완비</span>
+          <span class="zone-tag zt-ok">포장 노면</span>
+          <span class="zone-tag zt-ok">단차 없음</span>
+          <span class="zone-tag zt-info">점자블록</span>
+        </div>
+      </div>
+      <div class="zone-item">
+        <div class="zone-header">
+          <span style="font-size:20px">🏘️</span>
+          <span class="zone-name">경회루 / 향원정 구역</span>
+          <span class="zone-score-pill z-mid">78점</span>
+        </div>
+        <div class="zone-tags">
+          <span class="zone-tag zt-ok">포장 노면</span>
+          <span class="zone-tag zt-no">계단 2곳</span>
+          <span class="zone-tag zt-info">우회 경로 있음</span>
+        </div>
+      </div>
+      <div class="zone-item">
+        <div class="zone-header">
+          <span style="font-size:20px">🏗️</span>
+          <span class="zone-name">후원 / 동쪽 후문 구역</span>
+          <span class="zone-score-pill z-low">52점</span>
+        </div>
+        <div class="zone-tags">
+          <span class="zone-tag zt-no">비포장 구간</span>
+          <span class="zone-tag zt-no">경사 20° 이상</span>
+          <span class="zone-tag zt-no">휠체어 진입 어려움</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: Photos -->
+  <div class="tab-content" id="tab-photos">
+    <div class="photo-grid">
+      <div class="photo-cell">♿<div class="photo-label">정문 경사로</div></div>
+      <div class="photo-cell">🚻<div class="photo-label">장애인 화장실</div></div>
+      <div class="photo-cell">🅿️<div class="photo-label">장애인 주차</div></div>
+      <div class="photo-cell">⠿<div class="photo-label">점자 안내판</div></div>
+      <div class="photo-cell">🛗<div class="photo-label">엘리베이터</div></div>
+      <div class="photo-cell">🛋️<div class="photo-label">휴게 벤치</div></div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:var(--muted2)">
+      Visit Korea OpenAPI detailImage2 연동 — 실제 접근성 시설 사진<br>
+      <span style="color:var(--accent)">사진 6장 · 최근 업데이트: 2026-04-20</span>
+    </div>
+  </div>
+
+  <!-- TAB 4: Reviews -->
+  <div class="tab-content" id="tab-reviews">
+    <div class="review-list">
+      <div class="review-item">
+        <div class="review-header">
+          <div class="reviewer-avatar">♿</div>
+          <div><div class="reviewer-name">이재호</div><div class="reviewer-type">전동휠체어 사용자 · 7년</div></div>
+          <span class="review-date">2주 전</span>
+        </div>
+        <div class="review-body">정문부터 근정전까지는 전동휠체어로 완전히 다녀올 수 있었습니다. 경사로 경사가 부드럽고 바닥이 잘 포장돼 있어요. 다만 경회루 뒤쪽은 비포장이라 포기했습니다.</div>
+        <div class="review-tags">
+          <span class="review-tag">전동휠체어</span><span class="review-tag">정문경로</span><span class="review-tag">만족</span>
+        </div>
+      </div>
+      <div class="review-item">
+        <div class="review-header">
+          <div class="reviewer-avatar">👁</div>
+          <div><div class="reviewer-name">최선영</div><div class="reviewer-type">시각장애인 · TalkBack</div></div>
+          <span class="review-date">1달 전</span>
+        </div>
+        <div class="review-body">앱의 음성 QR 해설 연동이 매우 편리했습니다. 근정전 앞 점자 안내판 위치가 앱 데이터와 일치해서 혼자서도 무사히 돌아볼 수 있었어요. 청각 보조 기기가 없는 게 아쉬움.</div>
+        <div class="review-tags">
+          <span class="review-tag">시각장애</span><span class="review-tag">QR음성해설</span>
+        </div>
+      </div>
+      <div class="review-item">
+        <div class="review-header">
+          <div class="reviewer-avatar">👴</div>
+          <div><div class="reviewer-name">David P.</div><div class="reviewer-type">외국인 · 워커 사용자</div></div>
+          <span class="review-date">3주 전</span>
+        </div>
+        <div class="review-body">English UI worked great. Benches every 150m was a lifesaver. The accessible toilet near the main hall was clean and spacious. Highly recommend for senior travellers.</div>
+        <div class="review-tags">
+          <span class="review-tag">English</span><span class="review-tag">walker</span><span class="review-tag">senior</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <button class="btn-emergency" onclick="window.location.href='screen-05-emergency.html'">🆘 긴급</button>
+    <button class="btn-primary" onclick="window.location.href='screen-05-emergency.html'">긴급 지원 설정 →</button>
+  </div>
+</div>
+
+<script>
+function switchTab(el, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+</script>
+</body>
+</html>
