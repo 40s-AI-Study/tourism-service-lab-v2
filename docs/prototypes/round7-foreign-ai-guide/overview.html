@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foreign AI Guide — 세계 어디서 왔든 AI 현지 가이드</title>
+  <style>
+    :root {
+      --bg: #060609;
+      --surface: #0D0D13;
+      --card: #13131A;
+      --border: #1E1E28;
+      --fg: #F4F4F8;
+      --muted: #9898AC;
+      --muted2: #5E5E72;
+      --accent: #38BDF8;
+      --accent2: #7DD3FC;
+      --grad: linear-gradient(135deg, #38BDF8 0%, #7DD3FC 100%);
+      --grad2: linear-gradient(135deg, #0284C7 0%, #38BDF8 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--fg); }
+    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+
+    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(56,189,248,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
+    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: #0a1a2a; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+
+    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
+    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-title { font-size: 12px; color: var(--muted2); }
+    .lang-flags { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .lang-flag { padding: 5px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+    .lang-flag.active { border-color: var(--accent); background: rgba(56,189,248,0.08); }
+    .chat-bubble { border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; font-size: 13px; line-height: 1.5; max-width: 90%; }
+    .chat-user { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); margin-left: auto; }
+    .chat-ai { background: var(--surface); border: 1px solid var(--border); }
+    .chat-label { font-size: 10px; color: var(--muted2); margin-bottom: 3px; }
+
+    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
+    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .research-item:last-child { border-bottom: none; }
+    .research-num { width: 28px; height: 28px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .research-content { flex: 1; }
+    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
+    .ba-score { font-size: 20px; font-weight: 800; }
+    .ba-score.high { color: var(--accent); }
+    .ba-score.mid { color: #F59E0B; }
+    .ba-score.low { color: var(--muted); }
+    .ba-total { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .ba-total-label { font-size: 15px; font-weight: 700; }
+    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
+    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+
+    .criteria-table { width: 100%; border-collapse: collapse; }
+    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
+    .criteria-table tr:last-child td { border-bottom: none; }
+    .criteria-score { font-weight: 800; color: var(--accent); }
+
+    .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 10px; margin-bottom: 20px; }
+    .lang-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+    .lang-emoji { font-size: 24px; margin-bottom: 6px; }
+    .lang-name { font-size: 13px; font-weight: 700; }
+    .lang-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
+    .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
+    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
+    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: #0a1a2a; }
+    .journey-label { font-size: 12px; color: var(--muted); }
+
+    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
+    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
+    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+    .mock-item-icon { font-size: 18px; }
+    .mock-item-name { font-weight: 600; font-size: 13px; }
+    .mock-item-sub { color: var(--muted); font-size: 11px; }
+    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
+    .mock-tag-accent { background: rgba(56,189,248,0.2); color: var(--accent); }
+    .mock-tag-red { background: rgba(239,68,68,0.2); color: #EF4444; }
+
+    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .api-chip { padding: 5px 12px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
+
+    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); border-radius: 16px; margin-bottom: 16px; }
+    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .score-meta { flex: 1; }
+    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    .score-stars { color: #38BDF8; font-size: 20px; letter-spacing: 2px; }
+
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { font-weight: 700; color: var(--accent); }
+
+    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); color: var(--accent); }
+    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .ai-reason:last-child { border-bottom: none; }
+    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #0a1a2a; }
+    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .ai-reason-text strong { color: var(--fg); }
+
+    .tip-box { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
+    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
+    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
+
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
+
+    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
+    footer a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .stats-row { gap: 10px; }
+      .stat-val { font-size: 22px; }
+      .score-big { font-size: 40px; }
+      .mock-phones { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../">
+    <div class="nav-logo-icon">🌐</div>
+    Foreign AI Guide
+  </a>
+  <a class="nav-back" href="../../">← 포트폴리오</a>
+  <span class="nav-badge">BA 99/130 · 공동 3위</span>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="live-dot"></span>
+    Round 7 · 공동 3위 · companion AI · 시장·이중타겟 최고점
+  </div>
+  <h1>Foreign<br><span>AI Guide</span></h1>
+  <p class="hero-sub">세계 어디서 왔든, 한국 어디든<br>AI 현지 가이드가 함께</p>
+  <div class="hero-actions">
+    <button class="btn-primary">🌐 언어 선택하고 시작</button>
+    <button class="btn-secondary">서비스 소개 보기</button>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#FF5F56"></div>
+      <div class="mockup-dot" style="background:#FFBD2E"></div>
+      <div class="mockup-dot" style="background:#27C93F"></div>
+      <span class="mockup-title">5개국어 AI 가이드 · 24시간</span>
+    </div>
+    <div class="lang-flags">
+      <div class="lang-flag active">🇺🇸 EN</div>
+      <div class="lang-flag">🇯🇵 JP</div>
+      <div class="lang-flag">🇨🇳 ZH</div>
+      <div class="lang-flag">🇪🇸 ES</div>
+      <div class="lang-flag">🇹🇭 TH</div>
+    </div>
+    <div class="chat-bubble chat-user">
+      <div class="chat-label">Visitor</div>
+      How do I get to Gyeongbokgung from Hongdae?
+    </div>
+    <div class="chat-bubble chat-ai">
+      <div class="chat-label">AI Guide 🤖</div>
+      Take Line 2 → transfer at Euljiro 3-ga to Line 3 → get off at Gyeongbokgung (경복궁). About 30 min, ₩1,450. Watch out — Exit 5 is closest to the palace gate!
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- HERO STATS -->
+<div class="section">
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-val">1,732만</div>
+      <div class="stat-label">2024 방한 외래객 (KTO)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">68%</div>
+      <div class="stat-label">외국인 불편 1위 "언어 장벽"</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">$1,690</div>
+      <div class="stat-label">외래객 1인당 평균 지출</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">40%</div>
+      <div class="stat-label">통역안내사 수요 미충족</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">BA 99</div>
+      <div class="stat-label">공동 3위 · /130점</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: 서비스 개요 -->
+<div class="section">
+  <div class="section-label">Section 02</div>
+  <div class="section-title">서비스 개요 <span>(What)</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">ONE-LINE PITCH</div>
+    <div class="tip-text">방한 외국인 전용 AI 가이드. 5개국어 실시간 통역·문화 맥락 설명·긴급상황 안내를 제공하며, 언어 장벽 없이 대중교통·맛집·숨은명소를 탐색하는 24시간 AI 현지인 친구 서비스</div>
+  </div>
+
+  <div class="lang-grid">
+    <div class="lang-card"><div class="lang-emoji">🇺🇸</div><div class="lang-name">English</div><div class="lang-sub">미국·유럽·오세아니아</div></div>
+    <div class="lang-card"><div class="lang-emoji">🇯🇵</div><div class="lang-name">日本語</div><div class="lang-sub">방한 22% 비중</div></div>
+    <div class="lang-card"><div class="lang-emoji">🇨🇳</div><div class="lang-name">中文</div><div class="lang-sub">방한 31% 비중</div></div>
+    <div class="lang-card"><div class="lang-emoji">🇪🇸</div><div class="lang-name">Español</div><div class="lang-sub">중남미·스페인</div></div>
+    <div class="lang-card"><div class="lang-emoji">🇹🇭</div><div class="lang-name">ภาษาไทย</div><div class="lang-sub">동남아 18% 비중</div></div>
+  </div>
+
+  <div class="card-row">
+    <div class="persona-box">
+      <div class="persona-avatar">👨‍💼</div>
+      <div class="persona-name">Tanaka Kenji, 32세 · 일본 도쿄</div>
+      <div class="persona-tag"># 첫 방한 · 독립 여행</div>
+      <div class="persona-desc">한국어 전혀 모름. 지하철 안내판이 한자도 아니라 읽기 불가. 맛집·편의점에서 주문하는 것도 두려움. 앱으로 해결하고 싶음.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">👩‍🎓</div>
+      <div class="persona-name">Sofia Martinez, 25세 · 멕시코</div>
+      <div class="persona-tag"># K-드라마 팬 · 배낭여행</div>
+      <div class="persona-desc">3주 한국 여행. 영어도 완벽하지 않아 더 불안. 지방 소도시 방문 원하지만 스페인어 지원 앱이 없어 서울만 머뭄.</div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">👨‍👩‍👦</div>
+      <div class="persona-name">Wang Fang 가족, 40대 · 상하이</div>
+      <div class="persona-tag"># 가족 여행 · 긴급 상황 우려</div>
+      <div class="persona-desc">아이와 함께 방한. 응급상황 발생 시 한국어로 신고·대처가 걱정. 중국어로 즉각 도움받을 수 있는 앱 필요.</div>
+    </div>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag">🌐 5개국어 실시간</span>
+    <span class="tag">🚇 대중교통 안내</span>
+    <span class="tag">🚨 긴급상황 지원</span>
+    <span class="tag">🍽️ 문화 맥락 설명</span>
+    <span class="tag">📍 숨은 명소 탐색</span>
+    <span class="tag">👮 대사관 연결</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: 리서치 근거 -->
+<div class="section">
+  <div class="section-label">Section 03</div>
+  <div class="section-title">리서치 근거 <span>(Why)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <div class="research-stat">방한 외래관광객 1,732만명 — 중국 31%, 일본 22%, 동남아 18%</div>
+        <div class="research-desc">2024년 방한 외래객 1,732만명. 중국(538만)·일본(381만)·동남아(312만) 순. 이 3개 권역만 합쳐도 전체의 71%. 모두 비영어권.</div>
+        <div class="research-source">출처: 한국관광공사(KTO) 2024 외래관광객 입국 통계</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <div class="research-stat">외국인 여행 불편 1위 "언어 장벽" 68%</div>
+        <div class="research-desc">방한 외래관광객 실태조사에서 여행 중 가장 불편한 사항 1위로 "언어 소통"이 68% 압도적 1위. 교통·음식·관광안내 모든 단계에서 언어 장벽 발생.</div>
+        <div class="research-source">출처: 한국관광공사 외래관광객 실태조사 2024</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <div class="research-stat">방한 외국인 1인당 평균 지출 $1,690</div>
+        <div class="research-desc">방한 외래객 1인당 평균 지출 $1,690로 전년 대비 8% 증가. 언어 장벽 해소 시 쇼핑·체험 지출 추가 20% 이상 증가 가능 (KTO 추정).</div>
+        <div class="research-source">출처: 한국관광공사(KTO) 2024 외래관광객 소비 실태</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">04</div>
+      <div class="research-content">
+        <div class="research-stat">AI 번역 앱 시장 $1.5B · 연 23% 성장 (Statista 2025)</div>
+        <div class="research-desc">글로벌 AI 번역·통역 앱 시장이 2025년 $15억 규모로 연 23% 고성장. 여행 특화 AI 가이드는 단순 번역 초월 — 문화 맥락 + 장소 정보 통합이 차별점.</div>
+        <div class="research-source">출처: Statista Digital Markets Report 2025</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">05</div>
+      <div class="research-content">
+        <div class="research-stat">관광통역안내사 공급 부족: 수요 대비 40% 미충족</div>
+        <div class="research-desc">공인 관광통역안내사 수요가 연간 150만명 분이나 실제 공급은 90만명 분(60%). 특히 중소도시·지방에서 심각한 통역 안내 공백. AI로 공백 해결.</div>
+        <div class="research-source">출처: 문화체육관광부 관광통역안내사 수급 실태조사 2024</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: 아이디어 도출 과정 -->
+<div class="section">
+  <div class="section-label">Section 04</div>
+  <div class="section-title">아이디어 도출 과정</div>
+
+  <div class="tip-box">
+    <div class="tip-label">IDEATION ROUND</div>
+    <div class="tip-text">Round 4 → 방한 외국인 언어 장벽 문제가 가장 큰 미충족 니즈라는 리서치 발견 → BA 매트릭스 스코어링. 시장 규모 10점 만점, 이중 타겟 9점으로 외래객·관광청 B2G 이중 수익 구조 강점. 공동 3위 선정. 사업성 출처: KTO·Statista·문체부.</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score high">10/10</div></div>
+    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score mid">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score low">5/10</div></div>
+    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score high">9/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score low">6/10</div></div>
+  </div>
+  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
+  <div class="ba-grid">
+    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score high">8/10</div></div>
+    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score mid">7/10</div></div>
+    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score mid">8/10</div></div>
+  </div>
+  <div class="ba-total">
+    <div>
+      <div class="ba-total-label">BA 총점 (소계 76 + 보너스 23)</div>
+      <div class="ba-rank">공동 3위 · 시장규모 10점 만점 · 이중타겟 9점 · 보너스 최고점</div>
+    </div>
+    <div class="ba-total-val">99/130</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: 공모전 심사 기준 -->
+<div class="section">
+  <div class="section-label">Section 05</div>
+  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
+
+  <div class="card">
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>심사 기준</th>
+          <th>배점</th>
+          <th>대응 전략</th>
+          <th>자체 평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
+          <td><span class="criteria-score">30점</span></td>
+          <td>단순 번역 앱이 아닌 "문화 맥락 + 장소 정보 + 긴급 대응"을 통합한 방한 외국인 전용 AI 가이드. 기존 Google Translate와 명확히 차별화된 여행 특화 서비스.</td>
+          <td><span class="criteria-score">24/30</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>영문·다국어 관광정보 API로 공식 정보 5개국어 실시간 제공. 긴급안전정보 API로 위기상황 자동 대응. 교통정보 연계로 실시간 길 안내.</td>
+          <td><span class="criteria-score">21/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
+          <td><span class="criteria-score">25점</span></td>
+          <td>외국인 관광 불편 1위 해결 → 재방문율 증가 → 관광 수지 개선. 언어 장벽 해소로 지방 소도시 외국인 방문 확대. 관광통역 공백 지역 AI로 커버.</td>
+          <td><span class="criteria-score">19/25</span></td>
+        </tr>
+        <tr>
+          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
+          <td><span class="criteria-score">20점</span></td>
+          <td>LLM 기반 다국어 처리는 현재 기술로 충분히 가능. KTO API + 교통 API + LLM 통합 아키텍처. 5개월 MVP 출시 가능. 긴급 연결은 규제 검토 필요.</td>
+          <td><span class="criteria-score">17/20</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 6: 주요 화면 Mock UI -->
+<div class="section">
+  <div class="section-label">Section 06</div>
+  <div class="section-title">주요 화면 <span>Mock UI</span></div>
+
+  <div class="journey-steps">
+    <div class="journey-step">
+      <div class="journey-num">1</div>
+      <div class="journey-label">언어 선택<br>입국 전 준비</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">2</div>
+      <div class="journey-label">AI 가이드<br>질문·탐색</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">3</div>
+      <div class="journey-label">실시간 번역<br>현장 대화</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">4</div>
+      <div class="journey-label">긴급상황<br>SOS 연결</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">5</div>
+      <div class="journey-label">여행 후<br>루트 저장</div>
+    </div>
+  </div>
+
+  <div class="mock-phones">
+    <div class="mock-phone">
+      <div class="mock-header">🌐 AI 가이드 대화</div>
+      <div style="font-size:10px;color:var(--accent);margin-bottom:8px">언어: 日本語 · 경복궁 근처</div>
+      <div style="background:rgba(56,189,248,0.05);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;color:var(--muted)">
+        <div style="font-size:10px;color:var(--muted2);margin-bottom:4px">Kenji</div>
+        景福宮の近くでランチはどこがいいですか？
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;color:var(--muted)">
+        <div style="font-size:10px;color:var(--accent);margin-bottom:4px">AI Guide ✨</div>
+        景福宮から徒歩5分の「通仁市場」がおすすめです！お弁当コインで好きなおかずを選べる独特のシステム。地元の人に人気で、一食約5,000ウォン（約600円）。今日は空いています。
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🗺️</span>
+        <div><div class="mock-item-name">통인시장 길 안내</div><div class="mock-item-sub">도보 5분 · 지금 출발</div></div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">🚨 긴급 SOS 센터</div>
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:14px;margin-bottom:12px;text-align:center">
+        <div style="font-size:24px;margin-bottom:6px">🆘</div>
+        <div style="font-size:14px;font-weight:700;color:#EF4444">긴급 상황 감지</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">AI가 대화에서 위급 상황 감지</div>
+      </div>
+      <div class="mock-item" style="border:1px solid rgba(239,68,68,0.3)">
+        <span class="mock-item-icon">🏥</span>
+        <div><div class="mock-item-name">가장 가까운 병원 안내</div><div class="mock-item-sub">서울대병원 · 2.3km · 외국어 가능</div><span class="mock-tag mock-tag-red">中文 지원</span></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🏛️</span>
+        <div><div class="mock-item-name">중국 대사관 연결</div><div class="mock-item-sub">긴급 영사 서비스 · 24시간</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">👮</span>
+        <div><div class="mock-item-name">112 신고 (다국어)</div><div class="mock-item-sub">AI가 한국어로 상황 전달</div></div>
+      </div>
+    </div>
+
+    <div class="mock-phone">
+      <div class="mock-header">🚇 실시간 교통 안내</div>
+      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">현재 위치: 홍대입구역 → 경복궁</div>
+      <div class="mock-item" style="border:1px solid var(--accent)">
+        <span class="mock-item-icon">🚇</span>
+        <div>
+          <div class="mock-item-name">추천 경로</div>
+          <div class="mock-item-sub">2호선 → 3호선 환승 · 30분</div>
+          <span class="mock-tag mock-tag-accent">₩1,450</span>
+        </div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;">
+        <div style="color:var(--accent);font-size:11px;margin-bottom:4px">문화 팁 💡</div>
+        <div style="color:var(--muted)">지하철에서 노약자석(파란색)은 비워두세요. 한국 문화 예절입니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 7: OpenAPI 활용 -->
+<div class="section">
+  <div class="section-label">Section 07</div>
+  <div class="section-title">OpenAPI <span>활용</span></div>
+
+  <div class="card">
+    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">영문·다국어 관광정보 API가 핵심. 긴급안전정보 API는 SOS 시스템의 데이터 소스. 교통정보 연계로 실시간 내비게이션 완성.</div>
+    <div class="api-chips">
+      <span class="api-chip">한국관광공사_영문관광정보서비스</span>
+      <span class="api-chip">한국관광공사_다국어관광정보서비스(일/중/영/스)</span>
+      <span class="api-chip">한국관광공사_관광지긴급안전정보</span>
+      <span class="api-chip">한국관광공사_교통정보연계서비스</span>
+      <span class="api-chip">한국관광공사_외국어관광안내콘텐츠</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">영문·다국어 관광정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">5개국어 관광지 정보 공식 제공. LLM과 결합해 자연어 질문 응답.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지긴급안전정보</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">재난·안전 정보를 다국어로 즉시 전달. SOS 시스템 데이터 소스.</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:14px">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">교통정보연계서비스</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.5">실시간 대중교통 경로·혼잡도. 외국인이 이해하기 쉬운 단계별 안내 생성.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 8: 팀 합의 점수 -->
+<div class="section">
+  <div class="section-label">Section 08</div>
+  <div class="section-title">팀 합의 <span>점수</span></div>
+
+  <div class="score-display">
+    <div class="score-big">8.0</div>
+    <div class="score-meta">
+      <div class="score-label">팀 합의 점수 / 10점</div>
+      <div class="score-stars">★★★★☆</div>
+      <div class="score-reason" style="margin-top:8px">TAM 29.3조원 최대 시장 + 외국인 언어 장벽이라는 명확하고 심각한 문제 해결. 관광청 B2G 계약 가능성이 높아 수익 안정성 우수.</div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>시장 규모 10/10 — TAM 29.3조원 최대</li>
+        <li>언어 장벽 = 방한 외국인 불편 1위 직접 해결</li>
+        <li>B2G(관광청·지자체) 수익 구조로 안정성 확보</li>
+        <li>보너스 항목 전체 최고점 23/30</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
+        <li>Google 번역 인식 경쟁 → 여행 특화 차별화 강조</li>
+        <li>지역 분산 5점 → 지방 관광청 B2G 우선 확대</li>
+        <li>긴급 연결 규제 → 법무·외교부 협의 선제 진행</li>
+        <li>오프라인 사용 → 핵심 데이터 로컬 캐싱</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 9: 객관 사업성 -->
+<div class="section">
+  <div class="section-label">Section 09</div>
+  <div class="section-title">객관 <span>사업성</span></div>
+
+  <div class="card">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>규모</th>
+          <th>산정 근거</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TAM</strong></td>
+          <td class="highlight">29.3조원</td>
+          <td style="font-size:13px;color:var(--muted)">방한 외래객 1,732만 × 평균지출 $1,690 = 29.3조원 (KTO 2024)</td>
+        </tr>
+        <tr>
+          <td><strong>SAM</strong></td>
+          <td class="highlight">11.3조원</td>
+          <td style="font-size:13px;color:var(--muted)">독립여행자 55% × 디지털 앱 사용 70% = 666만명 → 11.3조원</td>
+        </tr>
+        <tr>
+          <td><strong>SOM</strong></td>
+          <td class="highlight">1,130억원</td>
+          <td style="font-size:13px;color:var(--muted)">Y3 이내 1% 점유율 목표</td>
+        </tr>
+        <tr>
+          <td><strong>Y1 매출</strong></td>
+          <td class="highlight">37억원</td>
+          <td style="font-size:13px;color:var(--muted)">B2C: 월 20만 외국인 설치 × 5% 프리미엄 × $9.99 × 12 = 12억<br>B2G: 관광청 계약 5건 × 5억 = 25억</td>
+        </tr>
+        <tr>
+          <td><strong>BEP</strong></td>
+          <td class="highlight">20개월</td>
+          <td style="font-size:13px;color:var(--muted)">Y2 달성 예상. 초기 개발비 10억 + 다국어 LLM 구축 5억 = 15억 회수</td>
+        </tr>
+        <tr>
+          <td><strong>주요 경쟁사</strong></td>
+          <td colspan="2" style="font-size:13px;color:var(--muted)">Klook 한국 GMV 2,400억 · KKday 아시아 $300M GMV(2024) — 여행 특화 다국어 AI 가이드 없음</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 10: AI 차별화 -->
+<div class="section">
+  <div class="section-label">Section 10</div>
+  <div class="section-title">AI <span>차별화</span></div>
+
+  <div class="ai-branch-badge">🤖 AI Branch: companion</div>
+
+  <div class="card">
+    <div class="ai-reason">
+      <div class="ai-reason-num">1</div>
+      <div class="ai-reason-text">
+        <strong>5개국어 실시간 처리 + 문화적 뉘앙스 설명 (단순 번역 초월)</strong><br>
+        "노약자석은 비워두세요", "식당에서 팁은 불필요", "찜질방 에티켓" 등 단순 단어 번역이 아닌 문화적 맥락과 현지 관행을 5개국어로 즉시 설명. 구글 번역이 제공할 수 없는 여행 특화 지식 레이어.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">2</div>
+      <div class="ai-reason-text">
+        <strong>응급상황 자동 감지 → 대사관/경찰/병원 다국어 연결</strong><br>
+        대화 중 "아프다", "잃어버렸다", "위험하다" 등 긴급 신호를 AI가 자동 감지해 가장 가까운 병원·외국어 가능 경찰서·해당 국가 대사관을 즉시 다국어로 연결. 사람 가이드는 24시간 응급 대응 불가.
+      </div>
+    </div>
+    <div class="ai-reason">
+      <div class="ai-reason-num">3</div>
+      <div class="ai-reason-text">
+        <strong>방문 패턴 분석 → 국적별 선호 루트 개인화</strong><br>
+        일본인 방문자 집계 데이터에서 "일본인이 가장 좋아하는 숨은 골목", 중국인 데이터에서 "쇼핑 + 음식 루트"를 자동 도출. 개인 맞춤 + 국적 집단 지성을 결합한 이중 개인화.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <strong style="color:var(--fg)">Foreign AI Guide</strong> — 2026 한국관광공사 관광 서비스 공모전
+  </div>
+  <div>BA Score 99/130 (공동 3위) · 팀 합의 8.0/10 · AI Branch: companion</div>
+  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
+</footer>
+
+</body>
+</html>

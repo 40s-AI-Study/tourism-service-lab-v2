@@ -1,689 +1,552 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foreign AI Guide — 세계 어디서 왔든 AI 현지 가이드</title>
-  <style>
-    :root {
-      --bg: #060609;
-      --surface: #0D0D13;
-      --card: #13131A;
-      --border: #1E1E28;
-      --fg: #F4F4F8;
-      --muted: #9898AC;
-      --muted2: #5E5E72;
-      --accent: #38BDF8;
-      --accent2: #7DD3FC;
-      --grad: linear-gradient(135deg, #38BDF8 0%, #7DD3FC 100%);
-      --grad2: linear-gradient(135deg, #0284C7 0%, #38BDF8 100%);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Foreign AI Guide — 세계 어디서 왔든 AI 현지 가이드</title>
+<style>
+:root{
+  --bg:#060609;--surface:#0D0D13;--card:#13131A;--border:#1E1E28;
+  --fg:#F4F4F8;--muted:#9898AC;--muted2:#5E5E72;
+  --accent:#38BDF8;--accent2:#7DD3FC;
+  --ag:rgba(56,189,248,.15);--as:rgba(56,189,248,.08);
+  --grad:linear-gradient(135deg,#38BDF8 0%,#7DD3FC 100%);
+  --sos:#EF4444;--ss:rgba(239,68,68,.12);
+  --green:#10B981;--amber:#F59E0B;
+  --r:14px;--rsm:10px;
+  --font:"Pretendard","Apple SD Gothic Neo",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:#000;font-family:var(--font);-webkit-tap-highlight-color:transparent;overflow:hidden;}
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
-    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
-    .nav-back:hover { color: var(--fg); }
-    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+.shell{display:flex;align-items:center;justify-content:center;height:100vh;background:radial-gradient(ellipse at 50% 0%,rgba(56,189,248,.07) 0%,#000 65%);}
+.phone{width:390px;height:844px;position:relative;overflow:hidden;background:var(--bg);border-radius:44px;box-shadow:0 0 0 1px #2a2a2a,0 40px 80px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.04);}
+.phone::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:126px;height:34px;background:#000;border-radius:0 0 20px 20px;z-index:999;}
+.phone::after{content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:#111;border-radius:50%;z-index:1000;border:1.5px solid #2a2a2a;}
+@media(max-width:430px){
+  .shell{align-items:stretch;background:#000;}
+  .phone{width:100%;height:100vh;border-radius:0;box-shadow:none;}
+  .phone::before,.phone::after{display:none;}
+}
 
-    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(56,189,248,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
-    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: #0a1a2a; font-size: 16px; font-weight: 700; cursor: pointer; }
-    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
+/* screens */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;transform:translateX(20px);overflow:hidden;}
+.scr.active{opacity:1;pointer-events:all;transform:translateX(0);}
+.scr.prev{transform:translateX(-20px);}
 
-    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
-    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .mockup-title { font-size: 12px; color: var(--muted2); }
-    .lang-flags { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-    .lang-flag { padding: 5px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 5px; }
-    .lang-flag.active { border-color: var(--accent); background: rgba(56,189,248,0.08); }
-    .chat-bubble { border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; font-size: 13px; line-height: 1.5; max-width: 90%; }
-    .chat-user { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); margin-left: auto; }
-    .chat-ai { background: var(--surface); border: 1px solid var(--border); }
-    .chat-label { font-size: 10px; color: var(--muted2); margin-bottom: 3px; }
+/* status bar */
+.sb{height:44px;padding:14px 20px 0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.sbt{font-size:15px;font-weight:700;color:var(--fg);}
+.sbi{font-size:12px;color:var(--fg);}
 
-    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
-    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
-    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+/* app header */
+.ah{padding:8px 20px 12px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.bk{width:36px;height:36px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;color:var(--fg);font-size:20px;flex-shrink:0;}
+.bk:active{background:var(--surface);}
+.aht{font-size:17px;font-weight:700;flex:1;}
+.ahb{padding:4px 10px;background:var(--as);border:1px solid rgba(56,189,248,.25);border-radius:999px;font-size:11px;color:var(--accent);font-weight:600;}
 
-    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
-    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
-    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+/* bottom nav */
+.bnav{position:absolute;bottom:0;left:0;right:0;height:80px;background:rgba(13,13,19,.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:flex-start;padding-top:10px;z-index:50;}
+.bnav.h{display:none;}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:4px 0;}
+.ni .ico{font-size:22px;}
+.ni .lbl{font-size:10px;color:var(--muted);font-weight:500;}
+.ni.active .lbl{color:var(--accent);}
+.ni.sos-ni .ico{width:46px;height:46px;background:var(--sos);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-top:-12px;box-shadow:0 4px 20px rgba(239,68,68,.4);}
+.ni.sos-ni .lbl{color:var(--sos);}
 
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
-    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+/* toggle */
+.tog{width:44px;height:26px;background:var(--border);border-radius:999px;position:relative;transition:background .2s;cursor:pointer;flex-shrink:0;}
+.tog.on{background:var(--accent);}
+.tog::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:left .2s;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.tog.on::after{left:21px;}
 
-    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
-    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
-    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+/* toast */
+.toast-el{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(244,244,248,.95);color:#060609;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity .22s;pointer-events:none;z-index:200;}
+.toast-el.show{opacity:1;}
 
-    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .research-item:last-child { border-bottom: none; }
-    .research-num { width: 28px; height: 28px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
-    .research-content { flex: 1; }
-    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
-    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
+/* ── S1 LANGUAGE ── */
+#s-lang{overflow-y:auto;}
+#s-lang::-webkit-scrollbar{display:none;}
+.lhero{padding:12px 24px 10px;text-align:center;}
+.logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;}
+.logo-ico{width:44px;height:44px;background:var(--grad);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 16px rgba(56,189,248,.35);}
+.logo-txt{font-size:19px;font-weight:800;}
+.lhero h1{font-size:22px;font-weight:800;line-height:1.3;margin-bottom:6px;}
+.lhero h1 .g{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lhero p{font-size:13px;color:var(--muted);line-height:1.5;}
+.lgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px;}
+.lc{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:14px 6px;text-align:center;cursor:pointer;transition:border-color .18s,background .18s;user-select:none;}
+.lc:active{transform:scale(.95);}
+.lc.sel{border-color:var(--accent);background:var(--as);}
+.lc .fl{font-size:26px;margin-bottom:4px;}
+.lc .ln{font-size:12px;font-weight:700;margin-bottom:1px;}
+.lc .ll{font-size:10px;color:var(--muted);}
+.bfrow{margin:12px 20px 0;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.bfrow .bfi{font-size:22px;}
+.bfrow .bft{flex:1;}
+.bfrow .bfl{font-size:14px;font-weight:700;}
+.bfrow .bfs{font-size:11px;color:var(--muted);margin-top:2px;}
+.start-btn{margin:12px 20px 20px;width:calc(100% - 40px);padding:16px;background:var(--grad);border:none;border-radius:var(--r);font-size:16px;font-weight:700;color:#0a1a2a;cursor:pointer;opacity:.35;transition:opacity .2s,transform .1s;font-family:var(--font);}
+.start-btn.rdy{opacity:1;}
+.start-btn.rdy:active{transform:scale(.97);}
 
-    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
-    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
-    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
-    .ba-score { font-size: 20px; font-weight: 800; }
-    .ba-score.high { color: var(--accent); }
-    .ba-score.mid { color: #F59E0B; }
-    .ba-score.low { color: var(--muted); }
-    .ba-total { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-    .ba-total-label { font-size: 15px; font-weight: 700; }
-    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
-    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+/* ── S2 CHAT ── */
+#s-chat{padding-bottom:80px;}
+.ctop{padding:8px 20px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.cava{width:36px;height:36px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 0 0 2px rgba(56,189,248,.3);}
+.cnfo{flex:1;}
+.cname{font-size:14px;font-weight:700;}
+.csub{font-size:11px;color:var(--green);display:flex;align-items:center;gap:4px;}
+.odot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.clbadge{padding:4px 10px;background:var(--as);border:1px solid rgba(56,189,248,.25);border-radius:999px;font-size:11px;color:var(--accent);font-weight:600;cursor:pointer;}
+.msgs{flex:1;overflow-y:auto;padding:14px 14px 6px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+.msgs::-webkit-scrollbar{display:none;}
+.mr{display:flex;gap:8px;}
+.mr.u{flex-direction:row-reverse;}
+.mava{width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;align-self:flex-end;}
+.mr.u .mava{background:var(--surface);border:1px solid var(--border);}
+.mb{max-width:78%;padding:10px 13px;border-radius:16px;font-size:13px;line-height:1.55;}
+.mr.ai .mb{background:var(--card);border:1px solid var(--border);border-bottom-left-radius:4px;}
+.mr.u .mb{background:var(--accent);border-bottom-right-radius:4px;color:#0a1a2a;font-weight:500;}
+.mt{font-size:10px;color:var(--muted2);margin-top:3px;}
+.mr.u .mt{text-align:right;}
+.pci{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px;margin-top:6px;cursor:pointer;transition:border-color .18s;}
+.pci:active{border-color:var(--accent);}
+.pci-h{display:flex;justify-content:space-between;margin-bottom:5px;}
+.pci-n{font-size:13px;font-weight:700;}
+.pci-r{font-size:11px;color:var(--amber);font-weight:600;}
+.pci-m{display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+.pci-bf{font-size:10px;padding:2px 7px;background:rgba(56,189,248,.12);border-radius:999px;color:var(--accent);}
+.pci-d{font-size:10px;color:var(--muted2);}
+.pci-c{font-size:10px;}
+.cl{color:var(--green);}.cm{color:var(--amber);}.ch{color:var(--sos);}
+.typ{display:flex;gap:4px;align-items:center;padding:12px 13px;}
+.td{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:ta 1.2s infinite;}
+.td:nth-child(2){animation-delay:.2s;}.td:nth-child(3){animation-delay:.4s;}
+@keyframes ta{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+.chips{padding:8px 14px 10px;display:flex;gap:8px;overflow-x:auto;flex-shrink:0;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{padding:8px 13px;background:var(--card);border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--fg);white-space:nowrap;cursor:pointer;transition:border-color .15s,background .15s;flex-shrink:0;font-family:var(--font);}
+.chip:active{border-color:var(--accent);background:var(--as);}
+.cinp-row{padding:10px 14px 14px;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border);flex-shrink:0;}
+.cinput{flex:1;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:10px 14px;font-size:14px;color:var(--fg);font-family:var(--font);outline:none;resize:none;line-height:1.4;max-height:80px;}
+.cinput::placeholder{color:var(--muted2);}
+.cinput:focus{border-color:rgba(56,189,248,.4);}
+.sbtn{width:40px;height:40px;background:var(--grad);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:17px;}
+.sbtn:active{transform:scale(.91);}
+.cbtn{width:36px;height:36px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:transparent;cursor:pointer;font-size:16px;flex-shrink:0;}
 
-    .criteria-table { width: 100%; border-collapse: collapse; }
-    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
-    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
-    .criteria-table tr:last-child td { border-bottom: none; }
-    .criteria-score { font-weight: 800; color: var(--accent); }
+/* ── S3 PLACES ── */
+#s-places{padding-bottom:80px;}
+.tabs{display:flex;padding:12px 16px 0;overflow-x:auto;border-bottom:1px solid var(--border);flex-shrink:0;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:8px 16px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;transition:color .15s,border-color .15s;}
+.tab.active{color:var(--accent);border-color:var(--accent);}
+.frow{padding:10px 16px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border);flex-shrink:0;}
+.bftag{display:flex;align-items:center;gap:7px;padding:6px 12px;border:1px solid var(--border);border-radius:999px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);background:transparent;transition:border-color .15s,color .15s;font-family:var(--font);}
+.bftag.on{border-color:var(--accent);color:var(--accent);background:var(--as);}
+.sortbtn{margin-left:auto;padding:6px 12px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted);cursor:pointer;background:transparent;font-family:var(--font);}
+.plist{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:12px;}
+.plist::-webkit-scrollbar{display:none;}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .18s;}
+.pc:active{border-color:var(--accent);}
+.pi{height:138px;position:relative;overflow:hidden;}
+.pi .emt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:70px;opacity:.2;}
+.pb2{position:absolute;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;}
+.pb2.bfb{top:10px;right:10px;background:rgba(56,189,248,.92);color:#0a1a2a;}
+.pb2.crb{bottom:10px;right:10px;}
+.pb2.crl{background:rgba(16,185,129,.9);color:#fff;}
+.pb2.crm{background:rgba(245,158,11,.9);color:#fff;}
+.pb2.crh{background:rgba(239,68,68,.9);color:#fff;}
+.pb3{padding:12px 14px;}
+.pn{font-size:15px;font-weight:700;margin-bottom:3px;}
+.paddr{font-size:12px;color:var(--muted);margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pm2{display:flex;gap:8px;align-items:center;}
+.pr{font-size:12px;color:var(--amber);font-weight:600;}
+.prv{font-size:11px;color:var(--muted2);}
+.pdist{font-size:11px;color:var(--muted);margin-left:auto;}
+.ccat{font-size:10px;padding:2px 8px;border-radius:999px;font-weight:600;}
+.cs{background:rgba(99,102,241,.18);color:#818CF8;}
+.cf{background:rgba(245,158,11,.18);color:var(--amber);}
+.cst{background:rgba(16,185,129,.18);color:var(--green);}
+.csh{background:rgba(168,85,247,.18);color:#C084FC;}
+.empty{text-align:center;padding:56px 24px;color:var(--muted);}
+.empty .ei{font-size:48px;margin-bottom:12px;}
 
-    .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 10px; margin-bottom: 20px; }
-    .lang-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
-    .lang-emoji { font-size: 24px; margin-bottom: 6px; }
-    .lang-name { font-size: 13px; font-weight: 700; }
-    .lang-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+/* ── S4 DETAIL ── */
+.dscroll{flex:1;overflow-y:auto;padding-bottom:90px;}
+.dscroll::-webkit-scrollbar{display:none;}
+.dhero{height:210px;position:relative;overflow:hidden;flex-shrink:0;}
+.dhero .emt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:90px;opacity:.18;}
+.dhero-c{position:absolute;bottom:14px;left:16px;right:16px;}
+.dhn{font-size:21px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.7);}
+.dha{font-size:12px;color:rgba(255,255,255,.72);margin-top:2px;}
+.drrow{display:flex;gap:8px;margin-top:6px;align-items:center;}
+.dr{font-size:14px;color:var(--amber);font-weight:700;}
+.drv{font-size:12px;color:rgba(255,255,255,.6);}
+.dbfb{padding:3px 10px;background:rgba(56,189,248,.9);border-radius:999px;font-size:11px;font-weight:700;color:#0a1a2a;margin-left:auto;}
+.ds{padding:14px 16px 0;}
+.dst{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;}
+.dd{font-size:14px;color:var(--fg);line-height:1.65;}
+.ddiv{height:1px;background:var(--border);margin:14px 16px;}
+.cbr{display:flex;gap:8px;align-items:center;margin-bottom:5px;}
+.ct2{font-size:12px;color:var(--muted);width:70px;flex-shrink:0;}
+.cbg{flex:1;height:6px;background:var(--surface);border-radius:999px;overflow:hidden;}
+.cbf{height:100%;border-radius:999px;transition:width .6s ease;}
+.cfl{background:var(--green);}.cfm{background:var(--amber);}.cfh{background:var(--sos);}
+.clbl{font-size:10px;width:30px;text-align:right;flex-shrink:0;}
+.bfl{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.bfi2{display:flex;align-items:center;gap:7px;padding:10px 12px;background:var(--surface);border-radius:10px;font-size:13px;}
+.abtn{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:border-color .18s;}
+.abtn:active{border-color:var(--accent);}
+.aico{width:40px;height:40px;background:var(--as);border:1px solid rgba(56,189,248,.3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ainfo{flex:1;}
+.atit{font-size:13px;font-weight:700;}
+.asub{font-size:11px;color:var(--muted);margin-top:1px;}
+.alrow{display:flex;gap:4px;margin-top:5px;}
+.alc{font-size:10px;padding:1px 6px;background:var(--surface);border-radius:999px;color:var(--muted);}
+.aply{width:36px;height:36px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.rscroll{display:flex;gap:10px;overflow-x:auto;padding:0 16px 16px;}
+.rscroll::-webkit-scrollbar{display:none;}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:var(--rsm);padding:12px;min-width:120px;cursor:pointer;flex-shrink:0;}
+.rc:active{border-color:var(--accent);}
+.ri{font-size:28px;margin-bottom:6px;}
+.rn{font-size:12px;font-weight:700;margin-bottom:2px;}
+.rd{font-size:10px;color:var(--muted);}
+.dbar{position:absolute;bottom:0;left:0;right:0;padding:12px 16px 28px;background:rgba(13,13,19,.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;gap:10px;}
+.droute{flex:1;padding:13px;background:var(--grad);border:none;border-radius:var(--r);font-size:14px;font-weight:700;color:#0a1a2a;cursor:pointer;font-family:var(--font);}
+.droute:active{transform:scale(.97);}
+.dshare{width:46px;height:46px;border:1px solid var(--border);border-radius:var(--r);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;}
 
-    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
-    .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
-    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
-    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: #0a1a2a; }
-    .journey-label { font-size: 12px; color: var(--muted); }
-
-    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
-    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
-    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
-    .mock-item-icon { font-size: 18px; }
-    .mock-item-name { font-weight: 600; font-size: 13px; }
-    .mock-item-sub { color: var(--muted); font-size: 11px; }
-    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
-    .mock-tag-accent { background: rgba(56,189,248,0.2); color: var(--accent); }
-    .mock-tag-red { background: rgba(239,68,68,0.2); color: #EF4444; }
-
-    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .api-chip { padding: 5px 12px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
-
-    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); border-radius: 16px; margin-bottom: 16px; }
-    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
-    .score-meta { flex: 1; }
-    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
-    .score-stars { color: #38BDF8; font-size: 20px; letter-spacing: 2px; }
-
-    .fin-table { width: 100%; border-collapse: collapse; }
-    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
-    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
-    .fin-table tr:last-child td { border-bottom: none; }
-    .fin-table .highlight { font-weight: 700; color: var(--accent); }
-
-    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); color: var(--accent); }
-    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .ai-reason:last-child { border-bottom: none; }
-    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #0a1a2a; }
-    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .ai-reason-text strong { color: var(--fg); }
-
-    .tip-box { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
-    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
-    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
-
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
-
-    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
-    footer a { color: var(--muted); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 28px; }
-      .stats-row { gap: 10px; }
-      .stat-val { font-size: 22px; }
-      .score-big { font-size: 40px; }
-      .mock-phones { flex-direction: column; }
-    }
-  </style>
+/* ── S5 SOS ── */
+.sscroll{flex:1;overflow-y:auto;padding:0 16px 100px;}
+.sscroll::-webkit-scrollbar{display:none;}
+.shc{background:var(--ss);border:1px solid rgba(239,68,68,.25);border-radius:var(--r);padding:16px;margin-bottom:16px;text-align:center;}
+.spulse{width:56px;height:56px;background:rgba(239,68,68,.2);border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:28px;animation:sp 2s infinite;}
+@keyframes sp{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 14px rgba(239,68,68,0)}}
+.stit{font-size:18px;font-weight:800;color:var(--sos);margin-bottom:4px;}
+.ssub{font-size:12px;color:var(--muted);}
+.sgps{margin-top:10px;padding:8px 12px;background:rgba(0,0,0,.3);border-radius:8px;font-size:11px;color:var(--muted);font-family:monospace;}
+.ssect{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.sc{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:16px 10px;text-align:center;cursor:pointer;transition:border-color .18s,background .18s;}
+.sc:active,.sc.sel{border-color:var(--sos);background:var(--ss);}
+.sci{font-size:28px;margin-bottom:6px;}
+.scl{font-size:13px;font-weight:700;}
+.scs{font-size:10px;color:var(--muted);margin-top:2px;}
+.ecs{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.ec{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:border-color .18s;}
+.ec:active{border-color:var(--accent);}
+.ec.urg{border-color:rgba(239,68,68,.3);background:var(--ss);}
+.eci{font-size:22px;width:44px;height:44px;background:var(--surface);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ec.urg .eci{background:rgba(239,68,68,.15);}
+.ecn{font-size:14px;font-weight:700;margin-bottom:2px;}
+.ecs2{font-size:11px;color:var(--muted);}
+.ecb{font-size:10px;padding:2px 8px;background:rgba(56,189,248,.15);border-radius:999px;color:var(--accent);font-weight:600;flex-shrink:0;}
+.ecb.r{background:rgba(239,68,68,.2);color:var(--sos);}
+.aitbtn{width:100%;padding:14px;background:var(--card);border:1px solid var(--accent);border-radius:var(--r);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-size:14px;font-weight:700;color:var(--accent);margin-bottom:16px;font-family:var(--font);}
+.aitbtn:active{background:var(--as);}
+</style>
 </head>
 <body>
+<div class="shell"><div class="phone">
 
-<nav>
-  <a class="nav-logo" href="../../">
-    <div class="nav-logo-icon">🌐</div>
-    Foreign AI Guide
-  </a>
-  <a class="nav-back" href="../../">← 포트폴리오</a>
-  <span class="nav-badge">BA 99/130 · 공동 3위</span>
+<!-- S1: LANGUAGE -->
+<div id="s-lang" class="scr active">
+  <div class="sb"><span class="sbt">9:41</span><span class="sbi">▐▐▐ ☁ 🔋</span></div>
+  <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;">
+    <div class="lhero">
+      <div class="logo"><div class="logo-ico">🌐</div><div class="logo-txt">Foreign AI Guide</div></div>
+      <h1>어떤 언어로 여행하시나요?<br><span class="g">Which language?</span></h1>
+      <p style="margin-top:8px">AI가 선택한 언어로 한국 여행 전 과정을 함께합니다</p>
+    </div>
+    <div class="lgrid">
+      <div class="lc" data-lang="en" onclick="selLang(this)"><div class="fl">🇺🇸</div><div class="ln">English</div><div class="ll">English</div></div>
+      <div class="lc" data-lang="ja" onclick="selLang(this)"><div class="fl">🇯🇵</div><div class="ln">日本語</div><div class="ll">Japanese</div></div>
+      <div class="lc" data-lang="zh_s" onclick="selLang(this)"><div class="fl">🇨🇳</div><div class="ln">中文(简)</div><div class="ll">Simplified</div></div>
+      <div class="lc" data-lang="zh_t" onclick="selLang(this)"><div class="fl">🇹🇼</div><div class="ln">中文(繁)</div><div class="ll">Traditional</div></div>
+      <div class="lc" data-lang="es" onclick="selLang(this)"><div class="fl">🇪🇸</div><div class="ln">Español</div><div class="ll">Spanish</div></div>
+      <div class="lc" data-lang="fr" onclick="selLang(this)"><div class="fl">🇫🇷</div><div class="ln">Français</div><div class="ll">French</div></div>
+    </div>
+    <div class="bfrow" onclick="togBF()">
+      <div class="bfi">♿</div>
+      <div class="bft"><div class="bfl">무장애 여행 모드</div><div class="bfs">Barrier-Free · 전 화면 접근성 필터 적용</div></div>
+      <div class="tog" id="bf-tog"></div>
+    </div>
+    <button class="start-btn" id="start-btn" onclick="startApp()">언어를 선택하세요</button>
+  </div>
+</div>
+
+<!-- S2: CHAT -->
+<div id="s-chat" class="scr">
+  <div class="sb"><span class="sbt">9:41</span><span class="sbi">▐▐▐ ☁ 🔋</span></div>
+  <div class="ctop">
+    <div class="cava">🌐</div>
+    <div class="cnfo"><div class="cname">AI Guide</div><div class="csub"><span class="odot"></span>24시간 응답 중</div></div>
+    <div class="clbadge" id="clbadge" onclick="goLang()">🇺🇸 EN</div>
+  </div>
+  <div class="msgs" id="msgs"></div>
+  <div class="chips">
+    <div class="chip" onclick="doChip(this.textContent)">📍 주변 추천</div>
+    <div class="chip" onclick="doChip(this.textContent)">♿ 무장애 여행</div>
+    <div class="chip" onclick="doChip(this.textContent)">📊 오늘 혼잡도</div>
+    <div class="chip" onclick="doChip(this.textContent)">🍽 맛집 찾기</div>
+    <div class="chip" onclick="doChip(this.textContent)">🚇 교통 안내</div>
+  </div>
+  <div class="cinp-row">
+    <button class="cbtn" onclick="toast('카메라 번역 — 메뉴판을 비추세요')">📷</button>
+    <textarea class="cinput" id="cinput" placeholder="메시지를 입력하세요…" rows="1"
+      oninput="autoH(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();doSend()}"></textarea>
+    <button class="sbtn" onclick="doSend()">↑</button>
+  </div>
+</div>
+
+<!-- S3: PLACES -->
+<div id="s-places" class="scr">
+  <div class="sb"><span class="sbt">9:41</span><span class="sbi">▐▐▐ ☁ 🔋</span></div>
+  <div class="ah">
+    <button class="bk" onclick="go('s-chat')">←</button>
+    <div class="aht">📍 경복궁 근처</div>
+    <div class="ahb" id="plbadge">EN</div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" data-cat="all" onclick="setTab(this)">전체</div>
+    <div class="tab" data-cat="spot" onclick="setTab(this)">관광지</div>
+    <div class="tab" data-cat="food" onclick="setTab(this)">음식</div>
+    <div class="tab" data-cat="stay" onclick="setTab(this)">숙박</div>
+    <div class="tab" data-cat="shop" onclick="setTab(this)">쇼핑</div>
+  </div>
+  <div class="frow">
+    <button class="bftag" id="plbf" onclick="togPlBF()">♿ 무장애 필터</button>
+    <button class="sortbtn" onclick="toast('거리순 정렬')">거리순 ↕</button>
+  </div>
+  <div class="plist" id="plist"></div>
+</div>
+
+<!-- S4: DETAIL -->
+<div id="s-detail" class="scr">
+  <div style="position:absolute;top:0;left:0;right:0;height:44px;padding:14px 20px 0;display:flex;justify-content:space-between;align-items:center;z-index:10;background:linear-gradient(to bottom,rgba(6,6,9,.65) 0%,transparent 100%)">
+    <span class="sbt">9:41</span><span class="sbi">▐▐▐ ☁ 🔋</span>
+  </div>
+  <button onclick="goBack()" style="position:absolute;top:52px;left:16px;z-index:10;width:36px;height:36px;background:rgba(0,0,0,.5);border:none;border-radius:10px;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">←</button>
+  <div class="dscroll" id="dscroll"></div>
+  <div class="dbar">
+    <button class="droute" onclick="toast('루트에 추가되었습니다 ✓')">+ 루트에 추가</button>
+    <button class="dshare" onclick="toast('공유 링크 복사됨')">↗</button>
+  </div>
+</div>
+
+<!-- S5: SOS -->
+<div id="s-sos" class="scr">
+  <div class="sb"><span class="sbt">9:41</span><span class="sbi">▐▐▐ ☁ 🔋</span></div>
+  <div class="ah">
+    <button class="bk" onclick="go('s-chat')">←</button>
+    <div class="aht" style="color:var(--sos)">🆘 긴급 지원</div>
+    <div style="font-size:11px;color:var(--muted)">Emergency</div>
+  </div>
+  <div class="sscroll">
+    <div class="shc" style="margin-top:14px">
+      <div class="spulse">🆘</div>
+      <div class="stit">긴급 지원 센터</div>
+      <div class="ssub">AI가 현재 언어로 상황을 실시간 전달합니다<br>AI translates your situation in real-time</div>
+      <div class="sgps">📍 GPS 37.5796°N, 126.9770°E · 경복궁 근처</div>
+    </div>
+    <div class="ssect">상황을 선택하세요 / Select Situation</div>
+    <div class="sgrid">
+      <div class="sc" onclick="selSOS(this)"><div class="sci">🏥</div><div class="scl">의료 응급</div><div class="scs">Medical Emergency</div></div>
+      <div class="sc" onclick="selSOS(this)"><div class="sci">🚨</div><div class="scl">도난·범죄</div><div class="scs">Theft · Crime</div></div>
+      <div class="sc" onclick="selSOS(this)"><div class="sci">🔑</div><div class="scl">여권·분실</div><div class="scs">Passport Lost</div></div>
+      <div class="sc" onclick="selSOS(this)"><div class="sci">🚗</div><div class="scl">교통사고</div><div class="scs">Traffic Accident</div></div>
+    </div>
+    <div class="ssect">즉시 연결 / Quick Dial</div>
+    <div class="ecs">
+      <div class="ec urg" onclick="toast('112 연결 중… AI가 상황을 한국어로 전달합니다')">
+        <div class="eci">🚔</div><div><div class="ecn">112 — 경찰</div><div class="ecs2">Police · AI 통역 자동 연결</div></div>
+        <div class="ecb r">즉시</div>
+      </div>
+      <div class="ec urg" onclick="toast('119 연결 중… 현재 위치를 자동 전송합니다')">
+        <div class="eci">🚑</div><div><div class="ecn">119 — 소방·응급</div><div class="ecs2">Ambulance · 위치 자동 전송</div></div>
+        <div class="ecb r">즉시</div>
+      </div>
+      <div class="ec" onclick="toast('대사관 연결 중…')">
+        <div class="eci">🏛</div><div><div class="ecn" id="embassyn">주한 미국 대사관</div><div class="ecs2">긴급 영사 서비스 24h</div></div>
+        <div class="ecb">연결</div>
+      </div>
+      <div class="ec" onclick="toast('1330 한국관광공사 관광안내 연결')">
+        <div class="eci">📞</div><div><div class="ecn">1330 관광안내</div><div class="ecs2">KTO Tourism Helpline · 다국어</div></div>
+        <div class="ecb">연결</div>
+      </div>
+    </div>
+    <button class="aitbtn" onclick="aiTranslate()">🤖 AI가 한국어로 상황 전달 · AI Interpreter</button>
+  </div>
+</div>
+
+<!-- Bottom Nav -->
+<nav class="bnav h" id="bnav">
+  <div class="ni active" id="ni-chat" onclick="nav('s-chat','ni-chat')"><div class="ico">💬</div><div class="lbl">AI 가이드</div></div>
+  <div class="ni" id="ni-places" onclick="nav('s-places','ni-places')"><div class="ico">🗺️</div><div class="lbl">탐색</div></div>
+  <div class="ni sos-ni" id="ni-sos" onclick="nav('s-sos','ni-sos')"><div class="ico">🆘</div><div class="lbl">SOS</div></div>
 </nav>
+<div class="toast-el" id="tel"></div>
+</div></div>
 
-<!-- SECTION 1: HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="live-dot"></span>
-    Round 7 · 공동 3위 · companion AI · 시장·이중타겟 최고점
-  </div>
-  <h1>Foreign<br><span>AI Guide</span></h1>
-  <p class="hero-sub">세계 어디서 왔든, 한국 어디든<br>AI 현지 가이드가 함께</p>
-  <div class="hero-actions">
-    <button class="btn-primary">🌐 언어 선택하고 시작</button>
-    <button class="btn-secondary">서비스 소개 보기</button>
-  </div>
+<script>
+const ST={lang:'en',bf:false,cat:'all',plBF:false,prev:'s-chat'};
+const LM={en:{flag:'🇺🇸',lbl:'EN',name:'English'},ja:{flag:'🇯🇵',lbl:'JA',name:'日本語'},zh_s:{flag:'🇨🇳',lbl:'ZH',name:'中文(简)'},zh_t:{flag:'🇹🇼',lbl:'ZH',name:'中文(繁)'},es:{flag:'🇪🇸',lbl:'ES',name:'Español'},fr:{flag:'🇫🇷',lbl:'FR',name:'Français'}};
+const EMB={en:'주한 미국 대사관',ja:'주한 일본 대사관',zh_s:'주한 중국 대사관',zh_t:'주한 대만 대표부',es:'주한 스페인 대사관',fr:'주한 프랑스 대사관'};
 
-  <div class="hero-mockup">
-    <div class="mockup-bar">
-      <div class="mockup-dot" style="background:#FF5F56"></div>
-      <div class="mockup-dot" style="background:#FFBD2E"></div>
-      <div class="mockup-dot" style="background:#27C93F"></div>
-      <span class="mockup-title">5개국어 AI 가이드 · 24시간</span>
-    </div>
-    <div class="lang-flags">
-      <div class="lang-flag active">🇺🇸 EN</div>
-      <div class="lang-flag">🇯🇵 JP</div>
-      <div class="lang-flag">🇨🇳 ZH</div>
-      <div class="lang-flag">🇪🇸 ES</div>
-      <div class="lang-flag">🇹🇭 TH</div>
-    </div>
-    <div class="chat-bubble chat-user">
-      <div class="chat-label">Visitor</div>
-      How do I get to Gyeongbokgung from Hongdae?
-    </div>
-    <div class="chat-bubble chat-ai">
-      <div class="chat-label">AI Guide 🤖</div>
-      Take Line 2 → transfer at Euljiro 3-ga to Line 3 → get off at Gyeongbokgung (경복궁). About 30 min, ₩1,450. Watch out — Exit 5 is closest to the palace gate!
-    </div>
-  </div>
-</div>
+const PL=[
+  {id:'126508',cat:'spot',t:{en:'Gyeongbokgung Palace',ja:'景福宮',zh_s:'景福宫',zh_t:'景福宮',es:'Palacio Gyeongbokgung',fr:'Palais Gyeongbokgung'},addr:'서울 종로구 사직로 161',dist:'320m',rating:4.8,rev:12840,bf:{wc:true,el:true,wc2:true,pk:true,vis:false},crowd:{t:'보통',b:'오전 9–10시',h:[30,25,60,80,70,52,38]},audio:['KO','EN','JA','ZH'],desc:{en:"The grandest of Seoul's Five Grand Palaces, built in 1395. A UNESCO-nominated site offering traditional architecture, royal guard ceremonies, and museum access all in one visit.",ja:"1395年に建てられたソウル最大の宮殿。ユネスコ候補地で、伝統建築・衛兵交代式・博物館を一度に楽しめます。",zh_s:"景福宫建于1395年，是首尔五大宫殿中最宏伟的一座。联合国教科文组织候选地，可欣赏传统建筑、皇家卫队换岗仪式。",zh_t:"景福宮建於1395年，是首爾五大宮殿中最宏偉的一座。",es:"El más grandioso de los Cinco Grandes Palacios de Seúl, construido en 1395. Disfruta de la ceremonia de cambio de guardia y el acceso al museo.",fr:"Le plus grand des Cinq Grands Palais de Séoul, construit en 1395. Profitez de la cérémonie de la relève de la garde et de l'accès au musée."},rel:[{n:'국립민속박물관',d:'150m',i:'🏛'},{n:'북촌한옥마을',d:'900m',i:'🏘'},{n:'광화문광장',d:'300m',i:'🌿'}],grad:'linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#0f3460 100%)',ico:'🏛'},
+  {id:'264570',cat:'food',t:{en:'Tongin Market',ja:'通仁市場',zh_s:'通仁市场',zh_t:'通仁市場',es:'Mercado Tongin',fr:'Marché Tongin'},addr:'서울 종로구 자하문로15길 18',dist:'480m',rating:4.7,rev:8320,bf:{wc:true,el:false,wc2:true,pk:false,vis:false},crowd:{t:'한산',b:'평일 오전',h:[18,14,32,48,40,26,12]},audio:['KO','EN'],desc:{en:"A beloved traditional market since 1941, famous for its unique coin lunch system. Buy vintage-style coins, pick your own side dishes from stalls, and enjoy an authentic local meal.",ja:"1941年から続く伝統市場。昔のコインで好きなおかずを選ぶユニークなコイン弁当システムが名物です。",zh_s:"自1941年开始的传统市场，以独特的铜钱便当系统闻名。购买复古铜钱，从各摊位挑选配菜，享受地道韩国餐食。",zh_t:"自1941年開始的傳統市場，以獨特的銅錢便當系統聞名。",es:"Un mercado tradicional desde 1941 con un sistema único de almuerzo con monedas. Compra monedas y elige tus propios platos.",fr:"Un marché traditionnel depuis 1941, célèbre pour son système unique de déjeuner avec pièces."},rel:[{n:'서촌 골목',d:'200m',i:'🏘'},{n:'경복궁',d:'480m',i:'🏛'},{n:'인왕산',d:'1.2km',i:'⛰'}],grad:'linear-gradient(135deg,#1f2d1f 0%,#2d4a1e 40%,#3a5a1a 100%)',ico:'🍱'},
+  {id:'128133',cat:'spot',t:{en:'Bukchon Hanok Village',ja:'北村韓屋村',zh_s:'北村韩屋村',zh_t:'北村韓屋村',es:'Aldea Hanok Bukchon',fr:'Village Hanok Bukchon'},addr:'서울 종로구 계동길 37',dist:'1.1km',rating:4.6,rev:21500,bf:{wc:false,el:false,wc2:true,pk:false,vis:false},crowd:{t:'혼잡',b:'이른 아침 7–9시',h:[22,38,72,90,86,74,52]},audio:['KO','EN','JA','ZH'],desc:{en:"Seoul's most-photographed neighborhood with 900+ traditional Hanok houses. Arrive before 9am to enjoy the peaceful lanes before crowds arrive. Residents still live here — please be quiet.",ja:"900棟以上の韓屋が並ぶソウル最も映える地区。午前9時前に訪れると静かな路地を楽しめます。住民が生活しているため静かにお願いします。",zh_s:"拥有900多栋传统韩屋的首尔最上镜街区。请在早上9点前到达以享受宁静的小巷。居民仍在此生活，请保持安静。",zh_t:"擁有900多棟傳統韓屋的首爾最上鏡街區。請在早上9點前到達。居民仍在此生活，請保持安靜。",es:"El vecindario más fotografiado de Seúl con más de 900 casas Hanok. Llega antes de las 9am. Los residentes aún viven aquí — por favor sé silencioso.",fr:"Le quartier le plus photographié de Séoul avec plus de 900 maisons Hanok. Arrivez avant 9h. Les résidents y vivent encore — restez silencieux."},rel:[{n:'창덕궁',d:'600m',i:'🏯'},{n:'인사동',d:'700m',i:'🎨'},{n:'가회동',d:'100m',i:'📸'}],grad:'linear-gradient(135deg,#2a1f0a 0%,#4a3510 40%,#6a4f1a 100%)',ico:'🏘'},
+  {id:'774564',cat:'stay',t:{en:'Lotte Hotel Seoul',ja:'ロッテホテルソウル',zh_s:'乐天酒店首尔',zh_t:'樂天酒店首爾',es:'Hotel Lotte Seúl',fr:'Hôtel Lotte Séoul'},addr:'서울 중구 을지로 30',dist:'3.2km',rating:4.5,rev:6800,bf:{wc:true,el:true,wc2:true,pk:true,vis:true},crowd:{t:'한산',b:'수시 체크인',h:[40,40,40,40,40,40,40]},audio:['KO','EN','JA','ZH'],desc:{en:"Five-star luxury hotel in central Seoul. Fully wheelchair-accessible rooms with roll-in showers, lowered counters, and 24-hour multilingual concierge. Ideal for barrier-free travellers.",ja:"ソウル中心部の5つ星ホテル。全室バリアフリー対応、24時間多言語コンシェルジュサービス完備。",zh_s:"首尔市中心五星级豪华酒店。全套无障碍客房配备淋浴轮椅、降低的柜台和24小时多语言礼宾服务。",zh_t:"首爾市中心五星級豪華酒店。全套無障礙客房和24小時多語言禮賓服務。",es:"Hotel de lujo de cinco estrellas en el centro de Seúl. Habitaciones totalmente accesibles y conserjería multilingüe 24 horas.",fr:"Hôtel cinq étoiles au cœur de Séoul. Chambres entièrement accessibles et conciergerie multilingue 24h/24."},rel:[{n:'명동 쇼핑',d:'500m',i:'🛍'},{n:'남산서울타워',d:'1.5km',i:'🗼'}],grad:'linear-gradient(135deg,#0a0a1a 0%,#1a1a3a 40%,#2a2a5a 100%)',ico:'🏨'},
+  {id:'980025',cat:'food',t:{en:'Gwangjang Market',ja:'広蔵市場',zh_s:'广藏市场',zh_t:'廣藏市場',es:'Mercado Gwangjang',fr:'Marché Gwangjang'},addr:'서울 종로구 창경궁로 88',dist:'2.3km',rating:4.9,rev:18900,bf:{wc:true,el:false,wc2:true,pk:true,vis:false},crowd:{t:'보통',b:'평일 점심',h:[24,20,56,74,62,44,28]},audio:['KO','EN'],desc:{en:"Seoul's oldest market (est. 1905) and a Netflix food sensation. Try bindaetteok (mung bean pancakes), yukhoe (beef tartare), and tiny but mighty mayak gimbap. Best visited on weekdays.",ja:"1905年創業のソウル最古の市場で、Netflixで話題に。ビンデトック、ユッケ、麻薬キンパが名物。平日の訪問がおすすめ。",zh_s:"首尔最古老的市场（1905年），Netflix纪录片拍摄地。必尝绿豆煎饼、生牛肉拌饭和麻药紫菜包饭。建议平日前往。",zh_t:"首爾最古老的市場（1905年），Netflix拍攝地。必嘗綠豆煎餅和生牛肉拌飯。建議平日前往。",es:"El mercado más antiguo de Seúl (1905) y sensación de Netflix. Prueba bindaetteok, yukhoe y mayak gimbap. Mejor entre semana.",fr:"Le plus ancien marché de Séoul (1905) et sensation Netflix. Goûtez le bindaetteok, le yukhoe et le mayak gimbap. Mieux en semaine."},rel:[{n:'동대문DDP',d:'1.0km',i:'🏗'},{n:'청계천',d:'500m',i:'🌊'}],grad:'linear-gradient(135deg,#2d1a0a 0%,#4d2d10 40%,#6d3d0a 100%)',ico:'🥘'},
+  {id:'128158',cat:'shop',t:{en:'Myeongdong Shopping',ja:'明洞ショッピング',zh_s:'明洞购物街',zh_t:'明洞購物街',es:'Myeongdong Shopping',fr:'Shopping Myeongdong'},addr:'서울 중구 명동2가',dist:'3.8km',rating:4.4,rev:35000,bf:{wc:true,el:false,wc2:true,pk:true,vis:false},crowd:{t:'혼잡',b:'평일 오전 10시',h:[22,28,70,90,84,80,58]},audio:['KO','EN','JA','ZH'],desc:{en:"Korea's most famous shopping district — K-beauty, fashion, and street food all in one block. Most shops have English, Japanese, and Chinese-speaking staff. Street food stalls open from 4pm.",ja:"韓国で最も有名なショッピングエリア。コスメ、ファッション、屋台グルメが集結。ほとんどの店舗で日英中語対応可。屋台は16時から。",zh_s:"韩国最著名的购物区——韩妆、时尚和街头小吃一站式。大多数店铺有英日中语服务员。街头小吃摊位下午4点开始营业。",zh_t:"韓國最著名的購物區——韓妝、時尚和街頭小吃一站式。大多數店鋪有英日中語服務員。",es:"El distrito comercial más famoso de Corea — K-beauty, moda y comida callejera. La mayoría de tiendas hablan inglés, japonés y chino.",fr:"Le quartier commercial le plus célèbre de Corée — K-beauty, mode et street food. La plupart des magasins parlent anglais, japonais et chinois."},rel:[{n:'남대문시장',d:'600m',i:'🏪'},{n:'롯데백화점',d:'300m',i:'🏬'}],grad:'linear-gradient(135deg,#1a0a2a 0%,#3a0a5a 40%,#6a0a8a 100%)',ico:'🛍'},
+];
 
-<hr class="divider">
+const GREET={en:"Hello! 👋 I'm your AI guide for Korea. Ask me anything — nearby places, menu translation, crowd levels, or emergency help. Where would you like to explore today?",ja:"こんにちは！👋 韓国のAIガイドです。観光地・メニュー翻訳・混雑情報・緊急連絡など何でもどうぞ。今日はどこへ行きたいですか？",zh_s:"你好！👋 我是您的韩国AI导游。景点推荐、菜单翻译、人流查询、紧急求助——全程中文服务。今天想去哪里？",zh_t:"您好！👋 我是您的韓國AI導遊。景點推薦、菜單翻譯、人流查詢、緊急求助——全程繁體中文服務。今天想去哪裡？",es:"¡Hola! 👋 Soy tu guía AI para Corea. Pregúntame cualquier cosa — lugares, traducciones, afluencia o emergencias. ¿Dónde quieres explorar?",fr:"Bonjour ! 👋 Je suis votre guide AI pour la Corée. Posez-moi n'importe quelle question — lieux, traductions, affluence ou urgences. Où souhaitez-vous aller ?"};
 
-<!-- HERO STATS -->
-<div class="section">
-  <div class="stats-row">
-    <div class="stat-box">
-      <div class="stat-val">1,732만</div>
-      <div class="stat-label">2024 방한 외래객 (KTO)</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">68%</div>
-      <div class="stat-label">외국인 불편 1위 "언어 장벽"</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">$1,690</div>
-      <div class="stat-label">외래객 1인당 평균 지출</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">40%</div>
-      <div class="stat-label">통역안내사 수요 미충족</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">BA 99</div>
-      <div class="stat-label">공동 3위 · /130점</div>
-    </div>
-  </div>
-</div>
+const CHIP_R={
+  '📍 주변 추천':{en:"Top spots near Gyeongbokgung right now 📍",ja:"景福宮周辺のおすすめスポットです 📍",zh_s:"景福宫附近的热门景点 📍",zh_t:"景福宮附近的熱門景點 📍",es:"Los mejores lugares cerca de Gyeongbokgung 📍",fr:"Les meilleurs endroits près de Gyeongbokgung 📍",ids:['126508','264570','128133']},
+  '♿ 무장애 여행':{en:"Wheelchair-accessible spots near you ♿ Verified via KTO Barrier-Free API",ja:"車椅子でアクセス可能なスポットです ♿ KTO無障害API確認済み",zh_s:"附近的无障碍景点 ♿ 已通过KTO无障碍API验证",zh_t:"附近的無障礙景點 ♿ 已通過KTO無障礙API驗證",es:"Lugares accesibles para silla de ruedas ♿ Verificados via KTO Barrier-Free API",fr:"Lieux accessibles en fauteuil roulant ♿ Vérifiés via KTO Barrier-Free API",ids:['126508','264570','774564']},
+  '📊 오늘 혼잡도':{en:"Today's crowd forecast near Gyeongbokgung 📊\n\n🟢 **Tongin Market** — Low · best before noon\n🟡 **Gyeongbokgung** — Moderate · try morning\n🔴 **Bukchon Hanok** — Very busy · go at 7–9am",ja:"景福宮周辺の混雑予報 📊\n\n🟢 **通仁市場** — 今空いています · 午前中がベスト\n🟡 **景福宮** — 普通 · 午前中を推奨\n🔴 **北村韓屋村** — 非常に混雑 · 7〜9時が最適",zh_s:"景福宫附近今日人流预报 📊\n\n🟢 **通仁市场** — 目前较少 · 中午前最佳\n🟡 **景福宫** — 适中 · 建议上午\n🔴 **北村韩屋村** — 非常拥挤 · 建议7-9点",zh_t:"景福宮附近今日人流預報 📊\n\n🟢 **通仁市場** — 目前較少\n🟡 **景福宮** — 適中\n🔴 **北村韓屋村** — 非常擁擠",es:"Previsión de afluencia de hoy 📊\n\n🟢 **Mercado Tongin** — Bajo · antes del mediodía\n🟡 **Gyeongbokgung** — Moderado · por la mañana\n🔴 **Bukchon** — Muy concurrido · ve a las 7–9am",fr:"Prévision de fréquentation d'aujourd'hui 📊\n\n🟢 **Marché Tongin** — Faible · avant midi\n🟡 **Gyeongbokgung** — Modéré · le matin\n🔴 **Bukchon** — Très fréquenté · 7h–9h",ids:null},
+  '🍽 맛집 찾기':{en:"Top-rated restaurants nearby 🍽",ja:"近くの人気レストランです 🍽",zh_s:"附近评分最高的餐厅 🍽",zh_t:"附近評分最高的餐廳 🍽",es:"Los restaurantes mejor valorados cerca 🍽",fr:"Les restaurants les mieux notés près de vous 🍽",ids:['264570','980025']},
+  '🚇 교통 안내':{en:"🚇 From Gyeongbokgung Station:\n\n• **Line 3** (Orange) → Anguk, Insadong (2 stops)\n• **Line 5** (Purple) → Gwanghwamun (1 stop)\n\n💡 **Tip**: T-money card works on all buses & subway. Tap in AND out!",ja:"🚇 景福宮駅からの交通案内:\n\n• **3号線**（オレンジ）→ 安国、仁寺洞（2駅）\n• **5号線**（紫）→ 光化門（1駅）\n\n💡 **ヒント**: Tマネーカードは全路線で使用可。乗降時に必ずタッチ！",zh_s:"🚇 从景福宫站出发:\n\n• **3号线**（橙色）→ 安国、仁寺洞（2站）\n• **5号线**（紫色）→ 光化门（1站）\n\n💡 **提示**: T-money卡通用于地铁和公交。进出站都需刷卡！",zh_t:"🚇 從景福宮站出發:\n\n• **3號線** → 安國、仁寺洞（2站）\n• **5號線** → 光化門（1站）\n\n💡 T-money卡通用，進出站都需刷卡！",es:"🚇 Desde la estación Gyeongbokgung:\n\n• **Línea 3** → Anguk, Insadong (2 paradas)\n\n💡 **Consejo**: La T-money funciona en metro y bus. ¡Toca al entrar Y al salir!",fr:"🚇 Depuis la station Gyeongbokgung:\n\n• **Ligne 3** → Anguk, Insadong (2 arrêts)\n\n💡 **Conseil**: La T-money fonctionne métro et bus. Validez à l'entrée ET à la sortie !",ids:null},
+};
+const FB={en:"I found information on that from Korea's official tourism database (KTO API). Would you like directions or more details?",ja:"韓国の公式観光データベースから情報を取得しました。道案内や詳細情報はいかがですか？",zh_s:"我从韩国官方旅游数据库（KTO API）找到了相关信息。需要路线或更多详情吗？",zh_t:"我從韓國官方旅遊數據庫（KTO API）找到了相關信息。需要路線嗎？",es:"Encontré información en la base de datos oficial de turismo de Corea (KTO API). ¿Quieres indicaciones o más detalles?",fr:"J'ai trouvé des informations dans la base de données officielle du tourisme coréen (KTO API). Souhaitez-vous des indications ?"};
 
-<hr class="divider">
+/* screen nav */
+function go(id,back=false){
+  document.querySelectorAll('.scr').forEach(s=>{
+    if(s.classList.contains('active')){s.classList.remove('active');if(back){s.classList.add('prev');setTimeout(()=>s.classList.remove('prev'),300);}}
+  });
+  document.getElementById(id).classList.add('active');
+  document.getElementById('bnav').classList.toggle('h',id==='s-lang');
+}
+function nav(sid,nid){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.getElementById(nid).classList.add('active');go(sid);}
+function goBack(){go(ST.prev,true);}
+function goLang(){go('s-lang');}
 
-<!-- SECTION 2: 서비스 개요 -->
-<div class="section">
-  <div class="section-label">Section 02</div>
-  <div class="section-title">서비스 개요 <span>(What)</span></div>
+/* language */
+function selLang(el){
+  document.querySelectorAll('.lc').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');
+  ST.lang=el.dataset.lang;
+  const m=LM[ST.lang];
+  const btn=document.getElementById('start-btn');
+  btn.textContent=`${m.flag} ${m.name}로 시작하기`;btn.classList.add('rdy');
+  document.getElementById('embassyn').textContent=EMB[ST.lang]||'주한 대사관';
+}
+function togBF(){ST.bf=!ST.bf;document.getElementById('bf-tog').classList.toggle('on',ST.bf);}
+function startApp(){
+  if(!ST.lang)return;
+  const m=LM[ST.lang];
+  document.getElementById('clbadge').textContent=`${m.flag} ${m.lbl}`;
+  document.getElementById('plbadge').textContent=m.lbl;
+  if(ST.bf){ST.plBF=true;document.getElementById('plbf').classList.add('on');}
+  initChat();renderPlaces();go('s-chat');nav('s-chat','ni-chat');
+}
 
-  <div class="tip-box">
-    <div class="tip-label">ONE-LINE PITCH</div>
-    <div class="tip-text">방한 외국인 전용 AI 가이드. 5개국어 실시간 통역·문화 맥락 설명·긴급상황 안내를 제공하며, 언어 장벽 없이 대중교통·맛집·숨은명소를 탐색하는 24시간 AI 현지인 친구 서비스</div>
-  </div>
+/* chat */
+function initChat(){document.getElementById('msgs').innerHTML='';addAI(GREET[ST.lang]||GREET.en,null);}
+function addAI(txt,ids){
+  const ms=document.getElementById('msgs'),t=nt();
+  let h=`<div class="mr ai"><div class="mava">🌐</div><div><div class="mb">${fmt(txt)}</div><div class="mt">${t}</div>`;
+  if(ids)ids.forEach(id=>{
+    const p=PL.find(x=>x.id===id);if(!p)return;
+    const n=p.t[ST.lang]||p.t.en;
+    const cc=p.crowd.t==='한산'?'cl':p.crowd.t==='보통'?'cm':'ch';
+    h+=`<div class="pci" onclick="showDet('${id}','s-chat')"><div class="pci-h"><div class="pci-n">${n}</div><div class="pci-r">★${p.rating}</div></div><div class="pci-m">${p.bf.wc?'<span class="pci-bf">♿ 무장애</span>':''}<span class="pci-d">📍${p.dist}</span><span class="pci-c ${cc}">●${p.crowd.t}</span></div></div>`;
+  });
+  h+='</div></div>';ms.insertAdjacentHTML('beforeend',h);sc();
+}
+function addUser(txt){
+  document.getElementById('msgs').insertAdjacentHTML('beforeend',
+    `<div class="mr u"><div class="mava">👤</div><div><div class="mb">${txt}</div><div class="mt">${nt()}</div></div></div>`);sc();
+}
+function showTyp(){
+  const el=document.createElement('div');el.id='typ';el.className='mr ai';
+  el.innerHTML='<div class="mava">🌐</div><div class="mb typ"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
+  document.getElementById('msgs').appendChild(el);sc();return el;
+}
+function sc(){const c=document.getElementById('msgs');setTimeout(()=>c.scrollTop=c.scrollHeight,50);}
+function doChip(t){
+  addUser(t);const el=showTyp();
+  setTimeout(()=>{el.remove();const r=CHIP_R[t];r?addAI((r[ST.lang]||r.en),r.ids||null):addAI(FB[ST.lang]||FB.en,null);}
+  ,900+Math.random()*400);
+}
+function doSend(){
+  const inp=document.getElementById('cinput'),v=inp.value.trim();if(!v)return;
+  inp.value='';inp.style.height='';addUser(v);
+  const el=showTyp();setTimeout(()=>{el.remove();addAI(FB[ST.lang]||FB.en,null);},1100+Math.random()*500);
+}
+function autoH(el){el.style.height='';el.style.height=Math.min(el.scrollHeight,80)+'px';}
+function fmt(s){return s.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
+function nt(){return new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});}
 
-  <div class="lang-grid">
-    <div class="lang-card"><div class="lang-emoji">🇺🇸</div><div class="lang-name">English</div><div class="lang-sub">미국·유럽·오세아니아</div></div>
-    <div class="lang-card"><div class="lang-emoji">🇯🇵</div><div class="lang-name">日本語</div><div class="lang-sub">방한 22% 비중</div></div>
-    <div class="lang-card"><div class="lang-emoji">🇨🇳</div><div class="lang-name">中文</div><div class="lang-sub">방한 31% 비중</div></div>
-    <div class="lang-card"><div class="lang-emoji">🇪🇸</div><div class="lang-name">Español</div><div class="lang-sub">중남미·스페인</div></div>
-    <div class="lang-card"><div class="lang-emoji">🇹🇭</div><div class="lang-name">ภาษาไทย</div><div class="lang-sub">동남아 18% 비중</div></div>
-  </div>
+/* places */
+function setTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');ST.cat=el.dataset.cat;renderPlaces();}
+function togPlBF(){ST.plBF=!ST.plBF;document.getElementById('plbf').classList.toggle('on',ST.plBF);renderPlaces();}
+function renderPlaces(){
+  const list=document.getElementById('plist');
+  const data=PL.filter(p=>(ST.cat==='all'||p.cat===ST.cat)&&(!ST.plBF||p.bf.wc));
+  if(!data.length){list.innerHTML='<div class="empty"><div class="ei">🔍</div><div style="font-size:15px;font-weight:600;margin-bottom:5px">검색 결과 없음</div><div>필터를 조정해 보세요</div></div>';return;}
+  const cL={spot:'관광지',food:'음식',stay:'숙박',shop:'쇼핑'};
+  const cC={spot:'cs',food:'cf',stay:'cst',shop:'csh'};
+  const crC={한산:'crl',보통:'crm',혼잡:'crh'};
+  list.innerHTML=data.map(p=>{
+    const n=p.t[ST.lang]||p.t.en;
+    return `<div class="pc" onclick="showDet('${p.id}','s-places')"><div class="pi" style="background:${p.grad}"><div class="emt">${p.ico}</div>${p.bf.wc?'<div class="pb2 bfb">♿ 무장애</div>':''}<div class="pb2 crb ${crC[p.crowd.t]||'crm'}">● ${p.crowd.t}</div></div><div class="pb3"><div class="pn">${n}</div><div class="paddr">${p.addr}</div><div class="pm2"><span class="pr">★${p.rating}</span><span class="prv">(${p.rev.toLocaleString()})</span><span class="ccat ${cC[p.cat]}">${cL[p.cat]}</span><span class="pdist">📍${p.dist}</span></div></div></div>`;
+  }).join('');
+}
 
-  <div class="card-row">
-    <div class="persona-box">
-      <div class="persona-avatar">👨‍💼</div>
-      <div class="persona-name">Tanaka Kenji, 32세 · 일본 도쿄</div>
-      <div class="persona-tag"># 첫 방한 · 독립 여행</div>
-      <div class="persona-desc">한국어 전혀 모름. 지하철 안내판이 한자도 아니라 읽기 불가. 맛집·편의점에서 주문하는 것도 두려움. 앱으로 해결하고 싶음.</div>
-    </div>
-    <div class="persona-box">
-      <div class="persona-avatar">👩‍🎓</div>
-      <div class="persona-name">Sofia Martinez, 25세 · 멕시코</div>
-      <div class="persona-tag"># K-드라마 팬 · 배낭여행</div>
-      <div class="persona-desc">3주 한국 여행. 영어도 완벽하지 않아 더 불안. 지방 소도시 방문 원하지만 스페인어 지원 앱이 없어 서울만 머뭄.</div>
-    </div>
-    <div class="persona-box">
-      <div class="persona-avatar">👨‍👩‍👦</div>
-      <div class="persona-name">Wang Fang 가족, 40대 · 상하이</div>
-      <div class="persona-tag"># 가족 여행 · 긴급 상황 우려</div>
-      <div class="persona-desc">아이와 함께 방한. 응급상황 발생 시 한국어로 신고·대처가 걱정. 중국어로 즉각 도움받을 수 있는 앱 필요.</div>
-    </div>
-  </div>
+/* detail */
+let aOn=false;
+function showDet(id,from){
+  ST.prev=from;aOn=false;
+  const p=PL.find(x=>x.id===id);if(!p)return;
+  const n=p.t[ST.lang]||p.t.en,desc=p.desc[ST.lang]||p.desc.en;
+  const crH=['10시','11시','12시','13시','15시','17시','19시'];
+  const crB=p.crowd.h.map((v,i)=>{
+    const cl=v<40?'cfl':v<70?'cfm':'cfh',lb=v<40?'한산':v<70?'보통':'혼잡',lc=v<40?'var(--green)':v<70?'var(--amber)':'var(--sos)';
+    return `<div class="cbr"><div class="ct2">${crH[i]}</div><div class="cbg"><div class="cbf ${cl}" style="width:${v}%"></div></div><div class="clbl" style="color:${lc}">${lb}</div></div>`;
+  }).join('');
+  const bfs=[{k:'wc',i:'♿',l:'휠체어'},{k:'el',i:'🛗',l:'엘리베이터'},{k:'wc2',i:'🚻',l:'장애인 화장실'},{k:'pk',i:'🅿️',l:'장애인 주차'},{k:'vis',i:'🦯',l:'시각장애 안내'}]
+    .map(f=>`<div class="bfi2"><span>${p.bf[f.k]?'✅':'❌'}</span><span style="color:${p.bf[f.k]?'var(--green)':'var(--muted2)'}">${f.i} ${f.l}</span></div>`).join('');
+  const alc=p.audio.map(l=>`<span class="alc">${l}</span>`).join('');
+  const rels=(p.rel||[]).map(r=>`<div class="rc" onclick="toast('${r.n} 상세 준비 중')"><div class="ri">${r.i}</div><div class="rn">${r.n}</div><div class="rd">${r.d}</div></div>`).join('');
+  document.getElementById('dscroll').innerHTML=`
+    <div class="dhero" style="background:${p.grad}"><div class="emt">${p.ico}</div><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,9,.88) 0%,transparent 55%)"></div><div class="dhero-c"><div class="dhn">${n}</div><div class="dha">📍 ${p.addr}</div><div class="drrow"><span class="dr">★${p.rating}</span><span class="drv">(${p.rev.toLocaleString()} reviews)</span>${p.bf.wc?'<span class="dbfb">♿ 무장애</span>':''}</div></div></div>
+    <div class="ds" style="margin-top:54px"><div class="dst">AI 해설 · AI Guide</div><div class="dd">${desc}</div></div>
+    <div class="ddiv"></div>
+    <div class="ds"><div class="dst">오늘 혼잡도 · Crowd Today</div><div style="font-size:12px;color:var(--muted);margin-bottom:10px">최적 방문: <strong style="color:var(--green)">${p.crowd.b}</strong></div>${crB}</div>
+    <div class="ddiv"></div>
+    <div class="ds"><div class="dst">무장애 시설 · Accessibility</div><div class="bfl">${bfs}</div></div>
+    <div class="ddiv"></div>
+    <div class="ds"><div class="dst">오디오 가이드 · Audio Guide</div><div class="abtn" onclick="togAudio()"><div class="aico" id="aico">🔈</div><div class="ainfo"><div class="atit">공식 오디오 가이드 재생</div><div class="asub">KTO 공식 제공 · ${p.audio.length}개 언어</div><div class="alrow">${alc}</div></div><div class="aply" id="aply">▶</div></div></div>
+    <div class="ddiv"></div>
+    <div class="ds"><div class="dst">함께 가는 곳 · Related</div></div>
+    <div class="rscroll">${rels}</div><div style="height:20px"></div>`;
+  go('s-detail');
+}
+function togAudio(){aOn=!aOn;document.getElementById('aply').textContent=aOn?'⏸':'▶';document.getElementById('aico').textContent=aOn?'🔊':'🔈';if(aOn)toast('오디오 가이드 재생 중…');}
 
-  <div class="tag-row">
-    <span class="tag">🌐 5개국어 실시간</span>
-    <span class="tag">🚇 대중교통 안내</span>
-    <span class="tag">🚨 긴급상황 지원</span>
-    <span class="tag">🍽️ 문화 맥락 설명</span>
-    <span class="tag">📍 숨은 명소 탐색</span>
-    <span class="tag">👮 대사관 연결</span>
-  </div>
-</div>
+/* SOS */
+function selSOS(el){document.querySelectorAll('.sc').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');toast(el.querySelector('.scl').textContent+' — AI가 연결을 준비합니다');}
+function aiTranslate(){
+  toast('AI 통역 모드 활성화');go('s-chat');nav('s-chat','ni-chat');
+  const M={en:"🆘 SOS Interpreter Mode activated. Describe your situation in English and I'll communicate with Korean authorities on your behalf.",ja:"🆘 SOS通訳モード起動。日本語で状況を説明してください。韓国の当局に代わってお伝えします。",zh_s:"🆘 SOS翻译模式已启动。请用中文描述您的情况，我将代您与韩国相关机构沟通。",zh_t:"🆘 SOS翻譯模式已啟動。請用中文描述您的情況，我將代您與韓國相關機構溝通。",es:"🆘 Modo SOS activado. Describe tu situación en español y comunicaré con las autoridades coreanas en tu nombre.",fr:"🆘 Mode SOS activé. Décrivez votre situation en français et je communiquerai avec les autorités coréennes en votre nom."};
+  setTimeout(()=>addAI(M[ST.lang]||M.en,null),350);
+}
 
-<hr class="divider">
+/* toast */
+let _tt;
+function toast(msg){const el=document.getElementById('tel');el.textContent=msg;el.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2400);}
 
-<!-- SECTION 3: 리서치 근거 -->
-<div class="section">
-  <div class="section-label">Section 03</div>
-  <div class="section-title">리서치 근거 <span>(Why)</span></div>
-
-  <div class="card">
-    <div class="research-item">
-      <div class="research-num">01</div>
-      <div class="research-content">
-        <div class="research-stat">방한 외래관광객 1,732만명 — 중국 31%, 일본 22%, 동남아 18%</div>
-        <div class="research-desc">2024년 방한 외래객 1,732만명. 중국(538만)·일본(381만)·동남아(312만) 순. 이 3개 권역만 합쳐도 전체의 71%. 모두 비영어권.</div>
-        <div class="research-source">출처: 한국관광공사(KTO) 2024 외래관광객 입국 통계</div>
-      </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">02</div>
-      <div class="research-content">
-        <div class="research-stat">외국인 여행 불편 1위 "언어 장벽" 68%</div>
-        <div class="research-desc">방한 외래관광객 실태조사에서 여행 중 가장 불편한 사항 1위로 "언어 소통"이 68% 압도적 1위. 교통·음식·관광안내 모든 단계에서 언어 장벽 발생.</div>
-        <div class="research-source">출처: 한국관광공사 외래관광객 실태조사 2024</div>
-      </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">03</div>
-      <div class="research-content">
-        <div class="research-stat">방한 외국인 1인당 평균 지출 $1,690</div>
-        <div class="research-desc">방한 외래객 1인당 평균 지출 $1,690로 전년 대비 8% 증가. 언어 장벽 해소 시 쇼핑·체험 지출 추가 20% 이상 증가 가능 (KTO 추정).</div>
-        <div class="research-source">출처: 한국관광공사(KTO) 2024 외래관광객 소비 실태</div>
-      </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">04</div>
-      <div class="research-content">
-        <div class="research-stat">AI 번역 앱 시장 $1.5B · 연 23% 성장 (Statista 2025)</div>
-        <div class="research-desc">글로벌 AI 번역·통역 앱 시장이 2025년 $15억 규모로 연 23% 고성장. 여행 특화 AI 가이드는 단순 번역 초월 — 문화 맥락 + 장소 정보 통합이 차별점.</div>
-        <div class="research-source">출처: Statista Digital Markets Report 2025</div>
-      </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">05</div>
-      <div class="research-content">
-        <div class="research-stat">관광통역안내사 공급 부족: 수요 대비 40% 미충족</div>
-        <div class="research-desc">공인 관광통역안내사 수요가 연간 150만명 분이나 실제 공급은 90만명 분(60%). 특히 중소도시·지방에서 심각한 통역 안내 공백. AI로 공백 해결.</div>
-        <div class="research-source">출처: 문화체육관광부 관광통역안내사 수급 실태조사 2024</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 4: 아이디어 도출 과정 -->
-<div class="section">
-  <div class="section-label">Section 04</div>
-  <div class="section-title">아이디어 도출 과정</div>
-
-  <div class="tip-box">
-    <div class="tip-label">IDEATION ROUND</div>
-    <div class="tip-text">Round 4 → 방한 외국인 언어 장벽 문제가 가장 큰 미충족 니즈라는 리서치 발견 → BA 매트릭스 스코어링. 시장 규모 10점 만점, 이중 타겟 9점으로 외래객·관광청 B2G 이중 수익 구조 강점. 공동 3위 선정. 사업성 출처: KTO·Statista·문체부.</div>
-  </div>
-
-  <div class="ba-grid">
-    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score high">10/10</div></div>
-    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">9/10</div></div>
-    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score mid">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score mid">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score low">5/10</div></div>
-    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score high">9/10</div></div>
-    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score low">6/10</div></div>
-  </div>
-  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
-  <div class="ba-grid">
-    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score high">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score mid">8/10</div></div>
-  </div>
-  <div class="ba-total">
-    <div>
-      <div class="ba-total-label">BA 총점 (소계 76 + 보너스 23)</div>
-      <div class="ba-rank">공동 3위 · 시장규모 10점 만점 · 이중타겟 9점 · 보너스 최고점</div>
-    </div>
-    <div class="ba-total-val">99/130</div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 5: 공모전 심사 기준 -->
-<div class="section">
-  <div class="section-label">Section 05</div>
-  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
-
-  <div class="card">
-    <table class="criteria-table">
-      <thead>
-        <tr>
-          <th>심사 기준</th>
-          <th>배점</th>
-          <th>대응 전략</th>
-          <th>자체 평가</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
-          <td><span class="criteria-score">30점</span></td>
-          <td>단순 번역 앱이 아닌 "문화 맥락 + 장소 정보 + 긴급 대응"을 통합한 방한 외국인 전용 AI 가이드. 기존 Google Translate와 명확히 차별화된 여행 특화 서비스.</td>
-          <td><span class="criteria-score">24/30</span></td>
-        </tr>
-        <tr>
-          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
-          <td><span class="criteria-score">25점</span></td>
-          <td>영문·다국어 관광정보 API로 공식 정보 5개국어 실시간 제공. 긴급안전정보 API로 위기상황 자동 대응. 교통정보 연계로 실시간 길 안내.</td>
-          <td><span class="criteria-score">21/25</span></td>
-        </tr>
-        <tr>
-          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
-          <td><span class="criteria-score">25점</span></td>
-          <td>외국인 관광 불편 1위 해결 → 재방문율 증가 → 관광 수지 개선. 언어 장벽 해소로 지방 소도시 외국인 방문 확대. 관광통역 공백 지역 AI로 커버.</td>
-          <td><span class="criteria-score">19/25</span></td>
-        </tr>
-        <tr>
-          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
-          <td><span class="criteria-score">20점</span></td>
-          <td>LLM 기반 다국어 처리는 현재 기술로 충분히 가능. KTO API + 교통 API + LLM 통합 아키텍처. 5개월 MVP 출시 가능. 긴급 연결은 규제 검토 필요.</td>
-          <td><span class="criteria-score">17/20</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 6: 주요 화면 Mock UI -->
-<div class="section">
-  <div class="section-label">Section 06</div>
-  <div class="section-title">주요 화면 <span>Mock UI</span></div>
-
-  <div class="journey-steps">
-    <div class="journey-step">
-      <div class="journey-num">1</div>
-      <div class="journey-label">언어 선택<br>입국 전 준비</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">2</div>
-      <div class="journey-label">AI 가이드<br>질문·탐색</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">3</div>
-      <div class="journey-label">실시간 번역<br>현장 대화</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">4</div>
-      <div class="journey-label">긴급상황<br>SOS 연결</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">5</div>
-      <div class="journey-label">여행 후<br>루트 저장</div>
-    </div>
-  </div>
-
-  <div class="mock-phones">
-    <div class="mock-phone">
-      <div class="mock-header">🌐 AI 가이드 대화</div>
-      <div style="font-size:10px;color:var(--accent);margin-bottom:8px">언어: 日本語 · 경복궁 근처</div>
-      <div style="background:rgba(56,189,248,0.05);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;color:var(--muted)">
-        <div style="font-size:10px;color:var(--muted2);margin-bottom:4px">Kenji</div>
-        景福宮の近くでランチはどこがいいですか？
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;color:var(--muted)">
-        <div style="font-size:10px;color:var(--accent);margin-bottom:4px">AI Guide ✨</div>
-        景福宮から徒歩5分の「通仁市場」がおすすめです！お弁当コインで好きなおかずを選べる独特のシステム。地元の人に人気で、一食約5,000ウォン（約600円）。今日は空いています。
-      </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">🗺️</span>
-        <div><div class="mock-item-name">통인시장 길 안내</div><div class="mock-item-sub">도보 5분 · 지금 출발</div></div>
-      </div>
-    </div>
-
-    <div class="mock-phone">
-      <div class="mock-header">🚨 긴급 SOS 센터</div>
-      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:14px;margin-bottom:12px;text-align:center">
-        <div style="font-size:24px;margin-bottom:6px">🆘</div>
-        <div style="font-size:14px;font-weight:700;color:#EF4444">긴급 상황 감지</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:4px">AI가 대화에서 위급 상황 감지</div>
-      </div>
-      <div class="mock-item" style="border:1px solid rgba(239,68,68,0.3)">
-        <span class="mock-item-icon">🏥</span>
-        <div><div class="mock-item-name">가장 가까운 병원 안내</div><div class="mock-item-sub">서울대병원 · 2.3km · 외국어 가능</div><span class="mock-tag mock-tag-red">中文 지원</span></div>
-      </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">🏛️</span>
-        <div><div class="mock-item-name">중국 대사관 연결</div><div class="mock-item-sub">긴급 영사 서비스 · 24시간</div></div>
-      </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">👮</span>
-        <div><div class="mock-item-name">112 신고 (다국어)</div><div class="mock-item-sub">AI가 한국어로 상황 전달</div></div>
-      </div>
-    </div>
-
-    <div class="mock-phone">
-      <div class="mock-header">🚇 실시간 교통 안내</div>
-      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">현재 위치: 홍대입구역 → 경복궁</div>
-      <div class="mock-item" style="border:1px solid var(--accent)">
-        <span class="mock-item-icon">🚇</span>
-        <div>
-          <div class="mock-item-name">추천 경로</div>
-          <div class="mock-item-sub">2호선 → 3호선 환승 · 30분</div>
-          <span class="mock-tag mock-tag-accent">₩1,450</span>
-        </div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;">
-        <div style="color:var(--accent);font-size:11px;margin-bottom:4px">문화 팁 💡</div>
-        <div style="color:var(--muted)">지하철에서 노약자석(파란색)은 비워두세요. 한국 문화 예절입니다.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 7: OpenAPI 활용 -->
-<div class="section">
-  <div class="section-label">Section 07</div>
-  <div class="section-title">OpenAPI <span>활용</span></div>
-
-  <div class="card">
-    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">영문·다국어 관광정보 API가 핵심. 긴급안전정보 API는 SOS 시스템의 데이터 소스. 교통정보 연계로 실시간 내비게이션 완성.</div>
-    <div class="api-chips">
-      <span class="api-chip">한국관광공사_영문관광정보서비스</span>
-      <span class="api-chip">한국관광공사_다국어관광정보서비스(일/중/영/스)</span>
-      <span class="api-chip">한국관광공사_관광지긴급안전정보</span>
-      <span class="api-chip">한국관광공사_교통정보연계서비스</span>
-      <span class="api-chip">한국관광공사_외국어관광안내콘텐츠</span>
-    </div>
-
-    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">영문·다국어 관광정보</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">5개국어 관광지 정보 공식 제공. LLM과 결합해 자연어 질문 응답.</div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지긴급안전정보</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">재난·안전 정보를 다국어로 즉시 전달. SOS 시스템 데이터 소스.</div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">교통정보연계서비스</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">실시간 대중교통 경로·혼잡도. 외국인이 이해하기 쉬운 단계별 안내 생성.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 8: 팀 합의 점수 -->
-<div class="section">
-  <div class="section-label">Section 08</div>
-  <div class="section-title">팀 합의 <span>점수</span></div>
-
-  <div class="score-display">
-    <div class="score-big">8.0</div>
-    <div class="score-meta">
-      <div class="score-label">팀 합의 점수 / 10점</div>
-      <div class="score-stars">★★★★☆</div>
-      <div class="score-reason" style="margin-top:8px">TAM 29.3조원 최대 시장 + 외국인 언어 장벽이라는 명확하고 심각한 문제 해결. 관광청 B2G 계약 가능성이 높아 수익 안정성 우수.</div>
-    </div>
-  </div>
-
-  <div class="card-row">
-    <div class="card" style="margin-bottom:0">
-      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
-      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
-        <li>시장 규모 10/10 — TAM 29.3조원 최대</li>
-        <li>언어 장벽 = 방한 외국인 불편 1위 직접 해결</li>
-        <li>B2G(관광청·지자체) 수익 구조로 안정성 확보</li>
-        <li>보너스 항목 전체 최고점 23/30</li>
-      </ul>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
-      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
-        <li>Google 번역 인식 경쟁 → 여행 특화 차별화 강조</li>
-        <li>지역 분산 5점 → 지방 관광청 B2G 우선 확대</li>
-        <li>긴급 연결 규제 → 법무·외교부 협의 선제 진행</li>
-        <li>오프라인 사용 → 핵심 데이터 로컬 캐싱</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 9: 객관 사업성 -->
-<div class="section">
-  <div class="section-label">Section 09</div>
-  <div class="section-title">객관 <span>사업성</span></div>
-
-  <div class="card">
-    <table class="fin-table">
-      <thead>
-        <tr>
-          <th>구분</th>
-          <th>규모</th>
-          <th>산정 근거</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>TAM</strong></td>
-          <td class="highlight">29.3조원</td>
-          <td style="font-size:13px;color:var(--muted)">방한 외래객 1,732만 × 평균지출 $1,690 = 29.3조원 (KTO 2024)</td>
-        </tr>
-        <tr>
-          <td><strong>SAM</strong></td>
-          <td class="highlight">11.3조원</td>
-          <td style="font-size:13px;color:var(--muted)">독립여행자 55% × 디지털 앱 사용 70% = 666만명 → 11.3조원</td>
-        </tr>
-        <tr>
-          <td><strong>SOM</strong></td>
-          <td class="highlight">1,130억원</td>
-          <td style="font-size:13px;color:var(--muted)">Y3 이내 1% 점유율 목표</td>
-        </tr>
-        <tr>
-          <td><strong>Y1 매출</strong></td>
-          <td class="highlight">37억원</td>
-          <td style="font-size:13px;color:var(--muted)">B2C: 월 20만 외국인 설치 × 5% 프리미엄 × $9.99 × 12 = 12억<br>B2G: 관광청 계약 5건 × 5억 = 25억</td>
-        </tr>
-        <tr>
-          <td><strong>BEP</strong></td>
-          <td class="highlight">20개월</td>
-          <td style="font-size:13px;color:var(--muted)">Y2 달성 예상. 초기 개발비 10억 + 다국어 LLM 구축 5억 = 15억 회수</td>
-        </tr>
-        <tr>
-          <td><strong>주요 경쟁사</strong></td>
-          <td colspan="2" style="font-size:13px;color:var(--muted)">Klook 한국 GMV 2,400억 · KKday 아시아 $300M GMV(2024) — 여행 특화 다국어 AI 가이드 없음</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 10: AI 차별화 -->
-<div class="section">
-  <div class="section-label">Section 10</div>
-  <div class="section-title">AI <span>차별화</span></div>
-
-  <div class="ai-branch-badge">🤖 AI Branch: companion</div>
-
-  <div class="card">
-    <div class="ai-reason">
-      <div class="ai-reason-num">1</div>
-      <div class="ai-reason-text">
-        <strong>5개국어 실시간 처리 + 문화적 뉘앙스 설명 (단순 번역 초월)</strong><br>
-        "노약자석은 비워두세요", "식당에서 팁은 불필요", "찜질방 에티켓" 등 단순 단어 번역이 아닌 문화적 맥락과 현지 관행을 5개국어로 즉시 설명. 구글 번역이 제공할 수 없는 여행 특화 지식 레이어.
-      </div>
-    </div>
-    <div class="ai-reason">
-      <div class="ai-reason-num">2</div>
-      <div class="ai-reason-text">
-        <strong>응급상황 자동 감지 → 대사관/경찰/병원 다국어 연결</strong><br>
-        대화 중 "아프다", "잃어버렸다", "위험하다" 등 긴급 신호를 AI가 자동 감지해 가장 가까운 병원·외국어 가능 경찰서·해당 국가 대사관을 즉시 다국어로 연결. 사람 가이드는 24시간 응급 대응 불가.
-      </div>
-    </div>
-    <div class="ai-reason">
-      <div class="ai-reason-num">3</div>
-      <div class="ai-reason-text">
-        <strong>방문 패턴 분석 → 국적별 선호 루트 개인화</strong><br>
-        일본인 방문자 집계 데이터에서 "일본인이 가장 좋아하는 숨은 골목", 중국인 데이터에서 "쇼핑 + 음식 루트"를 자동 도출. 개인 맞춤 + 국적 집단 지성을 결합한 이중 개인화.
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div style="margin-bottom:8px">
-    <strong style="color:var(--fg)">Foreign AI Guide</strong> — 2026 한국관광공사 관광 서비스 공모전
-  </div>
-  <div>BA Score 99/130 (공동 3위) · 팀 합의 8.0/10 · AI Branch: companion</div>
-  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
-</footer>
-
+/* init */
+selLang(document.querySelector('[data-lang="en"]'));
+</script>
 </body>
 </html>
