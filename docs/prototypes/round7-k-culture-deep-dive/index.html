@@ -685,11 +685,383 @@
   </div>
 </div>
 
+<hr class="divider">
+
+<!-- SECTION 11: 페르소나 3종 (고도화) -->
+<div class="section">
+  <div class="section-label">Section 11 · 고도화</div>
+  <div class="section-title">페르소나 3종 <span>(KR·외국인·접근성)</span></div>
+
+  <div class="card-row">
+    <div class="persona-box">
+      <div class="persona-avatar">🧑‍💻</div>
+      <div class="persona-name">P1 · 김민준, 28세</div>
+      <div class="persona-tag"># KR 내국인 · 드라마 팬덤</div>
+      <div class="persona-desc">
+        IT 개발자. 넷플릭스 드라마 촬영지 탐방이 취미지만 정보가 SNS에 파편화됨.<br>
+        핵심 니즈: 촬영지 실시간 운영 상태 + 최적 동선<br>
+        연관 API: <code style="font-size:11px;color:var(--accent)">tourism-info-korean</code> · <code style="font-size:11px;color:var(--accent)">visitor-concentration-forecast</code>
+      </div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">👩‍🎤</div>
+      <div class="persona-name">P2 · Yuki Tanaka, 24세</div>
+      <div class="persona-tag"># 외국인 · 일본 K-팝 팬</div>
+      <div class="persona-desc">
+        도쿄 패션 에디터. 뉴진스·BTS 성지순례 5박 6일 솔로 방한.<br>
+        핵심 니즈: 일본어 UI + 팬덤 오디오 가이드 + 글로벌 팬 연결<br>
+        연관 API: <code style="font-size:11px;color:var(--accent)">tourism-info-japanese</code> · <code style="font-size:11px;color:var(--accent)">audio-guide</code>
+      </div>
+    </div>
+    <div class="persona-box">
+      <div class="persona-avatar">♿</div>
+      <div class="persona-name">P3 · 박정호, 45세</div>
+      <div class="persona-tag"># 접근성 약자 · 전동 휠체어</div>
+      <div class="persona-desc">
+        프리랜서 번역가. 드라마 팬이지만 배리어프리 정보 부재로 현장 낭패 경험.<br>
+        핵심 니즈: 휠체어 접근 가능 성지 필터 + 배리어프리 루트<br>
+        연관 API: <code style="font-size:11px;color:var(--accent)">barrier-free-travel</code> · <code style="font-size:11px;color:var(--accent)">durunubi-trails</code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 12: 사용자 시나리오 5단계 -->
+<div class="section">
+  <div class="section-label">Section 12 · 고도화</div>
+  <div class="section-title">핵심 사용자 시나리오 <span>(5단계 플로우)</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">대표 시나리오 — P2 Yuki의 뉴진스 성지순례 하루</div>
+    <div class="tip-text">외국인 K-팝 팬이 언어 장벽 없이 성지순례를 완주하고, 글로벌 팬 커뮤니티에 공유하기까지의 전체 여정</div>
+  </div>
+
+  <div class="journey-steps" style="margin-bottom:32px">
+    <div class="journey-step">
+      <div class="journey-num">1</div>
+      <div class="journey-label">탐색<br>Discovery</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">2</div>
+      <div class="journey-label">루트 생성<br>Planning</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">3</div>
+      <div class="journey-label">몰입 체험<br>Experience</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">4</div>
+      <div class="journey-label">공유·기록<br>Share</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">5</div>
+      <div class="journey-label">재참여<br>Loop</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">1</div>
+      <div class="research-content">
+        <div class="research-stat">탐색 (Discovery)</div>
+        <div class="research-desc">"뉴진스" 검색 → 성지 12곳 로드 (tourism-info-japanese API) + 각 장소 실시간 운영 여부 + 팬 커뮤니티 인기순 정렬</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">2</div>
+      <div class="research-content">
+        <div class="research-stat">루트 생성 (Planning)</div>
+        <div class="research-desc">"오늘 반나절 루트" 탭 → AI가 현재 위치 + 혼잡도(visitor-concentration-forecast) + 운영 시간 고려해 최적 4개 장소 선별 + 지하철 이동 동선 계산</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">3</div>
+      <div class="research-content">
+        <div class="research-stat">몰입 체험 (Immersive Experience)</div>
+        <div class="research-desc">성지 도착 시 GPS 감지 → 일본어 오디오 가이드 자동 재생 (audio-guide API) "멤버 민지가 이 카페에서..." → AR 포토스팟 가이드 → 같은 장소 글로벌 팬과 실시간 연결</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">4</div>
+      <div class="research-content">
+        <div class="research-stat">공유 & 기록 (Share & Archive)</div>
+        <div class="research-desc">방문 완료 체크인 → '뉴진스 버니 레벨 3' 배지 생성 → X / Instagram 공유 카드 자동 생성 → 나의 성지순례 지도에 기록 저장</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">5</div>
+      <div class="research-content">
+        <div class="research-stat">재참여 루프 (Engagement Loop)</div>
+        <div class="research-desc">방문 기록 분석 → 미방문 관련 성지 3곳 추천 + 커뮤니티에 같은 날 방문한 글로벌 팬 표시 + "다음 방한 때 완성할 성지 컬렉션" 알림 → 재방문 동기 부여</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 13: OpenAPI 고도화 매핑 -->
+<div class="section">
+  <div class="section-label">Section 13 · 고도화</div>
+  <div class="section-title">OpenAPI 고도화 매핑 <span>(6개 API · 호출 시퀀스)</span></div>
+
+  <div class="card">
+    <div style="overflow-x:auto">
+      <table class="criteria-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>API</th>
+            <th>활용 목적</th>
+            <th>호출 시점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="criteria-score">1</span></td>
+            <td><code style="font-size:12px;color:var(--accent)">tourism-info-korean/japanese</code></td>
+            <td>성지 기본 정보 (운영시간, 주소, 상태) · 다국어 제공</td>
+            <td>검색·상세보기</td>
+          </tr>
+          <tr>
+            <td><span class="criteria-score">2</span></td>
+            <td><code style="font-size:12px;color:var(--accent)">audio-guide</code></td>
+            <td>성지 도착 시 자동 오디오 스토리텔링 (K-팝·드라마 맥락)</td>
+            <td>GPS 도착 감지</td>
+          </tr>
+          <tr>
+            <td><span class="criteria-score">3</span></td>
+            <td><code style="font-size:12px;color:var(--accent)">visitor-concentration-forecast</code></td>
+            <td>혼잡 시간대 회피 → 최적 방문 시각·인증샷 타이밍</td>
+            <td>루트 생성</td>
+          </tr>
+          <tr>
+            <td><span class="criteria-score">4</span></td>
+            <td><code style="font-size:12px;color:var(--accent)">related-attractions</code></td>
+            <td>성지 주변 연관 명소 자동 연결 ("다음에 갈 곳")</td>
+            <td>상세보기·루트</td>
+          </tr>
+          <tr>
+            <td><span class="criteria-score">5</span></td>
+            <td><code style="font-size:12px;color:var(--accent)">barrier-free-travel</code></td>
+            <td>배리어프리 접근성 등급·경로 (P3 전용 + 전체 필터)</td>
+            <td>배리어프리 모드</td>
+          </tr>
+          <tr>
+            <td><span class="criteria-score">6</span></td>
+            <td><code style="font-size:12px;color:var(--accent)">area-tourism-diversity</code></td>
+            <td>국제 다양성 지수 → 외국인 다수 방문 지점 안내 (P2)</td>
+            <td>외국인 모드</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:20px;background:var(--surface);border-radius:12px;padding:16px;font-family:monospace;font-size:12px;line-height:2;color:var(--muted)">
+      <div style="color:var(--accent);margin-bottom:8px;font-weight:700">// API 호출 시퀀스 (검색 → 루트 → 체험)</div>
+      <div>1. 검색: <span style="color:var(--fg)">GET tourism-info-{lang}?keyword={아이돌·드라마명}</span></div>
+      <div>2. 혼잡도: <span style="color:var(--fg)">GET visitor-concentration-forecast?contentId={각 장소 ID}</span></div>
+      <div>3. 루트 AI 계산: <span style="color:var(--fg)">GET related-attractions?contentId={출발지 ID}</span></div>
+      <div>4. 도착 감지: <span style="color:var(--fg)">GET audio-guide?contentId={장소 ID}&lang={KO|JA|EN|ZH}</span></div>
+      <div>5. (P3) 배리어프리: <span style="color:var(--fg)">GET barrier-free-travel?contentId={장소 ID}</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 14: 핵심 화면 와이어프레임 -->
+<div class="section">
+  <div class="section-label">Section 14 · 고도화</div>
+  <div class="section-title">UX Flow + 핵심 화면 <span>(7개 화면)</span></div>
+
+  <div class="screen-grid">
+    <div class="screen-card">
+      <div class="screen-icon">🏠</div>
+      <div class="screen-name">화면 1 · 홈 피드</div>
+      <div class="screen-desc">AI 추천 루트 · 지금 핫한 성지 · 카테고리 필터 (K-팝/드라마/배리어프리)</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-icon">🗺️</div>
+      <div class="screen-name">화면 2 · 검색 결과</div>
+      <div class="screen-desc">지도 + 리스트 듀얼 뷰 · 혼잡도 배지 · 운영 여부 실시간 · 루트 추가 버튼</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-icon">📍</div>
+      <div class="screen-name">화면 3 · 성지 상세</div>
+      <div class="screen-desc">사진 갤러리 · 오디오 가이드 재생 · 배리어프리 등급 · 연관 성지 · 팬 리뷰</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-icon">✨</div>
+      <div class="screen-name">화면 4 · AI 루트 플래너</div>
+      <div class="screen-desc">순서 재정렬 가능 · 혼잡도 시간표 · 배리어프리 전환 옵션 · 경유지 교통 안내</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-icon">🎧</div>
+      <div class="screen-name">화면 5 · 체험 중 내비</div>
+      <div class="screen-desc">실시간 지도 + 오디오 자동 재생 · 같은 장소 글로벌 팬 채팅 · AR 포토스팟</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-icon">🏆</div>
+      <div class="screen-name">화면 6 · 배지 & 인증</div>
+      <div class="screen-desc">팬덤 배지 획득 애니메이션 · 성지 컬렉션 진행도 · SNS 공유 카드 자동 생성</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-icon">♿</div>
+      <div class="screen-name">화면 7 · 배리어프리 상세</div>
+      <div class="screen-desc">접근성 A/B/C 등급 · 엘리베이터·경사로·장애인 화장실 위치 · 휠체어 경로 · 접근성 후기</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 15: 차별화 포인트 -->
+<div class="section">
+  <div class="section-label">Section 15 · 고도화</div>
+  <div class="section-title">차별화 포인트 <span>(경쟁 서비스 대비 5개)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num">①</div>
+      <div class="research-content">
+        <div class="research-stat">실시간 성지 상태 + AI 루트 통합</div>
+        <div class="research-desc"><strong>기존:</strong> 네이버맵(위치만), Visit Korea 앱(정적 정보) — 운영 여부 불명확, 루트 없음<br><strong>K-Culture Deep Dive:</strong> Visit Korea API + 팬 커뮤니티 데이터 → 운영 여부·혼잡도·최적 시각 포함 AI 루트 자동 생성</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">②</div>
+      <div class="research-content">
+        <div class="research-stat">팬덤 맥락 오디오 스토리텔링</div>
+        <div class="research-desc"><strong>기존:</strong> 기존 오디오 가이드는 역사·문화 중심, K-culture 성지 특화 없음<br><strong>K-Culture Deep Dive:</strong> audio-guide API + 아티스트·드라마 스토리 레이어 → "민지가 이 카페에서..." 팬 감성 몰입 체험</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">③</div>
+      <div class="research-content">
+        <div class="research-stat">배리어프리 성지순례 통합 (최초)</div>
+        <div class="research-desc"><strong>기존:</strong> 장애인 여행 정보가 별도 앱에 분산, K-culture 앱은 접근성 미고려<br><strong>K-Culture Deep Dive:</strong> barrier-free-travel API 통합 → K-문화 성지 배리어프리 등급 + 휠체어 루트 원스톱 제공 (국내 최초)</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">④</div>
+      <div class="research-content">
+        <div class="research-stat">글로벌 팬 현지 연결 (소셜 레이어)</div>
+        <div class="research-desc"><strong>기존:</strong> 해외 팬이 한국 성지 방문 시 정보 고립<br><strong>K-Culture Deep Dive:</strong> 같은 성지 방문 글로벌 팬 실시간 연결 + 8개국어 공유 카드 자동 생성 → 팬덤 커뮤니티 현지 확장</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">⑤</div>
+      <div class="research-content">
+        <div class="research-stat">팬덤 배지 게임화 (재방문 루프)</div>
+        <div class="research-desc"><strong>기존:</strong> 일반 여행 앱의 단순 스탬프 기능<br><strong>K-Culture Deep Dive:</strong> 아티스트별 성지 컬렉션 + 레벨 시스템 → 재방문 동기 강화 + 팬덤 정체성 강화 → DAU 지속성 확보</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 16: MVP 기능 우선순위 -->
+<div class="section">
+  <div class="section-label">Section 16 · 고도화</div>
+  <div class="section-title">MVP 기능 우선순위 <span>(Must / Should / Could)</span></div>
+
+  <div class="card-row">
+    <div class="card" style="margin-bottom:0;border-color:rgba(168,85,247,0.4)">
+      <div style="font-size:13px;font-weight:800;color:var(--accent);margin-bottom:12px">✅ Must — 출시 필수</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2.2;padding-left:16px;list-style:disc">
+        <li>K-팝·드라마별 성지 검색 + 지도</li>
+        <li>성지 운영 상태 실시간 표시</li>
+        <li>다국어 UI (KO / JA / EN / ZH)</li>
+        <li>AI 루트 생성 (3~5개 장소)</li>
+        <li>성지 오디오 가이드 (GPS 자동 재생)</li>
+        <li>배리어프리 필터 + 접근성 정보</li>
+        <li>방문 인증 체크인</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0;border-color:rgba(245,158,11,0.4)">
+      <div style="font-size:13px;font-weight:800;color:#F59E0B;margin-bottom:12px">🔶 Should — 우선 후속 버전</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2.2;padding-left:16px;list-style:disc">
+        <li>팬덤 배지 & 레벨 시스템</li>
+        <li>현장 팬 실시간 채팅</li>
+        <li>AR 포토스팟 가이드</li>
+        <li>사용자 리뷰 & 접근성 후기</li>
+        <li>혼잡도 시간대 그래프</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div style="font-size:13px;font-weight:800;color:var(--muted);margin-bottom:12px">🔷 Could — 장기 로드맵</div>
+      <ul style="font-size:13px;color:var(--muted);line-height:2.2;padding-left:16px;list-style:disc">
+        <li>K-콘텐츠 IP 공식 파트너십 (HYBE·SM)</li>
+        <li>AR 필터 (멤버 포토카드 오버레이)</li>
+        <li>팬덤 투어 상품 예약 연동</li>
+        <li>오프라인 굿즈 QR 연동 커머스</li>
+        <li>AI 챗봇 성지 큐레이터</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 17: 4주 개발 일정 -->
+<div class="section">
+  <div class="section-label">Section 17 · 고도화</div>
+  <div class="section-title">4주 개발 일정 <span>(주차별 마일스톤)</span></div>
+
+  <div class="card">
+    <div class="research-item">
+      <div class="research-num" style="min-width:52px;font-size:11px;padding:4px">W1<br>5/5~9</div>
+      <div class="research-content">
+        <div class="research-stat">기반 인프라 + Must 기능 1/2</div>
+        <div class="research-desc">
+          Visit Korea OpenAPI 6개 연동 설정 · DB 스키마 (성지/루트/체크인/배지) · 검색 + 지도 화면 구현 · 다국어 i18n (KO/JA/EN/ZH) 설정
+        </div>
+        <div class="research-source">마일스톤: 검색 → 지도 핀 표시 E2E 동작 확인</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num" style="min-width:52px;font-size:11px;padding:4px">W2<br>5/12~16</div>
+      <div class="research-content">
+        <div class="research-stat">Must 기능 2/2</div>
+        <div class="research-desc">
+          성지 상세 + 오디오 가이드 재생 · AI 루트 생성 로직 (혼잡도 가중치 + 연관 성지 그래프) · 배리어프리 모드 통합 · 방문 체크인 + 배지 지급
+        </div>
+        <div class="research-source">마일스톤: 검색 → 루트 → 체크인 핵심 플로우 완성</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num" style="min-width:52px;font-size:11px;padding:4px">W3<br>5/19~23</div>
+      <div class="research-content">
+        <div class="research-stat">품질 + Should 기능</div>
+        <div class="research-desc">
+          팬덤 배지 & 레벨 UI · SNS 공유 카드 자동 생성 · 접근성 UI 강화 (WCAG AA · VoiceOver/TalkBack) · 성지 사용자 리뷰 + 접근성 후기 기능 · 성능 최적화
+        </div>
+        <div class="research-source">마일스톤: 내부 QA 완료 · 베타 테스터 5명 초대</div>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num" style="min-width:52px;font-size:11px;padding:4px">W4<br>5/26~29</div>
+      <div class="research-content">
+        <div class="research-stat">마무리 + 공모전 제출 준비</div>
+        <div class="research-desc">
+          버그 수정 + UX 폴리싱 · 공모전 기획안 PDF + 프로토타입 영상 제작 · Visit Korea API 활용 명세 정리 · 접근성 전문가 검토
+        </div>
+        <div class="research-source">⚠️ 마감: 2026-05-06 16:00 — 공모전 최종 제출 완료</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div style="margin-bottom:8px">
     <strong style="color:var(--fg)">K-Culture Deep Dive</strong> — 2026 한국관광공사 관광 서비스 공모전
   </div>
   <div>BA Score 102/130 (전체 1위) · 팀 합의 8.5/10 · AI Branch: companion</div>
+  <div style="margin-top:6px;font-size:12px;color:var(--muted2)">고도화 산출물: 페르소나 3종 · 5단계 시나리오 · API 매핑 6개 · 와이어프레임 7화면 · 차별화 5개 · MVP MoSCoW · 4주 일정</div>
   <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
 </footer>
 
