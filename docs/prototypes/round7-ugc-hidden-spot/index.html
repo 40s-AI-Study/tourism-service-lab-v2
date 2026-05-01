@@ -15,734 +15,1520 @@
       --muted2: #5E5E72;
       --accent: #10B981;
       --accent2: #34D399;
+      --red: #EF4444;
+      --yellow: #F59E0B;
+      --blue: #38BDF8;
       --grad: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-      --grad2: linear-gradient(135deg, #059669 0%, #10B981 100%);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
+    html, body {
+      background: #030305;
+      color: var(--fg);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+    /* ── TOP NAV (outside phone) ── */
+    .top-nav {
+      width: 100%;
+      max-width: 1100px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid var(--border);
-      padding: 0 24px; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
-    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
-    .nav-back:hover { color: var(--fg); }
-    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+    .top-nav-logo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 800; color: var(--fg); text-decoration: none; }
+    .top-nav-icon { width: 30px; height: 30px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .top-nav-back { color: var(--muted); text-decoration: none; font-size: 13px; }
+    .top-nav-back:hover { color: var(--fg); }
+    .top-nav-badge { padding: 4px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 11px; color: var(--accent); font-weight: 700; }
 
-    .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(16,185,129,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
-    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    h1 { font-size: 42px; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-    h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { padding: 14px 32px; background: var(--grad); border: none; border-radius: 999px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; }
-    .btn-secondary { padding: 14px 32px; background: transparent; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); font-size: 16px; cursor: pointer; }
-
-    .hero-mockup { margin: 48px auto 0; max-width: 360px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; text-align: left; }
-    .mockup-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .mockup-title { font-size: 12px; color: var(--muted2); }
-    .signal-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; margin-bottom: 10px; font-size: 12px; }
-    .signal-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px var(--accent); }
-    .signal-label { color: var(--accent); font-weight: 600; }
-    .signal-val { color: var(--muted); margin-left: auto; }
-    .mockup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
-    .mockup-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-    .mockup-card-name { font-size: 14px; font-weight: 700; }
-    .mockup-card-badge { font-size: 10px; padding: 2px 8px; background: rgba(16,185,129,0.2); color: var(--accent); border-radius: 999px; }
-    .mockup-card-sub { font-size: 12px; color: var(--muted); }
-
-    .section { padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 12px; color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
-    .section-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
-    .section-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-    .stat-box { flex: 1; min-width: 130px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
-    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
-    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
-
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
-    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
-
-    .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .persona-avatar { font-size: 36px; margin-bottom: 10px; }
-    .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-    .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
-    .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .research-item:last-child { border-bottom: none; }
-    .research-num { width: 28px; height: 28px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
-    .research-content { flex: 1; }
-    .research-stat { font-size: 18px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
-    .research-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-    .research-source { font-size: 11px; color: var(--muted2); margin-top: 4px; }
-
-    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
-    .ba-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
-    .ba-cat { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
-    .ba-score { font-size: 20px; font-weight: 800; }
-    .ba-score.high { color: var(--accent); }
-    .ba-score.mid { color: #F59E0B; }
-    .ba-score.low { color: var(--muted); }
-    .ba-total { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-    .ba-total-label { font-size: 15px; font-weight: 700; }
-    .ba-total-val { font-size: 32px; font-weight: 900; color: var(--accent); }
-    .ba-rank { font-size: 12px; color: var(--accent2); margin-top: 2px; }
-
-    .criteria-table { width: 100%; border-collapse: collapse; }
-    .criteria-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
-    .criteria-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; line-height: 1.5; }
-    .criteria-table tr:last-child td { border-bottom: none; }
-    .criteria-score { font-weight: 800; color: var(--accent); }
-
-    .viral-meter { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
-    .viral-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .viral-name { font-size: 14px; font-weight: 700; }
-    .viral-score-badge { padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
-    .viral-score-high { background: rgba(239,68,68,0.2); color: #EF4444; }
-    .viral-score-mid { background: rgba(245,158,11,0.2); color: #F59E0B; }
-    .viral-score-low { background: rgba(16,185,129,0.2); color: var(--accent); }
-    .viral-bar-wrap { background: var(--border); border-radius: 999px; height: 6px; margin-bottom: 6px; overflow: hidden; }
-    .viral-bar { height: 100%; background: var(--grad); border-radius: 999px; }
-    .viral-meta { font-size: 11px; color: var(--muted); display: flex; gap: 12px; }
-
-    .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
-    .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
-    .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
-    .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: white; }
-    .journey-label { font-size: 12px; color: var(--muted); }
-
-    .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
-    .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
-    .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-    .mock-item { background: var(--surface); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
-    .mock-item-icon { font-size: 18px; }
-    .mock-item-name { font-weight: 600; font-size: 13px; }
-    .mock-item-sub { color: var(--muted); font-size: 11px; }
-    .mock-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; margin-top: 4px; }
-    .mock-tag-accent { background: rgba(16,185,129,0.2); color: var(--accent); }
-    .mock-tag-red { background: rgba(239,68,68,0.2); color: #EF4444; }
-    .mock-tag-yellow { background: rgba(245,158,11,0.2); color: #F59E0B; }
-
-    .sns-platform { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-    .sns-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
-    .sns-emoji { font-size: 18px; }
-    .sns-name { font-weight: 600; }
-    .sns-count { font-size: 11px; color: var(--muted); }
-
-    .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .api-chip { padding: 5px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
-
-    .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; margin-bottom: 16px; }
-    .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
-    .score-meta { flex: 1; }
-    .score-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
-    .score-stars { color: #10B981; font-size: 20px; letter-spacing: 2px; }
-
-    .fin-table { width: 100%; border-collapse: collapse; }
-    .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
-    .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
-    .fin-table tr:last-child td { border-bottom: none; }
-    .fin-table .highlight { font-weight: 700; color: var(--accent); }
-
-    .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; }
-    .ai-branch-aionly { background: rgba(16,185,129,0.15); border: 2px solid rgba(16,185,129,0.5); color: var(--accent); }
-    .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .ai-reason:last-child { border-bottom: none; }
-    .ai-reason-num { width: 28px; height: 28px; min-width: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
-    .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .ai-reason-text strong { color: var(--fg); }
-
-    .tip-box { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
-    .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
-    .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
-
-    .aionly-highlight { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; font-size: 14px; color: var(--accent); font-weight: 600; }
-
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-    .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
-
-    footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
-    footer a { color: var(--muted); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 28px; }
-      .stats-row { gap: 10px; }
-      .stat-val { font-size: 22px; }
-      .score-big { font-size: 40px; }
-      .mock-phones { flex-direction: column; }
+    /* ── PHONE WRAPPER ── */
+    .phone-wrapper {
+      margin: 32px auto 48px;
+      width: 390px;
+      min-height: 780px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 44px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
     }
+    @media (max-width: 430px) {
+      .phone-wrapper { width: 100%; border-radius: 0; margin: 0; min-height: 100vh; border: none; }
+      .top-nav { padding: 12px 16px; }
+    }
+
+    /* ── STATUS BAR ── */
+    .status-bar {
+      height: 44px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .status-time { font-size: 15px; font-weight: 700; }
+    .status-icons { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+
+    /* ── APP HEADER ── */
+    .app-header {
+      background: rgba(6,6,9,0.92);
+      backdrop-filter: blur(20px);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .app-header-title { font-size: 18px; font-weight: 800; }
+    .app-header-title span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .live-badge { display: flex; align-items: center; gap: 6px; padding: 4px 10px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 999px; font-size: 11px; color: var(--accent); font-weight: 600; }
+    .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .notif-btn { width: 36px; height: 36px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; }
+
+    /* ── SCREEN CONTAINER ── */
+    .screens-viewport {
+      height: calc(780px - 44px - 62px - 60px);
+      overflow: hidden;
+      position: relative;
+    }
+    @media (max-width: 430px) {
+      .screens-viewport { height: calc(100dvh - 44px - 62px - 60px); }
+    }
+    .screen {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      pointer-events: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .screen.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+    .screen.slide-out {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    /* Scrollbar */
+    .screen::-webkit-scrollbar { width: 0; }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      height: 60px;
+      background: rgba(6,6,9,0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: stretch;
+    }
+    .nav-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+      background: transparent;
+      color: var(--muted2);
+      padding: 0;
+    }
+    .nav-tab.active { color: var(--accent); }
+    .nav-tab-icon { font-size: 20px; line-height: 1; }
+    .nav-tab-label { font-size: 10px; font-weight: 600; }
+
+    /* ── COMMON COMPONENTS ── */
+    .section-pad { padding: 16px 20px; }
+    .section-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+    .section-more { font-size: 12px; color: var(--accent); cursor: pointer; }
+
+    /* Viral Score Bar */
+    .viral-bar-wrap { background: var(--border); border-radius: 999px; height: 5px; overflow: hidden; margin: 6px 0; }
+    .viral-bar-fill { height: 100%; border-radius: 999px; background: var(--grad); transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* Tags */
+    .tag { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 600; }
+    .tag-green { background: rgba(16,185,129,0.15); color: var(--accent); }
+    .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+    .tag-yellow { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .tag-blue { background: rgba(56,189,248,0.15); color: var(--blue); }
+    .tag-gray { background: var(--card); color: var(--muted); border: 1px solid var(--border); }
+
+    /* Cards */
+    .spot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .spot-card:active { transform: scale(0.98); border-color: rgba(16,185,129,0.4); }
+    .spot-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .spot-card-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .spot-card-loc { font-size: 12px; color: var(--muted); }
+    .spot-card-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+
+    /* ══════════════════════════════════════
+       SCREEN 1: HOME
+    ══════════════════════════════════════ */
+    .home-scan-bar {
+      margin: 0 20px 16px;
+      padding: 10px 14px;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+    .scan-text { color: var(--accent); font-weight: 600; flex: 1; }
+    .scan-sub { color: var(--muted2); font-size: 11px; }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px 14px;
+      overflow-x: auto;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-tab {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .filter-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+    .trend-rank {
+      width: 28px; height: 28px;
+      background: var(--grad);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: white;
+      flex-shrink: 0;
+    }
+    .trend-rank.silver { background: linear-gradient(135deg, #94A3B8, #CBD5E1); }
+    .trend-rank.bronze { background: linear-gradient(135deg, #B45309, #D97706); }
+
+    .viral-score-num { font-size: 22px; font-weight: 900; color: var(--accent); }
+    .viral-score-label { font-size: 10px; color: var(--muted2); }
+
+    /* ══════════════════════════════════════
+       SCREEN 2: FEED
+    ══════════════════════════════════════ */
+    .feed-item {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .feed-item:active { background: rgba(255,255,255,0.02); }
+    .feed-item-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .feed-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .feed-user { font-size: 13px; font-weight: 600; }
+    .feed-time { font-size: 11px; color: var(--muted2); }
+    .feed-platform { margin-left: auto; }
+    .feed-thumb {
+      width: 100%; height: 140px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .feed-thumb-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 12px;
+      font-size: 11px; color: white; font-weight: 600;
+    }
+    .feed-caption { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .feed-stats { display: flex; gap: 14px; font-size: 12px; color: var(--muted2); }
+    .feed-stat { display: flex; align-items: center; gap: 4px; }
+
+    .new-signal-banner {
+      margin: 0 20px 12px;
+      padding: 8px 14px;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 10px;
+      font-size: 12px; color: var(--red); font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+      animation: slideDown 0.3s ease;
+    }
+    @keyframes slideDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ══════════════════════════════════════
+       SCREEN 3: SPOT DETAIL
+    ══════════════════════════════════════ */
+    .detail-hero {
+      height: 200px;
+      background: linear-gradient(135deg, #0D1F18 0%, #0A1A26 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 72px;
+      position: relative;
+    }
+    .detail-hero-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, var(--surface));
+      height: 80px;
+    }
+    .detail-back {
+      position: absolute; top: 12px; left: 16px;
+      width: 36px; height: 36px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 18px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .detail-actions {
+      position: absolute; top: 12px; right: 16px;
+      display: flex; gap: 8px;
+    }
+    .detail-action-btn {
+      width: 36px; height: 36px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 16px;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .detail-action-btn.saved { background: rgba(16,185,129,0.3); }
+
+    .detail-section { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .detail-name { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+    .detail-loc { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+
+    .viral-big-score {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+    .viral-big-num { font-size: 40px; font-weight: 900; color: var(--accent); line-height: 1; }
+    .viral-big-meta { flex: 1; }
+    .viral-big-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .viral-big-pred { font-size: 14px; font-weight: 700; }
+
+    .platform-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .platform-item {
+      flex: 1; min-width: 80px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+    .platform-icon { font-size: 20px; margin-bottom: 4px; }
+    .platform-count { font-size: 14px; font-weight: 700; }
+    .platform-label { font-size: 10px; color: var(--muted2); }
+    .platform-growth { font-size: 11px; color: var(--accent); margin-top: 2px; }
+
+    .authentic-box {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px;
+      border-radius: 14px;
+    }
+    .authentic-box.real { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); }
+    .authentic-box.fake { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); }
+    .authentic-icon { font-size: 28px; }
+    .authentic-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .authentic-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .kto-data-row { display: flex; gap: 8px; }
+    .kto-item {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .kto-label { font-size: 11px; color: var(--muted2); margin-bottom: 4px; }
+    .kto-value { font-size: 16px; font-weight: 700; }
+    .kto-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .visit-timing {
+      padding: 14px;
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 14px;
+    }
+    .visit-timing-header { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--yellow); margin-bottom: 6px; }
+    .visit-timing-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .save-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--grad);
+      border: none;
+      border-radius: 999px;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .save-btn:active { transform: scale(0.97); opacity: 0.9; }
+    .save-btn.saved-state { background: var(--card); border: 1px solid var(--accent); color: var(--accent); }
+
+    /* ══════════════════════════════════════
+       SCREEN 4: SNS ANALYSIS
+    ══════════════════════════════════════ */
+    .analysis-spot-selector {
+      padding: 12px 20px;
+      display: flex; gap: 8px; overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .analysis-spot-selector::-webkit-scrollbar { display: none; }
+    .analysis-spot-chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px; font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .analysis-spot-chip.active { background: rgba(16,185,129,0.15); border-color: var(--accent); color: var(--accent); }
+
+    .chart-bar-group { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .chart-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .chart-bar-label { width: 70px; font-size: 12px; color: var(--muted); flex-shrink: 0; }
+    .chart-bar-track { flex: 1; background: var(--border); border-radius: 999px; height: 8px; overflow: hidden; }
+    .chart-bar-fill { height: 100%; border-radius: 999px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+    .chart-bar-val { width: 42px; font-size: 12px; font-weight: 700; text-align: right; flex-shrink: 0; }
+
+    .timeline-section { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .timeline-chart { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
+    .timeline-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .timeline-bar {
+      width: 100%; border-radius: 4px 4px 0 0;
+      background: rgba(16,185,129,0.3);
+      transition: all 0.6s ease;
+      cursor: pointer;
+    }
+    .timeline-bar:hover, .timeline-bar.highlight { background: var(--accent); }
+    .timeline-label { font-size: 9px; color: var(--muted2); }
+
+    .hashtag-cloud { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .hashtag {
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .hashtag:hover { transform: scale(1.05); }
+
+    .auth-analysis { padding: 16px 20px; }
+    .auth-signal { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; }
+    .auth-signal-icon { font-size: 18px; width: 28px; flex-shrink: 0; }
+    .auth-signal-text { flex: 1; font-size: 13px; }
+    .auth-signal-result { font-size: 12px; font-weight: 700; }
+    .auth-signal-result.pass { color: var(--accent); }
+    .auth-signal-result.warn { color: var(--yellow); }
+    .auth-signal-result.fail { color: var(--red); }
+
+    /* ══════════════════════════════════════
+       SCREEN 5: MY COLLECTION
+    ══════════════════════════════════════ */
+    .profile-card {
+      margin: 0 20px 16px;
+      padding: 16px;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .profile-avatar { font-size: 40px; width: 56px; height: 56px; background: var(--card); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--accent); flex-shrink: 0; }
+    .profile-name { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+    .profile-level { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+    .profile-stats-row { display: flex; gap: 14px; }
+    .profile-stat-val { font-size: 14px; font-weight: 700; }
+    .profile-stat-label { font-size: 10px; color: var(--muted2); }
+
+    .rank-display {
+      margin: 0 20px 16px;
+      padding: 12px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .rank-medal { font-size: 32px; }
+    .rank-text { flex: 1; }
+    .rank-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .rank-sub { font-size: 12px; color: var(--muted); }
+    .rank-pct { font-size: 13px; font-weight: 700; color: var(--accent); }
+
+    .badge-grid { display: flex; gap: 10px; padding: 0 20px 16px; overflow-x: auto; }
+    .badge-grid::-webkit-scrollbar { display: none; }
+    .badge-item {
+      flex-shrink: 0;
+      width: 72px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .badge-item.earned { border-color: rgba(16,185,129,0.4); }
+    .badge-item.locked { opacity: 0.4; }
+    .badge-emoji { font-size: 24px; margin-bottom: 4px; }
+    .badge-name { font-size: 9px; color: var(--muted); line-height: 1.3; }
+
+    .saved-spot-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .saved-spot-item:active { background: rgba(255,255,255,0.02); }
+    .saved-spot-icon { font-size: 28px; width: 44px; height: 44px; background: var(--card); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .saved-spot-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .saved-spot-meta { font-size: 11px; color: var(--muted); }
+    .saved-spot-badge { margin-left: auto; flex-shrink: 0; }
+
+    .empty-collection {
+      padding: 48px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-text { font-size: 14px; margin-bottom: 8px; }
+    .empty-sub { font-size: 12px; color: var(--muted2); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 90px;
+      left: 50%; transform: translateX(-50%) translateY(20px);
+      background: rgba(16,185,129,0.95);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px; font-weight: 600;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── SCROLLBAR UTILITY ── */
+    .scroll-x { overflow-x: auto; }
+    .scroll-x::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="../../">
-    <div class="nav-logo-icon">📡</div>
+<!-- TOP NAV (outside phone) -->
+<nav class="top-nav">
+  <a class="top-nav-logo" href="../../">
+    <div class="top-nav-icon">📡</div>
     UGC Hidden Spot
   </a>
-  <a class="nav-back" href="../../">← 포트폴리오</a>
-  <span class="nav-badge">BA 98/130 · ai-only</span>
+  <a class="top-nav-back" href="../../">← 포트폴리오</a>
+  <span class="top-nav-badge">BA 98/130 · ai-only</span>
 </nav>
 
-<!-- SECTION 1: HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="live-dot"></span>
-    Round 7 · AI-only 브랜치 · 바이럴 예측 엔진
-  </div>
-  <h1>UGC Hidden<br><span>Spot</span></h1>
-  <p class="hero-sub">SNS 속 진짜 숨은 명소 — AI가 바이럴 신호 포착<br>남들보다 48시간 먼저 아는 독점 경험</p>
-  <div class="hero-actions">
-    <button class="btn-primary">📡 바이럴 신호 탐지하기</button>
-    <button class="btn-secondary">서비스 소개 보기</button>
+<!-- PHONE -->
+<div class="phone-wrapper">
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <span>📶</span>
+      <span>🔋</span>
+    </div>
   </div>
 
-  <div class="hero-mockup">
-    <div class="mockup-bar">
-      <div class="mockup-dot" style="background:#FF5F56"></div>
-      <div class="mockup-dot" style="background:#FFBD2E"></div>
-      <div class="mockup-dot" style="background:#27C93F"></div>
-      <span class="mockup-title">실시간 SNS 바이럴 신호 탐지</span>
+  <!-- App Header -->
+  <div class="app-header">
+    <div class="app-header-title">UGC <span>Hidden</span></div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      실시간 탐지 중
     </div>
-    <div class="signal-bar">
-      <div class="signal-dot"></div>
-      <span class="signal-label">바이럴 신호 감지 중</span>
-      <span class="signal-val">인스타 · 유튜브 · 틱톡 분석</span>
-    </div>
-    <div class="mockup-card">
-      <div class="mockup-card-header">
+    <div class="notif-btn">🔔</div>
+  </div>
+
+  <!-- Screens Viewport -->
+  <div class="screens-viewport">
+
+    <!-- ─── SCREEN 1: HOME ─── -->
+    <div class="screen active" id="screen-home">
+      <!-- Scan bar -->
+      <div style="height:14px"></div>
+      <div class="home-scan-bar">
+        <div class="live-dot"></div>
         <div>
-          <div class="mockup-card-name">🌊 강릉 숨은 해변 "거울못"</div>
-          <div class="mockup-card-sub">강원 강릉 · 게시물 급증 +340% · 48시간 내 바이럴</div>
+          <div class="scan-text">SNS 바이럴 신호 탐지 중</div>
+          <div class="scan-sub">인스타·틱톡·유튜브 실시간 분석 · 방금 전 업데이트</div>
         </div>
-        <span class="mockup-card-badge">VIRAL ⚡</span>
+        <div style="font-size:11px;color:var(--accent);font-weight:700">4.2억건↑</div>
       </div>
-      <div style="font-size:12px;color:var(--muted)">AI 예측 신뢰도 94% · 지금 가면 한적</div>
-    </div>
-    <div class="mockup-card">
-      <div class="mockup-card-header">
-        <div>
-          <div class="mockup-card-name">🏚️ 전주 구도심 벽화 골목</div>
-          <div class="mockup-card-sub">전북 전주 · 틱톡 게시물 12,400건 · 진짜 숨은 곳</div>
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs">
+        <div class="filter-tab active" onclick="setHomeFilter(this,'전체')">전체</div>
+        <div class="filter-tab" onclick="setHomeFilter(this,'인스타')">📸 인스타</div>
+        <div class="filter-tab" onclick="setHomeFilter(this,'틱톡')">🎵 틱톡</div>
+        <div class="filter-tab" onclick="setHomeFilter(this,'유튜브')">▶️ 유튜브</div>
+        <div class="filter-tab" onclick="setHomeFilter(this,'핫플')">🔥 급상승</div>
+      </div>
+
+      <!-- Trending Section -->
+      <div class="section-pad" style="padding-top:0">
+        <div class="section-title">
+          🔥 바이럴 임박 TOP 스팟
+          <span class="section-more" onclick="showScreen('feed')">피드 보기 →</span>
         </div>
-        <span class="mockup-card-badge">진짜</span>
+
+        <!-- Card 1 -->
+        <div class="spot-card" onclick="showDetail(0)">
+          <div class="spot-card-header">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <div class="trend-rank">1</div>
+                <div class="spot-card-name">🌊 강릉 숨은 해변 "거울못"</div>
+              </div>
+              <div class="spot-card-loc">📍 강원 강릉시 연곡면 · 관광지방문자통계 API</div>
+            </div>
+            <div style="text-align:right">
+              <div class="viral-score-num">92</div>
+              <div class="viral-score-label">바이럴 점수</div>
+            </div>
+          </div>
+          <div class="viral-bar-wrap"><div class="viral-bar-fill" style="width:92%"></div></div>
+          <div class="spot-card-meta">
+            <span class="tag tag-red">⚡ D-18h 바이럴</span>
+            <span class="tag tag-green">✅ 진짜 확인</span>
+            <span class="tag tag-gray">인스타 +340%</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="spot-card" onclick="showDetail(1)">
+          <div class="spot-card-header">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <div class="trend-rank silver">2</div>
+                <div class="spot-card-name">🏚️ 전주 구도심 벽화 골목</div>
+              </div>
+              <div class="spot-card-loc">📍 전북 전주시 완산구 · 국문관광정보서비스</div>
+            </div>
+            <div style="text-align:right">
+              <div class="viral-score-num">67</div>
+              <div class="viral-score-label">바이럴 점수</div>
+            </div>
+          </div>
+          <div class="viral-bar-wrap"><div class="viral-bar-fill" style="width:67%"></div></div>
+          <div class="spot-card-meta">
+            <span class="tag tag-yellow">📅 D-36h</span>
+            <span class="tag tag-green">✅ 로컬 인증</span>
+            <span class="tag tag-gray">틱톡 12,400건</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="spot-card" onclick="showDetail(2)">
+          <div class="spot-card-header">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <div class="trend-rank bronze">3</div>
+                <div class="spot-card-name">🏔️ 제주 오름 신규 발굴지</div>
+              </div>
+              <div class="spot-card-loc">📍 제주시 한경면 · 위치기반관광정보서비스</div>
+            </div>
+            <div style="text-align:right">
+              <div class="viral-score-num">31</div>
+              <div class="viral-score-label">바이럴 점수</div>
+            </div>
+          </div>
+          <div class="viral-bar-wrap"><div class="viral-bar-fill" style="width:31%;background:rgba(16,185,129,0.4)"></div></div>
+          <div class="spot-card-meta">
+            <span class="tag tag-blue">🔍 초기 신호</span>
+            <span class="tag tag-gray">검증 중...</span>
+            <span class="tag tag-gray">유튜브 38건</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="spot-card" onclick="showDetail(3)">
+          <div class="spot-card-header">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                <div class="trend-rank" style="background:var(--card);border:1px solid var(--border);color:var(--muted)">4</div>
+                <div class="spot-card-name">🌸 경주 벚꽃 숨은 산책로</div>
+              </div>
+              <div class="spot-card-loc">📍 경북 경주시 · 관광지집중률예측 API</div>
+            </div>
+            <div style="text-align:right">
+              <div class="viral-score-num">78</div>
+              <div class="viral-score-label">바이럴 점수</div>
+            </div>
+          </div>
+          <div class="viral-bar-wrap"><div class="viral-bar-fill" style="width:78%"></div></div>
+          <div class="spot-card-meta">
+            <span class="tag tag-yellow">⏳ D-24h</span>
+            <span class="tag tag-green">✅ 자연 버즈</span>
+            <span class="tag tag-gray">인스타 +190%</span>
+          </div>
+        </div>
+
+        <!-- Quick stats -->
+        <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center">
+            <div style="font-size:20px;font-weight:800;color:var(--accent)">4.2억</div>
+            <div style="font-size:10px;color:var(--muted2);margin-top:2px">SNS 게시물 분석</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center">
+            <div style="font-size:20px;font-weight:800;color:var(--yellow)">94%</div>
+            <div style="font-size:10px;color:var(--muted2);margin-top:2px">AI 예측 신뢰도</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center">
+            <div style="font-size:20px;font-weight:800;color:var(--blue)">23%</div>
+            <div style="font-size:10px;color:var(--muted2);margin-top:2px">SNS→방문 전환율</div>
+          </div>
+        </div>
+
+        <div style="height:20px"></div>
       </div>
-      <div style="font-size:12px;color:var(--muted)">협찬 아님 · 자연 발생 버즈 확인</div>
-    </div>
-    <div style="text-align:center;font-size:12px;color:var(--accent);margin-top:8px">+ 수억 건 SNS 실시간 분석 중 📡</div>
-  </div>
-</div>
+    </div><!-- end screen-home -->
 
-<hr class="divider">
 
-<!-- HERO STATS -->
-<div class="section">
-  <div class="stats-row">
-    <div class="stat-box">
-      <div class="stat-val">2.3배</div>
-      <div class="stat-label">인플루언서 SNS 신뢰도 우위</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">23%</div>
-      <div class="stat-label">인스타 → 실제 방문 전환율</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">90억뷰</div>
-      <div class="stat-label">TikTok 한국 여행 월간 조회</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">+500%</div>
-      <div class="stat-label">바이럴 후 3개월 방문자 증가</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-val">BA 98</div>
-      <div class="stat-label">98/130 · ai-only 브랜치</div>
-    </div>
-  </div>
-</div>
+    <!-- ─── SCREEN 2: FEED ─── -->
+    <div class="screen" id="screen-feed">
+      <div style="height:12px"></div>
 
-<hr class="divider">
-
-<!-- SECTION 2: 서비스 개요 -->
-<div class="section">
-  <div class="section-label">Section 02</div>
-  <div class="section-title">서비스 개요 <span>(What)</span></div>
-
-  <div class="tip-box">
-    <div class="tip-label">ONE-LINE PITCH</div>
-    <div class="tip-text">인스타그램·유튜브·틱톡 게시물에서 AI가 실시간 "바이럴 직전" 장소 신호를 포착해, 공식 관광지가 아닌 UGC 기반 숨은 명소를 24-48시간 앞서 발굴하고 "협찬 광고 vs 진짜 숨은 곳"을 자동 구분하는 SNS 여행 인텔리전스 플랫폼</div>
-  </div>
-
-  <div class="card-row">
-    <div class="persona-box">
-      <div class="persona-avatar">📸</div>
-      <div class="persona-name">이채린, 23세 · 서울 거주</div>
-      <div class="persona-tag"># SNS 여행 콘텐츠 크리에이터</div>
-      <div class="persona-desc">인스타 팔로워 5만명. 아무도 모르는 곳을 먼저 찍어야 경쟁력. 이미 유명해진 장소는 가치 없음. "남들보다 48시간 먼저 아는" 정보가 필요.</div>
-    </div>
-    <div class="persona-box">
-      <div class="persona-avatar">🎥</div>
-      <div class="persona-name">박태양, 27세 · 유튜버</div>
-      <div class="persona-tag"># 여행 유튜버 · 숨은 명소 채널</div>
-      <div class="persona-desc">구독자 12만명. "아무도 몰랐던 비밀 장소" 시리즈가 핵심 콘텐츠. 매번 수동으로 SNS를 뒤져야 해서 콘텐츠 발굴에 1주일씩 소비.</div>
-    </div>
-    <div class="persona-box">
-      <div class="persona-avatar">🧑‍🤝‍🧑</div>
-      <div class="persona-name">MZ 트렌드세터 그룹</div>
-      <div class="persona-tag"># 트렌드 헌터 · 첫 발굴 자랑</div>
-      <div class="persona-desc">주말마다 "아직 뜨지 않은" 장소를 찾아다니는 20대 집단. SNS 바이럴 예측을 선점하는 것이 사회적 지위 신호.</div>
-    </div>
-  </div>
-
-  <div class="sns-platform">
-    <div class="sns-item"><span class="sns-emoji">📸</span><div><div class="sns-name">Instagram</div><div class="sns-count">한국 MAU 2,100만</div></div></div>
-    <div class="sns-item"><span class="sns-emoji">🎵</span><div><div class="sns-name">TikTok</div><div class="sns-count">여행 월 90억뷰</div></div></div>
-    <div class="sns-item"><span class="sns-emoji">▶️</span><div><div class="sns-name">YouTube</div><div class="sns-count">여행 채널 8만개+</div></div></div>
-    <div class="sns-item"><span class="sns-emoji">📌</span><div><div class="sns-name">Pinterest</div><div class="sns-count">한국 MAU 350만</div></div></div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 3: 리서치 근거 -->
-<div class="section">
-  <div class="section-label">Section 03</div>
-  <div class="section-title">리서치 근거 <span>(Why)</span></div>
-
-  <div class="card">
-    <div class="research-item">
-      <div class="research-num">01</div>
-      <div class="research-content">
-        <div class="research-stat">SNS 여행 정보 신뢰도: 공식 관광청 대비 인플루언서 SNS 2.3배 높음</div>
-        <div class="research-desc">여행 정보 신뢰도 조사에서 인플루언서 SNS 게시물이 공식 관광청 홈페이지보다 2.3배 높은 신뢰도 기록. 특히 20-30대에서 더욱 뚜렷.</div>
-        <div class="research-source">출처: DMO 글로벌 여행 소비자 신뢰 리포트 2024</div>
+      <!-- New signal banner -->
+      <div class="new-signal-banner" id="new-signal">
+        <span>🚨</span>
+        <span>새 바이럴 신호 감지 — 부산 감천문화마을 급상승 중</span>
       </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">02</div>
-      <div class="research-content">
-        <div class="research-stat">인스타그램 게시물 → 실제 방문 전환율 평균 23%</div>
-        <div class="research-desc">인스타그램에서 여행지 관련 게시물을 본 사용자 중 23%가 실제로 해당 장소를 방문. 비디오 콘텐츠는 전환율 31%로 더 높음.</div>
-        <div class="research-source">출처: Meta Business 여행 카테고리 인사이트 리포트 2024</div>
+
+      <!-- Region filter -->
+      <div class="filter-tabs" style="padding-bottom:10px">
+        <div class="filter-tab active" onclick="setFeedFilter(this,'전국')">전국</div>
+        <div class="filter-tab" onclick="setFeedFilter(this,'서울')">서울</div>
+        <div class="filter-tab" onclick="setFeedFilter(this,'경기')">경기</div>
+        <div class="filter-tab" onclick="setFeedFilter(this,'강원')">강원</div>
+        <div class="filter-tab" onclick="setFeedFilter(this,'제주')">제주</div>
+        <div class="filter-tab" onclick="setFeedFilter(this,'전라')">전라</div>
       </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">03</div>
-      <div class="research-content">
-        <div class="research-stat">국내 여행 콘텐츠 인플루언서 팔로워 합계 4,200만</div>
-        <div class="research-desc">네이버 블로그·인스타그램 기준 국내 여행 콘텐츠 인플루언서 팔로워 총합 4,200만명. 이들이 생산하는 UGC가 공식 관광 정보 소비를 압도.</div>
-        <div class="research-source">출처: 2024 네이버·인스타그램 여행 콘텐츠 생태계 분석</div>
-      </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">04</div>
-      <div class="research-content">
-        <div class="research-stat">"바이럴 명소" 발굴 후 3개월내 방문자 500% 증가</div>
-        <div class="research-desc">SNS에서 처음 알려진 숨은 명소가 바이럴된 후 3개월 이내 방문자 수가 평균 500% 이상 폭증한 사례 다수. 선점자 효과가 뚜렷.</div>
-        <div class="research-source">출처: 한국관광공사 SNS 기반 관광지 방문 트렌드 분석 2024</div>
-      </div>
-    </div>
-    <div class="research-item">
-      <div class="research-num">05</div>
-      <div class="research-content">
-        <div class="research-stat">TikTok 여행 콘텐츠 한국 월간 조회수 90억뷰</div>
-        <div class="research-desc">틱톡에서 한국 관련 여행 콘텐츠 월간 누적 조회 90억뷰. 이 중 "숨은 명소", "현지인 맛집", "아무도 모르는" 태그 게시물 성장률 YoY 280%.</div>
-        <div class="research-source">출처: TikTok Korea 콘텐츠 트렌드 리포트 2024</div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<hr class="divider">
-
-<!-- SECTION 4: 아이디어 도출 과정 -->
-<div class="section">
-  <div class="section-label">Section 04</div>
-  <div class="section-title">아이디어 도출 과정</div>
-
-  <div class="tip-box">
-    <div class="tip-label">IDEATION ROUND</div>
-    <div class="tip-text">Round 4 → SNS 바이럴 신호 분석이라는 아이디어 발굴 → "협찬 vs 진짜" 자동 구분 기능으로 차별화 강화 → BA 매트릭스 스코어링. 트렌드 부합 9점·지역 분산 9점 강점. ai-only 브랜치로 분류 — AI 없이는 서비스 자체 성립 불가. 사업성 출처: 방통위·Meta·TikTok.</div>
-  </div>
-
-  <div class="ba-grid">
-    <div class="ba-item"><div class="ba-cat">JTBD 충족</div><div class="ba-score mid">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">UX 완성도</div><div class="ba-score mid">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">시장 규모</div><div class="ba-score mid">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">트렌드 부합</div><div class="ba-score high">9/10</div></div>
-    <div class="ba-item"><div class="ba-cat">API 활용</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">공모전 부합</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">AI 차별화</div><div class="ba-score mid">8/10</div></div>
-    <div class="ba-item"><div class="ba-cat">지역 분산</div><div class="ba-score high">9/10</div></div>
-    <div class="ba-item"><div class="ba-cat">이중 타겟</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">사회 가치</div><div class="ba-score low">6/10</div></div>
-  </div>
-  <div style="margin-bottom:12px;font-size:13px;color:var(--muted)">보너스 항목</div>
-  <div class="ba-grid">
-    <div class="ba-item"><div class="ba-cat">AI 차별화 B</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">사업성</div><div class="ba-score mid">7/10</div></div>
-    <div class="ba-item"><div class="ba-cat">편의성</div><div class="ba-score mid">7/10</div></div>
-  </div>
-  <div class="ba-total">
-    <div>
-      <div class="ba-total-label">BA 총점 (소계 77 + 보너스 21)</div>
-      <div class="ba-rank">트렌드 부합 9점 · 지역 분산 9점 · ai-only 선언</div>
-    </div>
-    <div class="ba-total-val">98/130</div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 5: 공모전 심사 기준 -->
-<div class="section">
-  <div class="section-label">Section 05</div>
-  <div class="section-title">공모전 심사 기준 <span>대응</span></div>
-
-  <div class="card">
-    <table class="criteria-table">
-      <thead>
-        <tr>
-          <th>심사 기준</th>
-          <th>배점</th>
-          <th>대응 전략</th>
-          <th>자체 평가</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>기획력</strong><br><span style="font-size:12px;color:var(--muted)">아이디어 독창성·완성도</span></td>
-          <td><span class="criteria-score">30점</span></td>
-          <td>AI로만 가능한 "48시간 바이럴 예측" + "협찬 vs 진짜 자동 구분"이라는 독창적 가치 제안. 기존 어떤 여행 서비스도 제공하지 않는 SNS 인텔리전스 기능.</td>
-          <td><span class="criteria-score">23/30</span></td>
-        </tr>
-        <tr>
-          <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
-          <td><span class="criteria-score">25점</span></td>
-          <td>관광지방문자통계·집중률예측 API로 SNS 버즈량과 실제 방문 데이터를 교차 검증. 공공 데이터 + SNS 빅데이터 결합이 핵심 알고리즘.</td>
-          <td><span class="criteria-score">20/25</span></td>
-        </tr>
-        <tr>
-          <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
-          <td><span class="criteria-score">25점</span></td>
-          <td>SNS 기반 숨은 명소 발굴 → 지방 소도시 자연 바이럴 → 지역분산 관광 촉진. 크리에이터 경제 활성화로 지역 관광 콘텐츠 생산 증가.</td>
-          <td><span class="criteria-score">20/25</span></td>
-        </tr>
-        <tr>
-          <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
-          <td><span class="criteria-score">20점</span></td>
-          <td>SNS 공개 API 크롤링 + NLP 감성 분석 + KTO API 교차 검증 아키텍처. SNS API 정책 변경 리스크 있으나 공개 데이터 범위 내 MVP 구현 가능.</td>
-          <td><span class="criteria-score">17/20</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 6: 주요 화면 Mock UI -->
-<div class="section">
-  <div class="section-label">Section 06</div>
-  <div class="section-title">주요 화면 <span>Mock UI</span></div>
-
-  <div class="journey-steps">
-    <div class="journey-step">
-      <div class="journey-num">1</div>
-      <div class="journey-label">SNS 신호<br>실시간 탐지</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">2</div>
-      <div class="journey-label">진짜/협찬<br>자동 구분</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">3</div>
-      <div class="journey-label">바이럴 예측<br>48시간 선점</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">4</div>
-      <div class="journey-label">방문·인증<br>콘텐츠 생성</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-num">5</div>
-      <div class="journey-label">선점 기록<br>랭킹 노출</div>
-    </div>
-  </div>
-
-  <div style="margin-bottom:20px">
-    <div style="font-size:14px;font-weight:700;margin-bottom:12px">실시간 바이럴 미터 — 현재 감지 중인 장소</div>
-    <div class="viral-meter">
-      <div class="viral-header">
-        <span class="viral-name">🌊 강릉 숨은 해변 "거울못"</span>
-        <span class="viral-score-badge viral-score-high">D-48h 바이럴 예측</span>
-      </div>
-      <div class="viral-bar-wrap"><div class="viral-bar" style="width:92%"></div></div>
-      <div class="viral-meta"><span>버즈 신호 92%</span><span>인스타 게시물 +340% (72h)</span><span>진짜 여부 ✓ 확인</span></div>
-    </div>
-    <div class="viral-meter">
-      <div class="viral-header">
-        <span class="viral-name">🏚️ 전주 구도심 벽화 골목</span>
-        <span class="viral-score-badge viral-score-mid">바이럴 진행 중</span>
-      </div>
-      <div class="viral-bar-wrap"><div class="viral-bar" style="width:67%"></div></div>
-      <div class="viral-meta"><span>버즈 신호 67%</span><span>틱톡 게시물 12,400건</span><span>협찬 없음 ✓ 자연 버즈</span></div>
-    </div>
-    <div class="viral-meter">
-      <div class="viral-header">
-        <span class="viral-name">🏔️ 제주 오름 신규 발굴지</span>
-        <span class="viral-score-badge viral-score-low">초기 신호 감지</span>
-      </div>
-      <div class="viral-bar-wrap"><div class="viral-bar" style="width:31%"></div></div>
-      <div class="viral-meta"><span>버즈 신호 31%</span><span>유튜브 쇼츠 38건</span><span>검증 중...</span></div>
-    </div>
-  </div>
-
-  <div class="mock-phones">
-    <div class="mock-phone">
-      <div class="mock-header">🔍 협찬 vs 진짜 구분</div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">AI 자동 진위 분석 결과</div>
-      <div class="mock-item" style="border:1px solid rgba(16,185,129,0.4)">
-        <span class="mock-item-icon">✅</span>
-        <div>
-          <div class="mock-item-name">강릉 거울못</div>
-          <div class="mock-item-sub">자연 발생 버즈 · 다계정 패턴 없음</div>
-          <span class="mock-tag mock-tag-accent">진짜 숨은 곳</span>
+      <!-- Feed items -->
+      <div class="feed-item" onclick="showDetail(0)">
+        <div class="feed-item-header">
+          <div class="feed-avatar" style="background:rgba(16,185,129,0.1)">📸</div>
+          <div>
+            <div class="feed-user">@chaerin_traveler</div>
+            <div class="feed-time">방금 전</div>
+          </div>
+          <div class="feed-platform"><span class="tag tag-green">인스타</span></div>
+        </div>
+        <div class="feed-thumb" onclick="void(0)">
+          🌊
+          <div class="feed-thumb-overlay">강릉 거울못 · 아무도 없었던 곳 ✨</div>
+        </div>
+        <div class="feed-caption">"아직 아무도 모르는 곳 발견했다... 강릉 숨어있는 해변인데 거울처럼 반사돼서 거울못이라고 부름 🌊"</div>
+        <div class="feed-stats">
+          <div class="feed-stat">❤️ <span>2,847</span></div>
+          <div class="feed-stat">💬 <span>394</span></div>
+          <div class="feed-stat">🔁 <span>1,203</span></div>
+          <div style="margin-left:auto;font-size:11px;color:var(--accent);font-weight:600">바이럴 신호 92%↑</div>
         </div>
       </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">⚠️</span>
-        <div>
-          <div class="mock-item-name">서울 OO카페</div>
-          <div class="mock-item-sub">동시 다발 게시 패턴 감지</div>
-          <span class="mock-tag mock-tag-red">협찬 의심</span>
+
+      <div class="feed-item" onclick="showDetail(1)">
+        <div class="feed-item-header">
+          <div class="feed-avatar" style="background:rgba(56,189,248,0.1)">🎥</div>
+          <div>
+            <div class="feed-user">@taeyang_travel</div>
+            <div class="feed-time">3분 전</div>
+          </div>
+          <div class="feed-platform"><span class="tag tag-blue">유튜브</span></div>
+        </div>
+        <div class="feed-thumb">
+          🏚️
+          <div class="feed-thumb-overlay">전주 구도심 · 로컬만 아는 벽화 골목</div>
+        </div>
+        <div class="feed-caption">"전주 한옥마을 말고 여기가 진짜임. 아직 관광객 없고 로컬 감성 살아있어요. #전주숨은곳 #진짜맛집"</div>
+        <div class="feed-stats">
+          <div class="feed-stat">👍 <span>8,420</span></div>
+          <div class="feed-stat">💬 <span>612</span></div>
+          <div class="feed-stat">▶️ <span>42,000뷰</span></div>
+          <div style="margin-left:auto;font-size:11px;color:var(--accent);font-weight:600">자연 버즈 ✓</div>
         </div>
       </div>
-      <div class="mock-item" style="border:1px solid rgba(16,185,129,0.4)">
-        <span class="mock-item-icon">✅</span>
-        <div>
-          <div class="mock-item-name">전주 벽화 골목</div>
-          <div class="mock-item-sub">지역 주민 게시물 다수</div>
-          <span class="mock-tag mock-tag-accent">로컬 인증</span>
+
+      <div class="feed-item" onclick="showDetail(3)">
+        <div class="feed-item-header">
+          <div class="feed-avatar" style="background:rgba(239,68,68,0.1)">🎵</div>
+          <div>
+            <div class="feed-user">@mz_explorer</div>
+            <div class="feed-time">12분 전</div>
+          </div>
+          <div class="feed-platform"><span class="tag tag-red" style="background:rgba(239,68,68,0.15);color:var(--red)">틱톡</span></div>
+        </div>
+        <div class="feed-thumb" style="height:160px">
+          🌸
+          <div class="feed-thumb-overlay">경주 비밀 벚꽃길 · 조회 190K</div>
+        </div>
+        <div class="feed-caption">"경주에 이런데가?? 벚꽃이 터널처럼 이어지는데 아무도 모름 🌸🌸 #경주숨은명소 #경주벚꽃"</div>
+        <div class="feed-stats">
+          <div class="feed-stat">❤️ <span>19,300</span></div>
+          <div class="feed-stat">💬 <span>2,140</span></div>
+          <div class="feed-stat">🔁 <span>4,820</span></div>
+          <div style="margin-left:auto;font-size:11px;color:var(--yellow);font-weight:600">급상승 중 ↑</div>
+        </div>
+      </div>
+
+      <div class="feed-item" onclick="showDetail(2)">
+        <div class="feed-item-header">
+          <div class="feed-avatar" style="background:rgba(16,185,129,0.1)">🏔️</div>
+          <div>
+            <div class="feed-user">@jeju_hidden</div>
+            <div class="feed-time">28분 전</div>
+          </div>
+          <div class="feed-platform"><span class="tag tag-green">인스타</span></div>
+        </div>
+        <div class="feed-thumb">
+          🏔️
+          <div class="feed-thumb-overlay">제주 신규 오름 · 아직 미공개</div>
+        </div>
+        <div class="feed-caption">"제주 오름 중에서도 이건 진짜 처음 보는 각도 🏔️ 이름도 모르는 작은 오름인데 뷰가 미침..."</div>
+        <div class="feed-stats">
+          <div class="feed-stat">❤️ <span>547</span></div>
+          <div class="feed-stat">💬 <span>89</span></div>
+          <div class="feed-stat">🔁 <span>203</span></div>
+          <div style="margin-left:auto;font-size:11px;color:var(--blue);font-weight:600">초기 신호</div>
+        </div>
+      </div>
+
+      <div style="height:20px"></div>
+    </div><!-- end screen-feed -->
+
+
+    <!-- ─── SCREEN 3: SPOT DETAIL ─── -->
+    <div class="screen" id="screen-detail">
+      <!-- Dynamic content injected by JS -->
+      <div id="detail-content"></div>
+    </div>
+
+
+    <!-- ─── SCREEN 4: SNS ANALYSIS ─── -->
+    <div class="screen" id="screen-analysis">
+      <div style="height:14px"></div>
+
+      <!-- Spot selector -->
+      <div class="analysis-spot-selector">
+        <div class="analysis-spot-chip active" onclick="setAnalysisSpot(0, this)">🌊 거울못</div>
+        <div class="analysis-spot-chip" onclick="setAnalysisSpot(1, this)">🏚️ 전주 골목</div>
+        <div class="analysis-spot-chip" onclick="setAnalysisSpot(2, this)">🏔️ 제주 오름</div>
+        <div class="analysis-spot-chip" onclick="setAnalysisSpot(3, this)">🌸 경주 벚꽃</div>
+      </div>
+
+      <!-- Platform breakdown -->
+      <div class="chart-bar-group">
+        <div class="section-title" style="margin-bottom:14px">📊 플랫폼별 버즈 분포</div>
+
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">📸 인스타</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" id="bar-insta" style="width:0%;background:linear-gradient(90deg,#E1306C,#F77737)"></div></div>
+          <div class="chart-bar-val" id="val-insta" style="color:#E1306C">—</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">🎵 틱톡</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" id="bar-tiktok" style="width:0%;background:linear-gradient(90deg,#010101,#69C9D0)"></div></div>
+          <div class="chart-bar-val" id="val-tiktok" style="color:#69C9D0">—</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">▶️ 유튜브</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" id="bar-youtube" style="width:0%;background:linear-gradient(90deg,#FF0000,#FF6B6B)"></div></div>
+          <div class="chart-bar-val" id="val-youtube" style="color:#FF6B6B">—</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">📌 핀터레스트</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" id="bar-pinterest" style="width:0%;background:linear-gradient(90deg,#E60023,#FF6B6B)"></div></div>
+          <div class="chart-bar-val" id="val-pinterest" style="color:#E60023">—</div>
+        </div>
+      </div>
+
+      <!-- Timeline chart -->
+      <div class="timeline-section">
+        <div class="section-title" style="margin-bottom:14px">📈 게시물 증가 추이 (7일)</div>
+        <div class="timeline-chart" id="timeline-chart"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px">
+          <span style="font-size:10px;color:var(--muted2)">7일 전</span>
+          <span style="font-size:10px;color:var(--muted2)">오늘</span>
+        </div>
+      </div>
+
+      <!-- Hashtag cloud -->
+      <div class="hashtag-cloud">
+        <div class="section-title" style="margin-bottom:0;width:100%">🏷️ 인기 해시태그</div>
+      </div>
+      <div class="hashtag-cloud" id="hashtag-cloud" style="padding-top:0">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Authenticity analysis -->
+      <div class="auth-analysis">
+        <div class="section-title" style="margin-bottom:14px">🔍 진위 분석 (AI 자동)</div>
+        <div class="auth-signal">
+          <div class="auth-signal-icon">👥</div>
+          <div class="auth-signal-text">다계정 동시 게시 패턴</div>
+          <div class="auth-signal-result pass" id="sig-multi">검사 중...</div>
+        </div>
+        <div class="auth-signal">
+          <div class="auth-signal-icon">⏰</div>
+          <div class="auth-signal-text">게시 시간대 자연성</div>
+          <div class="auth-signal-result pass" id="sig-time">검사 중...</div>
+        </div>
+        <div class="auth-signal">
+          <div class="auth-signal-icon">💰</div>
+          <div class="auth-signal-text">광고 문구 패턴 감지</div>
+          <div class="auth-signal-result pass" id="sig-ad">검사 중...</div>
+        </div>
+        <div class="auth-signal">
+          <div class="auth-signal-icon">📍</div>
+          <div class="auth-signal-text">위치 태그 분포 자연성</div>
+          <div class="auth-signal-result pass" id="sig-loc">검사 중...</div>
+        </div>
+        <div class="auth-signal">
+          <div class="auth-signal-icon">🔢</div>
+          <div class="auth-signal-text">방문자 통계 vs 버즈량 비율</div>
+          <div class="auth-signal-result pass" id="sig-ratio">검사 중...</div>
+        </div>
+
+        <div style="margin-top:14px;padding:14px;border-radius:14px" id="auth-verdict"></div>
+      </div>
+
+      <div style="height:20px"></div>
+    </div><!-- end screen-analysis -->
+
+
+    <!-- ─── SCREEN 5: MY COLLECTION ─── -->
+    <div class="screen" id="screen-collection">
+      <div style="height:14px"></div>
+
+      <!-- Profile -->
+      <div class="profile-card">
+        <div class="profile-avatar">📸</div>
+        <div style="flex:1">
+          <div class="profile-name">트렌드 헌터</div>
+          <div class="profile-level">🏆 Lv.4 · 선점 챔피언</div>
+          <div class="profile-stats-row">
+            <div>
+              <div class="profile-stat-val" id="collection-count">0</div>
+              <div class="profile-stat-label">저장한 스팟</div>
+            </div>
+            <div>
+              <div class="profile-stat-val">11</div>
+              <div class="profile-stat-label">선점 기록</div>
+            </div>
+            <div>
+              <div class="profile-stat-val">340만</div>
+              <div class="profile-stat-label">누적 조회</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rank -->
+      <div class="rank-display">
+        <div class="rank-medal">🥇</div>
+        <div class="rank-text">
+          <div class="rank-title">전국 선점 랭킹 Top 2%</div>
+          <div class="rank-sub">평균 바이럴 38시간 전 방문</div>
+        </div>
+        <div class="rank-pct">Top 2%</div>
+      </div>
+
+      <!-- Badges -->
+      <div class="section-pad" style="padding-bottom:4px">
+        <div class="section-title">🎖️ 획득 뱃지</div>
+      </div>
+      <div class="badge-grid">
+        <div class="badge-item earned">
+          <div class="badge-emoji">🥇</div>
+          <div class="badge-name">첫 선점</div>
+        </div>
+        <div class="badge-item earned">
+          <div class="badge-emoji">⚡</div>
+          <div class="badge-name">48h 선점</div>
+        </div>
+        <div class="badge-item earned">
+          <div class="badge-emoji">🔥</div>
+          <div class="badge-name">연속 3회</div>
+        </div>
+        <div class="badge-item earned">
+          <div class="badge-emoji">🗺️</div>
+          <div class="badge-name">전국구</div>
+        </div>
+        <div class="badge-item locked">
+          <div class="badge-emoji">💎</div>
+          <div class="badge-name">다이아</div>
+        </div>
+        <div class="badge-item locked">
+          <div class="badge-emoji">👑</div>
+          <div class="badge-name">레전드</div>
+        </div>
+      </div>
+
+      <!-- Saved spots -->
+      <div class="section-pad" style="padding-bottom:8px">
+        <div class="section-title">📌 저장한 스팟</div>
+      </div>
+
+      <div id="saved-spots-list">
+        <!-- Injected dynamically -->
+      </div>
+
+      <div id="empty-state" style="display:none">
+        <div class="empty-collection">
+          <div class="empty-icon">📍</div>
+          <div class="empty-text">아직 저장한 스팟이 없어요</div>
+          <div class="empty-sub">홈에서 스팟을 탭하고 저장해보세요!</div>
+        </div>
+      </div>
+
+      <div style="height:20px"></div>
+    </div><!-- end screen-collection -->
+
+  </div><!-- end screens-viewport -->
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <button class="nav-tab active" id="tab-home" onclick="showScreen('home')">
+      <span class="nav-tab-icon">🏠</span>
+      <span class="nav-tab-label">홈</span>
+    </button>
+    <button class="nav-tab" id="tab-feed" onclick="showScreen('feed')">
+      <span class="nav-tab-icon">📡</span>
+      <span class="nav-tab-label">피드</span>
+    </button>
+    <button class="nav-tab" id="tab-detail" onclick="showScreen('detail')" style="display:none">
+      <span class="nav-tab-icon">📍</span>
+      <span class="nav-tab-label">스팟</span>
+    </button>
+    <button class="nav-tab" id="tab-analysis" onclick="showScreen('analysis')">
+      <span class="nav-tab-icon">📊</span>
+      <span class="nav-tab-label">SNS분석</span>
+    </button>
+    <button class="nav-tab" id="tab-collection" onclick="showScreen('collection')">
+      <span class="nav-tab-icon">⭐</span>
+      <span class="nav-tab-label">컬렉션</span>
+    </button>
+  </nav>
+
+</div><!-- end phone-wrapper -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA FIXTURES (Visit Korea API 기반) ──
+const SPOTS = [
+  {
+    id: 0,
+    icon: '🌊',
+    name: '강릉 숨은 해변 "거울못"',
+    location: '강원 강릉시 연곡면',
+    apiSource: '관광지방문자통계 API · 국문관광정보서비스',
+    viralScore: 92,
+    prediction: 'D-18h 바이럴 예측',
+    authentic: true,
+    authReason: '다계정 패턴 없음 · 로컬 게시물 85% · 자연 발생 버즈 확인',
+    platforms: { insta: 340, tiktok: 120, youtube: 45, pinterest: 28 },
+    platformCounts: { insta: '+340%', tiktok: '8,200건', youtube: '4.2만뷰', pinterest: '1,400핀' },
+    timeline: [2, 3, 5, 8, 15, 34, 92],
+    hashtags: [
+      { text: '#강릉숨은해변', size: 16, color: 'tag-green' },
+      { text: '#거울못', size: 18, color: 'tag-green' },
+      { text: '#강릉진짜맛집', size: 13, color: 'tag-gray' },
+      { text: '#아무도모르는곳', size: 15, color: 'tag-yellow' },
+      { text: '#강원도여행', size: 12, color: 'tag-gray' },
+      { text: '#숨은명소', size: 14, color: 'tag-blue' },
+      { text: '#연곡해변', size: 11, color: 'tag-gray' },
+      { text: '#강릉감성', size: 12, color: 'tag-gray' },
+    ],
+    kto: { visitors: '월 2,800명', congestion: '여유 (23%)', bestTime: '오전 7-9시' },
+    visitTip: '지금 방문하면 아직 한적합니다. AI 예측상 18시간 내 바이럴 — 이번 주말 전에 방문하세요.',
+    signals: ['pass','pass','pass','pass','pass'],
+    authVerdict: { ok: true, text: '✅ 진짜 숨은 곳 — 협찬 아님', sub: '자연 발생 버즈 · 로컬 인증 · KTO 방문자 데이터 교차 확인 완료' }
+  },
+  {
+    id: 1,
+    icon: '🏚️',
+    name: '전주 구도심 벽화 골목',
+    location: '전북 전주시 완산구',
+    apiSource: '국문관광정보서비스 · 위치기반관광정보서비스',
+    viralScore: 67,
+    prediction: 'D-36h 바이럴 예측',
+    authentic: true,
+    authReason: '지역 주민 게시물 다수 · 계정 생성일 정상 · 광고 문구 없음',
+    platforms: { insta: 45, tiktok: 90, youtube: 30, pinterest: 15 },
+    platformCounts: { insta: '4,800건', tiktok: '12,400건', youtube: '2.1만뷰', pinterest: '840핀' },
+    timeline: [5, 7, 10, 14, 22, 45, 67],
+    hashtags: [
+      { text: '#전주숨은골목', size: 16, color: 'tag-green' },
+      { text: '#전주벽화', size: 14, color: 'tag-yellow' },
+      { text: '#전주한옥마을말고', size: 15, color: 'tag-blue' },
+      { text: '#구도심감성', size: 13, color: 'tag-gray' },
+      { text: '#전라도여행', size: 12, color: 'tag-gray' },
+      { text: '#로컬맛집', size: 14, color: 'tag-green' },
+    ],
+    kto: { visitors: '월 1,400명', congestion: '여유 (18%)', bestTime: '평일 오후' },
+    visitTip: '주말 전 방문 추천. 전주 한옥마을 대비 방문자 80% 적어 현재 매우 한적합니다.',
+    signals: ['pass','pass','pass','pass','pass'],
+    authVerdict: { ok: true, text: '✅ 로컬 인증 — 협찬 없음', sub: '지역 주민 게시물 72% · 자연 해시태그 패턴 · 방문자 통계 정상' }
+  },
+  {
+    id: 2,
+    icon: '🏔️',
+    name: '제주 오름 신규 발굴지',
+    location: '제주시 한경면',
+    apiSource: '위치기반관광정보서비스 · 관광지집중률예측',
+    viralScore: 31,
+    prediction: '초기 신호 감지 중',
+    authentic: null,
+    authReason: '검증 진행 중...',
+    platforms: { insta: 31, tiktok: 12, youtube: 18, pinterest: 8 },
+    platformCounts: { insta: '547건', tiktok: '310건', youtube: '3,800뷰', pinterest: '180핀' },
+    timeline: [1, 1, 2, 3, 8, 18, 31],
+    hashtags: [
+      { text: '#제주오름', size: 14, color: 'tag-gray' },
+      { text: '#제주숨은곳', size: 15, color: 'tag-blue' },
+      { text: '#한경면', size: 11, color: 'tag-gray' },
+      { text: '#제주감성', size: 13, color: 'tag-gray' },
+      { text: '#오름추천', size: 12, color: 'tag-yellow' },
+    ],
+    kto: { visitors: '미집계', congestion: '정보 없음', bestTime: '일출 시간' },
+    visitTip: '아직 초기 신호 단계입니다. 검증이 완료되면 알림을 보내드릴게요.',
+    signals: ['pass','pass','warn','pass','warn'],
+    authVerdict: { ok: null, text: '🔍 검증 진행 중', sub: '게시물 수 부족으로 추가 데이터 수집 중. 약 12-24시간 후 결과 제공.' }
+  },
+  {
+    id: 3,
+    icon: '🌸',
+    name: '경주 벚꽃 숨은 산책로',
+    location: '경북 경주시',
+    apiSource: '관광지집중률예측 · 관광지방문자통계',
+    viralScore: 78,
+    prediction: 'D-24h 바이럴 예측',
+    authentic: true,
+    authReason: '유기적 확산 패턴 · 상업적 문구 없음 · 다계정 패턴 미검출',
+    platforms: { insta: 65, tiktok: 78, youtube: 40, pinterest: 20 },
+    platformCounts: { insta: '+190%', tiktok: '19,300건', youtube: '14만뷰', pinterest: '2,100핀' },
+    timeline: [3, 5, 9, 18, 35, 58, 78],
+    hashtags: [
+      { text: '#경주벚꽃', size: 17, color: 'tag-green' },
+      { text: '#경주숨은명소', size: 16, color: 'tag-yellow' },
+      { text: '#경주산책로', size: 14, color: 'tag-blue' },
+      { text: '#경북여행', size: 13, color: 'tag-gray' },
+      { text: '#벚꽃터널', size: 15, color: 'tag-green' },
+      { text: '#봄여행', size: 14, color: 'tag-gray' },
+      { text: '#경주감성', size: 12, color: 'tag-gray' },
+    ],
+    kto: { visitors: '월 4,200명', congestion: '보통 (41%)', bestTime: '평일 오전' },
+    visitTip: '벚꽃 시즌 peak 전 방문이 베스트. AI 예측상 24시간 내 급증 예정. 오늘 방문 강력 추천.',
+    signals: ['pass','pass','pass','pass','pass'],
+    authVerdict: { ok: true, text: '✅ 자연 버즈 확인 — 진짜 숨은 곳', sub: '유기적 해시태그 확산 · 상업 패턴 없음 · 현지인 게시물 68%' }
+  }
+];
+
+let currentScreen = 'home';
+let currentDetailIdx = 0;
+let savedSpots = new Set();
+let currentAnalysisSpot = 0;
+let analysisTimer = null;
+
+// ── SCREEN NAVIGATION ──
+function showScreen(name) {
+  if (currentScreen === name) return;
+
+  // Update screens
+  const prev = document.getElementById('screen-' + currentScreen);
+  if (prev) { prev.classList.remove('active'); prev.classList.add('slide-out'); }
+  setTimeout(() => { if (prev) prev.classList.remove('slide-out'); }, 300);
+
+  const next = document.getElementById('screen-' + name);
+  if (next) { next.classList.add('active'); }
+
+  // Update tabs
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  const activeTab = document.getElementById('tab-' + name);
+  if (activeTab) activeTab.classList.add('active');
+
+  // Show/hide detail tab
+  if (name === 'detail') {
+    document.getElementById('tab-detail').style.display = 'flex';
+  }
+
+  currentScreen = name;
+
+  // Side effects
+  if (name === 'analysis') {
+    setTimeout(() => renderAnalysis(currentAnalysisSpot), 100);
+  }
+  if (name === 'collection') {
+    renderCollection();
+  }
+}
+
+// ── SHOW DETAIL ──
+function showDetail(idx) {
+  currentDetailIdx = idx;
+  const spot = SPOTS[idx];
+  const isSaved = savedSpots.has(idx);
+
+  document.getElementById('detail-content').innerHTML = `
+    <div class="detail-hero">
+      <span style="font-size:80px">${spot.icon}</span>
+      <div class="detail-hero-overlay"></div>
+      <div class="detail-back" onclick="showScreen('${currentScreen === 'detail' ? 'home' : currentScreen}')">←</div>
+      <div class="detail-actions">
+        <div class="detail-action-btn ${isSaved ? 'saved' : ''}" id="save-btn-icon" onclick="toggleSave(${idx})">
+          ${isSaved ? '⭐' : '☆'}
+        </div>
+        <div class="detail-action-btn" onclick="showToast('공유 링크 복사됨!')">🔗</div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-name">${spot.name}</div>
+      <div class="detail-loc">📍 ${spot.location} · <span style="color:var(--muted2);font-size:11px">${spot.apiSource}</span></div>
+
+      <div class="viral-big-score">
+        <div class="viral-big-num">${spot.viralScore}</div>
+        <div class="viral-big-meta">
+          <div class="viral-big-label">AI 바이럴 예측 점수</div>
+          <div class="viral-big-pred" style="color:${spot.viralScore >= 70 ? 'var(--red)' : spot.viralScore >= 40 ? 'var(--yellow)' : 'var(--blue)'}">
+            ${spot.prediction}
+          </div>
+          <div style="margin-top:6px">
+            <div class="viral-bar-wrap" style="margin:0"><div class="viral-bar-fill" style="width:${spot.viralScore}%"></div></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mock-phone">
-      <div class="mock-header">📡 바이럴 예측 대시보드</div>
-      <div style="background:rgba(16,185,129,0.06);border-radius:10px;padding:12px;margin-bottom:10px">
-        <div style="font-size:11px;color:var(--accent);margin-bottom:4px">이번 주 선점 기회</div>
-        <div style="font-size:14px;font-weight:700">3곳 발굴됨</div>
-        <div style="font-size:11px;color:var(--muted)">모두 48시간 내 바이럴 예측</div>
+    <div class="detail-section">
+      <div class="section-title">📱 플랫폼별 현황</div>
+      <div class="platform-row">
+        <div class="platform-item">
+          <div class="platform-icon">📸</div>
+          <div class="platform-count">${spot.platformCounts.insta}</div>
+          <div class="platform-label">Instagram</div>
+          <div class="platform-growth">🔥 급상승</div>
+        </div>
+        <div class="platform-item">
+          <div class="platform-icon">🎵</div>
+          <div class="platform-count">${spot.platformCounts.tiktok}</div>
+          <div class="platform-label">TikTok</div>
+          <div class="platform-growth">↑ 증가 중</div>
+        </div>
+        <div class="platform-item">
+          <div class="platform-icon">▶️</div>
+          <div class="platform-count">${spot.platformCounts.youtube}</div>
+          <div class="platform-label">YouTube</div>
+          <div class="platform-growth">📈 상승</div>
+        </div>
       </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">⏰</span>
-        <div><div class="mock-item-name">거울못 · D-18h</div><div class="mock-item-sub">지금 가면 선점 가능</div><span class="mock-tag mock-tag-yellow">긴급</span></div>
+      <div style="margin-top:10px;text-align:right">
+        <span class="section-more" onclick="showScreen('analysis')">SNS 상세 분석 →</span>
       </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">📅</span>
-        <div><div class="mock-item-name">전주 골목 · D-36h</div><div class="mock-item-sub">주말 전 방문 추천</div></div>
+    </div>
+
+    <div class="detail-section">
+      <div class="section-title">🔍 진위 판별</div>
+      <div class="authentic-box ${spot.authentic === true ? 'real' : spot.authentic === false ? 'fake' : ''}"
+           style="${spot.authentic === null ? 'background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.25)' : ''}">
+        <div class="authentic-icon">${spot.authentic === true ? '✅' : spot.authentic === false ? '⚠️' : '🔍'}</div>
+        <div>
+          <div class="authentic-title">${spot.authentic === true ? '진짜 숨은 곳 확인' : spot.authentic === false ? '협찬 의심' : '검증 진행 중'}</div>
+          <div class="authentic-desc">${spot.authReason}</div>
+        </div>
       </div>
     </div>
 
-    <div class="mock-phone">
-      <div class="mock-header">🏆 선점자 랭킹</div>
-      <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:14px;margin-bottom:10px;text-align:center">
-        <div style="font-size:28px">🥇</div>
-        <div style="font-size:14px;font-weight:700;margin-top:4px">트렌드 헌터 Lv.4</div>
-        <div style="font-size:11px;color:var(--muted)">바이럴 선점 11회 · 전국 Top 2%</div>
-      </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">⚡</span>
-        <div><div class="mock-item-name">선점 기록 11회</div><div class="mock-item-sub">평균 바이럴 38시간 전 방문</div></div>
-      </div>
-      <div class="mock-item">
-        <span class="mock-item-icon">📸</span>
-        <div><div class="mock-item-name">내 콘텐츠 누적 조회</div><div class="mock-item-sub">340만뷰 · 팔로워 +2,400</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 7: OpenAPI 활용 -->
-<div class="section">
-  <div class="section-label">Section 07</div>
-  <div class="section-title">OpenAPI <span>활용</span></div>
-
-  <div class="card">
-    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">KTO 관광지방문자통계·집중률예측 API로 SNS 버즈량과 실제 방문 데이터를 교차 검증. 공공 데이터를 기준선으로 삼아 "진짜 숨은 곳 vs 이미 유명한 곳"을 판별하는 알고리즘 핵심 데이터.</div>
-    <div class="api-chips">
-      <span class="api-chip">한국관광공사_관광지방문자통계</span>
-      <span class="api-chip">한국관광공사_국문관광정보서비스</span>
-      <span class="api-chip">한국관광공사_관광지집중률예측</span>
-      <span class="api-chip">한국관광공사_위치기반관광정보서비스</span>
-      <span class="api-chip">(외부) Instagram Graph API</span>
-      <span class="api-chip">(외부) YouTube Data API v3</span>
-    </div>
-
-    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지방문자통계</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">실제 방문자 수 기준선. SNS 버즈量 vs 실방문 비율 역산해 "진짜 숨은 곳" 판별.</div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">관광지집중률예측</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">예측 혼잡도로 "지금 가면 아직 한적" 여부 판단. 선점 타이밍 정확도 향상.</div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">SNS API 연동</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">Instagram·YouTube 공개 API로 게시물 급증 패턴 실시간 감지. 공개 범위 내 합법 수집.</div>
+    <div class="detail-section">
+      <div class="section-title">🏛️ KTO 관광 데이터</div>
+      <div class="kto-data-row">
+        <div class="kto-item">
+          <div class="kto-label">실제 방문자</div>
+          <div class="kto-value">${spot.kto.visitors}</div>
+          <div class="kto-sub">관광지방문자통계 API</div>
+        </div>
+        <div class="kto-item">
+          <div class="kto-label">현재 혼잡도</div>
+          <div class="kto-value">${spot.kto.congestion}</div>
+          <div class="kto-sub">집중률예측 API</div>
+        </div>
+        <div class="kto-item">
+          <div class="kto-label">최적 방문 시간</div>
+          <div class="kto-value" style="font-size:13px">${spot.kto.bestTime}</div>
+          <div class="kto-sub">AI 추천</div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<hr class="divider">
-
-<!-- SECTION 8: 팀 합의 점수 -->
-<div class="section">
-  <div class="section-label">Section 08</div>
-  <div class="section-title">팀 합의 <span>점수</span></div>
-
-  <div class="score-display">
-    <div class="score-big">8.0</div>
-    <div class="score-meta">
-      <div class="score-label">팀 합의 점수 / 10점</div>
-      <div class="score-stars">★★★★☆</div>
-      <div class="score-reason" style="margin-top:8px">ai-only 브랜치 선언 — AI 없이는 서비스 자체 성립 불가. SNS 바이럴 예측이라는 기술적 차별화가 명확. 크리에이터 경제와 관광의 교차점.</div>
-    </div>
-  </div>
-
-  <div class="card-row">
-    <div class="card" style="margin-bottom:0">
-      <div style="font-size:14px;font-weight:700;margin-bottom:8px">✅ 선정 이유</div>
-      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
-        <li>ai-only — AI 없이는 서비스 자체 불가</li>
-        <li>SNS 크리에이터 경제와 관광의 완벽 결합</li>
-        <li>트렌드 부합·지역 분산 각 9점 강점</li>
-        <li>광고 수익 모델로 무료 유저 확보 용이</li>
-      </ul>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
-      <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
-        <li>SNS API 정책 변경 → 공개 데이터 크롤링 대안</li>
-        <li>사회 가치 6점 → 지역 소상공인 연계 강화</li>
-        <li>협찬 구분 오류 → 사람 검수 레이어 추가</li>
-        <li>바이럴 후 혼잡 → 방문자 분산 시스템 연계</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 9: 객관 사업성 -->
-<div class="section">
-  <div class="section-label">Section 09</div>
-  <div class="section-title">객관 <span>사업성</span></div>
-
-  <div class="card">
-    <table class="fin-table">
-      <thead>
-        <tr>
-          <th>구분</th>
-          <th>규모</th>
-          <th>산정 근거</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>TAM</strong></td>
-          <td class="highlight">2.8조원</td>
-          <td style="font-size:13px;color:var(--muted)">국내 SNS 광고 + 관광 마케팅 시장 (방송통신위원회 2024)</td>
-        </tr>
-        <tr>
-          <td><strong>SAM</strong></td>
-          <td class="highlight">7,000억원</td>
-          <td style="font-size:13px;color:var(--muted)">여행 인플루언서 + 트렌드 헌터 약 200만명 → 7,000억원</td>
-        </tr>
-        <tr>
-          <td><strong>SOM</strong></td>
-          <td class="highlight">350억원</td>
-          <td style="font-size:13px;color:var(--muted)">Y3 이내 5% 점유율 목표</td>
-        </tr>
-        <tr>
-          <td><strong>Y1 매출</strong></td>
-          <td class="highlight">24.4억원</td>
-          <td style="font-size:13px;color:var(--muted)">광고: 월 40만 MAU × RPM $3 × 12개월 = 14.4억<br>브랜드 협찬: 50건 × 2,000만원 = 10억</td>
-        </tr>
-        <tr>
-          <td><strong>BEP</strong></td>
-          <td class="highlight">18개월</td>
-          <td style="font-size:13px;color:var(--muted)">Y2 달성 예상. 초기 개발비 8억 + AI 인프라 4억 = 12억 투자 회수</td>
-        </tr>
-        <tr>
-          <td><strong>주요 경쟁사</strong></td>
-          <td colspan="2" style="font-size:13px;color:var(--muted)">Pinterest 한국 MAU 350만 · Instagram 여행 계정 광고 CPM $8 — SNS 바이럴 예측 서비스 없음. 블루오션 포지셔닝</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 10: AI 차별화 -->
-<div class="section">
-  <div class="section-label">Section 10</div>
-  <div class="section-title">AI <span>차별화</span></div>
-
-  <div class="ai-branch-badge ai-branch-aionly">🤖 AI Branch: ai-only — AI 없이는 서비스 자체 존재 불가</div>
-
-  <div class="aionly-highlight">
-    ai-only 선언 근거: 수억 건 SNS 게시물 실시간 분석 + 바이럴 패턴 감지 + 협찬 자동 구분은 사람이 수작업으로 절대 수행 불가능한 규모와 속도의 작업입니다. 이 서비스는 AI가 곧 서비스입니다.
-  </div>
-
-  <div class="card">
-    <div class="ai-reason">
-      <div class="ai-reason-num">1</div>
-      <div class="ai-reason-text">
-        <strong>수억 건 SNS 게시물 실시간 분석 → 사람이 수동으로 절대 불가능한 규모</strong><br>
-        인스타그램·유튜브·틱톡에서 매일 생성되는 수억 건의 게시물을 AI가 24/7 실시간 스캔해 "위치 태그된 장소 + 급증 패턴"을 감지. 10명의 에디터팀이 365일 작업해도 하루치 데이터의 0.001%도 처리 불가.
+    <div class="detail-section">
+      <div class="section-title">⏱️ 방문 타이밍</div>
+      <div class="visit-timing">
+        <div class="visit-timing-header">⚡ AI 추천</div>
+        <div class="visit-timing-desc">${spot.visitTip}</div>
       </div>
     </div>
-    <div class="ai-reason">
-      <div class="ai-reason-num">2</div>
-      <div class="ai-reason-text">
-        <strong>버즈量 vs 실방문 비율 역산 알고리즘 → "진짜 숨은 곳 vs 협찬 광고" 자동 구분</strong><br>
-        KTO 실방문자 통계와 SNS 게시물 수를 교차 분석해 "버즈量 대비 방문자가 비정상적으로 많으면 협찬, 게시물 수 대비 방문자가 적으면 진짜 숨은 곳"이라는 역산 모델. 계정 생성일·게시 패턴·해시태그 분포까지 다변수 분류. 사람이 직관으로 판단 불가.
-      </div>
-    </div>
-    <div class="ai-reason">
-      <div class="ai-reason-num">3</div>
-      <div class="ai-reason-text">
-        <strong>48시간 바이럴 예측 모델 → 사람 직관으로 불가능한 신호 선제 포착</strong><br>
-        게시물 증가 속도·공유 패턴·팔로워 확산 경로·시간대 분포 등 수십 가지 지표를 조합해 "이 장소가 48시간 내 바이럴될 확률 92%"를 사전 예측. 과거 바이럴 사례 10만건 학습 기반 시계열 모델. 어떤 사람도 이 속도와 정확도로 예측 불가.
-      </div>
-    </div>
-  </div>
-</div>
 
-<footer>
-  <div style="margin-bottom:8px">
-    <strong style="color:var(--fg)">UGC Hidden Spot</strong> — 2026 한국관광공사 관광 서비스 공모전
-  </div>
-  <div>BA Score 98/130 · 팀 합의 8.0/10 · AI Branch: ai-only</div>
-  <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
-</footer>
+    <div class="detail-section">
+      <button class="save-btn ${isSaved ? 'saved-state' : ''}" id="save-btn-main" onclick="toggleSave(${idx})">
+        ${isSaved ? '⭐ 컬렉션에 저장됨' : '⭐ 컬렉션에 저장하기'}
+      </button>
+    </div>
 
+    <div style="height:20px"></div>
+  `;
+
+  showScreen('detail');
+}
+
+// ── SAVE TOGGLE ──
+function toggleSave(idx) {
+  if (savedSpots.has(idx)) {
+    savedSpots.delete(idx);
+    showToast('컬렉션에서 제거됨');
+  } else {
+    savedSpots.add(idx);
+    showToast('✅ 컬렉션에 저장됨!');
+  }
+
+  // Update UI
+  const isSaved = savedSpots.has(idx);
+  const iconBtn = document.getElementById('save-btn-icon');
+  const mainBtn = document.getElementById('save-btn-main');
+  if (iconBtn) { iconBtn.textContent = isSaved ? '⭐' : '☆'; iconBtn.classList.toggle('saved', isSaved); }
+  if (mainBtn) { mainBtn.textContent = isSaved ? '⭐ 컬렉션에 저장됨' : '⭐ 컬렉션에 저장하기'; mainBtn.classList.toggle('saved-state', isSaved); }
+
+  if (currentScreen === 'collection') renderCollection();
+}
+
+// ── RENDER COLLECTION ──
+function renderCollection() {
+  const count = savedSpots.size;
+  const countEl = document.getElementById('collection-count');
+  if (countEl) countEl.textContent = count;
+
+  const list = document.getElementById('saved-spots-list');
+  const empty = document.getElementById('empty-state');
+  if (!list) return;
+
+  if (count === 0) {
+    list.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  list.innerHTML = Array.from(savedSpots).map(idx => {
+    const spot = SPOTS[idx];
+    return `
+      <div class="saved-spot-item" onclick="showDetail(${idx})">
+        <div class="saved-spot-icon">${spot.icon}</div>
+        <div style="flex:1">
+          <div class="saved-spot-name">${spot.name}</div>
+          <div class="saved-spot-meta">📍 ${spot.location}</div>
+        </div>
+        <div class="saved-spot-badge">
+          <span class="tag ${spot.viralScore >= 70 ? 'tag-red' : spot.viralScore >= 40 ? 'tag-yellow' : 'tag-blue'}">
+            ${spot.viralScore}점
+          </span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── RENDER ANALYSIS ──
+function renderAnalysis(idx) {
+  const spot = SPOTS[idx];
+  const maxP = Math.max(spot.platforms.insta, spot.platforms.tiktok, spot.platforms.youtube, spot.platforms.pinterest);
+
+  // Reset and animate bars
+  ['insta','tiktok','youtube','pinterest'].forEach(p => {
+    const bar = document.getElementById('bar-' + p);
+    const val = document.getElementById('val-' + p);
+    if (bar) { bar.style.width = '0%'; }
+  });
+
+  setTimeout(() => {
+    setBar('insta', spot.platforms.insta, maxP, spot.platformCounts.insta);
+    setBar('tiktok', spot.platforms.tiktok, maxP, spot.platformCounts.tiktok);
+    setBar('youtube', spot.platforms.youtube, maxP, spot.platformCounts.youtube);
+    setBar('pinterest', spot.platforms.pinterest, maxP, spot.platformCounts.pinterest);
+  }, 50);
+
+  // Timeline
+  const timelineEl = document.getElementById('timeline-chart');
+  if (timelineEl) {
+    const maxT = Math.max(...spot.timeline);
+    const days = ['D-7','D-6','D-5','D-4','D-3','D-2','오늘'];
+    timelineEl.innerHTML = spot.timeline.map((v, i) => {
+      const pct = Math.round((v / maxT) * 100);
+      const isToday = i === 6;
+      return `
+        <div class="timeline-bar-wrap">
+          <div class="timeline-bar ${isToday ? 'highlight' : ''}"
+               style="height:${pct}%;min-height:4px"
+               title="${days[i]}: ${v}%"></div>
+          <span class="timeline-label">${days[i]}</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Hashtags
+  const hashEl = document.getElementById('hashtag-cloud');
+  if (hashEl) {
+    hashEl.innerHTML = spot.hashtags.map(h => `
+      <span class="hashtag tag ${h.color}" style="font-size:${h.size * 0.7}px">${h.text}</span>
+    `).join('');
+  }
+
+  // Auth signals
+  const signalMap = ['sig-multi','sig-time','sig-ad','sig-loc','sig-ratio'];
+  const resultLabels = [
+    ['✅ 패턴 없음','⚠️ 의심 패턴','❌ 감지됨'],
+    ['✅ 자연적','⚠️ 불규칙','❌ 비정상'],
+    ['✅ 없음','⚠️ 일부','❌ 감지됨'],
+    ['✅ 자연적','⚠️ 검토 중','❌ 비정상'],
+    ['✅ 정상','⚠️ 검토 중','❌ 비정상'],
+  ];
+  const classMap = ['pass','warn','fail'];
+
+  spot.signals.forEach((s, i) => {
+    const el = document.getElementById(signalMap[i]);
+    if (el) {
+      const ci = s === 'pass' ? 0 : s === 'warn' ? 1 : 2;
+      el.textContent = resultLabels[i][ci];
+      el.className = 'auth-signal-result ' + classMap[ci];
+    }
+  });
+
+  // Verdict
+  const verdictEl = document.getElementById('auth-verdict');
+  if (verdictEl) {
+    const v = spot.authVerdict;
+    const bg = v.ok === true ? 'rgba(16,185,129,0.08)' : v.ok === false ? 'rgba(239,68,68,0.08)' : 'rgba(56,189,248,0.08)';
+    const border = v.ok === true ? 'rgba(16,185,129,0.25)' : v.ok === false ? 'rgba(239,68,68,0.25)' : 'rgba(56,189,248,0.25)';
+    verdictEl.style.background = bg;
+    verdictEl.style.border = `1px solid ${border}`;
+    verdictEl.style.borderRadius = '14px';
+    verdictEl.innerHTML = `
+      <div style="font-size:14px;font-weight:700;margin-bottom:6px">${v.text}</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.5">${v.sub}</div>
+    `;
+  }
+}
+
+function setBar(id, val, max, label) {
+  const bar = document.getElementById('bar-' + id);
+  const valEl = document.getElementById('val-' + id);
+  if (bar) bar.style.width = Math.round((val / max) * 100) + '%';
+  if (valEl) valEl.textContent = label;
+}
+
+// ── ANALYSIS SPOT SELECTOR ──
+function setAnalysisSpot(idx, el) {
+  document.querySelectorAll('.analysis-spot-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentAnalysisSpot = idx;
+  renderAnalysis(idx);
+}
+
+// ── FILTER TABS ──
+function setHomeFilter(el, name) {
+  el.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+function setFeedFilter(el, name) {
+  el.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  renderCollection();
+
+  // Auto-dismiss new signal banner
+  setTimeout(() => {
+    const banner = document.getElementById('new-signal');
+    if (banner) banner.style.display = 'none';
+  }, 5000);
+
+  // Simulate real-time update pulse on scan bar
+  setInterval(() => {
+    const dot = document.querySelector('.home-scan-bar .live-dot');
+    if (dot) { dot.style.transform = 'scale(1.4)'; setTimeout(() => { dot.style.transform = ''; }, 200); }
+  }, 3000);
+});
+</script>
 </body>
 </html>
