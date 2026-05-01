@@ -17,6 +17,10 @@
       --accent2: #FCD34D;
       --grad: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
       --grad2: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+      --green: #10B981;
+      --red: #EF4444;
+      --purple: #A855F7;
+      --blue: #38BDF8;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { background: var(--bg); color: var(--fg); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif; min-height: 100vh; }
@@ -67,13 +71,16 @@
     .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; }
 
     .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
-    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px; }
 
     .persona-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
     .persona-avatar { font-size: 36px; margin-bottom: 10px; }
     .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
     .persona-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
     .persona-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .persona-needs { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+    .persona-need-label { font-size: 11px; color: var(--muted2); margin-bottom: 4px; letter-spacing: 0.1em; }
+    .persona-need-item { font-size: 12px; color: var(--fg); margin-bottom: 3px; display: flex; align-items: flex-start; gap: 6px; }
 
     .research-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
     .research-item:last-child { border-bottom: none; }
@@ -101,12 +108,25 @@
     .criteria-table tr:last-child td { border-bottom: none; }
     .criteria-score { font-weight: 800; color: var(--accent); }
 
+    /* Scenario Flow */
+    .scenario-flow { display: flex; flex-direction: column; gap: 0; }
+    .scenario-step { display: grid; grid-template-columns: 48px 1fr; gap: 16px; }
+    .scenario-line { display: flex; flex-direction: column; align-items: center; }
+    .scenario-num { width: 40px; height: 40px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #1a0a00; flex-shrink: 0; }
+    .scenario-connector { width: 2px; flex: 1; background: var(--border); margin: 4px 0; min-height: 24px; }
+    .scenario-content { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 8px; }
+    .scenario-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .scenario-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+    .scenario-api { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--accent); background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); padding: 3px 10px; border-radius: 999px; font-family: monospace; }
+
+    /* Journey */
     .journey-steps { display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto; }
     .journey-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
     .journey-step:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 18px; color: var(--muted2); font-size: 16px; }
     .journey-num { width: 36px; height: 36px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 8px; color: #1a0a00; }
     .journey-label { font-size: 12px; color: var(--muted); }
 
+    /* Mock Phone */
     .mock-phone { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; max-width: 280px; }
     .mock-phones { display: flex; gap: 16px; flex-wrap: wrap; }
     .mock-header { font-size: 13px; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
@@ -118,10 +138,23 @@
     .mock-tag-accent { background: rgba(245,158,11,0.2); color: var(--accent); }
     .mock-tag-first { background: rgba(239,68,68,0.2); color: #EF4444; }
     .mock-tag-green { background: rgba(16,185,129,0.2); color: #10B981; }
+    .mock-tag-blue { background: rgba(56,189,248,0.2); color: var(--blue); }
 
+    /* API Chips */
     .api-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .api-chip { padding: 5px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25); border-radius: 999px; font-size: 12px; color: var(--accent); font-family: monospace; }
 
+    /* API Sequence */
+    .api-seq { display: flex; flex-direction: column; gap: 12px; }
+    .api-seq-step { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: flex-start; }
+    .api-seq-dot { width: 24px; height: 24px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .api-seq-content { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+    .api-seq-name { font-size: 13px; font-weight: 700; color: var(--accent); font-family: monospace; margin-bottom: 4px; }
+    .api-seq-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .api-seq-params { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .api-param { font-size: 10px; padding: 2px 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; color: var(--muted2); font-family: monospace; }
+
+    /* Score */
     .score-display { display: flex; align-items: center; gap: 24px; padding: 24px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 16px; margin-bottom: 16px; }
     .score-big { font-size: 56px; font-weight: 900; color: var(--accent); line-height: 1; }
     .score-meta { flex: 1; }
@@ -129,12 +162,14 @@
     .score-reason { font-size: 15px; line-height: 1.6; }
     .score-stars { color: #F59E0B; font-size: 20px; letter-spacing: 2px; }
 
+    /* Financial */
     .fin-table { width: 100%; border-collapse: collapse; }
     .fin-table th { background: var(--surface); padding: 10px 14px; text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
     .fin-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
     .fin-table tr:last-child td { border-bottom: none; }
     .fin-table .highlight { font-weight: 700; color: var(--accent); }
 
+    /* AI */
     .ai-branch-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 20px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: var(--accent); }
     .ai-reason { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
     .ai-reason:last-child { border-bottom: none; }
@@ -142,6 +177,7 @@
     .ai-reason-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
     .ai-reason-text strong { color: var(--fg); }
 
+    /* Tip Box */
     .tip-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; }
     .tip-label { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px; }
     .tip-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
@@ -153,6 +189,48 @@
     .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
     .tag { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); }
 
+    /* Competitor Diff */
+    .diff-table { width: 100%; border-collapse: collapse; }
+    .diff-table th { background: var(--surface); padding: 12px 16px; text-align: center; font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .diff-table th:last-child { border-right: none; }
+    .diff-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); font-size: 13px; text-align: center; vertical-align: middle; }
+    .diff-table td:first-child { text-align: left; font-weight: 600; }
+    .diff-table td:last-child { border-right: none; }
+    .diff-table tr:last-child td { border-bottom: none; }
+    .diff-table .ours { background: rgba(245,158,11,0.08); font-weight: 700; color: var(--accent); }
+    .check-yes { color: var(--green); font-size: 16px; }
+    .check-no { color: var(--red); font-size: 16px; }
+    .check-part { color: var(--accent); font-size: 13px; }
+
+    /* MVP Table */
+    .mvp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .mvp-col { border-radius: 14px; padding: 20px; }
+    .mvp-col.must { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); }
+    .mvp-col.should { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.3); }
+    .mvp-col.could { background: rgba(107,114,128,0.08); border: 1px solid rgba(107,114,128,0.3); }
+    .mvp-col-label { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 12px; }
+    .mvp-col.must .mvp-col-label { color: #EF4444; }
+    .mvp-col.should .mvp-col-label { color: var(--accent); }
+    .mvp-col.could .mvp-col-label { color: var(--muted); }
+    .mvp-item { font-size: 13px; color: var(--muted); margin-bottom: 8px; display: flex; gap: 8px; line-height: 1.4; }
+    .mvp-bullet { flex-shrink: 0; margin-top: 2px; }
+
+    /* 4-Week Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-week { display: grid; grid-template-columns: 80px 1fr; gap: 16px; }
+    .timeline-week-label { text-align: right; padding-top: 14px; }
+    .timeline-week-num { font-size: 13px; font-weight: 700; color: var(--accent); }
+    .timeline-week-range { font-size: 11px; color: var(--muted2); }
+    .timeline-body { position: relative; padding-left: 24px; padding-bottom: 24px; border-left: 2px solid var(--border); }
+    .timeline-body::before { content: ""; position: absolute; left: -6px; top: 14px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); }
+    .timeline-week:last-child .timeline-body { border-left-color: transparent; }
+    .timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+    .timeline-card-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .timeline-tasks { display: flex; flex-direction: column; gap: 5px; }
+    .timeline-task { font-size: 12px; color: var(--muted); display: flex; gap: 8px; }
+    .timeline-task-dot { color: var(--accent); flex-shrink: 0; }
+    .timeline-milestone { margin-top: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); border-radius: 999px; font-size: 11px; font-weight: 700; color: var(--accent); }
+
     footer { margin-top: 80px; padding: 28px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted2); }
     footer a { color: var(--muted); text-decoration: none; }
 
@@ -162,6 +240,7 @@
       .stat-val { font-size: 22px; }
       .score-big { font-size: 40px; }
       .mock-phones { flex-direction: column; }
+      .mvp-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -173,17 +252,17 @@
     Hidden Gem Scout
   </a>
   <a class="nav-back" href="../../">← 포트폴리오</a>
-  <span class="nav-badge">BA 100/130 · 2위</span>
+  <span class="nav-badge">BA 100/130 · R6 7위</span>
 </nav>
 
 <!-- SECTION 1: HERO -->
 <div class="hero">
   <div class="hero-badge">
     <span class="live-dot"></span>
-    Round 7 · 전체 2위 · companion AI · KTO 독점 DB
+    Round 7 고도화 · companion AI · KTO 독점 DB · 7개 API
   </div>
   <h1>Hidden Gem<br><span>Scout</span></h1>
-  <p class="hero-sub">KTO 강소형 데이터 독점 + 개척자 배지로<br>숨겨진 한국을 발굴</p>
+  <p class="hero-sub">KTO 강소형 잠재관광지 2,400개소 독점 데이터 + 개척자 배지 게임화로<br>숨겨진 한국을 발굴하는 탐험형 여행 AI 플랫폼</p>
   <div class="hero-actions">
     <button class="btn-primary">🧭 잠재관광지 발굴하기</button>
     <button class="btn-secondary">서비스 소개 보기</button>
@@ -214,7 +293,7 @@
         </div>
         <span class="mockup-card-badge">희귀</span>
       </div>
-      <div style="font-size:12px;color:var(--muted)">지역 주민 제보 · 숨은 절경</div>
+      <div style="font-size:12px;color:var(--muted)">지역 주민 제보 · 숨은 절경 · 무장애 접근 가능</div>
     </div>
     <div style="text-align:center;font-size:12px;color:var(--accent);margin-top:8px">+ 2,400곳+ 잠재관광지 탐색 중 🔍</div>
   </div>
@@ -234,8 +313,8 @@
       <div class="stat-label">상위 50곳 방문 집중도</div>
     </div>
     <div class="stat-box">
-      <div class="stat-val">60%</div>
-      <div class="stat-label">문체부 지방 방문율 목표</div>
+      <div class="stat-val">7개</div>
+      <div class="stat-label">Visit Korea OpenAPI 활용</div>
     </div>
     <div class="stat-box">
       <div class="stat-val">+300%</div>
@@ -243,17 +322,17 @@
     </div>
     <div class="stat-box">
       <div class="stat-val">BA 100</div>
-      <div class="stat-label">전체 2위 · /130점</div>
+      <div class="stat-label">전체 R4 2위 · /130점</div>
     </div>
   </div>
 </div>
 
 <hr class="divider">
 
-<!-- SECTION 2: 서비스 개요 -->
+<!-- SECTION 2: 서비스 개요 + 페르소나 4종 -->
 <div class="section">
   <div class="section-label">Section 02</div>
-  <div class="section-title">서비스 개요 <span>(What)</span></div>
+  <div class="section-title">페르소나 <span>4종</span></div>
 
   <div class="tip-box">
     <div class="tip-label">ONE-LINE PITCH</div>
@@ -264,20 +343,53 @@
     <div class="persona-box">
       <div class="persona-avatar">🧗</div>
       <div class="persona-name">박지수, 34세 · 대전 거주</div>
-      <div class="persona-tag"># 탐험형 여행자 · 국내 여행</div>
+      <div class="persona-tag"># 탐험형 내국인 여행자</div>
       <div class="persona-desc">매주 주말 새로운 곳을 찾아 전국을 다님. 유명 관광지는 이미 다 가봄. 아무도 모르는 "진짜 숨은 명소"를 먼저 발굴하고 싶어함.</div>
+      <div class="persona-needs">
+        <div class="persona-need-label">CORE NEEDS</div>
+        <div class="persona-need-item"><span>→</span> 방문자 0명인 새 장소 발굴</div>
+        <div class="persona-need-item"><span>→</span> 개척자 배지·랭킹 달성</div>
+        <div class="persona-need-item"><span>→</span> 인증샷 + SNS 공유</div>
+      </div>
     </div>
+
     <div class="persona-box">
       <div class="persona-avatar">🌏</div>
       <div class="persona-name">Alex, 29세 · 미국 시카고</div>
-      <div class="persona-tag"># 외국인 독립여행 · 장기 체류</div>
-      <div class="persona-desc">3주 한국 여행 계획. 서울·부산은 이미 가봄. 현지인만 아는 진짜 한국을 경험하고 싶지만 정보 접근이 어려움.</div>
+      <div class="persona-tag"># 외국인 독립여행자 · 장기 체류</div>
+      <div class="persona-desc">3주 한국 여행 계획. 서울·부산은 이미 가봄. 현지인만 아는 진짜 한국을 경험하고 싶지만 영문 정보 접근이 어려움.</div>
+      <div class="persona-needs">
+        <div class="persona-need-label">CORE NEEDS</div>
+        <div class="persona-need-item"><span>→</span> 영문 장소 설명 + 접근 방법</div>
+        <div class="persona-need-item"><span>→</span> 대중교통 안내</div>
+        <div class="persona-need-item"><span>→</span> 글로벌 탐험 커뮤니티</div>
+      </div>
     </div>
+
     <div class="persona-box">
       <div class="persona-avatar">📸</div>
       <div class="persona-name">이세연, 27세 · 서울 거주</div>
-      <div class="persona-tag"># 사진 작가 · SNS 인플루언서</div>
+      <div class="persona-tag"># SNS 인플루언서 · 사진 작가</div>
       <div class="persona-desc">인스타 팔로워 8만명. 아무도 찍지 않은 새로운 배경을 찾는 것이 직업적 과제. 독점 장소 발굴이 콘텐츠 경쟁력.</div>
+      <div class="persona-needs">
+        <div class="persona-need-label">CORE NEEDS</div>
+        <div class="persona-need-item"><span>→</span> 독점 촬영 장소 선점</div>
+        <div class="persona-need-item"><span>→</span> 최적 방문 시간·날씨 정보</div>
+        <div class="persona-need-item"><span>→</span> 콘텐츠용 고화질 관광 사진</div>
+      </div>
+    </div>
+
+    <div class="persona-box" style="border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.04)">
+      <div class="persona-avatar">♿</div>
+      <div class="persona-name">최영호, 58세 · 부산 거주</div>
+      <div class="persona-tag" style="color:var(--blue)"># 접근성 약자 · 휠체어 사용자</div>
+      <div class="persona-desc">척수 손상으로 전동 휠체어 이용. 여행을 좋아하지만 무장애 정보 부족으로 계획이 어려움. 가족과 함께 지방 소도시 여행을 원함.</div>
+      <div class="persona-needs">
+        <div class="persona-need-label">CORE NEEDS</div>
+        <div class="persona-need-item"><span>→</span> 무장애 접근 가능 여부 필터</div>
+        <div class="persona-need-item"><span>→</span> 경사로·주차·화장실 정보</div>
+        <div class="persona-need-item"><span>→</span> 동반 보호자 고려 동선</div>
+      </div>
     </div>
   </div>
 
@@ -286,6 +398,7 @@
     <div class="badge-item"><span class="badge-icon">🗺️</span><span>개척자 칭호</span></div>
     <div class="badge-item"><span class="badge-icon">🌿</span><span>강소형 탐험가</span></div>
     <div class="badge-item"><span class="badge-icon">📸</span><span>SNS 인증 보상</span></div>
+    <div class="badge-item"><span class="badge-icon">♿</span><span>무장애 탐험가</span></div>
     <div class="badge-item"><span class="badge-icon">🏘️</span><span>지역분산 미션</span></div>
   </div>
 </div>
@@ -338,14 +451,113 @@
         <div class="research-source">출처: 한국관광공사 SNS 관광 효과 분석 2024</div>
       </div>
     </div>
+    <div class="research-item">
+      <div class="research-num">06</div>
+      <div class="research-content">
+        <div class="research-stat">장애인 여행 접근성 정보 부족 — 88% 불만족</div>
+        <div class="research-desc">장애인 여행자의 88%가 여행 전 접근성 정보 불충분을 최대 장벽으로 응답. 무장애 잠재관광지 정보를 통합 제공하는 서비스 전무.</div>
+        <div class="research-source">출처: 한국장애인개발원 여행 실태조사 2024</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <hr class="divider">
 
-<!-- SECTION 4: 아이디어 도출 과정 -->
+<!-- SECTION 4: 핵심 사용자 시나리오 (5단계) -->
 <div class="section">
   <div class="section-label">Section 04</div>
+  <div class="section-title">핵심 사용자 시나리오 <span>5단계 플로우</span></div>
+
+  <div class="tip-box">
+    <div class="tip-label">SCENARIO</div>
+    <div class="tip-text">박지수(34세, 탐험형 내국인)가 Hidden Gem Scout를 처음 열어 강원도 영월군 숨은 명소를 발굴하고, 첫 방문자 배지를 획득하기까지의 전 과정</div>
+  </div>
+
+  <div class="scenario-flow">
+    <div class="scenario-step">
+      <div class="scenario-line">
+        <div class="scenario-num">1</div>
+        <div class="scenario-connector"></div>
+      </div>
+      <div class="scenario-content">
+        <div class="scenario-title">🔍 선호 조건 입력</div>
+        <div class="scenario-desc">앱 실행 → 현재 위치(대전) 자동 감지 → 선호 자연 유형(산·계곡), 이동 시간(차량 2시간 이내), 방문자 수(월 10명 이하), 접근성 필요 여부 선택. AI가 조건을 벡터화해 강소형 DB와 매칭 시작.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <span class="scenario-api">📡 강소형잠재관광지정보 API</span>
+          <span class="scenario-api">📡 위치기반관광정보서비스</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario-step">
+      <div class="scenario-line">
+        <div class="scenario-num">2</div>
+        <div class="scenario-connector"></div>
+      </div>
+      <div class="scenario-content">
+        <div class="scenario-title">🤖 AI 발굴 리스트 생성</div>
+        <div class="scenario-desc">AI가 실시간 방문자 추이 예측 데이터와 강소형 DB를 교차 분석 → "지금 이 순간 방문자가 가장 적은 곳" 상위 10개 추출. 각 장소마다 발굴 난이도(희귀도 점수), 예상 방문 시간, "첫 방문자 가능성" 퍼센트 표시.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <span class="scenario-api">📡 관광지집중률방문자추이예측</span>
+          <span class="scenario-api">📡 관광지별연관관광지정보</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario-step">
+      <div class="scenario-line">
+        <div class="scenario-num">3</div>
+        <div class="scenario-connector"></div>
+      </div>
+      <div class="scenario-content">
+        <div class="scenario-title">📍 장소 상세 확인 + 경로 탐색</div>
+        <div class="scenario-desc">"영월 요선암 돌개구멍" 선택 → 상세 정보(한국어/영어), 오디오 가이드 자동 재생, 접근 경로(차량·대중교통), 주차 정보, 무장애 접근 가능 여부, 연관 관광지(식당·숙소) 표시. KTO 관광 사진으로 현장 분위기 미리보기.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <span class="scenario-api">📡 국문관광정보서비스</span>
+          <span class="scenario-api">📡 관광지오디오가이드</span>
+          <span class="scenario-api">📡 무장애여행정보</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario-step">
+      <div class="scenario-line">
+        <div class="scenario-num">4</div>
+        <div class="scenario-connector"></div>
+      </div>
+      <div class="scenario-content">
+        <div class="scenario-title">🤳 방문 인증 + GPS 검증</div>
+        <div class="scenario-desc">현장 도착 → GPS 위치 자동 인증(반경 100m 이내) → 인증샷 업로드 → AI가 사진과 장소 매칭 검증 → 방문 기록 DB 저장. 방문자 카운터 실시간 업데이트. 타임스탬프 기반 "첫 방문자" 여부 즉시 판정.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <span class="scenario-api">📡 위치기반관광정보서비스</span>
+          <span class="scenario-api">📡 관광사진정보</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario-step">
+      <div class="scenario-line">
+        <div class="scenario-num">5</div>
+        <div style="height:16px"></div>
+      </div>
+      <div class="scenario-content">
+        <div class="scenario-title">🏆 배지 획득 + 커뮤니티 공유</div>
+        <div class="scenario-desc">"첫 방문자" 배지 즉시 발급 → 개인 탐험 랭킹 갱신 → SNS 공유 카드 자동 생성(장소명·배지·지도) → 지역 소상공인 할인 쿠폰 발송 → 연관 숨은 명소 3곳 추가 추천. 지자체 파트너에게 방문 통계 데이터 제공(B2G 수익화).</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <span class="scenario-api">📡 관광지방문자통계</span>
+          <span class="scenario-api">📡 지역별관광수요강도</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: 아이디어 도출 과정 -->
+<div class="section">
+  <div class="section-label">Section 05</div>
   <div class="section-title">아이디어 도출 과정</div>
 
   <div class="tip-box">
@@ -382,9 +594,9 @@
 
 <hr class="divider">
 
-<!-- SECTION 5: 공모전 심사 기준 -->
+<!-- SECTION 6: 공모전 심사 기준 -->
 <div class="section">
-  <div class="section-label">Section 05</div>
+  <div class="section-label">Section 06</div>
   <div class="section-title">공모전 심사 기준 <span>대응</span></div>
 
   <div class="card">
@@ -407,19 +619,19 @@
         <tr>
           <td><strong>데이터 활용</strong><br><span style="font-size:12px;color:var(--muted)">공공 API·데이터 활용도</span></td>
           <td><span class="criteria-score">25점</span></td>
-          <td>강소형잠재관광지정보 API가 핵심 데이터 소스. 관광지집중률 예측·방문자통계·위치기반 API로 실시간 혼잡도와 발굴 가치 산정.</td>
+          <td>강소형잠재관광지 API가 핵심. 집중률 예측·무장애·오디오가이드·연관관광지 등 7개 API 창의적 조합으로 "숨은 명소 발굴 생태계" 구현.</td>
           <td><span class="criteria-score">22/25</span></td>
         </tr>
         <tr>
           <td><strong>사회적 가치</strong><br><span style="font-size:12px;color:var(--muted)">관광 활성화·지역 균형</span></td>
           <td><span class="criteria-score">25점</span></td>
-          <td>지방 소멸 위기 대응 · 비수도권 관광 활성화 · 지역 소상공인 매출 직접 연결. 문체부 2026 목표와 정확히 정합. BA 지역분산 10/10.</td>
+          <td>지방 소멸 위기 대응 · 비수도권 관광 활성화 · 지역 소상공인 매출 직접 연결. 문체부 2026 목표와 정확히 정합. BA 지역분산 10/10. 무장애 접근성까지 포괄.</td>
           <td><span class="criteria-score">23/25</span></td>
         </tr>
         <tr>
           <td><strong>구현 가능성</strong><br><span style="font-size:12px;color:var(--muted)">기술 실현성·완성도</span></td>
           <td><span class="criteria-score">20점</span></td>
-          <td>공개 API 기반 MVP 5개월 구현 가능. 배지 시스템은 표준 게임화 로직. AI 추천은 협업 필터링 + KTO API 조합으로 구현 복잡도 낮음.</td>
+          <td>공개 API 기반 MVP 4주 구현 가능. 배지 시스템은 표준 게임화 로직. AI 추천은 협업 필터링 + KTO API 조합으로 구현 복잡도 낮음.</td>
           <td><span class="criteria-score">17/20</span></td>
         </tr>
       </tbody>
@@ -429,15 +641,15 @@
 
 <hr class="divider">
 
-<!-- SECTION 6: 주요 화면 Mock UI -->
+<!-- SECTION 7: UX Flow + 와이어프레임 (5장+) -->
 <div class="section">
-  <div class="section-label">Section 06</div>
-  <div class="section-title">주요 화면 <span>Mock UI</span></div>
+  <div class="section-label">Section 07</div>
+  <div class="section-title">UX Flow <span>+ 와이어프레임 5장</span></div>
 
-  <div class="journey-steps">
+  <div class="journey-steps" style="margin-bottom:32px">
     <div class="journey-step">
       <div class="journey-num">1</div>
-      <div class="journey-label">위치·선호<br>입력</div>
+      <div class="journey-label">조건 입력<br>위치 감지</div>
     </div>
     <div class="journey-step">
       <div class="journey-num">2</div>
@@ -445,11 +657,11 @@
     </div>
     <div class="journey-step">
       <div class="journey-num">3</div>
-      <div class="journey-label">장소 상세<br>확인</div>
+      <div class="journey-label">장소 상세<br>오디오 가이드</div>
     </div>
     <div class="journey-step">
       <div class="journey-num">4</div>
-      <div class="journey-label">방문 인증<br>사진 업로드</div>
+      <div class="journey-label">현장 인증<br>GPS 검증</div>
     </div>
     <div class="journey-step">
       <div class="journey-num">5</div>
@@ -458,6 +670,30 @@
   </div>
 
   <div class="mock-phones">
+    <!-- Screen 1: 조건 입력 -->
+    <div class="mock-phone">
+      <div class="mock-header">⚙️ 탐험 조건 설정</div>
+      <div style="font-size:11px;color:var(--muted2);margin-bottom:10px">현재 위치: 대전광역시 자동 감지</div>
+      <div class="mock-item" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2)">
+        <span class="mock-item-icon">🗾</span>
+        <div><div class="mock-item-name">자연 유형</div><div class="mock-item-sub">산악 · 계곡 선택됨</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🚗</span>
+        <div><div class="mock-item-name">이동 시간</div><div class="mock-item-sub">차량 2시간 이내</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">👣</span>
+        <div><div class="mock-item-name">방문자 밀도</div><div class="mock-item-sub">월 10명 이하만</div></div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">♿</span>
+        <div><div class="mock-item-name">무장애 접근</div><div class="mock-item-sub">필요 없음</div></div>
+      </div>
+      <div style="margin-top:10px;text-align:center;padding:10px;background:var(--grad);border-radius:8px;font-size:13px;font-weight:700;color:#1a0a00">🔍 숨은 명소 발굴 시작</div>
+    </div>
+
+    <!-- Screen 2: AI 발굴 리스트 -->
     <div class="mock-phone">
       <div class="mock-header">🔍 AI 발굴 리스트</div>
       <div style="font-size:11px;color:var(--accent);margin-bottom:10px">현재 위치 기준 · 방문자 극소 순</div>
@@ -466,7 +702,7 @@
         <div>
           <div class="mock-item-name">영월 요선암 돌개구멍</div>
           <div class="mock-item-sub">강원 영월 · 2시간 거리</div>
-          <span class="mock-tag mock-tag-first">첫 방문자 도전</span>
+          <span class="mock-tag mock-tag-first">첫 방문자 도전 🥇</span>
         </div>
       </div>
       <div class="mock-item">
@@ -487,15 +723,19 @@
       </div>
     </div>
 
+    <!-- Screen 3: 장소 상세 -->
     <div class="mock-phone">
-      <div class="mock-header">📍 장소 상세</div>
+      <div class="mock-header">📍 장소 상세 + 오디오</div>
       <div style="text-align:center;padding:20px;background:rgba(245,158,11,0.08);border-radius:12px;margin-bottom:12px">
         <div style="font-size:28px">🌿</div>
         <div style="font-size:14px;font-weight:700;margin-top:6px">영월 요선암 돌개구멍</div>
         <div style="font-size:11px;color:var(--accent);margin-top:4px">강소형 잠재관광지 #0847</div>
+        <div style="font-size:11px;color:var(--green);margin-top:4px">▶ 오디오 가이드 재생</div>
       </div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px">
-        한반도 지형의 특이한 지질 현상. 하천 침식으로 생긴 원형 구멍들이 암반 위에 펼쳐진 자연 조각품. 방문자 기록 없음.
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px">한반도 지형의 특이한 지질 현상. 하천 침식으로 생긴 원형 구멍들이 암반 위에 펼쳐진 자연 조각품. 방문자 기록 없음.</div>
+      <div class="mock-item">
+        <span class="mock-item-icon">♿</span>
+        <div><div class="mock-item-name">무장애 접근</div><div class="mock-item-sub">경사로 있음 · 주차 가능</div></div>
       </div>
       <div class="mock-item">
         <span class="mock-item-icon">🕐</span>
@@ -503,8 +743,28 @@
       </div>
     </div>
 
+    <!-- Screen 4: 방문 인증 -->
     <div class="mock-phone">
-      <div class="mock-header">🏆 나의 탐험 기록</div>
+      <div class="mock-header">🤳 현장 인증 · GPS 검증</div>
+      <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:14px;margin-bottom:10px;text-align:center">
+        <div style="font-size:20px">📍</div>
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-top:4px">위치 인증 완료!</div>
+        <div style="font-size:11px;color:var(--muted)">영월 요선암 · 반경 87m 이내</div>
+      </div>
+      <div class="mock-item">
+        <span class="mock-item-icon">📸</span>
+        <div><div class="mock-item-name">인증샷 업로드</div><div class="mock-item-sub">AI 장소 매칭 중...</div></div>
+      </div>
+      <div class="mock-item" style="background:rgba(245,158,11,0.08)">
+        <span class="mock-item-icon">⏱️</span>
+        <div><div class="mock-item-name">첫 방문자 판정</div><div class="mock-item-sub" style="color:var(--accent)">현재까지 0명 · 당신이 첫 번째!</div></div>
+      </div>
+      <div style="margin-top:10px;text-align:center;padding:10px;background:var(--grad);border-radius:8px;font-size:13px;font-weight:700;color:#1a0a00">🥇 배지 수령하기</div>
+    </div>
+
+    <!-- Screen 5: 배지 + 탐험 기록 -->
+    <div class="mock-phone">
+      <div class="mock-header">🏆 탐험 기록 + 배지</div>
       <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:14px;margin-bottom:10px;text-align:center">
         <div style="font-size:28px">🧭</div>
         <div style="font-size:14px;font-weight:700;margin-top:4px">잠재 개척자 Lv.3</div>
@@ -518,39 +778,9 @@
         <span class="mock-item-icon">🗺️</span>
         <div><div class="mock-item-name">커버한 도 · 4개</div><div class="mock-item-sub">강원·전북·경북·충남</div></div>
       </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- SECTION 7: OpenAPI 활용 -->
-<div class="section">
-  <div class="section-label">Section 07</div>
-  <div class="section-title">OpenAPI <span>활용</span></div>
-
-  <div class="card">
-    <div style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6">강소형잠재관광지정보 API가 서비스의 핵심 데이터 소스. 경쟁 서비스가 동일 API를 활용하지 않아 진입장벽 구축. 집중률 예측 + 방문자통계로 "진짜 숨은 곳" 실시간 검증.</div>
-    <div class="api-chips">
-      <span class="api-chip">한국관광공사_강소형잠재관광지정보</span>
-      <span class="api-chip">한국관광공사_관광지집중률방문자추이예측정보</span>
-      <span class="api-chip">한국관광공사_국문관광정보서비스</span>
-      <span class="api-chip">한국관광공사_관광지방문자통계</span>
-      <span class="api-chip">한국관광공사_위치기반관광정보서비스</span>
-    </div>
-
-    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">강소형잠재관광지정보</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">핵심 DB. 2,400개소 좌표·특성·접근로 정보. 타 서비스 미활용 독점 데이터.</div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">집중률·방문자추이예측</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">인기 관광지 혼잡도 예측 → "지금 가장 한적한 곳" 실시간 역산.</div>
-      </div>
-      <div style="background:var(--surface);border-radius:10px;padding:14px">
-        <div style="font-size:12px;color:var(--accent);margin-bottom:6px">위치기반관광정보</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.5">현재 위치 반경 탐색. 도보·차량 거리 필터링. 오프라인 지도 캐싱.</div>
+      <div class="mock-item">
+        <span class="mock-item-icon">🎁</span>
+        <div><div class="mock-item-name">지역 할인 쿠폰</div><div class="mock-item-sub">영월 로컬 식당 20% 할인</div></div>
       </div>
     </div>
   </div>
@@ -558,9 +788,349 @@
 
 <hr class="divider">
 
-<!-- SECTION 8: 팀 합의 점수 -->
+<!-- SECTION 8: OpenAPI 활용 + 호출 시퀀스 -->
 <div class="section">
   <div class="section-label">Section 08</div>
+  <div class="section-title">Visit Korea OpenAPI <span>매핑 + 호출 시퀀스</span></div>
+
+  <div class="api-chips" style="margin-bottom:24px">
+    <span class="api-chip">강소형잠재관광지정보</span>
+    <span class="api-chip">관광지집중률방문자추이예측</span>
+    <span class="api-chip">국문관광정보서비스</span>
+    <span class="api-chip">위치기반관광정보서비스</span>
+    <span class="api-chip">무장애여행정보</span>
+    <span class="api-chip">관광지오디오가이드</span>
+    <span class="api-chip">관광지별연관관광지정보</span>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px;font-weight:700;margin-bottom:16px">📡 API 호출 시퀀스 — 장소 발굴 플로우</div>
+    <div class="api-seq">
+      <div class="api-seq-step">
+        <div class="api-seq-dot">1</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">위치기반관광정보서비스 · locationBasedList</div>
+          <div class="api-seq-desc">사용자 GPS 좌표 → 반경 내 전체 관광지 목록 조회 (강소형 포함). 첫 필터링 레이어.</div>
+          <div class="api-seq-params">
+            <span class="api-param">mapX={lng}</span>
+            <span class="api-param">mapY={lat}</span>
+            <span class="api-param">radius=50000</span>
+            <span class="api-param">contentTypeId=12</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-seq-step">
+        <div class="api-seq-dot">2</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">강소형잠재관광지정보 · areaBasedList</div>
+          <div class="api-seq-desc">Step 1 결과와 강소형 DB 교차 → 강소형 등재 여부 필터링. 핵심 독점 데이터 소스.</div>
+          <div class="api-seq-params">
+            <span class="api-param">areaCode={sido}</span>
+            <span class="api-param">sigunguCode={sigungu}</span>
+            <span class="api-param">numOfRows=20</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-seq-step">
+        <div class="api-seq-dot">3</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">관광지집중률방문자추이예측 · tatsCnctrRateList</div>
+          <div class="api-seq-desc">강소형 후보지별 향후 30일 방문자 추이 예측 조회 → "지금 가장 한적한 곳" 역산 정렬.</div>
+          <div class="api-seq-params">
+            <span class="api-param">areaCode={sido}</span>
+            <span class="api-param">signguCode={sigungu}</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-seq-step">
+        <div class="api-seq-dot">4</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">국문관광정보서비스 · detailCommon2 (+ 무장애여행정보)</div>
+          <div class="api-seq-desc">선택 장소의 상세 정보(설명·운영시간·연락처) + 무장애 접근 가능 여부(경사로·주차·화장실) 병렬 조회.</div>
+          <div class="api-seq-params">
+            <span class="api-param">contentId={id}</span>
+            <span class="api-param">defaultYN=Y</span>
+            <span class="api-param">addrinfoYN=Y</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-seq-step">
+        <div class="api-seq-dot">5</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">관광지오디오가이드 · audioGuideList (병렬)</div>
+          <div class="api-seq-desc">장소 상세 화면 진입 시 오디오 가이드 자동 조회. 한/영/중/일 4개 언어 지원 → 외국인 페르소나 대응.</div>
+          <div class="api-seq-params">
+            <span class="api-param">contentId={id}</span>
+            <span class="api-param">lang=ko</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-seq-step">
+        <div class="api-seq-dot">6</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">관광지별연관관광지정보 · areaBasedList1</div>
+          <div class="api-seq-desc">방문 인증 후 → 연관 숨은 명소(관광지·식당·숙소) 자동 추천. 다음 탐험 동기 부여.</div>
+          <div class="api-seq-params">
+            <span class="api-param">contentId={id}</span>
+            <span class="api-param">relationType=all</span>
+            <span class="api-param">numOfRows=3</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-seq-step">
+        <div class="api-seq-dot">7</div>
+        <div class="api-seq-content">
+          <div class="api-seq-name">지역별관광수요강도 (B2G 리포트용)</div>
+          <div class="api-seq-desc">지자체 파트너에게 방문자 유입 효과 리포트 제공. 관광 체류 강도·소비 강도 지표로 ROI 입증 → B2G 계약 갱신 근거.</div>
+          <div class="api-seq-params">
+            <span class="api-param">areaCode={sido}</span>
+            <span class="api-param">period=monthly</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 9: 경쟁사 차별화 -->
+<div class="section">
+  <div class="section-label">Section 09</div>
+  <div class="section-title">경쟁사 대비 <span>차별화 포인트</span></div>
+
+  <div class="card" style="overflow-x:auto">
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">기능 / 특성</th>
+          <th style="color:var(--accent)">Hidden Gem Scout ✨</th>
+          <th>네이버 지도</th>
+          <th>트리플</th>
+          <th>마이리얼트립</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>KTO 강소형 잠재관광지 DB 활용</td>
+          <td class="ours">✅ 독점 2,400개소</td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+        </tr>
+        <tr>
+          <td>첫 방문자 배지 · 개척자 게임화</td>
+          <td class="ours">✅ 핵심 UX</td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+        </tr>
+        <tr>
+          <td>방문자 수 0명 장소 실시간 추적</td>
+          <td class="ours">✅ API 기반 실시간</td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+        </tr>
+        <tr>
+          <td>무장애 접근성 정보 통합</td>
+          <td class="ours">✅ 무장애여행 API</td>
+          <td><span class="check-part">일부</span></td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+        </tr>
+        <tr>
+          <td>AI 개인화 탐험 루트 추천</td>
+          <td class="ours">✅ 누적 학습</td>
+          <td><span class="check-part">제한적</span></td>
+          <td><span class="check-part">제한적</span></td>
+          <td><span class="check-no">✗</span></td>
+        </tr>
+        <tr>
+          <td>오디오 가이드 4개국어</td>
+          <td class="ours">✅ KTO API 연동</td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-part">일부 투어</span></td>
+        </tr>
+        <tr>
+          <td>비수도권 관광 특화</td>
+          <td class="ours">✅ 지역분산 10/10</td>
+          <td><span class="check-part">전국 범용</span></td>
+          <td><span class="check-part">대도시 중심</span></td>
+          <td><span class="check-part">인기지 중심</span></td>
+        </tr>
+        <tr>
+          <td>지자체 B2G 데이터 서비스</td>
+          <td class="ours">✅ 수익모델 이중화</td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+          <td><span class="check-no">✗</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-row" style="margin-top:16px">
+    <div class="card" style="margin-bottom:0;border-color:rgba(245,158,11,0.3)">
+      <div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px">차별화 포인트 ①</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">KTO 강소형 DB 독점 진입장벽</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">네이버·트리플·마이리얼트립 어느 경쟁사도 KTO 강소형잠재관광지 2,400개소 DB를 서비스에 활용하지 않음. 이 데이터로만 "방문자 0명" 장소를 정의할 수 있어 첫 방문자 배지가 진정성 있게 작동.</div>
+    </div>
+    <div class="card" style="margin-bottom:0;border-color:rgba(16,185,129,0.3)">
+      <div style="font-size:13px;color:var(--green);font-weight:700;margin-bottom:8px">차별화 포인트 ②</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">게임화 + 사회적 가치 결합</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">단순 여행 추천을 넘어 "개척자"가 되는 동기 부여 UX. 비수도권 관광 활성화·지역 경제 기여라는 사회적 미션과 개인 게임화 보상이 자기강화 루프로 연결. 경쟁사 복제 어려움.</div>
+    </div>
+    <div class="card" style="margin-bottom:0;border-color:rgba(56,189,248,0.3)">
+      <div style="font-size:13px;color:var(--blue);font-weight:700;margin-bottom:8px">차별화 포인트 ③</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">무장애 접근성 통합 (업계 최초)</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">국내 여행 앱 중 숨은 명소 + 무장애 접근 정보를 동시에 제공하는 서비스 전무. 장애인·고령자·영유아 동반 여행자 2,400만명 타겟 신규 확장으로 이중 타겟 약점 보완.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 10: MVP 기능 우선순위 -->
+<div class="section">
+  <div class="section-label">Section 10</div>
+  <div class="section-title">MVP 기능 우선순위 <span>Must / Should / Could</span></div>
+
+  <div class="mvp-grid">
+    <div class="mvp-col must">
+      <div class="mvp-col-label">🔴 MUST — Week 1-2</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>강소형잠재관광지 API 연동 + 리스트 화면</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>위치 기반 반경 검색 (GPS 자동 감지)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>관광지집중률 API → 방문자 희소 정렬</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>장소 상세 화면 (국문관광정보서비스)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>GPS 기반 방문 인증 (반경 100m)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>첫 방문자 배지 발급 + 카운터</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>회원가입 / 소셜 로그인</div>
+    </div>
+
+    <div class="mvp-col should">
+      <div class="mvp-col-label">🟡 SHOULD — Week 3</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>무장애여행정보 API 접근성 필터</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>오디오 가이드 재생 (한/영)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>연관 관광지 추천 (방문 후)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>SNS 공유 카드 자동 생성</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>탐험 랭킹 보드</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>인증샷 업로드 + AI 장소 매칭</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>지역 할인 쿠폰 연동 (파트너 3곳)</div>
+    </div>
+
+    <div class="mvp-col could">
+      <div class="mvp-col-label">⚫ COULD — Week 4+</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>AI 개인화 추천 (누적 학습)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>다국어 지원 (영문관광정보서비스)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>지자체 B2G 대시보드</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>주민 제보 채널</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>오프라인 지도 캐싱</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>입장 예약 시스템 (혼잡 방지)</div>
+      <div class="mvp-item"><span class="mvp-bullet">▸</span>앱 위젯 + 알림 (신규 발굴지)</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 11: 4주 개발 일정 -->
+<div class="section">
+  <div class="section-label">Section 11</div>
+  <div class="section-title">4주 개발 일정 <span>주차별 마일스톤</span></div>
+
+  <div class="timeline">
+    <div class="timeline-week">
+      <div class="timeline-week-label">
+        <div class="timeline-week-num">Week 1</div>
+        <div class="timeline-week-range">5/5 – 5/11</div>
+      </div>
+      <div class="timeline-body">
+        <div class="timeline-card">
+          <div class="timeline-card-title">🏗️ 기반 인프라 + 핵심 API 연동</div>
+          <div class="timeline-tasks">
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>프로젝트 초기화 (React Native / Flutter)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>공공데이터포털 ServiceKey 발급 · 환경 세팅</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>강소형잠재관광지 API 연동 + 데이터 파싱</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>위치기반관광정보 API + GPS 모듈 연동</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>관광지집중률예측 API + 방문자 희소 정렬 로직</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>회원가입 / 카카오 소셜 로그인</div>
+          </div>
+          <div class="timeline-milestone">🎯 M1: API 7개 연동 완료 · 발굴 리스트 렌더링</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-week">
+      <div class="timeline-week-label">
+        <div class="timeline-week-num">Week 2</div>
+        <div class="timeline-week-range">5/12 – 5/18</div>
+      </div>
+      <div class="timeline-body">
+        <div class="timeline-card">
+          <div class="timeline-card-title">🔍 핵심 UX + 인증 시스템 구현</div>
+          <div class="timeline-tasks">
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>장소 상세 화면 (국문관광정보 + 무장애 정보)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>GPS 방문 인증 모듈 (반경 100m, 타임스탬프)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>첫 방문자 배지 판정 + DB 저장 로직</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>개인 탐험 기록 화면 (배지·방문 카운트)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>조건 필터 UI (자연유형·이동시간·무장애 여부)</div>
+          </div>
+          <div class="timeline-milestone">🎯 M2: 발굴→인증→배지 핵심 루프 동작</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-week">
+      <div class="timeline-week-label">
+        <div class="timeline-week-num">Week 3</div>
+        <div class="timeline-week-range">5/19 – 5/25</div>
+      </div>
+      <div class="timeline-body">
+        <div class="timeline-card">
+          <div class="timeline-card-title">🎮 게임화 + 소셜 기능 구현</div>
+          <div class="timeline-tasks">
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>오디오 가이드 재생 (관광지오디오가이드 API)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>연관 관광지 추천 (방문 후 자동 표시)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>SNS 공유 카드 자동 생성 + 공유 기능</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>탐험 랭킹 보드 (전국·지역별)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>인증샷 업로드 + 갤러리</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>푸시 알림 (새 발굴지 오픈·배지 임박)</div>
+          </div>
+          <div class="timeline-milestone">🎯 M3: 소셜·게임화 기능 완성 · 내부 테스트</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-week">
+      <div class="timeline-week-label">
+        <div class="timeline-week-num">Week 4</div>
+        <div class="timeline-week-range">5/26 – 6/1</div>
+      </div>
+      <div class="timeline-body" style="border-left:2px solid var(--accent)">
+        <div class="timeline-card" style="border-color:rgba(245,158,11,0.3)">
+          <div class="timeline-card-title">🚀 QA · 공모전 제출 준비</div>
+          <div class="timeline-tasks">
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>전체 E2E 테스트 (발굴→인증→배지 루프)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>무장애 접근성 UX 검수 (VoiceOver·TalkBack)</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>API 오류 핸들링 + 오프라인 캐싱 기본</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>공모전 제출용 시연 영상 제작</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>기획서·API 활용 명세서 최종 정리</div>
+            <div class="timeline-task"><span class="timeline-task-dot">▸</span>공모전 제출 마감 (2026-05-06 16:00)</div>
+          </div>
+          <div class="timeline-milestone" style="background:var(--grad);color:#1a0a00;border-color:var(--accent)">🏁 공모전 제출 완료 · 2026-05-06</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 12: 팀 합의 점수 -->
+<div class="section">
+  <div class="section-label">Section 12</div>
   <div class="section-title">팀 합의 <span>점수</span></div>
 
   <div class="score-display">
@@ -580,14 +1150,15 @@
         <li>KTO API 독점 활용 → 진입장벽 구축</li>
         <li>게임화(배지) → 유저 리텐션 자연 발생</li>
         <li>지역 분산 10/10 · 공모전 부합 9/10</li>
+        <li>무장애 접근성 → 사회적 가치 강화</li>
       </ul>
     </div>
     <div class="card" style="margin-bottom:0">
       <div style="font-size:14px;font-weight:700;margin-bottom:8px">⚠️ 리스크 및 대응</div>
       <ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px">
-        <li>이중 타겟 6점 → 외국어 버전 단계적 추가</li>
+        <li>이중 타겟 6점 → 무장애 페르소나로 보완</li>
         <li>사업성 6점 → 지자체 B2G 파트너십 확대</li>
-        <li>접근성 정보 부족 → 방문자 크라우드소싱</li>
+        <li>접근성 정보 부족 → 크라우드소싱 + KTO</li>
         <li>바이럴 후 혼잡 역설 → 입장 예약 시스템</li>
       </ul>
     </div>
@@ -596,9 +1167,9 @@
 
 <hr class="divider">
 
-<!-- SECTION 9: 객관 사업성 -->
+<!-- SECTION 13: 객관 사업성 -->
 <div class="section">
-  <div class="section-label">Section 09</div>
+  <div class="section-label">Section 13</div>
   <div class="section-title">객관 <span>사업성</span></div>
 
   <div class="card">
@@ -647,9 +1218,9 @@
 
 <hr class="divider">
 
-<!-- SECTION 10: AI 차별화 -->
+<!-- SECTION 14: AI 차별화 -->
 <div class="section">
-  <div class="section-label">Section 10</div>
+  <div class="section-label">Section 14</div>
   <div class="section-title">AI <span>차별화</span></div>
 
   <div class="ai-branch-badge">🤖 AI Branch: companion</div>
@@ -659,7 +1230,7 @@
       <div class="ai-reason-num">1</div>
       <div class="ai-reason-text">
         <strong>실시간 방문자 데이터 분석 → "지금 이 순간 가장 한적한 곳" 동적 추천</strong><br>
-        KTO 관광지집중률 예측 API + 실시간 방문자 통계를 AI가 실시간 처리해 "지금 막 혼잡해진 곳은 제외하고, 진짜 한적한 곳"을 동적으로 추천. 사람이 수작업으로 전국 2,400곳을 실시간 모니터링하는 것은 불가능.
+        KTO 관광지집중률 예측 API + 실시간 방문자 통계를 AI가 처리해 "지금 막 혼잡해진 곳은 제외하고, 진짜 한적한 곳"을 동적으로 추천. 사람이 수작업으로 전국 2,400곳을 실시간 모니터링하는 것은 불가능.
       </div>
     </div>
     <div class="ai-reason">
@@ -672,8 +1243,8 @@
     <div class="ai-reason">
       <div class="ai-reason-num">3</div>
       <div class="ai-reason-text">
-        <strong>지역 주민 제보 + SNS 데이터 크롤링 자동 통합</strong><br>
-        앱 내 주민 제보 채널 + 공개 SNS 게시물에서 "새로운 숨은 명소" 신호를 AI가 자동 감지·분류·DB 등재. 수백만 건 SNS를 사람이 수동 검토하는 것은 물리적 불가.
+        <strong>무장애 접근성 자동 매칭 + 경로 최적화</strong><br>
+        휠체어 사용자·고령자·유아 동반 여행자 조건 입력 시, 무장애여행 API 데이터 + 연관관광지 정보를 AI가 조합해 접근 가능한 잠재관광지 + 이동 경로(경사 최소화) + 주변 편의 시설을 자동 최적화.
       </div>
     </div>
   </div>
@@ -683,7 +1254,8 @@
   <div style="margin-bottom:8px">
     <strong style="color:var(--fg)">Hidden Gem Scout</strong> — 2026 한국관광공사 관광 서비스 공모전
   </div>
-  <div>BA Score 100/130 (전체 2위) · 팀 합의 8.2/10 · AI Branch: companion</div>
+  <div>BA Score 100/130 (R4 2위) · 팀 합의 8.2/10 · AI Branch: companion · Visit Korea OpenAPI 7개</div>
+  <div style="margin-top:4px;font-size:12px;color:var(--muted2)">페르소나 4종 · 5단계 사용자 시나리오 · API 호출 시퀀스 · 와이어프레임 5장 · 경쟁사 차별화 3개+ · MVP Must/Should/Could · 4주 개발 일정</div>
   <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
 </footer>
 
