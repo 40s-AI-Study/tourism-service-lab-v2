@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Mood Travel Matcher — 감정이 곧 목적지</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #060609;
@@ -16,1655 +17,1468 @@
       --muted: #9898AC;
       --muted2: #5E5E72;
       --accent: #EC4899;
+      --accent-soft: rgba(236,72,153,0.08);
+      --accent-dim: #BE185D;
       --accent2: #F9A8D4;
-      --grad: linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%);
+      --shell-w: 430px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
     html, body {
-      background: #020204;
-      color: var(--fg);
-      font-family: "Noto Sans KR", "Apple SD Gothic Neo", -apple-system, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* Desktop wrapper */
-    .desktop-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(ellipse at 50% 50%, #1a0a12 0%, #02020a 100%);
-    }
-
-    /* Phone shell */
-    .phone-shell {
-      width: 390px;
-      height: 780px;
-      background: var(--surface);
-      border-radius: 44px;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.06),
-        0 0 0 10px #0a0a0f,
-        0 0 0 11px rgba(255,255,255,0.04),
-        0 40px 100px rgba(0,0,0,0.8),
-        0 0 80px rgba(236,72,153,0.06);
-      overflow: hidden;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    /* Screen system */
-    .screen {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
       background: var(--bg);
-      transform: translateX(100%);
-      transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      color: var(--fg);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, sans-serif;
+      min-height: 100vh;
+      overscroll-behavior: none;
     }
-    .screen.active { transform: translateX(0); }
-    .screen.prev { transform: translateX(-30%); }
 
-    /* Status bar */
-    .status-bar {
-      height: 44px;
-      padding: 12px 24px 0;
+    /* ── Top nav ── */
+    #top-nav {
+      background: rgba(6,6,9,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-shrink: 0;
-      z-index: 10;
+      padding: 0 16px;
+      height: 44px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
     }
-    .status-time { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
-    .status-icons { display: flex; align-items: center; gap: 6px; }
-    .status-icons svg { width: 16px; height: 12px; fill: var(--fg); }
-    .battery-icon {
-      width: 25px; height: 12px;
-      border: 1.5px solid var(--fg);
-      border-radius: 3px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 1.5px;
+    #top-nav a {
+      color: var(--muted);
+      font-size: 12px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 6px;
+      transition: color .2s;
     }
-    .battery-icon::after {
-      content: '';
-      position: absolute;
-      right: -5px; top: 50%;
-      transform: translateY(-50%);
-      width: 2.5px; height: 5px;
-      background: var(--fg);
-      border-radius: 0 1px 1px 0;
-    }
-    .battery-fill {
-      background: var(--fg);
-      border-radius: 1px;
-      height: 100%;
-      width: 75%;
+    #top-nav a:hover { color: var(--fg); }
+    #top-nav .round-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 20px;
     }
 
-    /* Screen content */
-    .screen-content {
-      flex: 1;
+    /* ── Shell ── */
+    #shell-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: calc(100vh - 44px);
+      padding: 24px 0 40px;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(236,72,153,0.07) 0%, transparent 70%);
+    }
+    #shell {
+      width: 100%;
+      max-width: var(--shell-w);
+      min-height: 760px;
+      background: var(--surface);
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(236,72,153,0.07);
+    }
+    @media (max-width: 480px) {
+      #shell { border-radius: 0; border: none; min-height: 100dvh; }
+      #shell-wrap { padding: 0; }
+    }
+
+    /* ── Screen router ── */
+    .screen {
+      position: absolute;
+      inset: 0;
       overflow-y: auto;
       overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
+      background: var(--surface);
+      will-change: transform, opacity;
       scrollbar-width: none;
     }
-    .screen-content::-webkit-scrollbar { display: none; }
+    .screen::-webkit-scrollbar { display: none; }
+    .screen.hidden { display: none; }
+    .screen.slide-out-left  { animation: slideOutLeft  .32s cubic-bezier(.4,0,.2,1) forwards; }
+    .screen.slide-out-right { animation: slideOutRight .32s cubic-bezier(.4,0,.2,1) forwards; }
+    .screen.slide-in-left   { animation: slideInLeft   .32s cubic-bezier(.4,0,.2,1) forwards; }
+    .screen.slide-in-right  { animation: slideInRight  .32s cubic-bezier(.4,0,.2,1) forwards; }
+    @keyframes slideOutLeft  { from{transform:translateX(0);opacity:1} to{transform:translateX(-100%);opacity:0} }
+    @keyframes slideOutRight { from{transform:translateX(0);opacity:1} to{transform:translateX(100%);opacity:0} }
+    @keyframes slideInLeft   { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+    @keyframes slideInRight  { from{transform:translateX(-100%);opacity:0} to{transform:translateX(0);opacity:1} }
 
-    /* Screen header */
+    /* ── Common ── */
     .screen-header {
-      padding: 4px 20px 12px;
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-shrink: 0;
+      padding: 16px 20px 0;
+      min-height: 56px;
     }
     .back-btn {
       width: 36px; height: 36px;
-      border-radius: 50%;
+      border-radius: 10px;
       background: var(--card);
       border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: background 150ms;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; cursor: pointer; flex-shrink: 0;
+      transition: background .15s;
     }
     .back-btn:active { background: var(--border); }
-    .back-btn svg { width: 18px; height: 18px; stroke: var(--fg); fill: none; }
-    .header-title { font-size: 17px; font-weight: 700; }
-
-    /* Bottom nav */
-    .bottom-nav {
-      height: 72px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding-bottom: 8px;
-      flex-shrink: 0;
+    .screen-title { font-size: 16px; font-weight: 700; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
     }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 12px;
-      transition: background 150ms;
-    }
-    .nav-item:active { background: var(--card); }
-    .nav-item svg { width: 22px; height: 22px; stroke: var(--muted2); fill: none; stroke-width: 1.8; }
-    .nav-item.nav-active svg { stroke: var(--accent); }
-    .nav-item span { font-size: 10px; color: var(--muted2); font-weight: 500; }
-    .nav-item.nav-active span { color: var(--accent); }
-
-    /* ============ SCREEN 1: Emotion Input ============ */
-    #screen1 .screen-content { padding: 0 20px 24px; }
-
-    .app-logo {
-      text-align: center;
-      padding: 20px 0 24px;
-    }
-    .logo-icon {
-      width: 64px; height: 64px;
-      background: var(--grad);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px;
-      font-size: 28px;
-      box-shadow: 0 8px 32px rgba(236,72,153,0.4);
-    }
-    .logo-title { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
-    .logo-title span {
-      background: var(--grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .logo-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
-
-    .greeting-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 16px 18px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .ai-avatar {
-      width: 36px; height: 36px;
-      background: var(--grad);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-    .greeting-text { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
-    .greeting-text strong { color: var(--fg); }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted2);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .emotion-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .emotion-btn {
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 14px 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .emotion-btn:active { transform: scale(0.93); }
-    .emotion-btn.selected {
-      border-color: var(--accent);
-      background: rgba(236,72,153,0.1);
-      box-shadow: 0 0 0 1px rgba(236,72,153,0.3), inset 0 1px 0 rgba(236,72,153,0.1);
-    }
-    .emotion-emoji { font-size: 26px; }
-    .emotion-label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
-    .emotion-btn.selected .emotion-label { color: var(--accent2); }
-
-    .intensity-section { margin-bottom: 24px; }
-    .intensity-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .intensity-value {
-      font-size: 13px;
-      font-weight: 700;
+    .badge-accent {
+      background: var(--accent-soft);
       color: var(--accent);
-    }
-    .slider-track {
-      position: relative;
-      height: 6px;
-      background: var(--card);
-      border-radius: 99px;
-      border: 1px solid var(--border);
-    }
-    .slider-fill {
-      position: absolute;
-      left: 0; top: 0;
-      height: 100%;
-      background: var(--grad);
-      border-radius: 99px;
-      width: 65%;
-      transition: width 100ms;
-    }
-    input[type=range] {
-      position: absolute;
-      top: 50%; left: 0;
-      transform: translateY(-50%);
-      width: 100%;
-      height: 6px;
-      opacity: 0;
-      cursor: pointer;
-    }
-    .slider-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-    }
-    .slider-labels span { font-size: 11px; color: var(--muted2); }
-
-    .companion-section { margin-bottom: 28px; }
-    .companion-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-    .companion-btn {
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .companion-btn:active { transform: scale(0.93); }
-    .companion-btn.selected {
-      border-color: var(--accent);
-      background: rgba(236,72,153,0.1);
-    }
-    .companion-emoji { font-size: 20px; }
-    .companion-label { font-size: 11px; font-weight: 600; color: var(--muted); }
-    .companion-btn.selected .companion-label { color: var(--accent2); }
-
-    .cta-btn {
-      width: 100%;
-      padding: 18px;
-      background: var(--grad);
-      border: none;
-      border-radius: 18px;
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      letter-spacing: -0.3px;
-      box-shadow: 0 8px 32px rgba(236,72,153,0.35);
-      transition: transform 150ms, box-shadow 150ms;
-    }
-    .cta-btn:active { transform: scale(0.97); box-shadow: 0 4px 16px rgba(236,72,153,0.25); }
-    .cta-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-    /* ============ SCREEN 2: AI Matching ============ */
-    #screen2 {
-      background: var(--bg);
-    }
-    #screen2 .screen-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      text-align: center;
-    }
-
-    .ai-orb {
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, rgba(249,168,212,0.3), rgba(236,72,153,0.15));
-      border: 1px solid rgba(236,72,153,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 32px;
-      position: relative;
-      animation: orbPulse 2s ease-in-out infinite;
-    }
-    @keyframes orbPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(236,72,153,0.3), 0 0 40px rgba(236,72,153,0.1); transform: scale(1); }
-      50% { box-shadow: 0 0 0 20px rgba(236,72,153,0), 0 0 60px rgba(236,72,153,0.2); transform: scale(1.04); }
-    }
-    .orb-ring {
-      position: absolute;
-      border-radius: 50%;
       border: 1px solid rgba(236,72,153,0.2);
-      animation: ringExpand 2s ease-out infinite;
     }
-    .orb-ring:nth-child(1) { width: 140px; height: 140px; animation-delay: 0s; }
-    .orb-ring:nth-child(2) { width: 160px; height: 160px; animation-delay: 0.5s; }
-    .orb-ring:nth-child(3) { width: 180px; height: 180px; animation-delay: 1s; }
-    @keyframes ringExpand {
-      0% { opacity: 0.6; transform: scale(0.9); }
-      100% { opacity: 0; transform: scale(1.15); }
+    .btn-primary {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      border: none; border-radius: 14px;
+      color: #fff; font-size: 16px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+      transition: opacity .15s, transform .1s;
     }
-    .orb-inner { font-size: 40px; position: relative; z-index: 1; }
-
-    .ai-status { font-size: 22px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-    .ai-status span {
-      background: var(--grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .ai-subtext { font-size: 14px; color: var(--muted); margin-bottom: 36px; }
-
-    .analyzing-tags {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .analyzing-tag {
-      padding: 6px 14px;
-      background: var(--card);
+    .btn-primary:active { transform: scale(.98); opacity: .9; }
+    .btn-primary:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+    .btn-outline {
+      padding: 12px 20px;
+      background: transparent;
       border: 1px solid var(--border);
-      border-radius: 99px;
-      font-size: 12.5px;
-      color: var(--muted);
-      animation: tagFade 0.5s ease forwards;
-      opacity: 0;
+      border-radius: 12px;
+      color: var(--fg); font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+      transition: border-color .15s, background .15s;
     }
-    .analyzing-tag.accent-tag {
-      border-color: rgba(236,72,153,0.4);
-      color: var(--accent2);
-      background: rgba(236,72,153,0.08);
-    }
-    @keyframes tagFade {
-      to { opacity: 1; }
+    .btn-outline:active { background: var(--card); }
+    .tag {
+      display: inline-block;
+      padding: 3px 9px; border-radius: 999px;
+      font-size: 11px; font-weight: 500;
+      background: var(--card); color: var(--muted);
+      border: 1px solid var(--border);
     }
 
-    .progress-section { width: 100%; }
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
+    /* ── Toast ── */
+    #toast {
+      position: fixed; bottom: 80px;
+      left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--fg); color: var(--bg);
+      padding: 10px 20px; border-radius: 999px;
+      font-size: 13px; font-weight: 600;
+      opacity: 0; transition: opacity .25s, transform .25s;
+      z-index: 9999; white-space: nowrap; pointer-events: none;
     }
-    .progress-label span { font-size: 12px; color: var(--muted); }
-    .progress-label .progress-pct { color: var(--accent); font-weight: 700; }
-    .progress-bar {
-      height: 6px;
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ════════════════
+       SCREEN 1 — ONBOARDING
+    ════════════════ */
+    #screen-onboarding { display: flex; flex-direction: column; min-height: 760px; }
+    .onb-hero {
+      position: relative; padding: 48px 24px 32px;
+      text-align: center; overflow: hidden;
+    }
+    .onb-gradient-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle 180px at 30% 40%, rgba(236,72,153,0.18) 0%, transparent 70%),
+        radial-gradient(circle 140px at 75% 20%, rgba(139,92,246,0.12) 0%, transparent 60%),
+        radial-gradient(circle 200px at 60% 80%, rgba(249,168,212,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .onb-emoji-collage {
+      position: relative; font-size: 52px; line-height: 1;
+      margin-bottom: 28px;
+      display: flex; justify-content: center; align-items: center; gap: 4px;
+    }
+    .onb-emoji-collage span { display: inline-block; animation: floatEmoji 3s ease-in-out infinite; }
+    .onb-emoji-collage span:nth-child(1) { animation-delay: 0s; }
+    .onb-emoji-collage span:nth-child(2) { animation-delay: .4s; margin-top: 14px; }
+    .onb-emoji-collage span:nth-child(3) { animation-delay: .8s; }
+    .onb-emoji-collage span:nth-child(4) { animation-delay: 1.2s; margin-top: -10px; }
+    .onb-emoji-collage span:nth-child(5) { animation-delay: 1.6s; margin-top: 10px; }
+    @keyframes floatEmoji { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .onb-title {
+      font-size: 24px; font-weight: 900; line-height: 1.35;
+      letter-spacing: -.02em; margin-bottom: 10px; position: relative;
+    }
+    .accent-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .onb-subtitle {
+      font-size: 14px; color: var(--muted); line-height: 1.6;
+      position: relative; margin-bottom: 0;
+    }
+    .onb-pills { display: flex; flex-direction: column; gap: 10px; margin: 28px 24px 28px; }
+    .onb-pill {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px 16px;
+      transition: border-color .2s;
+    }
+    .onb-pill:hover { border-color: rgba(236,72,153,0.3); }
+    .onb-pill-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--accent-soft); border: 1px solid rgba(236,72,153,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .onb-pill-label { font-size: 14px; font-weight: 700; }
+    .onb-pill-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .onb-cta { padding: 0 24px 32px; margin-top: auto; }
+    .onb-note { text-align: center; font-size: 11px; color: var(--muted2); margin-top: 10px; }
+    .onb-link { color: var(--accent); cursor: pointer; }
+
+    /* ════════════════
+       SCREEN 2 — MOOD
+    ════════════════ */
+    #screen-mood { padding-bottom: 100px; }
+    .mood-header { padding: 20px 20px 8px; }
+    .mood-main-title { font-size: 20px; font-weight: 900; margin-bottom: 6px; }
+    .mood-sub { font-size: 13px; color: var(--muted); }
+    .mood-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; padding: 16px 16px 8px;
+    }
+    .mood-card {
       background: var(--card);
-      border-radius: 99px;
-      overflow: hidden;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
+      border-radius: 16px; padding: 16px 12px;
+      text-align: center; cursor: pointer;
+      transition: border-color .2s, background .2s, box-shadow .2s, transform .1s;
+      position: relative; overflow: hidden;
+    }
+    .mood-card:active { transform: scale(.97); }
+    .mood-card.selected {
+      border-color: var(--mc, var(--accent));
+      background: color-mix(in srgb, var(--mc, var(--accent)) 10%, var(--card));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--mc, var(--accent)) 15%, transparent),
+                  0 8px 24px color-mix(in srgb, var(--mc, var(--accent)) 20%, transparent);
+    }
+    .mc-emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+    .mc-label { font-size: 13px; font-weight: 700; line-height: 1.4; }
+    .mood-card.selected .mc-label { color: var(--mc, var(--accent)); }
+    .mc-check {
+      position: absolute; top: 8px; right: 8px;
+      width: 18px; height: 18px;
+      background: var(--mc, var(--accent));
+      border-radius: 50%; display: none;
+      align-items: center; justify-content: center;
+      font-size: 10px; color: #fff;
+    }
+    .mood-card.selected .mc-check { display: flex; }
+    .sliders-section { padding: 20px 16px 0; }
+    .sliders-title {
+      font-size: 15px; font-weight: 800; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sliders-title::after { content:''; flex:1; height:1px; background:var(--border); }
+    .slider-row { margin-bottom: 18px; }
+    .slider-label-row {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+    }
+    .slider-name { font-size: 13px; font-weight: 600; }
+    .slider-val { font-size: 13px; font-weight: 700; color: var(--accent); min-width: 24px; text-align: right; }
+    input[type=range] {
+      -webkit-appearance: none; width: 100%; height: 4px;
+      border-radius: 999px; background: var(--border); outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      box-shadow: 0 2px 8px rgba(236,72,153,0.4); cursor: pointer; transition: transform .1s;
+    }
+    input[type=range]::-webkit-slider-thumb:active { transform: scale(1.2); }
+    input[type=range]::-moz-range-thumb {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      border: none; cursor: pointer;
+    }
+    .mood-cta-wrap {
+      position: sticky; bottom: 0;
+      background: linear-gradient(to top, var(--surface) 60%, transparent);
+      padding: 16px 16px 24px;
+    }
+
+    /* ════════════════
+       SCREEN 3 — LOADING
+    ════════════════ */
+    #screen-loading {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 760px; padding: 40px 24px; text-align: center;
+    }
+    .loading-emoji {
+      font-size: 80px; display: block; margin-bottom: 32px;
+      animation: loadingPulse 1.2s ease-in-out infinite;
+    }
+    @keyframes loadingPulse {
+      0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 transparent)}
+      50%{transform:scale(1.12);filter:drop-shadow(0 0 20px rgba(236,72,153,.5))}
+    }
+    .loading-title { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+    .loading-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 36px; }
+    .loading-status { font-size: 14px; color: var(--accent); font-weight: 600; min-height: 22px; margin-bottom: 18px; }
+    .progress-track {
+      width: 240px; height: 4px; background: var(--border);
+      border-radius: 999px; overflow: hidden; margin-bottom: 32px;
     }
     .progress-fill {
-      height: 100%;
-      background: var(--grad);
-      border-radius: 99px;
-      width: 0%;
-      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      border-radius: 999px; transition: width .08s linear;
     }
+    .loading-steps { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; }
+    .loading-step {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 12px;
+      opacity: .35; transition: opacity .3s, border-color .3s;
+    }
+    .loading-step.active { opacity: 1; border-color: rgba(236,72,153,0.35); }
+    .loading-step.done { opacity: .6; }
+    .loading-step-icon { font-size: 18px; }
+    .loading-step-text { font-size: 13px; font-weight: 600; }
 
-    .ai-steps {
-      margin-top: 28px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    /* ════════════════
+       SCREEN 4 — RESULTS
+    ════════════════ */
+    #screen-results { padding-bottom: 32px; }
+    .results-header { padding: 20px 20px 16px; }
+    .results-title { font-size: 18px; font-weight: 900; margin-bottom: 10px; }
+    .results-mood-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 13px; font-weight: 700; border: 1px solid;
     }
-    .ai-step {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      opacity: 0.4;
-      transition: all 400ms;
-    }
-    .ai-step.step-done {
-      opacity: 1;
-      border-color: rgba(236,72,153,0.3);
-    }
-    .step-icon {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
-      transition: background 400ms;
-    }
-    .ai-step.step-done .step-icon {
-      background: rgba(236,72,153,0.2);
-    }
-    .step-text { font-size: 12.5px; color: var(--muted); }
-    .ai-step.step-done .step-text { color: var(--fg); }
-
-    /* ============ SCREEN 3: Match Results ============ */
-    #screen3 .screen-content { padding: 0 0 20px; }
-
-    .results-header {
-      padding: 8px 20px 16px;
-    }
-    .results-title { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
-    .results-sub { font-size: 13px; color: var(--muted); }
-    .results-sub span { color: var(--accent2); font-weight: 600; }
-
-    .emotion-summary {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      margin-bottom: 4px;
-    }
-    .emotion-pill {
-      padding: 6px 14px;
-      background: rgba(236,72,153,0.12);
-      border: 1px solid rgba(236,72,153,0.3);
-      border-radius: 99px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent2);
-    }
-    .emotion-summary-arrow { color: var(--muted2); font-size: 14px; }
-
-    .dest-cards { padding: 0 16px; display: flex; flex-direction: column; gap: 14px; }
-
+    .results-list { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
     .dest-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden; cursor: pointer;
+      transition: border-color .2s, transform .1s;
     }
-    .dest-card:active { transform: scale(0.97); }
-    .dest-card.rank-1 { border-color: rgba(236,72,153,0.35); }
-
-    .dest-card-hero {
-      height: 130px;
-      position: relative;
-      overflow: hidden;
+    .dest-card:active { transform: scale(.99); }
+    .dest-card:hover { border-color: rgba(236,72,153,0.25); }
+    .dest-card-top { display: flex; }
+    .dest-card-emoji-wrap {
+      width: 90px; min-height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px; background: var(--surface); flex-shrink: 0;
+      border-right: 1px solid var(--border);
     }
-    .dest-card.rank-1 .dest-card-hero { background: linear-gradient(135deg, #1a4a3a 0%, #2d7a5a 40%, #4db87a 100%); }
-    .dest-card.rank-2 .dest-card-hero { background: linear-gradient(135deg, #0a2a4a 0%, #1a5a8a 40%, #2a9ae0 100%); }
-    .dest-card.rank-3 .dest-card-hero { background: linear-gradient(135deg, #2a1a0a 0%, #7a4a1a 40%, #c07820 100%); }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.7) 100%);
+    .dest-card-info { flex: 1; padding: 14px 14px 12px; }
+    .dest-card-match {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; background: var(--accent-soft);
+      border: 1px solid rgba(236,72,153,0.2); border-radius: 999px;
+      font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 6px;
     }
-    .hero-badge-rank {
-      position: absolute;
-      top: 12px; left: 12px;
-      padding: 4px 10px;
-      border-radius: 99px;
-      font-size: 11px;
-      font-weight: 800;
+    .dest-card-name { font-size: 15px; font-weight: 800; margin-bottom: 2px; }
+    .dest-card-region { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .dest-card-reason { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .dest-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .dest-card-footer {
+      padding: 10px 14px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .rank-1 .hero-badge-rank { background: var(--grad); color: white; }
-    .rank-2 .hero-badge-rank { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
-    .rank-3 .hero-badge-rank { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
+    .dest-card-footer-text { font-size: 12px; color: var(--muted); }
+    .dest-card-arrow { font-size: 14px; color: var(--accent); }
 
-    .hero-match-score {
-      position: absolute;
-      top: 12px; right: 12px;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-      padding: 4px 10px;
-      border-radius: 99px;
-      font-size: 13px;
-      font-weight: 800;
-      color: white;
-    }
-    .hero-match-score span { color: var(--accent2); }
-
-    .hero-scenery { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 40px; opacity: 0.6; }
-
-    .dest-card-body { padding: 14px 16px 16px; }
-    .dest-name { font-size: 17px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.3px; }
-    .dest-addr { font-size: 12px; color: var(--muted2); margin-bottom: 10px; }
-
-    .dest-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .meta-chip {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      font-size: 11.5px;
-      color: var(--muted);
-    }
-
-    .dest-emotion-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .emotion-tag-chip {
-      padding: 3px 10px;
-      background: rgba(236,72,153,0.1);
-      border: 1px solid rgba(236,72,153,0.25);
-      border-radius: 99px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent2);
-    }
-
-    /* ============ SCREEN 4: Course Detail ============ */
-    #screen4 .screen-content { padding: 0 0 24px; }
-
+    /* ════════════════
+       SCREEN 5 — DETAIL
+    ════════════════ */
+    #screen-detail { padding-bottom: 100px; }
     .detail-hero {
-      height: 200px;
-      position: relative;
-      overflow: hidden;
+      position: relative; height: 200px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     .detail-hero-bg {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 60px;
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(139,92,246,0.15) 50%, rgba(249,168,212,0.1) 100%);
     }
+    .detail-hero-emoji { font-size: 72px; position: relative; z-index: 1; }
     .detail-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(6,6,9,0.9) 100%);
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%);
     }
-    .detail-hero-content {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 20px;
+    .detail-match-badge {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--accent); color: #fff;
+      font-size: 13px; font-weight: 800;
+      padding: 5px 12px; border-radius: 999px; z-index: 2;
     }
-    .detail-place-name { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
-    .detail-addr { font-size: 12px; color: var(--muted); }
-
-    .detail-body { padding: 20px; }
-
-    .detail-score-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+    .detail-back-btn {
+      position: absolute; top: 12px; left: 16px; z-index: 10;
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(13,13,19,.8); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; cursor: pointer;
     }
-    .score-badge {
-      flex: 1;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px;
-      text-align: center;
+    .detail-content { padding: 0 20px; }
+    .detail-name { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+    .detail-region { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .detail-section-title {
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; margin-top: 24px;
     }
-    .score-badge-val { font-size: 20px; font-weight: 900; color: var(--accent); }
-    .score-badge-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-    .section-title {
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .match-gauge-wrap {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; display: flex; align-items: center; gap: 20px;
     }
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+    .gauge-circle {
+      width: 72px; height: 72px; flex-shrink: 0; position: relative;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .timeline { margin-bottom: 24px; }
-    .timeline-item {
-      display: flex;
-      gap: 14px;
-      padding-bottom: 20px;
-      position: relative;
+    .gauge-circle svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .gauge-bg { fill: none; stroke: var(--border); stroke-width: 6; }
+    .gauge-fill {
+      fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round;
+      transition: stroke-dashoffset .8s ease;
     }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-item:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 17px; top: 36px;
-      width: 2px;
-      bottom: 0;
-      background: var(--border);
+    .gauge-number { font-size: 20px; font-weight: 900; color: var(--fg); position: relative; z-index: 1; }
+    .gauge-info { flex: 1; }
+    .gauge-label { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .gauge-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .axis-bars {
+      display: flex; flex-direction: column; gap: 12px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px;
     }
-    .timeline-dot {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: rgba(236,72,153,0.15);
-      border: 1.5px solid rgba(236,72,153,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
+    .axis-row { display: flex; flex-direction: column; gap: 6px; }
+    .axis-label-row { display: flex; justify-content: space-between; font-size: 12px; }
+    .axis-name { font-weight: 600; }
+    .axis-score { color: var(--accent); font-weight: 700; }
+    .axis-track { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .axis-fill {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      transition: width .6s ease;
     }
-    .timeline-content { flex: 1; }
-    .timeline-time { font-size: 11.5px; font-weight: 700; color: var(--accent); margin-bottom: 3px; }
-    .timeline-place { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
-    .timeline-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
-
-    .map-placeholder {
-      height: 120px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 24px;
-      position: relative;
-      overflow: hidden;
+    .highlights-grid { display: flex; flex-direction: column; gap: 10px; }
+    .highlight-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px;
     }
-    .map-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(236,72,153,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(236,72,153,0.05) 1px, transparent 1px);
-      background-size: 24px 24px;
+    .highlight-icon { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
+    .highlight-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .highlight-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .ai-quote-card {
+      background: var(--accent-soft); border: 1px solid rgba(236,72,153,0.2); border-radius: 16px; padding: 18px;
     }
-    .map-pin { font-size: 28px; position: relative; z-index: 1; }
-    .map-label { font-size: 12px; color: var(--muted); position: relative; z-index: 1; }
-    .map-coords { font-size: 10px; color: var(--muted2); position: relative; z-index: 1; }
-
-    .api-badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 20px;
+    .ai-quote-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+    .ai-quote-text { font-size: 14px; line-height: 1.7; font-style: italic; }
+    .ai-quote-footer { margin-top: 10px; display: flex; align-items: center; gap: 6px; }
+    .ai-quote-model { font-size: 11px; color: var(--accent); font-weight: 600; }
+    .visitkorea-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+    .vk-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .vk-logo {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      color: #fff; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 6px;
     }
-    .api-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; }
-    .api-text { font-size: 11.5px; color: var(--muted); }
-    .api-text strong { color: var(--fg); }
-
-    .detail-actions { display: flex; gap: 12px; }
-    .btn-save {
-      flex: 2;
-      padding: 16px;
-      background: var(--grad);
-      border: none;
-      border-radius: 16px;
-      color: white;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: transform 150ms;
-    }
-    .btn-save:active { transform: scale(0.97); }
-    .btn-share {
-      flex: 1;
-      padding: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      color: var(--fg);
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 150ms;
-    }
-    .btn-share:active { background: var(--border); }
-
-    /* ============ SCREEN 5: Save & Share ============ */
-    #screen5 .screen-content { padding: 0 20px 32px; }
-
-    .success-badge {
-      text-align: center;
-      padding: 24px 0 20px;
-    }
-    .success-icon {
-      width: 64px; height: 64px;
-      background: rgba(34,197,94,0.15);
-      border: 2px solid rgba(34,197,94,0.4);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      margin: 0 auto 12px;
-      animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-    @keyframes successPop {
-      0% { transform: scale(0); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .success-title { font-size: 18px; font-weight: 900; margin-bottom: 4px; }
-    .success-sub { font-size: 13px; color: var(--muted); }
-
-    .diary-card {
-      background: var(--card);
-      border: 1px solid rgba(236,72,153,0.25);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .diary-header {
-      height: 100px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-    }
-    .diary-header-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent, rgba(19,19,26,0.8));
-    }
-    .diary-body { padding: 16px; }
-    .diary-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
-    .diary-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
-    .diary-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .diary-tag {
-      padding: 4px 12px;
-      border-radius: 99px;
-      font-size: 11.5px;
-      font-weight: 600;
-    }
-    .diary-tag.tag-emotion {
-      background: rgba(236,72,153,0.12);
-      border: 1px solid rgba(236,72,153,0.3);
-      color: var(--accent2);
-    }
-    .diary-tag.tag-place {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
+    .vk-title { font-size: 13px; font-weight: 700; }
+    .vk-rows { display: flex; flex-direction: column; gap: 8px; }
+    .vk-row { display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .vk-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .vk-key { color: var(--muted); }
+    .vk-val { font-weight: 600; text-align: right; max-width: 60%; }
+    .detail-sticky {
+      position: sticky; bottom: 0;
+      background: linear-gradient(to top, var(--surface) 70%, transparent);
+      padding: 16px 20px 24px; margin-top: 24px;
     }
 
-    .share-section-title { font-size: 15px; font-weight: 800; margin-bottom: 12px; }
-    .share-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-    .share-option {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 150ms;
+    /* ════════════════
+       SCREEN 6 — ITINERARY
+    ════════════════ */
+    #screen-itinerary { padding-bottom: 120px; }
+    .itin-header { padding: 20px 20px 16px; }
+    .itin-title { font-size: 19px; font-weight: 900; margin-bottom: 4px; }
+    .itin-sub { font-size: 13px; color: var(--muted); }
+    .itin-tabs { display: flex; gap: 8px; padding: 0 16px 16px; }
+    .itin-tab {
+      flex: 1; padding: 10px; background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; font-size: 14px; font-weight: 600; color: var(--muted);
+      cursor: pointer; text-align: center; transition: all .2s; font-family: inherit;
     }
-    .share-option:active { background: var(--border); transform: scale(0.98); }
-    .share-icon {
-      width: 40px; height: 40px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+    .itin-tab.active { background: var(--accent-soft); border-color: rgba(236,72,153,0.3); color: var(--accent); }
+    .itin-day { padding: 0 16px; display: none; }
+    .itin-day.active { display: block; }
+    .itin-item { display: grid; grid-template-columns: 60px 16px 1fr; gap: 0; }
+    .itin-time-col { padding: 0 8px 0 0; text-align: right; padding-top: 16px; }
+    .itin-time { font-size: 11px; font-weight: 700; color: var(--muted); }
+    .itin-line-col { display: flex; flex-direction: column; align-items: center; }
+    .itin-dot {
+      width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+      border: 2px solid var(--surface); flex-shrink: 0; margin-top: 19px;
+      box-shadow: 0 0 0 3px rgba(236,72,153,0.15);
     }
-    .share-icon.kakao { background: #FEE500; }
-    .share-icon.insta { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
-    .share-icon.link { background: var(--surface); border: 1px solid var(--border); }
-    .share-text { flex: 1; }
-    .share-name { font-size: 14px; font-weight: 700; }
-    .share-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
-    .share-arrow { color: var(--muted2); font-size: 16px; }
+    .itin-connector { width: 2px; flex: 1; background: var(--border); min-height: 20px; }
+    .itin-last .itin-connector { display: none; }
+    .itin-content-col { padding: 8px 0 8px 12px; }
+    .itin-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 14px; margin-bottom: 4px;
+    }
+    .itin-card-top { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+    .itin-emoji { font-size: 20px; flex-shrink: 0; }
+    .itin-place { font-size: 14px; font-weight: 700; padding-top: 1px; }
+    .itin-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .itin-dur { font-size: 11px; color: var(--muted); }
+    .itin-mood-tag {
+      font-size: 10px; font-weight: 600; padding: 2px 8px;
+      background: var(--accent-soft); color: var(--accent);
+      border-radius: 999px; border: 1px solid rgba(236,72,153,0.2);
+    }
+    .itin-cost-card {
+      background: linear-gradient(135deg, rgba(236,72,153,0.12) 0%, rgba(139,92,246,0.08) 100%);
+      border: 1px solid rgba(236,72,153,0.2); border-radius: 14px;
+      padding: 16px; margin: 16px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .itin-cost-label { font-size: 13px; color: var(--muted); font-weight: 600; }
+    .itin-cost-val { font-size: 16px; font-weight: 900; color: var(--accent); }
+    .itin-actions {
+      position: sticky; bottom: 0;
+      background: linear-gradient(to top, var(--surface) 60%, transparent);
+      padding: 16px 16px 24px; display: flex; gap: 10px;
+    }
+    .itin-actions .btn-primary { flex: 1; }
+    .itin-actions .btn-outline { flex: 1; }
 
-    .share-toast {
-      background: rgba(34,197,94,0.15);
-      border: 1px solid rgba(34,197,94,0.35);
-      border-radius: 14px;
-      padding: 12px 16px;
-      text-align: center;
-      font-size: 13px;
-      color: #4ade80;
-      font-weight: 600;
-      margin-bottom: 20px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 300ms;
+    /* ════════════════
+       SCREEN 7 — SAVED
+    ════════════════ */
+    #screen-saved { padding-bottom: 40px; }
+    .saved-header { padding: 20px 20px 16px; }
+    .saved-title { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+    .saved-sub { font-size: 13px; color: var(--muted); }
+    .saved-list { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+    .saved-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+    .saved-card-accent { height: 4px; }
+    .saved-card-body { padding: 16px; }
+    .saved-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+    .saved-card-mood {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; border-radius: 999px; padding: 4px 10px; border: 1px solid;
     }
-    .share-toast.visible { opacity: 1; transform: translateY(0); }
-
-    .btn-home {
-      width: 100%;
-      padding: 16px;
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      color: var(--fg);
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 150ms;
+    .saved-card-date { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+    .saved-card-dest { display: flex; align-items: center; gap: 12px; }
+    .saved-card-emoji { font-size: 36px; }
+    .saved-card-info { flex: 1; }
+    .saved-card-name { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+    .saved-card-region { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .saved-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .saved-card-footer {
+      padding: 12px 16px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .btn-home:active { background: var(--border); }
-
-    /* Mobile full screen */
-    @media (max-width: 430px) {
-      .desktop-wrapper { align-items: flex-start; padding: 0; }
-      .phone-shell {
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        border-radius: 0;
-        box-shadow: none;
-      }
-    }
+    .saved-card-match { font-size: 13px; color: var(--accent); font-weight: 700; }
+    .saved-delete { font-size: 12px; color: var(--muted2); cursor: pointer; transition: color .15s; }
+    .saved-delete:hover { color: var(--fg); }
+    .saved-new-btn { margin: 24px 16px 0; }
+    .empty-state { text-align: center; padding: 48px 24px; color: var(--muted); }
+    .empty-state-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+    .empty-state-text { font-size: 14px; line-height: 1.6; }
   </style>
 </head>
 <body>
-<div class="desktop-wrapper">
-  <div class="phone-shell">
 
-    <!-- ====== SCREEN 1: Emotion Input ====== -->
-    <div class="screen active" id="screen1">
-      <div class="status-bar">
-        <span class="status-time">9:41</span>
-        <div class="status-icons">
-          <svg viewBox="0 0 16 12"><path d="M1 4.5C3.9 1.6 8 0 8 0s4.1 1.6 7 4.5L13.5 7c-1.6-1.6-3.4-2.5-5.5-2.5S4.1 5.4 2.5 7L1 4.5z"/><path d="M4 7.5C5.3 6.2 6.6 5.5 8 5.5s2.7.7 4 2L10.5 9C9.6 8.1 8.8 7.5 8 7.5s-1.6.6-2.5 1.5L4 7.5z"/><circle cx="8" cy="11" r="1.5"/></svg>
-          <svg viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0" width="3" height="12" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity="0.3"/></svg>
-          <div class="battery-icon"><div class="battery-fill"></div></div>
+<!-- Top nav bar -->
+<div id="top-nav">
+  <a href="../../index.html">← 목록으로</a>
+  <span class="round-badge">Round 7</span>
+</div>
+
+<!-- Shell -->
+<div id="shell-wrap">
+<div id="shell">
+
+  <!-- ═══════════════════════
+       SCREEN 1 — ONBOARDING
+  ═══════════════════════ -->
+  <div class="screen" id="screen-onboarding">
+    <div class="onb-hero">
+      <div class="onb-gradient-bg"></div>
+      <div class="onb-emoji-collage">
+        <span>😌</span><span>🔥</span><span>😢</span><span>🤩</span><span>🧘</span>
+      </div>
+      <h1 class="onb-title">지금 기분이<br><span class="accent-text">여행지를 결정합니다</span></h1>
+      <p class="onb-subtitle">감정을 분석해 당신에게 딱 맞는<br>한국 여행지와 일정을 즉시 매칭합니다</p>
+    </div>
+
+    <div class="onb-pills">
+      <div class="onb-pill">
+        <div class="onb-pill-icon">🧠</div>
+        <div>
+          <div class="onb-pill-label">AI 감정 분석</div>
+          <div class="onb-pill-sub">7가지 감정 + 5개 감성 축으로 정밀 분석</div>
         </div>
       </div>
-
-      <div class="screen-content">
-        <div class="app-logo">
-          <div class="logo-icon">✈️</div>
-          <div class="logo-title">Mood <span>Travel</span></div>
-          <div class="logo-sub">감정이 곧 목적지</div>
+      <div class="onb-pill">
+        <div class="onb-pill-icon">📍</div>
+        <div>
+          <div class="onb-pill-label">맞춤 목적지</div>
+          <div class="onb-pill-sub">감정과 가장 잘 맞는 한국 여행지 매칭</div>
         </div>
-
-        <div style="padding: 0 20px;">
-          <div class="greeting-card">
-            <div class="ai-avatar">🤖</div>
-            <div class="greeting-text">
-              <strong>안녕하세요!</strong> 지금 어떤 감정을 느끼고 계신가요?<br>
-              감정을 알려주시면 AI가 딱 맞는 여행지를 찾아드릴게요.
-            </div>
-          </div>
-
-          <div class="section-label">지금 내 감정은?</div>
-          <div class="emotion-grid" id="emotionGrid">
-            <button class="emotion-btn" data-emotion="위로" onclick="selectEmotion(this)">
-              <span class="emotion-emoji">🌧️</span>
-              <span class="emotion-label">위로</span>
-            </button>
-            <button class="emotion-btn" data-emotion="설렘" onclick="selectEmotion(this)">
-              <span class="emotion-emoji">🌸</span>
-              <span class="emotion-label">설렘</span>
-            </button>
-            <button class="emotion-btn" data-emotion="활력" onclick="selectEmotion(this)">
-              <span class="emotion-emoji">⚡</span>
-              <span class="emotion-label">활력</span>
-            </button>
-            <button class="emotion-btn" data-emotion="고요" onclick="selectEmotion(this)">
-              <span class="emotion-emoji">🍃</span>
-              <span class="emotion-label">고요</span>
-            </button>
-            <button class="emotion-btn" data-emotion="호기심" onclick="selectEmotion(this)">
-              <span class="emotion-emoji">🔭</span>
-              <span class="emotion-label">호기심</span>
-            </button>
-            <button class="emotion-btn" data-emotion="신남" onclick="selectEmotion(this)">
-              <span class="emotion-emoji">🎉</span>
-              <span class="emotion-label">신남</span>
-            </button>
-          </div>
-
-          <div class="intensity-section">
-            <div class="intensity-header">
-              <div class="section-label" style="margin:0">감정 강도</div>
-              <div class="intensity-value" id="intensityVal">65%</div>
-            </div>
-            <div class="slider-track">
-              <div class="slider-fill" id="sliderFill"></div>
-              <input type="range" min="10" max="100" value="65" id="intensitySlider"
-                oninput="updateSlider(this.value)">
-            </div>
-            <div class="slider-labels">
-              <span>잔잔하게</span>
-              <span>매우 강렬하게</span>
-            </div>
-          </div>
-
-          <div class="companion-section">
-            <div class="section-label">함께하는 사람</div>
-            <div class="companion-grid" id="companionGrid">
-              <button class="companion-btn selected" data-companion="혼자" onclick="selectCompanion(this)">
-                <span class="companion-emoji">🙋</span>
-                <span class="companion-label">혼자</span>
-              </button>
-              <button class="companion-btn" data-companion="커플" onclick="selectCompanion(this)">
-                <span class="companion-emoji">👫</span>
-                <span class="companion-label">커플</span>
-              </button>
-              <button class="companion-btn" data-companion="친구" onclick="selectCompanion(this)">
-                <span class="companion-emoji">👯</span>
-                <span class="companion-label">친구</span>
-              </button>
-              <button class="companion-btn" data-companion="가족" onclick="selectCompanion(this)">
-                <span class="companion-emoji">👨‍👩‍👧</span>
-                <span class="companion-label">가족</span>
-              </button>
-            </div>
-          </div>
-
-          <button class="cta-btn" id="ctaBtn" onclick="startMatching()" disabled>
-            <span>감정을 선택해 주세요</span>
-          </button>
+      </div>
+      <div class="onb-pill">
+        <div class="onb-pill-icon">🗓</div>
+        <div>
+          <div class="onb-pill-label">즉시 일정 생성</div>
+          <div class="onb-pill-sub">1박2일 맞춤 일정을 자동으로 완성</div>
         </div>
       </div>
     </div>
 
-    <!-- ====== SCREEN 2: AI Matching ====== -->
-    <div class="screen" id="screen2">
-      <div class="status-bar">
-        <span class="status-time">9:41</span>
-        <div class="status-icons">
-          <svg viewBox="0 0 16 12"><path d="M1 4.5C3.9 1.6 8 0 8 0s4.1 1.6 7 4.5L13.5 7c-1.6-1.6-3.4-2.5-5.5-2.5S4.1 5.4 2.5 7L1 4.5z"/><path d="M4 7.5C5.3 6.2 6.6 5.5 8 5.5s2.7.7 4 2L10.5 9C9.6 8.1 8.8 7.5 8 7.5s-1.6.6-2.5 1.5L4 7.5z"/><circle cx="8" cy="11" r="1.5"/></svg>
-          <svg viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0" width="3" height="12" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity="0.3"/></svg>
-          <div class="battery-icon"><div class="battery-fill"></div></div>
+    <div class="onb-cta">
+      <button class="btn-primary" onclick="showScreen('screen-mood','left')">지금 기분 분석하기 →</button>
+      <p class="onb-note">이전 여행 보기: <span class="onb-link" onclick="showScreen('screen-saved','left')">내 무드 트립 →</span></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════
+       SCREEN 2 — MOOD INPUT
+  ═══════════════════════ -->
+  <div class="screen hidden" id="screen-mood">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-onboarding','right')">←</div>
+      <span class="screen-title">감정 선택</span>
+      <span class="badge badge-accent">Step 1</span>
+    </div>
+
+    <div class="mood-header">
+      <h2 class="mood-main-title">지금 어떤 기분인가요?</h2>
+      <p class="mood-sub">가장 솔직한 감정을 하나 골라주세요</p>
+    </div>
+
+    <div class="mood-grid" id="mood-grid"></div>
+
+    <div class="sliders-section">
+      <div class="sliders-title">감성 세부 조정</div>
+      <div class="slider-row">
+        <div class="slider-label-row">
+          <span class="slider-name">⚡ 에너지 레벨</span>
+          <span class="slider-val" id="val-energy">5</span>
         </div>
+        <input type="range" min="1" max="10" value="5"
+               oninput="document.getElementById('val-energy').textContent=this.value">
       </div>
-      <div class="screen-content">
-        <div class="ai-orb">
-          <div class="orb-ring"></div>
-          <div class="orb-ring"></div>
-          <div class="orb-ring"></div>
-          <div class="orb-inner">🧠</div>
+      <div class="slider-row">
+        <div class="slider-label-row">
+          <span class="slider-name">👥 사회성</span>
+          <span class="slider-val" id="val-social">5</span>
         </div>
-
-        <div class="ai-status">AI 매칭 <span>진행 중</span></div>
-        <div class="ai-subtext" id="aiSubtext">감정 데이터를 분석하고 있어요</div>
-
-        <div class="analyzing-tags" id="analyzingTags">
-          <div class="analyzing-tag accent-tag" id="emotionTagDisplay" style="animation-delay:0s">—</div>
-          <div class="analyzing-tag" style="animation-delay:0.15s">Visit Korea DB</div>
-          <div class="analyzing-tag" style="animation-delay:0.3s">감정-장소 매핑</div>
+        <input type="range" min="1" max="10" value="5"
+               oninput="document.getElementById('val-social').textContent=this.value">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label-row">
+          <span class="slider-name">🏕 모험심</span>
+          <span class="slider-val" id="val-adv">5</span>
         </div>
-
-        <div class="progress-section">
-          <div class="progress-label">
-            <span>AI 분석 중...</span>
-            <span class="progress-pct" id="progressPct">0%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
+        <input type="range" min="1" max="10" value="5"
+               oninput="document.getElementById('val-adv').textContent=this.value">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label-row">
+          <span class="slider-name">🎨 감성</span>
+          <span class="slider-val" id="val-senti">5</span>
         </div>
-
-        <div class="ai-steps" id="aiSteps">
-          <div class="ai-step" id="step1">
-            <div class="step-icon">🎭</div>
-            <div class="step-text">감정 벡터 분석 완료</div>
-          </div>
-          <div class="ai-step" id="step2">
-            <div class="step-icon">🗺️</div>
-            <div class="step-text">전국 관광지 3,200곳 스캔</div>
-          </div>
-          <div class="ai-step" id="step3">
-            <div class="step-icon">✨</div>
-            <div class="step-text">최적 코스 3개 선정 완료</div>
-          </div>
+        <input type="range" min="1" max="10" value="5"
+               oninput="document.getElementById('val-senti').textContent=this.value">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label-row">
+          <span class="slider-name">🌙 여유</span>
+          <span class="slider-val" id="val-relax">5</span>
         </div>
+        <input type="range" min="1" max="10" value="5"
+               oninput="document.getElementById('val-relax').textContent=this.value">
       </div>
     </div>
 
-    <!-- ====== SCREEN 3: Match Results ====== -->
-    <div class="screen" id="screen3">
-      <div class="status-bar">
-        <span class="status-time">9:41</span>
-        <div class="status-icons">
-          <svg viewBox="0 0 16 12"><path d="M1 4.5C3.9 1.6 8 0 8 0s4.1 1.6 7 4.5L13.5 7c-1.6-1.6-3.4-2.5-5.5-2.5S4.1 5.4 2.5 7L1 4.5z"/><path d="M4 7.5C5.3 6.2 6.6 5.5 8 5.5s2.7.7 4 2L10.5 9C9.6 8.1 8.8 7.5 8 7.5s-1.6.6-2.5 1.5L4 7.5z"/><circle cx="8" cy="11" r="1.5"/></svg>
-          <svg viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0" width="3" height="12" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity="0.3"/></svg>
-          <div class="battery-icon"><div class="battery-fill"></div></div>
-        </div>
+    <div class="mood-cta-wrap">
+      <button class="btn-primary" id="btn-ai-match" disabled onclick="startMatching()">
+        AI 매칭 시작
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════
+       SCREEN 3 — LOADING
+  ═══════════════════════ -->
+  <div class="screen hidden" id="screen-loading">
+    <span class="loading-emoji" id="loading-emoji">🧠</span>
+    <h2 class="loading-title">AI가 분석 중입니다</h2>
+    <p class="loading-subtitle">감정 신호로 최적 여행지를 찾는 중...</p>
+    <div class="loading-status" id="loading-status">감정 신호 분석 중...</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="loading-steps">
+      <div class="loading-step" id="lstep-1">
+        <span class="loading-step-icon">🔍</span>
+        <span class="loading-step-text">감정 신호 분석 중...</span>
       </div>
-
-      <div class="screen-header">
-        <div class="back-btn" onclick="goTo('screen1')">
-          <svg viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-        </div>
-        <div class="header-title">AI 매칭 결과</div>
+      <div class="loading-step" id="lstep-2">
+        <span class="loading-step-icon">📍</span>
+        <span class="loading-step-text">목적지 매칭 중...</span>
       </div>
-
-      <div class="screen-content">
-        <div class="results-header">
-          <div class="results-title">내 감정에 딱 맞는 여행지</div>
-          <div class="results-sub">AI가 <span id="resultEmotionLabel">감정</span> 기반으로 분석했어요</div>
-        </div>
-
-        <div class="emotion-summary">
-          <div class="emotion-pill" id="resultEmotionPill">—</div>
-          <span class="emotion-summary-arrow">→</span>
-          <div class="emotion-pill" style="background: rgba(255,255,255,0.05); border-color: var(--border); color: var(--muted);" id="resultCompanionPill">—</div>
-        </div>
-
-        <div class="dest-cards">
-          <div class="dest-card rank-1" onclick="goToDetail(0)">
-            <div class="dest-card-hero">
-              <div class="hero-overlay"></div>
-              <div class="hero-scenery">🎋</div>
-              <div class="hero-badge-rank">✨ AI 추천 1위</div>
-              <div class="hero-match-score"><span>97%</span> 매칭</div>
-            </div>
-            <div class="dest-card-body">
-              <div class="dest-name">담양 죽녹원</div>
-              <div class="dest-addr">전라남도 담양군 담양읍 죽녹원로 119</div>
-              <div class="dest-meta">
-                <div class="meta-chip">📍 3.2km 코스</div>
-                <div class="meta-chip">☁️ 18°C</div>
-                <div class="meta-chip">📞 061-380-3149</div>
-              </div>
-              <div class="dest-emotion-tags">
-                <div class="emotion-tag-chip">고요</div>
-                <div class="emotion-tag-chip">위로</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dest-card rank-2" onclick="goToDetail(1)">
-            <div class="dest-card-hero">
-              <div class="hero-overlay"></div>
-              <div class="hero-scenery">🏄</div>
-              <div class="hero-badge-rank">2위</div>
-              <div class="hero-match-score"><span>91%</span> 매칭</div>
-            </div>
-            <div class="dest-card-body">
-              <div class="dest-name">양양 서피비치</div>
-              <div class="dest-addr">강원특별자치도 양양군 현남면 인구해변길 14-1</div>
-              <div class="dest-meta">
-                <div class="meta-chip">📍 서울 2h 30m</div>
-                <div class="meta-chip">☀️ 22°C</div>
-              </div>
-              <div class="dest-emotion-tags">
-                <div class="emotion-tag-chip">활력</div>
-                <div class="emotion-tag-chip">설렘</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dest-card rank-3" onclick="goToDetail(2)">
-            <div class="dest-card-hero">
-              <div class="hero-overlay"></div>
-              <div class="hero-scenery">🏛️</div>
-              <div class="hero-badge-rank">3위</div>
-              <div class="hero-match-score"><span>88%</span> 매칭</div>
-            </div>
-            <div class="dest-card-body">
-              <div class="dest-name">경주 황리단길</div>
-              <div class="dest-addr">경상북도 경주시 포석로 1080</div>
-              <div class="dest-meta">
-                <div class="meta-chip">📍 서울 2h 20m (KTX)</div>
-                <div class="meta-chip">⛅ 20°C</div>
-              </div>
-              <div class="dest-emotion-tags">
-                <div class="emotion-tag-chip">호기심</div>
-                <div class="emotion-tag-chip">설렘</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bottom-nav">
-        <div class="nav-item nav-active">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-          <span>홈</span>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0016.803 15.803z"/></svg>
-          <span>탐색</span>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
-          <span>일지</span>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-          <span>프로필</span>
-        </div>
+      <div class="loading-step" id="lstep-3">
+        <span class="loading-step-icon">🗓</span>
+        <span class="loading-step-text">일정 최적화 중...</span>
       </div>
     </div>
+  </div>
 
-    <!-- ====== SCREEN 4: Course Detail ====== -->
-    <div class="screen" id="screen4">
-      <div class="status-bar" style="position:absolute; top:0; left:0; right:0; z-index:10;">
-        <span class="status-time">9:41</span>
-        <div class="status-icons">
-          <svg viewBox="0 0 16 12" style="fill:white"><path d="M1 4.5C3.9 1.6 8 0 8 0s4.1 1.6 7 4.5L13.5 7c-1.6-1.6-3.4-2.5-5.5-2.5S4.1 5.4 2.5 7L1 4.5z"/><path d="M4 7.5C5.3 6.2 6.6 5.5 8 5.5s2.7.7 4 2L10.5 9C9.6 8.1 8.8 7.5 8 7.5s-1.6.6-2.5 1.5L4 7.5z"/><circle cx="8" cy="11" r="1.5"/></svg>
-          <svg viewBox="0 0 16 12" style="fill:white"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0" width="3" height="12" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity="0.3"/></svg>
-          <div class="battery-icon" style="border-color:white"><div class="battery-fill" style="background:white"></div></div>
-        </div>
-      </div>
+  <!-- ═══════════════════════
+       SCREEN 4 — RESULTS
+  ═══════════════════════ -->
+  <div class="screen hidden" id="screen-results">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-mood','right')">←</div>
+      <span class="screen-title">매칭 결과</span>
+    </div>
+    <div class="results-header">
+      <div class="results-title">당신의 기분에 딱 맞는 여행지</div>
+      <div class="results-mood-badge" id="results-mood-badge"></div>
+    </div>
+    <div class="results-list" id="results-list"></div>
+  </div>
 
-      <div class="screen-content">
-        <div class="detail-hero" id="detailHero">
-          <div class="detail-hero-bg" id="detailHeroBg"></div>
-          <div class="detail-hero-overlay"></div>
-          <div style="position:absolute; top:44px; left:16px; z-index:10;">
-            <div class="back-btn" style="background:rgba(0,0,0,0.4); border-color:rgba(255,255,255,0.2);" onclick="goTo('screen3')">
-              <svg viewBox="0 0 24 24" stroke-width="2.5" style="stroke:white"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            </div>
-          </div>
-          <div class="detail-hero-content">
-            <div class="detail-place-name" id="detailName">—</div>
-            <div class="detail-addr" id="detailAddr">—</div>
-          </div>
-        </div>
-
-        <div class="detail-body">
-          <div class="detail-score-row">
-            <div class="score-badge">
-              <div class="score-badge-val" id="detailScore">—%</div>
-              <div class="score-badge-label">AI 매칭률</div>
-            </div>
-            <div class="score-badge">
-              <div class="score-badge-val" id="detailWeather" style="font-size:15px;">—</div>
-              <div class="score-badge-label">현재 날씨</div>
-            </div>
-            <div class="score-badge">
-              <div class="score-badge-val" id="detailDist" style="font-size:13px;">—</div>
-              <div class="score-badge-label">거리</div>
-            </div>
-          </div>
-
-          <div class="api-badge">
-            <div class="api-dot"></div>
-            <div class="api-text"><strong>Visit Korea API</strong> · contentId: <span id="detailContentId">—</span> · 실시간 연동</div>
-          </div>
-
-          <div class="section-title">추천 코스 일정</div>
-          <div class="timeline" id="detailTimeline"></div>
-
-          <div class="section-title">위치</div>
-          <div class="map-placeholder">
-            <div class="map-grid"></div>
-            <div class="map-pin">📍</div>
-            <div class="map-label" id="mapLabel">—</div>
-            <div class="map-coords" id="mapCoords">—</div>
-          </div>
-
-          <div class="detail-actions">
-            <button class="btn-save" onclick="goTo('screen5')">
-              <span>💾</span> 저장하기
-            </button>
-            <button class="btn-share" onclick="goTo('screen5')">
-              <span>🔗</span> 공유
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="bottom-nav">
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-          <span>홈</span>
-        </div>
-        <div class="nav-item nav-active">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0016.803 15.803z"/></svg>
-          <span>탐색</span>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
-          <span>일지</span>
-        </div>
-        <div class="nav-item">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-          <span>프로필</span>
-        </div>
-      </div>
+  <!-- ═══════════════════════
+       SCREEN 5 — DETAIL
+  ═══════════════════════ -->
+  <div class="screen hidden" id="screen-detail">
+    <div class="detail-hero" id="detail-hero">
+      <div class="detail-hero-bg"></div>
+      <span class="detail-hero-emoji" id="detail-hero-emoji">🌲</span>
+      <div class="detail-hero-overlay"></div>
+      <div class="detail-match-badge" id="detail-match-badge">95% 매칭</div>
+      <div class="detail-back-btn" onclick="showScreen('screen-results','right')">←</div>
     </div>
 
-    <!-- ====== SCREEN 5: Save & Share ====== -->
-    <div class="screen" id="screen5">
-      <div class="status-bar">
-        <span class="status-time">9:41</span>
-        <div class="status-icons">
-          <svg viewBox="0 0 16 12"><path d="M1 4.5C3.9 1.6 8 0 8 0s4.1 1.6 7 4.5L13.5 7c-1.6-1.6-3.4-2.5-5.5-2.5S4.1 5.4 2.5 7L1 4.5z"/><path d="M4 7.5C5.3 6.2 6.6 5.5 8 5.5s2.7.7 4 2L10.5 9C9.6 8.1 8.8 7.5 8 7.5s-1.6.6-2.5 1.5L4 7.5z"/><circle cx="8" cy="11" r="1.5"/></svg>
-          <svg viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0" width="3" height="12" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" rx="1" opacity="0.3"/></svg>
-          <div class="battery-icon"><div class="battery-fill"></div></div>
+    <div class="detail-content">
+      <div class="detail-name" id="detail-name">제주 서귀포 치유의 숲</div>
+      <div class="detail-region" id="detail-region">📍 제주도</div>
+
+      <div class="detail-section-title">매칭 점수</div>
+      <div class="match-gauge-wrap">
+        <div class="gauge-circle">
+          <svg width="72" height="72" viewBox="0 0 72 72">
+            <circle class="gauge-bg" cx="36" cy="36" r="29"/>
+            <circle class="gauge-fill" id="gauge-fill" cx="36" cy="36" r="29"
+                    stroke-dasharray="182.2" stroke-dashoffset="182.2"/>
+          </svg>
+          <span class="gauge-number" id="gauge-number">—</span>
+        </div>
+        <div class="gauge-info">
+          <div class="gauge-label">감정-목적지 일치도</div>
+          <div class="gauge-sub" id="gauge-sub">선택한 감정과 이 여행지의 분위기가 잘 맞습니다.</div>
         </div>
       </div>
 
-      <div class="screen-header">
-        <div class="back-btn" onclick="goTo('screen4')">
-          <svg viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      <div class="detail-section-title">감성 축 분석</div>
+      <div class="axis-bars" id="axis-bars"></div>
+
+      <div class="detail-section-title">추천 하이라이트</div>
+      <div class="highlights-grid" id="highlights-grid"></div>
+
+      <div class="detail-section-title">AI 추천 이유</div>
+      <div class="ai-quote-card">
+        <span class="ai-quote-icon">🤖</span>
+        <p class="ai-quote-text" id="ai-quote-text"></p>
+        <div class="ai-quote-footer">
+          <span class="ai-quote-model">✨ AI 분석</span>
+          <span style="font-size:11px;color:var(--muted2)">· Mood Travel Matcher</span>
         </div>
-        <div class="header-title">저장 · 공유</div>
       </div>
 
-      <div class="screen-content">
-        <div class="success-badge">
-          <div class="success-icon">✅</div>
-          <div class="success-title">여행 일지 저장 완료!</div>
-          <div class="success-sub">나만의 감정 여행 기록이 저장되었어요</div>
+      <div class="detail-section-title">Visit Korea 데이터</div>
+      <div class="visitkorea-card">
+        <div class="vk-header">
+          <span class="vk-logo">VK</span>
+          <span class="vk-title">한국관광공사 공식 정보</span>
         </div>
+        <div class="vk-rows" id="vk-rows"></div>
+      </div>
 
-        <div class="diary-card">
-          <div class="diary-header" id="diaryHeader">
-            <div class="diary-header-overlay"></div>
-          </div>
-          <div class="diary-body">
-            <div class="diary-title" id="diaryTitle">—</div>
-            <div class="diary-meta" id="diaryMeta">2026년 5월 1일 · AI 매칭</div>
-            <div class="diary-tags" id="diaryTags"></div>
-          </div>
-        </div>
-
-        <div class="share-section-title">공유하기</div>
-        <div class="share-options">
-          <div class="share-option" onclick="triggerShare('kakao')">
-            <div class="share-icon kakao">💬</div>
-            <div class="share-text">
-              <div class="share-name">카카오톡으로 공유</div>
-              <div class="share-desc">친구에게 여행 코스 추천하기</div>
-            </div>
-            <div class="share-arrow">›</div>
-          </div>
-          <div class="share-option" onclick="triggerShare('insta')">
-            <div class="share-icon insta">📸</div>
-            <div class="share-text">
-              <div class="share-name">인스타그램 스토리</div>
-              <div class="share-desc">감성 여행 카드 공유하기</div>
-            </div>
-            <div class="share-arrow">›</div>
-          </div>
-          <div class="share-option" onclick="triggerShare('link')">
-            <div class="share-icon link">🔗</div>
-            <div class="share-text">
-              <div class="share-name">링크 복사</div>
-              <div class="share-desc">여행 코스 링크 복사하기</div>
-            </div>
-            <div class="share-arrow">›</div>
-          </div>
-        </div>
-
-        <div class="share-toast" id="shareToast">링크가 클립보드에 복사되었어요!</div>
-
-        <button class="btn-home" onclick="resetHome()">
-          🏠 처음으로 돌아가기
+      <div class="detail-sticky">
+        <button class="btn-primary" onclick="showScreen('screen-itinerary','left')">
+          🗓 1박2일 일정 보기
         </button>
       </div>
     </div>
+  </div>
 
-  </div><!-- /phone-shell -->
-</div><!-- /desktop-wrapper -->
+  <!-- ═══════════════════════
+       SCREEN 6 — ITINERARY
+  ═══════════════════════ -->
+  <div class="screen hidden" id="screen-itinerary">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-detail','right')">←</div>
+      <span class="screen-title">추천 일정</span>
+      <span class="badge badge-accent">1박2일</span>
+    </div>
+    <div class="itin-header">
+      <div class="itin-title" id="itin-title">여행 일정</div>
+      <div class="itin-sub" id="itin-sub"></div>
+    </div>
+    <div class="itin-tabs">
+      <button class="itin-tab active" id="tab-day1" onclick="switchDay(1)">Day 1</button>
+      <button class="itin-tab" id="tab-day2" onclick="switchDay(2)">Day 2</button>
+    </div>
+    <div class="itin-day active" id="itin-day1"></div>
+    <div class="itin-day" id="itin-day2"></div>
+    <div class="itin-actions">
+      <button class="btn-primary" onclick="saveTrip()">💾 일정 저장</button>
+      <button class="btn-outline" onclick="shareTrip()">📤 공유하기</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════
+       SCREEN 7 — SAVED
+  ═══════════════════════ -->
+  <div class="screen hidden" id="screen-saved">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-onboarding','right')">←</div>
+      <span class="screen-title">저장된 여행</span>
+    </div>
+    <div class="saved-header">
+      <div class="saved-title">내 무드 트립</div>
+      <div class="saved-sub">저장한 감정 여행 컬렉션</div>
+    </div>
+    <div class="saved-list" id="saved-list"></div>
+    <div class="saved-new-btn">
+      <button class="btn-primary" onclick="showScreen('screen-mood','left')">+ 새 여행 시작하기</button>
+    </div>
+  </div>
+
+</div><!-- /#shell -->
+</div><!-- /#shell-wrap -->
+
+<div id="toast"></div>
 
 <script>
-  // ============ DATA ============
-  const destinations = [
-    {
-      contentId: "126508",
-      title: "담양 죽녹원",
-      addr1: "전라남도 담양군 담양읍 죽녹원로 119",
-      mapx: "126.9889",
-      mapy: "35.3225",
-      tel: "061-380-3149",
-      emotionTags: ["고요", "위로"],
-      matchScore: 97,
-      distance: "3.2km 코스",
-      weather: "☁️ 18°C",
-      scenery: "🎋",
-      heroBg: "linear-gradient(135deg, #1a4a3a 0%, #2d7a5a 40%, #4db87a 100%)",
-      schedule: [
-        { time: "10:00", place: "죽녹원 입구", desc: "대나무 숲 산책로 시작, 향기로운 피톤치드", icon: "🎋" },
-        { time: "12:30", place: "죽향문화체험마을", desc: "한정식 점심, 전통 죽공예 체험", icon: "🍱" },
-        { time: "14:30", place: "소쇄원", desc: "조선시대 별서 정원, 계곡 소리와 함께 명상", icon: "🌿" }
-      ]
-    },
-    {
-      contentId: "264570",
-      title: "양양 서피비치",
-      addr1: "강원특별자치도 양양군 현남면 인구해변길 14-1",
-      mapx: "128.6432",
-      mapy: "37.9876",
-      emotionTags: ["활력", "설렘"],
-      matchScore: 91,
-      distance: "서울 2h 30m",
-      weather: "☀️ 22°C",
-      scenery: "🏄",
-      heroBg: "linear-gradient(135deg, #0a2a4a 0%, #1a5a8a 40%, #2a9ae0 100%)",
-      schedule: [
-        { time: "09:00", place: "서피비치 체크인", desc: "서핑 장비 렌탈 & 레슨 신청", icon: "🏄" },
-        { time: "11:00", place: "오션뷰 카페", desc: "파도 보며 브런치, 시그니처 바나나 라떼", icon: "☕" },
-        { time: "15:00", place: "38 해수욕장", desc: "노을 산책, 감성 사진 촬영 스팟", icon: "🌅" }
-      ]
-    },
-    {
-      contentId: "1886583",
-      title: "경주 황리단길",
-      addr1: "경상북도 경주시 포석로 1080",
-      mapx: "129.2194",
-      mapy: "35.8338",
-      emotionTags: ["호기심", "설렘"],
-      matchScore: 88,
-      distance: "서울 2h 20m (KTX)",
-      weather: "⛅ 20°C",
-      scenery: "🏛️",
-      heroBg: "linear-gradient(135deg, #2a1a0a 0%, #7a4a1a 40%, #c07820 100%)",
-      schedule: [
-        { time: "10:30", place: "황리단길 입구", desc: "한옥 카페 투어, 경주빵 맛집 탐방", icon: "🏮" },
-        { time: "13:00", place: "동궁과 월지", desc: "신라 별궁터, 연꽃 가득한 야경 명소", icon: "🏯" },
-        { time: "16:00", place: "첨성대", desc: "황금빛 노을과 함께하는 역사 산책", icon: "⭐" }
-      ]
-    }
-  ];
+/* ─── DATA ─── */
+const MOODS = [
+  {id:'heal',    emoji:'😌', label:'힐링이 필요해',         color:'#10B981'},
+  {id:'energy',  emoji:'🔥', label:'에너지 넘쳐',           color:'#F97316'},
+  {id:'senti',   emoji:'😢', label:'감성에 젖고 싶어',      color:'#6366F1'},
+  {id:'explore', emoji:'🤩', label:'새로운 것이 보고 싶어', color:'#EC4899'},
+  {id:'rest',    emoji:'😴', label:'조용히 쉬고 싶어',      color:'#14B8A6'},
+  {id:'together',emoji:'💑', label:'누군가와 함께',          color:'#F59E0B'},
+  {id:'solo',    emoji:'🧘', label:'나 자신과 마주하고 싶어',color:'#8B5CF6'},
+];
 
-  // ============ STATE ============
-  let selectedEmotion = null;
-  let selectedCompanion = "혼자";
-  let selectedDestIdx = 0;
-  let currentScreen = "screen1";
-  let prevScreen = null;
+const DESTINATIONS = {
+  heal:[
+    {name:'제주 서귀포 치유의 숲',   region:'제주도',   emoji:'🌲', match:95, tags:['삼림욕','명상','힐링'], reason:'자연 속 고요함이 지친 마음을 회복시켜 줍니다.'},
+    {name:'강원 평창 알펜시아',       region:'강원도',   emoji:'⛰️', match:87, tags:['설경','온천','자연'],  reason:'맑은 공기와 광활한 자연이 마음의 여유를 만들어줍니다.'},
+    {name:'전남 순천만 습지',         region:'전라남도', emoji:'🦩', match:78, tags:['갈대밭','노을','산책'], reason:'시간이 멈춘 듯한 고요한 자연에서 완전한 휴식을 경험하세요.'},
+  ],
+  energy:[
+    {name:'부산 해운대 서핑 비치',    region:'부산',     emoji:'🏄', match:95, tags:['서핑','액티비티','비치'], reason:'파도와 함께하는 에너지 폭발 경험!'},
+    {name:'강원 양양 서피비치',       region:'강원도',   emoji:'🌊', match:89, tags:['서핑','캠핑','야간'],   reason:'한국 서핑 성지에서 에너지를 마음껏 발산하세요.'},
+    {name:'경기 가평 래프팅',         region:'경기도',   emoji:'🚣', match:80, tags:['래프팅','캠핑','모험'], reason:'스릴 넘치는 래프팅으로 활력을 충전하세요.'},
+  ],
+  senti:[
+    {name:'경주 불국사·석굴암',       region:'경상북도', emoji:'🏛️', match:93, tags:['역사','문화','감성'],  reason:'천년의 역사가 담긴 공간에서 깊은 감성에 젖어보세요.'},
+    {name:'전주 한옥마을 야경',       region:'전라북도', emoji:'🏯', match:86, tags:['야경','한옥','감성'],  reason:'은은한 한옥 조명 아래 감성 충만한 밤을 보내세요.'},
+    {name:'통영 동피랑 벽화마을',     region:'경상남도', emoji:'🎨', match:77, tags:['벽화','골목','감성'],  reason:'예술적인 골목에서 감성 사진을 남겨보세요.'},
+  ],
+  explore:[
+    {name:'서울 성수동 팝업 스트리트',region:'서울',     emoji:'🎪', match:96, tags:['팝업','트렌드','힙'],  reason:'매주 새로운 팝업이 열리는 힙한 탐험지!'},
+    {name:'인천 차이나타운·개항장',   region:'인천',     emoji:'🏮', match:88, tags:['이국적','역사','먹거리'],reason:'이국적인 분위기와 새로운 문화를 동시에!'},
+    {name:'부산 감천 문화마을',       region:'부산',     emoji:'🌈', match:81, tags:['색깔','골목','예술'],   reason:'알록달록 골목마다 새로운 발견이 가득합니다.'},
+  ],
+  rest:[
+    {name:'강화도 석모도',            region:'인천',     emoji:'🏝️', match:94, tags:['조용','섬','명상'],   reason:'세상과 단절된 섬에서 진정한 휴식을!'},
+    {name:'충남 태안 안면도',         region:'충청남도', emoji:'🌅', match:85, tags:['노을','해변','여유'],  reason:'긴 해안선을 따라 느릿느릿 걷는 힐링 코스.'},
+    {name:'경북 안동 하회마을',       region:'경상북도', emoji:'🏡', match:76, tags:['전통','고요','느림'],  reason:'시간이 느리게 가는 전통 마을의 여유를 즐기세요.'},
+  ],
+  together:[
+    {name:'서울 남산·N서울타워',      region:'서울',     emoji:'🗼', match:95, tags:['야경','데이트','로맨틱'],reason:'서울 야경을 함께 보며 특별한 추억을!'},
+    {name:'제주 우도',                region:'제주도',   emoji:'🐄', match:88, tags:['드라이브','스노클링','감성'],reason:'함께라서 더 아름다운 우도 하루 코스.'},
+    {name:'춘천 남이섬',              region:'강원도',   emoji:'🍂', match:79, tags:['낭만','자전거','사계절'],reason:'사계절 모두 낭만적인 남이섬 데이트 코스.'},
+  ],
+  solo:[
+    {name:'지리산 노고단 일출',       region:'전라남도', emoji:'🌄', match:97, tags:['트레킹','일출','명상'], reason:'나 자신과 마주하는 가장 완벽한 공간.'},
+    {name:'해남 땅끝마을',            region:'전라남도', emoji:'⬇️', match:87, tags:['끝','시작','사색'],   reason:'한반도 최남단에서 새로운 시작을 다짐하세요.'},
+    {name:'울릉도·독도',              region:'경상북도', emoji:'🏔️', match:80, tags:['고독','자연','특별'], reason:'일상과 완전히 분리된 나만의 섬 여행.'},
+  ],
+};
 
-  // ============ NAVIGATION ============
-  function goTo(targetId) {
-    const current = document.getElementById(currentScreen);
-    const target = document.getElementById(targetId);
-    if (!target || targetId === currentScreen) return;
+const ITINERARY_DATA = {
+  heal:{
+    day1:[
+      {time:'09:00',place:'제주공항 도착',             dur:'30분',    tag:'이동', emoji:'✈️'},
+      {time:'10:00',place:'사려니 숲길 트레킹',        dur:'2시간',   tag:'힐링', emoji:'🌲'},
+      {time:'13:00',place:'로컬 흑돼지 점심',          dur:'1시간',   tag:'맛집', emoji:'🥩'},
+      {time:'15:00',place:'서귀포 치유의 숲 명상',     dur:'2시간',   tag:'명상', emoji:'🧘'},
+      {time:'19:00',place:'한옥 게스트하우스 체크인',  dur:'—',       tag:'숙박', emoji:'🏡'},
+    ],
+    day2:[
+      {time:'07:00',place:'성산일출봉 일출 감상',      dur:'1.5시간', tag:'힐링', emoji:'🌅'},
+      {time:'10:00',place:'섭지코지 산책',             dur:'1시간',   tag:'자연', emoji:'🌊'},
+      {time:'12:00',place:'해녀 체험 + 해산물',        dur:'2시간',   tag:'체험', emoji:'🤿'},
+      {time:'15:00',place:'공항 이동 · 귀가',          dur:'—',       tag:'이동', emoji:'✈️'},
+    ],
+    cost:'약 28만원/1인 (숙박 포함)',
+  },
+  energy:{
+    day1:[
+      {time:'08:00',place:'부산 해운대 도착',          dur:'30분',  tag:'이동',    emoji:'🚄'},
+      {time:'09:30',place:'서핑 레슨 (전문 강사)',     dur:'2시간', tag:'액티비티',emoji:'🏄'},
+      {time:'12:00',place:'해운대 수산시장 점심',      dur:'1시간', tag:'맛집',    emoji:'🦐'},
+      {time:'14:00',place:'파라글라이딩 체험',         dur:'2시간', tag:'모험',    emoji:'🪂'},
+      {time:'18:00',place:'광안리 비치 숙소 체크인',   dur:'—',     tag:'숙박',    emoji:'🏨'},
+    ],
+    day2:[
+      {time:'07:00',place:'새벽 비치 러닝',            dur:'1시간', tag:'활력', emoji:'🏃'},
+      {time:'09:00',place:'부산 트레일 하이킹',        dur:'2시간', tag:'모험', emoji:'⛰️'},
+      {time:'12:00',place:'밀면 + 돼지국밥 점심',     dur:'1시간', tag:'맛집', emoji:'🍜'},
+      {time:'15:00',place:'귀가',                      dur:'—',     tag:'이동', emoji:'🚄'},
+    ],
+    cost:'약 25만원/1인 (숙박 포함)',
+  },
+  senti:{
+    day1:[
+      {time:'09:00',place:'경주 도착',                 dur:'30분',    tag:'이동', emoji:'🚄'},
+      {time:'10:00',place:'불국사 관람',               dur:'2시간',   tag:'문화', emoji:'🏛️'},
+      {time:'13:00',place:'경주 쌈밥 정식',           dur:'1시간',   tag:'맛집', emoji:'🌿'},
+      {time:'15:00',place:'석굴암 방문',               dur:'1.5시간', tag:'감성', emoji:'🪨'},
+      {time:'19:00',place:'황리단길 숙소 체크인',      dur:'—',       tag:'숙박', emoji:'🏡'},
+    ],
+    day2:[
+      {time:'08:00',place:'첨성대 & 안압지 산책',     dur:'1.5시간', tag:'감성', emoji:'🌙'},
+      {time:'10:30',place:'경주 교동법주 시음',        dur:'1시간',   tag:'체험', emoji:'🍶'},
+      {time:'12:00',place:'경주빵 + 쌀밥 한상',       dur:'1시간',   tag:'맛집', emoji:'🍱'},
+      {time:'15:00',place:'귀가',                      dur:'—',       tag:'이동', emoji:'🚄'},
+    ],
+    cost:'약 22만원/1인 (숙박 포함)',
+  },
+  explore:{
+    day1:[
+      {time:'10:00',place:'성수동 도착',               dur:'30분',    tag:'이동', emoji:'🚇'},
+      {time:'10:30',place:'성수동 팝업 스토어 투어',  dur:'2시간',   tag:'탐험', emoji:'🎪'},
+      {time:'13:00',place:'뚝섬역 카페 브런치',       dur:'1.5시간', tag:'맛집', emoji:'☕'},
+      {time:'15:00',place:'서울숲 + 갤러리 투어',     dur:'2시간',   tag:'문화', emoji:'🌳'},
+      {time:'19:00',place:'이태원 글로벌 다이닝',     dur:'2시간',   tag:'맛집', emoji:'🌍'},
+    ],
+    day2:[
+      {time:'10:00',place:'인천 차이나타운 탐방',     dur:'2시간',   tag:'탐험', emoji:'🏮'},
+      {time:'12:00',place:'자장면 거리 점심',         dur:'1시간',   tag:'맛집', emoji:'🍜'},
+      {time:'14:00',place:'개항장 역사 거리',         dur:'1.5시간', tag:'문화', emoji:'🏛️'},
+      {time:'17:00',place:'귀가',                     dur:'—',       tag:'이동', emoji:'🚇'},
+    ],
+    cost:'약 15만원/1인',
+  },
+  rest:{
+    day1:[
+      {time:'10:00',place:'강화도 페리 탑승',         dur:'30분',  tag:'이동', emoji:'⛴️'},
+      {time:'11:00',place:'석모도 도착 + 해변 산책',  dur:'2시간', tag:'여유', emoji:'🚶'},
+      {time:'13:00',place:'섬 로컬 밥집 점심',        dur:'1시간', tag:'맛집', emoji:'🍚'},
+      {time:'15:00',place:'미네르바 온천 스파',       dur:'2시간', tag:'힐링', emoji:'♨️'},
+      {time:'19:00',place:'펜션 체크인 + 노을 감상',  dur:'—',    tag:'숙박', emoji:'🌅'},
+    ],
+    day2:[
+      {time:'08:00',place:'해변 모닝 산책',           dur:'1시간', tag:'여유', emoji:'🌊'},
+      {time:'10:00',place:'강화 고인돌 역사 탐방',    dur:'1시간', tag:'문화', emoji:'🪨'},
+      {time:'12:00',place:'강화 약쑥 설렁탕',        dur:'1시간', tag:'맛집', emoji:'🌿'},
+      {time:'15:00',place:'귀가',                     dur:'—',     tag:'이동', emoji:'⛴️'},
+    ],
+    cost:'약 18만원/1인 (숙박 포함)',
+  },
+  together:{
+    day1:[
+      {time:'17:00',place:'남산 케이블카 탑승',       dur:'30분',  tag:'이동',    emoji:'🚡'},
+      {time:'17:30',place:'N서울타워 전망대',         dur:'1.5시간',tag:'데이트', emoji:'🗼'},
+      {time:'19:30',place:'이태원 로맨틱 레스토랑',  dur:'2시간',  tag:'맛집',   emoji:'🍷'},
+      {time:'22:00',place:'남산 야경 산책',           dur:'1시간',  tag:'로맨틱', emoji:'🌙'},
+      {time:'23:30',place:'숙소 체크인',              dur:'—',      tag:'숙박',   emoji:'🏨'},
+    ],
+    day2:[
+      {time:'08:00',place:'카페 브런치 데이트',       dur:'1.5시간',tag:'여유', emoji:'☕'},
+      {time:'10:30',place:'제주 우도 당일치기 출발',  dur:'—',      tag:'이동', emoji:'✈️'},
+      {time:'14:00',place:'우도 스노클링 + 자전거',  dur:'3시간',  tag:'액티비티',emoji:'🤿'},
+      {time:'18:00',place:'귀가 비행',                dur:'—',      tag:'이동', emoji:'✈️'},
+    ],
+    cost:'약 35만원/2인 (숙박 포함)',
+  },
+  solo:{
+    day1:[
+      {time:'04:00',place:'서울 출발 (심야버스)',     dur:'4시간', tag:'이동',  emoji:'🚌'},
+      {time:'08:00',place:'지리산 성삼재 도착',       dur:'30분',  tag:'이동',  emoji:'🏔️'},
+      {time:'09:00',place:'노고단 일출 트레킹',       dur:'3시간', tag:'트레킹',emoji:'🌄'},
+      {time:'13:00',place:'산장 식사 + 명상',         dur:'2시간', tag:'명상',  emoji:'🍱'},
+      {time:'17:00',place:'마을 민박 체크인',         dur:'—',     tag:'숙박',  emoji:'🏡'},
+    ],
+    day2:[
+      {time:'06:00',place:'아침 명상 산책',           dur:'1시간', tag:'명상', emoji:'🌿'},
+      {time:'08:00',place:'지역 아침 식사',           dur:'1시간', tag:'맛집', emoji:'🥢'},
+      {time:'10:00',place:'해남 땅끝마을 방문',       dur:'2시간', tag:'사색', emoji:'⬇️'},
+      {time:'14:00',place:'귀가',                     dur:'—',     tag:'이동', emoji:'🚌'},
+    ],
+    cost:'약 12만원/1인 (숙박 포함)',
+  },
+};
 
-    current.classList.remove('active');
-    current.classList.add('prev');
-    target.classList.add('active');
-    target.classList.remove('prev');
+const DETAIL_DATA = {
+  heal:{
+    highlights:[
+      {icon:'🌲',name:'사려니 숲길',     desc:'총 15km의 삼나무 숲길, 피톤치드 가득한 힐링 코스'},
+      {icon:'🧘',name:'명상 센터 프로그램',desc:'전문 명상 지도사와 함께하는 45분 소리 명상'},
+      {icon:'♨️',name:'온천 족욕 카페',  desc:'서귀포 로컬 온천수 족욕 + 한라봉 차'},
+    ],
+    ai_reason:'지금 당신의 감정 신호는 자연 회복과 내적 평온을 원하고 있습니다. 제주 서귀포 치유의 숲은 피톤치드 넘치는 삼나무 숲과 명상 공간이 어우러져 지친 심신을 효과적으로 회복시켜 줍니다. 슬라이더 데이터를 분석한 결과 여유(relax) 지수가 높아 느린 속도의 여정이 최적입니다.',
+    vk:{region:'제주특별자치도',type:'자연/힐링',best_season:'봄·가을',access:'제주공항 → 버스 1시간',cost:'중',tips:'평일 방문 시 한산, 주말은 예약 권장'},
+    axis:{energy:20,social:25,adventure:30,senti:75,relax:95},
+  },
+  energy:{
+    highlights:[
+      {icon:'🏄',name:'서핑 레슨',     desc:'초보자도 OK! 전문 강사와 함께하는 2시간 실전 레슨'},
+      {icon:'🪂',name:'파라글라이딩', desc:'해운대 상공 200m에서 바라보는 부산 전경'},
+      {icon:'🎯',name:'비치 스포츠',  desc:'비치 발리볼·카약·제트스키 패키지'},
+    ],
+    ai_reason:'에너지가 넘치는 지금, 몸을 움직이고 자극받을 공간이 필요합니다. 해운대는 국내 최고의 액티비티 인프라를 갖추고 있어 에너지를 폭발적으로 발산하기에 최적입니다.',
+    vk:{region:'부산광역시',type:'액티비티/비치',best_season:'여름',access:'KTX 부산역 → 버스 30분',cost:'중상',tips:'서핑 시즌 6~9월, 사전 예약 필수'},
+    axis:{energy:98,social:80,adventure:92,senti:40,relax:20},
+  },
+  senti:{
+    highlights:[
+      {icon:'🏛️',name:'불국사 새벽 산책',desc:'개장 전 이른 아침, 안개 속 천년 사찰의 고요함'},
+      {icon:'🌙',name:'황리단길 야경',   desc:'레트로 감성 카페·빈티지샵이 즐비한 경주 핫플'},
+      {icon:'🪨',name:'석굴암 명상',     desc:'토함산 정상의 불빛과 함께하는 깊은 사색'},
+    ],
+    ai_reason:'감성이 충만한 지금, 역사와 예술이 녹아든 공간이 당신의 감성을 더욱 풍부하게 만들어줄 것입니다. 경주는 천년의 시간이 살아숨쉬는 공간으로, 감성 여행의 성지입니다.',
+    vk:{region:'경상북도',type:'역사/문화',best_season:'봄·가을',access:'KTX 신경주역 → 버스 15분',cost:'하',tips:'자전거 대여로 고분군 투어 강추'},
+    axis:{energy:30,social:50,adventure:35,senti:95,relax:65},
+  },
+  explore:{
+    highlights:[
+      {icon:'🎪',name:'팝업 스토어 투어',  desc:'매주 업데이트되는 한정판 팝업 3~5곳 코스'},
+      {icon:'🏭',name:'성수 공장 갤러리', desc:'폐공장 개조 갤러리에서 MZ 아트 씬 탐방'},
+      {icon:'🌏',name:'이태원 다문화 거리',desc:'세계 각국 음식 + 이국적인 쇼핑 경험'},
+    ],
+    ai_reason:'새로움을 갈망하는 지금, 서울 성수동은 매주 다른 콘텐츠가 펼쳐지는 살아있는 실험실입니다. 트렌드의 최전선에서 오감을 자극받을 수 있습니다.',
+    vk:{region:'서울특별시',type:'트렌드/문화',best_season:'연중',access:'지하철 성수역 직결',cost:'중',tips:'주말 팝업 일정은 인스타그램으로 사전 확인'},
+    axis:{energy:70,social:85,adventure:80,senti:60,relax:20},
+  },
+  rest:{
+    highlights:[
+      {icon:'♨️',name:'미네르바 온천',  desc:'천연 해수 온천에서 즐기는 깊은 휴식'},
+      {icon:'🌊',name:'석모도 해변',    desc:'관광객 없는 한적한 갯벌·해변 산책'},
+      {icon:'🌅',name:'서해 노을 포인트',desc:'황금빛 서해 노을, 저녁 6시가 클라이맥스'},
+    ],
+    ai_reason:'조용히 쉬고 싶은 지금, 강화도 석모도는 도심의 소음에서 완전히 벗어나 자신만의 시간을 갖기에 최적입니다. 관광 개발이 덜 된 덕분에 진정한 여백을 누릴 수 있습니다.',
+    vk:{region:'인천광역시',type:'섬/휴양',best_season:'봄·가을',access:'강화터미널 → 페리 30분',cost:'하',tips:'해산물 현지 구매로 비용 절감 가능'},
+    axis:{energy:15,social:20,adventure:25,senti:70,relax:98},
+  },
+  together:{
+    highlights:[
+      {icon:'🗼',name:'N서울타워 야경',    desc:'서울 360도 야경과 함께하는 낭만 저녁'},
+      {icon:'🍷',name:'이태원 파인다이닝',desc:'커플 코스 요리로 특별한 저녁 만찬'},
+      {icon:'🤿',name:'우도 스노클링',    desc:'맑은 에메랄드빛 바다에서 함께하는 추억'},
+    ],
+    ai_reason:'함께하고 싶은 지금, 서울 남산과 제주 우도는 두 사람만의 특별한 추억을 만들기에 완벽한 조합입니다. 낮과 밤, 육지와 섬의 대비가 여행을 더욱 풍성하게 만듭니다.',
+    vk:{region:'서울/제주',type:'로맨틱/커플',best_season:'연중',access:'서울 지하철 + 제주 항공',cost:'중상',tips:'남산 팔각정 일몰 감상은 18~19시가 최적'},
+    axis:{energy:55,social:98,adventure:50,senti:85,relax:50},
+  },
+  solo:{
+    highlights:[
+      {icon:'🌄',name:'노고단 일출',     desc:'새벽 4시 출발, 운해 위로 솟아오르는 붉은 태양'},
+      {icon:'🧗',name:'지리산 둘레길',  desc:'80개 마을을 잇는 278km, 나만의 속도로 걷기'},
+      {icon:'⬇️',name:'땅끝탑 사색',   desc:'한반도 최남단에서 느끼는 존재의 무게'},
+    ],
+    ai_reason:'나 자신과 마주하고 싶은 지금, 지리산은 인간의 작음을 일깨우는 자연의 압도감을 선사합니다. 혼자만의 트레킹은 내면의 목소리에 집중할 수 있는 최고의 기회입니다.',
+    vk:{region:'전라남도',type:'트레킹/명상',best_season:'봄·가을',access:'서울 → 구례·남원 고속버스',cost:'하',tips:'노고단 탐방 사전 예약 필수 (국립공원 예약 시스템)'},
+    axis:{energy:60,social:5,adventure:75,senti:80,relax:60},
+  },
+};
 
-    setTimeout(() => {
-      current.classList.remove('prev');
-    }, 320);
+const AXIS_LABELS = ['에너지','사회성','모험심','감성','여유'];
+const AXIS_KEYS   = ['energy','social','adventure','senti','relax'];
 
-    prevScreen = currentScreen;
-    currentScreen = targetId;
-  }
+const SAVED_DEFAULT = [
+  {id:'s1',moodId:'heal',  moodEmoji:'😌',moodLabel:'힐링이 필요해',       moodColor:'#10B981',
+   destName:'제주 서귀포 치유의 숲',region:'제주도',  emoji:'🌲',match:95,tags:['삼림욕','명상','힐링'],date:'2025.04.12'},
+  {id:'s2',moodId:'solo',  moodEmoji:'🧘',moodLabel:'나 자신과 마주하고 싶어',moodColor:'#8B5CF6',
+   destName:'지리산 노고단 일출',  region:'전라남도',emoji:'🌄',match:97,tags:['트레킹','일출','명상'],date:'2025.03.28'},
+];
 
-  // ============ SCREEN 1 INTERACTIONS ============
-  function selectEmotion(btn) {
-    document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedEmotion = btn.dataset.emotion;
-    updateCTA();
-  }
+/* ─── STATE ─── */
+let currentScreen  = 'screen-onboarding';
+let selectedMoodId = null;
+let selectedDestIdx = 0;
+let savedTrips = [...SAVED_DEFAULT];
+let loadingTimer = null;
 
-  function selectCompanion(btn) {
-    document.querySelectorAll('.companion-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedCompanion = btn.dataset.companion;
-  }
+/* ─── SCREEN ROUTER ─── */
+function showScreen(id, dir) {
+  if (id === currentScreen) return;
+  const cur = document.getElementById(currentScreen);
+  const nxt = document.getElementById(id);
+  if (!cur || !nxt) return;
 
-  function updateSlider(val) {
-    document.getElementById('sliderFill').style.width = val + '%';
-    document.getElementById('intensityVal').textContent = val + '%';
-  }
-
-  function updateCTA() {
-    const btn = document.getElementById('ctaBtn');
-    if (selectedEmotion) {
-      btn.disabled = false;
-      btn.innerHTML = '<span>✨</span> AI 매칭 시작';
-    } else {
-      btn.disabled = true;
-      btn.innerHTML = '<span>감정을 선택해 주세요</span>';
-    }
-  }
-
-  // ============ SCREEN 2: AI MATCHING ============
-  function startMatching() {
-    // Update emotion display in screen 2
-    document.getElementById('emotionTagDisplay').textContent = selectedEmotion + ' 감정';
-
-    goTo('screen2');
-    runMatchingAnimation();
-  }
-
-  function runMatchingAnimation() {
-    const fill = document.getElementById('progressFill');
-    const pct = document.getElementById('progressPct');
-    const steps = [
-      document.getElementById('step1'),
-      document.getElementById('step2'),
-      document.getElementById('step3')
-    ];
-    const subtexts = [
-      '감정 벡터를 인코딩하는 중...',
-      'Visit Korea DB에서 최적 장소 탐색 중...',
-      '감성 매칭 알고리즘 적용 중...'
-    ];
-
-    let progress = 0;
-    let stepIdx = 0;
-    const subEl = document.getElementById('aiSubtext');
-
-    steps.forEach(s => s.classList.remove('step-done'));
-    fill.style.width = '0%';
-    pct.textContent = '0%';
-
-    const interval = setInterval(() => {
-      progress += 2;
-      fill.style.width = progress + '%';
-      pct.textContent = progress + '%';
-
-      if (progress === 30 && stepIdx === 0) {
-        steps[0].classList.add('step-done');
-        subEl.textContent = subtexts[1];
-        stepIdx = 1;
-      }
-      if (progress === 65 && stepIdx === 1) {
-        steps[1].classList.add('step-done');
-        subEl.textContent = subtexts[2];
-        stepIdx = 2;
-      }
-      if (progress === 90) {
-        steps[2].classList.add('step-done');
-      }
-      if (progress >= 100) {
-        clearInterval(interval);
-        // Update screen 3 with selection data
-        document.getElementById('resultEmotionLabel').textContent = selectedEmotion;
-        document.getElementById('resultEmotionPill').textContent = selectedEmotion;
-        document.getElementById('resultCompanionPill').textContent = selectedCompanion;
-        setTimeout(() => goTo('screen3'), 300);
-      }
-    }, 22);
-  }
-
-  // ============ SCREEN 4: DETAIL ============
-  function goToDetail(idx) {
-    selectedDestIdx = idx;
-    const dest = destinations[idx];
-
-    // Hero
-    document.getElementById('detailHeroBg').style.background = dest.heroBg;
-    document.getElementById('detailHeroBg').textContent = dest.scenery;
-    document.getElementById('detailHeroBg').style.fontSize = '80px';
-    document.getElementById('detailHeroBg').style.display = 'flex';
-    document.getElementById('detailHeroBg').style.alignItems = 'center';
-    document.getElementById('detailHeroBg').style.justifyContent = 'center';
-
-    document.getElementById('detailName').textContent = dest.title;
-    document.getElementById('detailAddr').textContent = dest.addr1;
-    document.getElementById('detailScore').textContent = dest.matchScore + '%';
-    document.getElementById('detailWeather').textContent = dest.weather;
-    document.getElementById('detailDist').textContent = dest.distance;
-    document.getElementById('detailContentId').textContent = dest.contentId;
-    document.getElementById('mapLabel').textContent = dest.title;
-    document.getElementById('mapCoords').textContent = dest.mapx + ', ' + dest.mapy;
-
-    // Timeline
-    const tl = document.getElementById('detailTimeline');
-    tl.innerHTML = dest.schedule.map(s => `
-      <div class="timeline-item">
-        <div class="timeline-dot">${s.icon}</div>
-        <div class="timeline-content">
-          <div class="timeline-time">${s.time}</div>
-          <div class="timeline-place">${s.place}</div>
-          <div class="timeline-desc">${s.desc}</div>
-        </div>
-      </div>
-    `).join('');
-
-    goTo('screen4');
-  }
-
-  // ============ SCREEN 5: SAVE & SHARE ============
-  function updateDiaryCard() {
-    const dest = destinations[selectedDestIdx];
-    document.getElementById('diaryHeader').style.background = dest.heroBg;
-    document.getElementById('diaryTitle').textContent = dest.title + ' 여행 코스';
-    document.getElementById('diaryMeta').textContent = '2026년 5월 1일 · AI 매칭 · ' + selectedCompanion;
-    const tagsEl = document.getElementById('diaryTags');
-    tagsEl.innerHTML = `
-      <div class="diary-tag tag-emotion">${selectedEmotion || '—'}</div>
-      ${dest.emotionTags.map(t => `<div class="diary-tag tag-place">${t}</div>`).join('')}
-      <div class="diary-tag tag-place">${dest.weather}</div>
-    `;
-  }
-
-  // Intercept screen5 transition to update diary card
-  const origGoTo = goTo;
-
-  function triggerShare(type) {
-    const toast = document.getElementById('shareToast');
-    const messages = {
-      kakao: '카카오톡 공유가 준비되었어요!',
-      insta: '인스타그램 스토리 카드가 생성되었어요!',
-      link: '링크가 클립보드에 복사되었어요!'
-    };
-    toast.textContent = messages[type];
-    toast.classList.add('visible');
-    setTimeout(() => toast.classList.remove('visible'), 2500);
-  }
-
-  function resetHome() {
-    // Reset state
-    selectedEmotion = null;
-    selectedCompanion = "혼자";
-    document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('selected'));
-    document.querySelectorAll('.companion-btn').forEach(b => b.classList.remove('selected'));
-    document.querySelector('.companion-btn[data-companion="혼자"]').classList.add('selected');
-    updateSlider(65);
-    document.getElementById('intensitySlider').value = 65;
-    updateCTA();
-
-    // Navigate: close all screens, activate screen1
-    document.querySelectorAll('.screen').forEach(s => {
-      s.classList.remove('active', 'prev');
-    });
-
-    // Animate screen5 out, screen1 in
-    const s5 = document.getElementById('screen5');
-    const s1 = document.getElementById('screen1');
-    s5.classList.add('active');
-    s5.style.transform = 'translateX(0)';
-
-    requestAnimationFrame(() => {
-      s5.style.transition = 'transform 320ms cubic-bezier(0.4, 0, 0.2, 1)';
-      s5.style.transform = 'translateX(100%)';
-      s1.classList.add('active');
-      s1.style.transform = 'translateX(0)';
-      currentScreen = 'screen1';
-      setTimeout(() => {
-        s5.classList.remove('active');
-        s5.style.transform = '';
-        s5.style.transition = '';
-      }, 320);
-    });
-  }
-
-  // ============ PATCH goTo for screen5 diary update ============
-  const _goToOriginal = goTo;
-  window.goTo = function(targetId) {
-    if (targetId === 'screen5') {
-      updateDiaryCard();
-    }
-    _goToOriginal(targetId);
-  };
-
-  // Re-wire onclick references that captured local goTo
-  document.querySelectorAll('[onclick]').forEach(el => {
-    const attr = el.getAttribute('onclick');
-    if (attr && attr.includes('goTo(')) {
-      el.onclick = function() {
-        const match = attr.match(/goTo\('([^']+)'\)/);
-        if (match) window.goTo(match[1]);
-      };
-    }
+  // Reset
+  ['slide-in-left','slide-in-right','slide-out-left','slide-out-right'].forEach(c => {
+    cur.classList.remove(c); nxt.classList.remove(c);
   });
 
-  // ============ INIT ============
-  document.getElementById('screen1').classList.add('active');
+  nxt.classList.remove('hidden');
+  cur.classList.add(dir === 'left' ? 'slide-out-left' : 'slide-out-right');
+  nxt.classList.add(dir === 'left' ? 'slide-in-left' : 'slide-in-right');
+
+  setTimeout(() => {
+    cur.classList.add('hidden');
+    cur.classList.remove('slide-out-left','slide-out-right');
+    nxt.classList.remove('slide-in-left','slide-in-right');
+    nxt.scrollTop = 0;
+  }, 340);
+
+  currentScreen = id;
+
+  // Lifecycle
+  if (id === 'screen-mood')      renderMoodGrid();
+  if (id === 'screen-results')   renderResults();
+  if (id === 'screen-detail')    renderDetail();
+  if (id === 'screen-itinerary') renderItinerary();
+  if (id === 'screen-saved')     renderSaved();
+}
+
+/* ─── MOOD GRID ─── */
+function renderMoodGrid() {
+  const grid = document.getElementById('mood-grid');
+  if (grid.dataset.rendered) {
+    // Restore selection
+    MOODS.forEach(m => {
+      const card = document.getElementById('mc-' + m.id);
+      if (card) card.classList.toggle('selected', m.id === selectedMoodId);
+    });
+    return;
+  }
+  grid.innerHTML = MOODS.map(m => `
+    <div class="mood-card" id="mc-${m.id}" style="--mc:${m.color}" onclick="selectMood('${m.id}')">
+      <span class="mc-emoji">${m.emoji}</span>
+      <div class="mc-label">${m.label}</div>
+      <div class="mc-check">✓</div>
+    </div>
+  `).join('');
+  grid.dataset.rendered = '1';
+  if (selectedMoodId) {
+    const c = document.getElementById('mc-' + selectedMoodId);
+    if (c) c.classList.add('selected');
+  }
+}
+
+function selectMood(id) {
+  if (selectedMoodId) {
+    const prev = document.getElementById('mc-' + selectedMoodId);
+    if (prev) prev.classList.remove('selected');
+  }
+  selectedMoodId = id;
+  const card = document.getElementById('mc-' + id);
+  if (card) card.classList.add('selected');
+  document.getElementById('btn-ai-match').disabled = false;
+}
+
+/* ─── LOADING ─── */
+function startMatching() {
+  if (!selectedMoodId) return;
+  const mood = MOODS.find(m => m.id === selectedMoodId);
+  document.getElementById('loading-emoji').textContent = mood.emoji;
+  showScreen('screen-loading', 'left');
+
+  // Reset UI
+  const fill = document.getElementById('progress-fill');
+  fill.style.width = '0%';
+  ['lstep-1','lstep-2','lstep-3'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+  });
+  document.getElementById('lstep-1').classList.add('active');
+  document.getElementById('loading-status').textContent = '감정 신호 분석 중...';
+
+  let progress = 0;
+  if (loadingTimer) clearInterval(loadingTimer);
+  loadingTimer = setInterval(() => {
+    progress += 1.6;
+    fill.style.width = Math.min(progress, 100) + '%';
+
+    if (progress >= 33 && progress < 34) {
+      document.getElementById('lstep-1').classList.add('done');
+      document.getElementById('lstep-1').classList.remove('active');
+      document.getElementById('lstep-2').classList.add('active');
+      document.getElementById('loading-status').textContent = '목적지 매칭 중...';
+    }
+    if (progress >= 66 && progress < 67) {
+      document.getElementById('lstep-2').classList.add('done');
+      document.getElementById('lstep-2').classList.remove('active');
+      document.getElementById('lstep-3').classList.add('active');
+      document.getElementById('loading-status').textContent = '일정 최적화 중...';
+    }
+    if (progress >= 100) {
+      clearInterval(loadingTimer);
+      document.getElementById('lstep-3').classList.add('done');
+      document.getElementById('lstep-3').classList.remove('active');
+      setTimeout(() => showScreen('screen-results', 'left'), 280);
+    }
+  }, 25);
+}
+
+/* ─── RESULTS ─── */
+function renderResults() {
+  if (!selectedMoodId) return;
+  const mood  = MOODS.find(m => m.id === selectedMoodId);
+  const dests = DESTINATIONS[selectedMoodId] || [];
+
+  const badge = document.getElementById('results-mood-badge');
+  badge.textContent = mood.emoji + ' ' + mood.label;
+  badge.style.cssText += `;color:${mood.color};border-color:${mood.color};background:${mood.color}18`;
+
+  document.getElementById('results-list').innerHTML = dests.map((d, i) => `
+    <div class="dest-card" onclick="openDetail(${i})">
+      <div class="dest-card-top">
+        <div class="dest-card-emoji-wrap">${d.emoji}</div>
+        <div class="dest-card-info">
+          <div class="dest-card-match">✨ ${d.match}% 매칭</div>
+          <div class="dest-card-name">${d.name}</div>
+          <div class="dest-card-region">📍 ${d.region}</div>
+          <div class="dest-card-reason">${d.reason}</div>
+          <div class="dest-card-tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        </div>
+      </div>
+      <div class="dest-card-footer">
+        <span class="dest-card-footer-text">상세 정보 및 일정 보기</span>
+        <span class="dest-card-arrow">→</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openDetail(idx) {
+  selectedDestIdx = idx;
+  showScreen('screen-detail', 'left');
+}
+
+/* ─── DETAIL ─── */
+function renderDetail() {
+  if (!selectedMoodId) return;
+  const dests  = DESTINATIONS[selectedMoodId] || [];
+  const dest   = dests[selectedDestIdx] || dests[0];
+  const detail = DETAIL_DATA[selectedMoodId];
+  if (!dest || !detail) return;
+
+  document.getElementById('detail-hero-emoji').textContent = dest.emoji;
+  document.getElementById('detail-match-badge').textContent = dest.match + '% 매칭';
+  document.getElementById('detail-name').textContent = dest.name;
+  document.getElementById('detail-region').textContent = '📍 ' + dest.region;
+  document.getElementById('gauge-number').textContent = dest.match + '%';
+  document.getElementById('gauge-sub').textContent =
+    '선택한 감정과 이 여행지의 분위기가 ' + (dest.match >= 90 ? '매우 잘' : '잘') + ' 맞습니다.';
+
+  // Gauge animation
+  const circ   = 2 * Math.PI * 29;
+  const offset = circ * (1 - dest.match / 100);
+  const gaugeFill = document.getElementById('gauge-fill');
+  gaugeFill.style.strokeDasharray = circ;
+  gaugeFill.style.strokeDashoffset = circ;
+  setTimeout(() => { gaugeFill.style.strokeDashoffset = offset; }, 80);
+
+  // Axis bars
+  const axisWrap = document.getElementById('axis-bars');
+  axisWrap.innerHTML = AXIS_KEYS.map((key, i) => {
+    const val = detail.axis[key] || 50;
+    return `
+      <div class="axis-row">
+        <div class="axis-label-row">
+          <span class="axis-name">${AXIS_LABELS[i]}</span>
+          <span class="axis-score">${val}%</span>
+        </div>
+        <div class="axis-track">
+          <div class="axis-fill" data-w="${val}%" style="width:0%"></div>
+        </div>
+      </div>`;
+  }).join('');
+  setTimeout(() => {
+    axisWrap.querySelectorAll('.axis-fill').forEach(el => { el.style.width = el.dataset.w; });
+  }, 100);
+
+  // Highlights
+  document.getElementById('highlights-grid').innerHTML = detail.highlights.map(h => `
+    <div class="highlight-item">
+      <span class="highlight-icon">${h.icon}</span>
+      <div>
+        <div class="highlight-name">${h.name}</div>
+        <div class="highlight-desc">${h.desc}</div>
+      </div>
+    </div>`).join('');
+
+  // AI quote
+  document.getElementById('ai-quote-text').textContent = detail.ai_reason;
+
+  // Visit Korea
+  const vk = detail.vk;
+  document.getElementById('vk-rows').innerHTML = [
+    ['지역',      vk.region],
+    ['여행 유형', vk.type],
+    ['최적 시즌', vk.best_season],
+    ['접근성',    vk.access],
+    ['비용 지수', vk.cost],
+    ['여행 팁',   vk.tips],
+  ].map(([k,v]) => `
+    <div class="vk-row">
+      <span class="vk-key">${k}</span>
+      <span class="vk-val">${v}</span>
+    </div>`).join('');
+}
+
+/* ─── ITINERARY ─── */
+function renderItinerary() {
+  if (!selectedMoodId) return;
+  const mood   = MOODS.find(m => m.id === selectedMoodId);
+  const dests  = DESTINATIONS[selectedMoodId] || [];
+  const dest   = dests[selectedDestIdx] || dests[0];
+  const itin   = ITINERARY_DATA[selectedMoodId] || ITINERARY_DATA.heal;
+
+  document.getElementById('itin-title').textContent = (dest ? dest.name : '여행') + ' 일정';
+  document.getElementById('itin-sub').textContent   = mood.emoji + ' ' + mood.label + ' · 맞춤 일정';
+
+  renderDayTimeline('itin-day1', itin.day1, itin.cost, true);
+  renderDayTimeline('itin-day2', itin.day2, itin.cost, false);
+  switchDay(1);
+}
+
+function renderDayTimeline(containerId, items, cost, showCost) {
+  const wrap = document.getElementById(containerId);
+  const rows = items.map((item, i) => `
+    <div class="itin-item${i === items.length - 1 ? ' itin-last' : ''}">
+      <div class="itin-time-col"><div class="itin-time">${item.time}</div></div>
+      <div class="itin-line-col">
+        <div class="itin-dot"></div>
+        <div class="itin-connector"></div>
+      </div>
+      <div class="itin-content-col">
+        <div class="itin-card">
+          <div class="itin-card-top">
+            <span class="itin-emoji">${item.emoji}</span>
+            <span class="itin-place">${item.place}</span>
+          </div>
+          <div class="itin-meta">
+            <span class="itin-dur">⏱ ${item.dur}</span>
+            <span class="itin-mood-tag">${item.tag}</span>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const costHTML = showCost
+    ? `<div class="itin-cost-card">
+        <span class="itin-cost-label">💰 예상 비용</span>
+        <span class="itin-cost-val">${cost}</span>
+       </div>`
+    : '';
+
+  wrap.innerHTML = rows + costHTML;
+}
+
+function switchDay(n) {
+  document.getElementById('itin-day1').classList.toggle('active', n === 1);
+  document.getElementById('itin-day2').classList.toggle('active', n === 2);
+  document.getElementById('tab-day1').classList.toggle('active', n === 1);
+  document.getElementById('tab-day2').classList.toggle('active', n === 2);
+}
+
+/* ─── SAVED ─── */
+function renderSaved() {
+  const list = document.getElementById('saved-list');
+  if (savedTrips.length === 0) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <span class="empty-state-icon">💭</span>
+        <div class="empty-state-text">아직 저장된 여행이 없어요.<br>지금 기분을 분석해 여행지를 찾아보세요!</div>
+      </div>`;
+    return;
+  }
+  list.innerHTML = savedTrips.map(t => `
+    <div class="saved-card">
+      <div class="saved-card-accent" style="background:${t.moodColor}"></div>
+      <div class="saved-card-body">
+        <div class="saved-card-top">
+          <div class="saved-card-mood" style="color:${t.moodColor};border-color:${t.moodColor}40;background:${t.moodColor}14">
+            ${t.moodEmoji} ${t.moodLabel}
+          </div>
+          <div class="saved-card-date">${t.date}</div>
+        </div>
+        <div class="saved-card-dest">
+          <span class="saved-card-emoji">${t.emoji}</span>
+          <div class="saved-card-info">
+            <div class="saved-card-name">${t.destName}</div>
+            <div class="saved-card-region">📍 ${t.region}</div>
+            <div class="saved-card-tags">${t.tags.map(tag=>`<span class="tag">${tag}</span>`).join('')}</div>
+          </div>
+        </div>
+      </div>
+      <div class="saved-card-footer">
+        <span class="saved-card-match">✨ ${t.match}% 매칭</span>
+        <span class="saved-delete" onclick="deleteSaved('${t.id}')">삭제 ×</span>
+      </div>
+    </div>`).join('');
+}
+
+function saveTrip() {
+  if (!selectedMoodId) return;
+  const mood  = MOODS.find(m => m.id === selectedMoodId);
+  const dests = DESTINATIONS[selectedMoodId] || [];
+  const dest  = dests[selectedDestIdx] || dests[0];
+  if (!mood || !dest) return;
+
+  if (savedTrips.some(t => t.moodId === selectedMoodId && t.destName === dest.name)) {
+    showToast('이미 저장된 여행입니다!');
+    return;
+  }
+  const now = new Date();
+  savedTrips.unshift({
+    id: 's' + Date.now(),
+    moodId: selectedMoodId, moodEmoji: mood.emoji,
+    moodLabel: mood.label, moodColor: mood.color,
+    destName: dest.name, region: dest.region,
+    emoji: dest.emoji, match: dest.match, tags: dest.tags,
+    date: `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`,
+  });
+  showToast('💾 여행이 저장되었습니다!');
+}
+
+function deleteSaved(id) {
+  savedTrips = savedTrips.filter(t => t.id !== id);
+  renderSaved();
+  showToast('삭제되었습니다');
+}
+
+function shareTrip() {
+  showToast('📤 공유 링크가 복사되었습니다!');
+}
+
+/* ─── TOAST ─── */
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+}
 </script>
 </body>
 </html>
