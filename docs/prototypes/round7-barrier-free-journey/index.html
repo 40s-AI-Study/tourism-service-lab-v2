@@ -21,11 +21,15 @@
 
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(6,6,9,0.85); backdrop-filter: blur(16px);
+    background: rgba(6,6,9,0.92); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 24px; height: 56px;
+    display: flex; flex-direction: column;
   }
+  .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 52px; flex-shrink: 0; }
+  .nav-sections { display: flex; overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--border); padding: 0 8px; }
+  .nav-sections::-webkit-scrollbar { display: none; }
+  .nsl { white-space: nowrap; font-size: 11px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 7px 12px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .nsl:hover, .nsl.active { color: var(--accent); border-bottom-color: var(--accent); }
   .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; color: var(--fg); text-decoration: none; }
   .nav-logo span { color: var(--accent); }
   .nav-right { display: flex; align-items: center; gap: 12px; }
@@ -127,7 +131,8 @@
     .cards-3 { grid-template-columns: 1fr; }
     .screens-row { grid-template-columns: 1fr; }
     .score-grid { grid-template-columns: 1fr; }
-    nav { padding: 0 16px; }
+    .nav-top { padding: 0 16px; }
+    .nav-sections { padding: 0 4px; }
     .container { padding: 0 16px; }
     section { padding: 48px 0; }
     .hero { padding: 64px 0 56px; }
@@ -138,10 +143,28 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">♿ <span>Barrier-Free</span> Journey</a>
-  <div class="nav-right">
-    <a href="../../index.html" class="nav-back">← 목록으로</a>
-    <span class="round-badge">Round 7</span>
+  <div class="nav-top">
+    <a href="#" class="nav-logo">♿ <span>Barrier-Free</span> Journey</a>
+    <div class="nav-right">
+      <a href="../../index.html" class="nav-back">← 목록으로</a>
+      <span class="round-badge">Round 7</span>
+    </div>
+  </div>
+  <div class="nav-sections" id="nav-sections">
+    <a href="#overview" class="nsl">01 개요</a>
+    <a href="#research" class="nsl">02 리서치</a>
+    <a href="#ideation" class="nsl">03 아이디어</a>
+    <a href="#criteria" class="nsl">04 심사기준</a>
+    <a href="#mock-ui" class="nsl">05 Mock UI</a>
+    <a href="#openapi" class="nsl">06 OpenAPI</a>
+    <a href="#team-score" class="nsl">07 팀점수</a>
+    <a href="#business" class="nsl">08 사업성</a>
+    <a href="#ai-diff" class="nsl">09 AI차별화</a>
+    <a href="#personas-sim" class="nsl">10 페르소나</a>
+    <a href="#api-sequence" class="nsl">11 API시퀀스</a>
+    <a href="#mvp" class="nsl">12 MVP</a>
+    <a href="#roadmap" class="nsl">13 개발일정</a>
+    <a href="#screens" class="nsl">14 화면</a>
   </div>
 </nav>
 
@@ -903,6 +926,21 @@ AI 경로 최적화 (자체 알고리즘: 장애유형 × 경사도 × 엘리베
   <div class="footer-meta" style="margin-top:8px">2026 한국관광 공모전 Round 7 프로토타입 · BA Score 97/130 · 팀 합의 7.9/10</div>
   <div class="footer-meta" style="margin-top:4px">장애인 · 시니어 · 영유아 — 모두를 위한 무장애 통합 여행 플랫폼</div>
 </footer>
+
+<script>
+const nls = document.querySelectorAll('.nsl');
+const secs = document.querySelectorAll('section[id]');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      nls.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector('.nsl[href="#' + e.target.id + '"]');
+      if (a) { a.classList.add('active'); a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+    }
+  });
+}, { threshold: 0.2, rootMargin: '-90px 0px -40% 0px' });
+secs.forEach(s => io.observe(s));
+</script>
 
 </body>
 </html>
