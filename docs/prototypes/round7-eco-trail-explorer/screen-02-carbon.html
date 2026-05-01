@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screen 02 — 탄소발자국 계산기 · Eco Trail Explorer</title>
+<style>
+:root{--bg:#060609;--surface:#0D0D13;--card:#13131A;--border:#1E1E28;--fg:#F4F4F8;--muted:#9898AC;--muted2:#5E5E72;--accent:#22C55E;--accent-dim:#16A34A;--accent-soft:rgba(34,197,94,0.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(6,6,9,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--fg);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:8px;}
+.nav-link{color:var(--muted);font-size:12px;text-decoration:none;border:1px solid var(--border);padding:3px 10px;border-radius:6px;transition:color 0.2s;}
+.nav-link.active{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+.nav-next{background:var(--accent);color:#000;font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;text-decoration:none;}
+.container{max-width:900px;margin:0 auto;padding:0 24px;}
+.page-hero{padding:48px 0 32px;border-bottom:1px solid var(--border);}
+.screen-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border:1px solid rgba(34,197,94,0.25);color:var(--accent);font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:16px;}
+h1{font-size:clamp(24px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:10px;}
+.page-sub{font-size:15px;color:var(--muted);}
+section{padding:32px 0;border-bottom:1px solid var(--border);}
+section:last-of-type{border-bottom:none;}
+.sec-label{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+h2{font-size:20px;font-weight:800;margin-bottom:14px;}
+
+/* COURSE SUMMARY */
+.course-summary{background:var(--card);border:1px solid rgba(34,197,94,0.3);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;}
+.cs-emoji{font-size:36px;}
+.cs-body{flex:1;}
+.cs-name{font-size:16px;font-weight:700;margin-bottom:4px;}
+.cs-meta{font-size:12px;color:var(--muted);}
+
+/* TRANSPORT SELECTOR */
+.transport-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
+.transport-card{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.transport-card:hover,.transport-card.selected{border-color:var(--accent);background:var(--accent-soft);}
+.transport-icon{font-size:28px;margin-bottom:8px;}
+.transport-name{font-size:12px;font-weight:700;margin-bottom:4px;}
+.transport-co2{font-size:15px;font-weight:800;}
+.transport-co2.low{color:var(--accent);}
+.transport-co2.mid{color:#EAB308;}
+.transport-co2.high{color:#EF4444;}
+.transport-label{font-size:10px;color:var(--muted2);margin-top:2px;}
+
+/* RESULT */
+.result-box{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(22,163,74,0.05));border:1px solid rgba(34,197,94,0.3);border-radius:20px;padding:28px;text-align:center;margin-top:24px;}
+.result-num{font-size:56px;font-weight:900;color:var(--accent);line-height:1;}
+.result-unit{font-size:16px;color:var(--muted);margin-top:6px;}
+.result-compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;}
+.cmp-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+.cmp-val{font-size:18px;font-weight:800;}
+.cmp-label{font-size:10px;color:var(--muted2);margin-top:4px;}
+.saving-bar-wrap{background:var(--border);border-radius:8px;height:8px;margin:16px 0 6px;}
+.saving-bar{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#86EFAC);transition:width 0.8s ease;}
+.saving-text{font-size:12px;color:var(--muted);text-align:right;}
+
+/* CERT CARD */
+.cert-card{background:linear-gradient(135deg,#0a2d1a,#0d1f0d);border:1px solid rgba(34,197,94,0.4);border-radius:16px;padding:24px;text-align:center;margin-top:24px;}
+.cert-icon{font-size:48px;margin-bottom:12px;}
+.cert-title{font-size:18px;font-weight:800;color:var(--accent);margin-bottom:6px;}
+.cert-sub{font-size:13px;color:var(--muted);}
+.cert-btn{display:inline-block;margin-top:16px;background:var(--accent);color:#000;font-size:13px;font-weight:700;padding:10px 24px;border-radius:10px;cursor:pointer;border:none;font-family:inherit;transition:background 0.2s;}
+.cert-btn:hover{background:var(--accent-dim);}
+
+@media(max-width:600px){.container{padding:0 16px;}.transport-grid{grid-template-columns:repeat(2,1fr);}.result-compare{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">🌿 <span>Eco Trail</span> Explorer</a>
+  <div class="nav-links">
+    <a href="screen-01-trail.html" class="nav-link">01 코스탐색</a>
+    <span class="nav-link active">02 탄소계산</span>
+    <a href="screen-03-camp.html" class="nav-link">03 캠핑장</a>
+    <a href="screen-04-challenge.html" class="nav-link">04 챌린지</a>
+    <a href="screen-05-esgreport.html" class="nav-link">05 ESG</a>
+    <a href="screen-03-camp.html" class="nav-next">다음 →</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-hero">
+    <div class="screen-badge">🌿 Screen 02 — 탄소발자국 계산기</div>
+    <h1>이동수단 선택으로<br>탄소발자국을 줄이세요</h1>
+    <p class="page-sub">교통수단·숙박 조합별 CO₂ 실시간 비교 — AI가 최적 친환경 경로를 제안합니다</p>
+  </div>
+
+  <section>
+    <div class="sec-label">선택된 코스</div>
+    <div class="course-summary">
+      <div class="cs-emoji">🏔</div>
+      <div class="cs-body">
+        <div class="cs-name">북한산 둘레길 3구간 · 17.2km</div>
+        <div class="cs-meta">서울 도봉구 출발 · 예상 소요 5시간 · 에코 인증 코스</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">이동수단 선택</div>
+    <h2>어떻게 이동하실 건가요?</h2>
+    <div class="transport-grid">
+      <div class="transport-card selected" onclick="selectTransport(this,0.18,'지하철+버스')">
+        <div class="transport-icon">🚇</div>
+        <div class="transport-name">지하철+버스</div>
+        <div class="transport-co2 low" id="t0">0.18 kg</div>
+        <div class="transport-label">CO₂e</div>
+      </div>
+      <div class="transport-card" onclick="selectTransport(this,0.28,'기차+버스')">
+        <div class="transport-icon">🚆</div>
+        <div class="transport-name">기차+버스</div>
+        <div class="transport-co2 low">0.28 kg</div>
+        <div class="transport-label">CO₂e</div>
+      </div>
+      <div class="transport-card" onclick="selectTransport(this,0.45,'카풀 (4인)')">
+        <div class="transport-icon">🚗</div>
+        <div class="transport-name">카풀 (4인)</div>
+        <div class="transport-co2 mid">0.45 kg</div>
+        <div class="transport-label">CO₂e</div>
+      </div>
+      <div class="transport-card" onclick="selectTransport(this,0.62,'자가용')">
+        <div class="transport-icon">🚙</div>
+        <div class="transport-name">자가용</div>
+        <div class="transport-co2 high">0.62 kg</div>
+        <div class="transport-label">CO₂e</div>
+      </div>
+    </div>
+
+    <div class="result-box" id="result-box">
+      <div class="result-num" id="result-num">0.18</div>
+      <div class="result-unit">kgCO₂e · <span id="result-transport">지하철+버스</span> 기준</div>
+      <div class="result-compare">
+        <div class="cmp-box"><div class="cmp-val" style="color:var(--accent)" id="saving-pct">71%</div><div class="cmp-label">자가용 대비 절감</div></div>
+        <div class="cmp-box"><div class="cmp-val" style="color:#86EFAC" id="tree-eq">0.9</div><div class="cmp-label">나무 심은 효과 (그루)</div></div>
+        <div class="cmp-box"><div class="cmp-val" style="color:#FCD34D" id="challenge-pt">2.4</div><div class="cmp-label">에코 챌린지 포인트</div></div>
+      </div>
+      <div class="saving-bar-wrap"><div class="saving-bar" id="saving-bar" style="width:71%"></div></div>
+      <div class="saving-text" id="saving-text">자가용(0.62kg) 대비 0.44kg 절감</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">에코 인증 카드</div>
+    <h2>탄소 절감 인증서 발급</h2>
+    <div class="cert-card" id="cert-card">
+      <div class="cert-icon">🏅</div>
+      <div class="cert-title">에코 여행 인증 🌿</div>
+      <div class="cert-sub" id="cert-text">북한산 둘레길 3구간 · 지하철+버스 이동<br>탄소 0.44kg 절감 달성 · Eco Trail Explorer</div>
+      <button class="cert-btn" onclick="issueCert()">인증 카드 발급 &amp; 챌린지 적립</button>
+    </div>
+  </section>
+</div>
+
+<script>
+let currentCO2=0.18,currentTransport='지하철+버스';
+function selectTransport(el,co2,name){
+  document.querySelectorAll('.transport-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  currentCO2=co2;currentTransport=name;
+  updateResult();
+}
+function updateResult(){
+  const base=0.62,saving=base-currentCO2,pct=Math.round(saving/base*100);
+  document.getElementById('result-num').textContent=currentCO2.toFixed(2);
+  document.getElementById('result-transport').textContent=currentTransport;
+  document.getElementById('saving-pct').textContent=pct+'%';
+  document.getElementById('tree-eq').textContent=(saving*2.1).toFixed(1);
+  document.getElementById('challenge-pt').textContent=(saving*5.5).toFixed(1);
+  document.getElementById('saving-bar').style.width=pct+'%';
+  document.getElementById('saving-text').textContent='자가용('+base+'kg) 대비 '+saving.toFixed(2)+'kg 절감';
+  document.getElementById('cert-text').innerHTML='북한산 둘레길 3구간 · '+currentTransport+' 이동<br>탄소 '+saving.toFixed(2)+'kg 절감 달성 · Eco Trail Explorer';
+}
+function issueCert(){
+  const btn=document.querySelector('.cert-btn');
+  btn.textContent='✅ 챌린지 포인트 적립 완료!';
+  btn.style.background='#16A34A';
+  setTimeout(()=>{window.location='screen-04-challenge.html';},1200);
+}
+</script>
+</body>
+</html>

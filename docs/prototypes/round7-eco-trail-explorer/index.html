@@ -27,17 +27,39 @@
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(6,6,9,0.85); backdrop-filter: blur(16px);
+    background: rgba(6,6,9,0.92); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 24px; height: 56px;
+    display: flex; flex-direction: column;
   }
+  .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 52px; flex-shrink: 0; }
+  .nav-sections { display: flex; overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--border); padding: 0 8px; }
+  .nav-sections::-webkit-scrollbar { display: none; }
+  .nsl { white-space: nowrap; font-size: 11px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 7px 12px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .nsl:hover, .nsl.active { color: var(--accent); border-bottom-color: var(--accent); }
   .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; color: var(--fg); text-decoration: none; }
   .nav-logo span { color: var(--accent); }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .round-badge { background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
   .nav-back { color: var(--muted); font-size: 13px; text-decoration: none; border: 1px solid var(--border); padding: 4px 12px; border-radius: 6px; transition: color 0.2s, border-color 0.2s; }
   .nav-back:hover { color: var(--fg); border-color: var(--muted2); }
+  /* extra sections styles */
+  .persona-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
+  .persona-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+  .persona-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent-soft); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
+  .persona-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+  .persona-role { font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+  .persona-detail { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+  .persona-sim { background: var(--surface); border-radius: 10px; padding: 12px; margin-top: 10px; }
+  .persona-sim-title { font-size: 10px; font-weight: 700; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .sim-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; font-size: 11px; color: var(--muted); }
+  .sim-num { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #000; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .seq-wrap { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .seq-row { display: flex; align-items: stretch; gap: 0; }
+  .seq-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; flex: 1; }
+  .seq-box-title { font-size: 11px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+  .seq-box-sub { font-size: 10px; color: var(--muted); }
+  .seq-arrow { display: flex; align-items: center; padding: 0 8px; color: var(--accent); font-size: 16px; flex-shrink: 0; }
+  .cache-tag { display: inline-block; background: rgba(34,197,94,0.15); color: var(--accent); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-top: 4px; }
 
   /* LAYOUT */
   .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
@@ -154,7 +176,9 @@
     .cards-3 { grid-template-columns: 1fr; }
     .screens-row { grid-template-columns: 1fr; }
     .score-grid { grid-template-columns: 1fr; }
-    nav { padding: 0 16px; }
+    .nav-top { padding: 0 16px; }
+    .nav-sections { padding: 0 4px; }
+    .persona-grid { grid-template-columns: 1fr; }
     .container { padding: 0 16px; }
     section { padding: 48px 0; }
     .hero { padding: 64px 0 56px; }
@@ -165,10 +189,28 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">🌿 <span>Eco Trail</span> Explorer</a>
-  <div class="nav-right">
-    <a href="../../index.html" class="nav-back">← 목록으로</a>
-    <span class="round-badge">Round 7</span>
+  <div class="nav-top">
+    <a href="#" class="nav-logo">🌿 <span>Eco Trail</span> Explorer</a>
+    <div class="nav-right">
+      <a href="../../index.html" class="nav-back">← 목록으로</a>
+      <span class="round-badge">Round 7</span>
+    </div>
+  </div>
+  <div class="nav-sections" id="nav-sections">
+    <a href="#overview" class="nsl">01 개요</a>
+    <a href="#research" class="nsl">02 리서치</a>
+    <a href="#ideation" class="nsl">03 아이디어</a>
+    <a href="#criteria" class="nsl">04 심사기준</a>
+    <a href="#mock-ui" class="nsl">05 Mock UI</a>
+    <a href="#openapi" class="nsl">06 OpenAPI</a>
+    <a href="#team-score" class="nsl">07 팀점수</a>
+    <a href="#business" class="nsl">08 사업성</a>
+    <a href="#ai-diff" class="nsl">09 AI차별화</a>
+    <a href="#personas-sim" class="nsl">10 페르소나</a>
+    <a href="#api-sequence" class="nsl">11 API시퀀스</a>
+    <a href="#mvp" class="nsl">12 MVP</a>
+    <a href="#roadmap" class="nsl">13 개발일정</a>
+    <a href="#screens" class="nsl">14 화면</a>
   </div>
 </nav>
 
@@ -529,12 +571,244 @@
   </div>
 </section>
 
+<!-- SECTION 10: 페르소나 시뮬레이션 -->
+<section id="personas-sim">
+  <div class="container">
+    <div class="section-label">Section 10 — 페르소나 시뮬레이션</div>
+    <h2>3종 페르소나 사용자 여정</h2>
+    <p>KR 내국인 에코 여행자 · 외국인 백패커 · ESG 담당 B2B 고객 — 각 페르소나의 실제 앱 사용 시나리오를 시뮬레이션합니다.</p>
+    <div class="persona-grid">
+      <!-- Persona A -->
+      <div class="persona-card">
+        <div class="persona-avatar">🧑‍💼</div>
+        <div class="persona-name">김지수 (31세)</div>
+        <div class="persona-role">KR · 서울 거주 마케터 · 에코 여행자</div>
+        <div class="persona-detail">주말마다 트레킹을 즐기며 탄소발자국에 민감한 MZ 전문직. 대중교통으로 여행하며 에코 챌린지 레벨업을 목표로 함. 두루누비 앱 기존 사용자.</div>
+        <div class="persona-sim">
+          <div class="persona-sim-title">🧪 시뮬레이션 결과: PASS ✅</div>
+          <div class="sim-step"><div class="sim-num">1</div><span>앱 실행 → AI 추천 "이번 주말 북한산 둘레길 3구간" 수신</span></div>
+          <div class="sim-step"><div class="sim-num">2</div><span>탄소발자국 비교 — 대중교통 0.18kg vs 자가용 0.62kg 확인 → 지하철 선택</span></div>
+          <div class="sim-step"><div class="sim-num">3</div><span>코스 상세 진입 → 에코 인증 마크, 화장실·주차 정보 확인</span></div>
+          <div class="sim-step"><div class="sim-num">4</div><span>인근 가평 에코캠핑 원클릭 예약 (잔여 8사이트)</span></div>
+          <div class="sim-step"><div class="sim-num">5</div><span>완주 후 2.4kgCO₂ 절감 적립 → 에코 챌린지 Lv.5 달성 🏆</span></div>
+        </div>
+      </div>
+      <!-- Persona B -->
+      <div class="persona-card">
+        <div class="persona-avatar">🌏</div>
+        <div class="persona-name">Sarah Chen (28세)</div>
+        <div class="persona-role">캐나다 · 백패커 · 친환경 가치 여행자</div>
+        <div class="persona-detail">한국 자연을 깊이 체험하고 싶은 외국인. 영어·중국어 UI 필수. 친환경 숙박 연계와 로컬 에코 투어 정보를 원함. K-nature 콘텐츠 팬.</div>
+        <div class="persona-sim">
+          <div class="persona-sim-title">🧪 시뮬레이션 결과: PASS ✅</div>
+          <div class="sim-step"><div class="sim-num">1</div><span>EN UI 전환 → "Jeju Olle Trail 7" 검색 (영문 지원 확인)</span></div>
+          <div class="sim-step"><div class="sim-num">2</div><span>탄소발자국 EN 표시: "0.14 kgCO₂e · Eco Certified" 확인</span></div>
+          <div class="sim-step"><div class="sim-num">3</div><span>AI 추천 친환경 게스트하우스 연계 (제주 올레 7 인근 3개소)</span></div>
+          <div class="sim-step"><div class="sim-num">4</div><span>에코 챌린지 EN 뱃지 획득 → SNS 공유 (K-eco 홍보 효과)</span></div>
+          <div class="sim-step"><div class="sim-num">5</div><span>리뷰 작성 → 로컬 에코 데이터 기여 (UGC 생태 데이터)</span></div>
+        </div>
+      </div>
+      <!-- Persona C -->
+      <div class="persona-card">
+        <div class="persona-avatar">🏢</div>
+        <div class="persona-name">박성호 (42세)</div>
+        <div class="persona-role">ESG팀장 · 300인 제조업 기업 · B2B 고객</div>
+        <div class="persona-detail">임직원 단체 에코 여행 프로그램을 기획 중인 ESG 담당자. 팀별 탄소 절감 리포트와 ESG 공시 자료가 필요. 연간 계약 예산 3,000만원 내.</div>
+        <div class="persona-sim">
+          <div class="persona-sim-title">🧪 시뮬레이션 결과: PASS ✅</div>
+          <div class="sim-step"><div class="sim-num">1</div><span>B2B 대시보드 로그인 → 24명 그룹 에코 여행 일정 생성</span></div>
+          <div class="sim-step"><div class="sim-num">2</div><span>AI 추천 코스: "지리산 둘레길 1구간 + 친환경 리조트 패키지"</span></div>
+          <div class="sim-step"><div class="sim-num">3</div><span>총 탄소 절감 목표: 팀 18.4kgCO₂ → ESG 공시 근거 확보</span></div>
+          <div class="sim-step"><div class="sim-num">4</div><span>단체 예약 완료 + PDF ESG 리포트 자동 생성 (대표이사 결재용)</span></div>
+          <div class="sim-step"><div class="sim-num">5</div><span>연간 계약 체결 → 3,000만원 B2B 파트너십 전환 성공</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: OpenAPI 매핑 & 호출 시퀀스 -->
+<section id="api-sequence">
+  <div class="container">
+    <div class="section-label">Section 11 — OpenAPI 매핑 & 호출 시퀀스</div>
+    <h2>5개 공공 API 통합 아키텍처</h2>
+    <p>한국관광공사 OpenAPI 5종을 계층적으로 연동. Node.js 프록시 레이어에서 캐싱·인증·에러핸들링 일괄 처리.</p>
+
+    <div class="seq-wrap">
+      <div class="seq-row">
+        <div class="seq-box"><div class="seq-box-title">① 앱 실행 / 위치 감지</div><div class="seq-box-sub">GPS → 현재 위치 기반 반경 50km 설정</div></div>
+        <div class="seq-arrow">→</div>
+        <div class="seq-box"><div class="seq-box-title">② 두루누비 API</div><div class="seq-box-sub">courseList2 호출 → 코스 목록 수신<div class="cache-tag">TTL 6h 캐시</div></div></div>
+        <div class="seq-arrow">→</div>
+        <div class="seq-box"><div class="seq-box-title">③ 생태관광 API</div><div class="seq-box-sub">ecotourList 병렬 호출 → 환경부 인증 생태지<div class="cache-tag">TTL 12h 캐시</div></div></div>
+      </div>
+      <div class="seq-row">
+        <div class="seq-box"><div class="seq-box-title">④ 국립공원 탐방 API</div><div class="seq-box-sub">realtime 혼잡도 5분 폴링 → 혼잡 시 대체 코스 자동 추천<div class="cache-tag">No cache</div></div></div>
+        <div class="seq-arrow">→</div>
+        <div class="seq-box"><div class="seq-box-title">⑤ 야영장 API</div><div class="seq-box-sub">goCampingList → 잔여 사이트 실시간 조회<div class="cache-tag">TTL 1h 캐시</div></div></div>
+        <div class="seq-arrow">→</div>
+        <div class="seq-box"><div class="seq-box-title">⑥ AI 탄소 계산</div><div class="seq-box-sub">코스 × 교통수단 × 숙박 조합 → kgCO₂e 산출<div class="cache-tag">내부 엔진</div></div></div>
+      </div>
+    </div>
+
+    <table style="margin-top:28px">
+      <thead><tr><th>API</th><th>오퍼레이션</th><th>캐시 전략</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>두루누비정보서비스</td><td>courseList2, courseDetail2</td><td>Redis TTL 6h</td><td>코스 데이터 변경 빈도 낮음</td></tr>
+        <tr><td>생태관광정보서비스</td><td>ecotourList, ecotourDetail</td><td>Redis TTL 12h</td><td>환경부 인증 변경 시 무효화</td></tr>
+        <tr><td>국립공원탐방정보</td><td>visitInfo (실시간)</td><td>No cache (5min poll)</td><td>혼잡도 실시간 필수</td></tr>
+        <tr><td>친환경여행지정보</td><td>greenTourList</td><td>Redis TTL 24h</td><td>정적 데이터</td></tr>
+        <tr><td>야영장정보서비스</td><td>goCampingList, availInfo</td><td>Redis TTL 1h</td><td>예약 연동 시 무효화</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 12: MVP 기능 우선순위 -->
+<section id="mvp">
+  <div class="container">
+    <div class="section-label">Section 12 — MVP 기능 우선순위</div>
+    <h2>Must / Should / Could 우선순위</h2>
+    <p>4주 MVP 개발 범위. Must는 공모전 제출 필수, Should는 UX 완성도, Could는 V2 로드맵.</p>
+    <table>
+      <thead><tr><th style="width:90px">우선순위</th><th>기능</th><th>근거</th><th style="width:80px">난이도</th></tr></thead>
+      <tbody>
+        <tr><td><span class="score-pill" style="background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3)">Must</span></td><td>두루누비 코스 탐색 + AI 탄소발자국 계산</td><td>핵심 차별화. 공모전 심사위원 1순위 확인 포인트</td><td><span class="score-pill">중간</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3)">Must</span></td><td>생태관광지 + 친환경 캠핑장 연결 예약</td><td>3-way 통합 핵심. 두루누비 단독과의 차별점</td><td><span class="score-pill">낮음</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3)">Must</span></td><td>에코 챌린지 (뱃지·레벨·누적 절감량)</td><td>재방문 동기 구조. 공모전 창의성 항목 핵심</td><td><span class="score-pill">낮음</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(234,179,8,0.15);color:#EAB308;border:1px solid rgba(234,179,8,0.3)">Should</span></td><td>영어 UI + 외국인 페르소나 지원</td><td>Sarah 시뮬 PASS 조건. 글로벌 관광 공모전 가산점</td><td><span class="score-pill">낮음</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(234,179,8,0.15);color:#EAB308;border:1px solid rgba(234,179,8,0.3)">Should</span></td><td>국립공원 실시간 혼잡도 + 대체 코스 추천</td><td>안전·편의성 가산점. 실시간 데이터 차별화</td><td><span class="score-pill">중간</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(234,179,8,0.15);color:#EAB308;border:1px solid rgba(234,179,8,0.3)">Should</span></td><td>B2B ESG 리포트 자동 생성 (PDF)</td><td>박성호 시뮬 계약 전환 조건. B2B 수익 핵심</td><td><span class="score-pill">중간</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(34,197,94,0.15);color:#22C55E;border:1px solid rgba(34,197,94,0.3)">Could</span></td><td>탄소 크레딧 거래 연동</td><td>환경부 정책 연계. V2 추가 수익 채널</td><td><span class="score-pill">높음</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(34,197,94,0.15);color:#22C55E;border:1px solid rgba(34,197,94,0.3)">Could</span></td><td>오프라인 코스 캐싱 (산악 음영지역)</td><td>등산 안전성 강화. 통신 불안 구간 해결</td><td><span class="score-pill">높음</span></td></tr>
+        <tr><td><span class="score-pill" style="background:rgba(34,197,94,0.15);color:#22C55E;border:1px solid rgba(34,197,94,0.3)">Could</span></td><td>SNS 에코 인증 공유 (인증 카드 생성)</td><td>바이럴 성장. UGC 에코 데이터 수집 연계</td><td><span class="score-pill">낮음</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 13: 4주 개발 일정 -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-label">Section 13 — 4주 개발 일정</div>
+    <h2>MVP 4주 스프린트 계획</h2>
+    <p>공모전 마감 2026-05-06 기준. Must 기능 4주 완성 목표. React Native + TypeScript + Node.js 스택.</p>
+    <table>
+      <thead><tr><th style="width:80px">주차</th><th>핵심 마일스톤</th><th>세부 태스크</th><th style="width:90px">완료 기준</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="score-pill">Week 1</span><br><span style="font-size:10px;color:var(--muted2)">기반 구축</span></td>
+          <td>프로젝트 셋업 + OpenAPI 연동</td>
+          <td>React Native 초기화 / Node.js 프록시 서버 구성 / 두루누비·생태관광 API 연동 / Redis 캐시 레이어 / 기본 코스 목록 화면</td>
+          <td>두루누비 코스 목록 앱에 표시</td>
+        </tr>
+        <tr>
+          <td><span class="score-pill">Week 2</span><br><span style="font-size:10px;color:var(--muted2)">핵심 기능</span></td>
+          <td>탄소 계산 엔진 + 캠핑장 연결</td>
+          <td>탄소발자국 계산 알고리즘 (교통수단×숙박×거리) / 코스 상세 화면 (탄소 비교표) / 야영장 API 연동 / 원클릭 예약 플로우 / 에코 챌린지 뱃지 시스템</td>
+          <td>코스 탄소발자국 계산 + 캠핑장 예약 완료</td>
+        </tr>
+        <tr>
+          <td><span class="score-pill">Week 3</span><br><span style="font-size:10px;color:var(--muted2)">B2B + 글로벌</span></td>
+          <td>ESG 리포트 + 영어 UI</td>
+          <td>B2B 대시보드 (그룹 관리·팀 탄소 집계) / PDF ESG 리포트 생성 (Puppeteer) / 영어 i18n 적용 / 국립공원 실시간 혼잡도 폴링 / 대체 코스 추천 로직</td>
+          <td>ESG PDF 다운로드 + EN UI 전환</td>
+        </tr>
+        <tr>
+          <td><span class="score-pill">Week 4</span><br><span style="font-size:10px;color:var(--muted2)">QA + 제출</span></td>
+          <td>3 페르소나 E2E 테스트 + 제출</td>
+          <td>김지수·Sarah·박성호 전 시나리오 E2E 테스트 / 버그픽스 버퍼 (1.5일) / 공모전 제출 패키징 (APK + 기획서 + 시연 영상) / 앱스토어 스크린샷 준비</td>
+          <td>3 페르소나 시뮬 모두 PASS</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--accent)">React Native</div><div style="font-size:11px;color:var(--muted);margin-top:4px">iOS + Android 동시</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--accent)">Node.js</div><div style="font-size:11px;color:var(--muted);margin-top:4px">API 프록시 + Redis</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--accent)">5개 API</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Visit Korea OpenAPI</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--accent)">4주 MVP</div><div style="font-size:11px;color:var(--muted);margin-top:4px">2026-05-06 제출</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 14: 실제 구현 화면 허브 -->
+<section id="screens">
+  <div class="container">
+    <div class="section-label">Section 14 — 실제 구현 화면</div>
+    <h2>5단계 인터랙티브 프로토타입</h2>
+    <p>각 화면은 실제 동작하는 HTML/CSS/JS로 구현됐습니다. 화면을 클릭하면 해당 단계를 직접 체험할 수 있습니다.</p>
+    <div class="screens-row" style="grid-template-columns:repeat(3,1fr);margin-top:28px">
+      <a href="screen-01-trail.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 01</div>
+          <div class="screen-title">🔍 에코 코스 탐색</div>
+          <div class="screen-body">지역·거리·탄소 필터. AI 추천 코스 카드. 두루누비 통합 목록. 에코 인증 배지.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-02-carbon.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 02</div>
+          <div class="screen-title">🌿 탄소발자국 계산기</div>
+          <div class="screen-body">이동수단별 CO₂ 실시간 비교. 대중교통 vs 자가용 절감량. 절감 인증 카드 생성.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-03-camp.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 03</div>
+          <div class="screen-title">⛺ 친환경 캠핑장 예약</div>
+          <div class="screen-body">에코 인증 캠핑장 목록. 잔여 사이트 실시간 조회. 코스 연계 원클릭 예약.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-04-challenge.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 04</div>
+          <div class="screen-title">🏆 에코 챌린지</div>
+          <div class="screen-body">누적 CO₂ 절감 그래프. 뱃지 컬렉션. 레벨업 애니메이션. 리더보드.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <a href="screen-05-esgreport.html" style="text-decoration:none">
+        <div class="screen-card" style="cursor:pointer;transition:border-color 0.2s,transform 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div class="screen-step">Screen 05</div>
+          <div class="screen-title">🏢 ESG B2B 리포트</div>
+          <div class="screen-body">그룹 탄소 절감 대시보드. 팀별 통계. PDF 리포트 자동 생성. 연간 계약 화면.</div>
+          <div class="screen-ui" style="margin-top:8px;text-align:center;color:var(--accent);font-size:11px;font-weight:700">→ 화면 열기</div>
+        </div>
+      </a>
+      <div class="screen-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-style:dashed">
+        <div style="font-size:28px;margin-bottom:8px">🌿</div>
+        <div class="screen-title" style="font-size:13px">경로: 01→02→03→04→05</div>
+        <div class="screen-body" style="font-size:11px;margin-top:6px">코스 탐색부터 ESG 리포트까지<br>전체 에코 여정 체험</div>
+        <a href="screen-01-trail.html" style="margin-top:12px;background:var(--accent);color:#000;font-size:12px;font-weight:700;padding:8px 16px;border-radius:10px;text-decoration:none">전체 여정 시작 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">🌿 <span>Eco Trail</span> Explorer</div>
   <div class="footer-meta" style="margin-top:8px">2026 한국관광 공모전 Round 7 프로토타입 · BA Score 98/130 · 팀 합의 8.0/10</div>
   <div class="footer-meta" style="margin-top:4px">두루누비 × 생태관광 × ESG B2B 통합 플랫폼</div>
 </footer>
+
+<script>
+const nls = document.querySelectorAll('.nsl');
+const secs = document.querySelectorAll('section[id]');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      nls.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector('.nsl[href="#' + e.target.id + '"]');
+      if (a) { a.classList.add('active'); a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+    }
+  });
+}, { threshold: 0.2, rootMargin: '-90px 0px -40% 0px' });
+secs.forEach(s => io.observe(s));
+</script>
 
 </body>
 </html>

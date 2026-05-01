@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screen 03 — 친환경 캠핑장 예약 · Eco Trail Explorer</title>
+<style>
+:root{--bg:#060609;--surface:#0D0D13;--card:#13131A;--border:#1E1E28;--fg:#F4F4F8;--muted:#9898AC;--muted2:#5E5E72;--accent:#22C55E;--accent-dim:#16A34A;--accent-soft:rgba(34,197,94,0.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(6,6,9,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--fg);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:8px;}
+.nav-link{color:var(--muted);font-size:12px;text-decoration:none;border:1px solid var(--border);padding:3px 10px;border-radius:6px;}
+.nav-link.active{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+.nav-next{background:var(--accent);color:#000;font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;text-decoration:none;}
+.container{max-width:900px;margin:0 auto;padding:0 24px;}
+.page-hero{padding:48px 0 32px;border-bottom:1px solid var(--border);}
+.screen-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border:1px solid rgba(34,197,94,0.25);color:var(--accent);font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:16px;}
+h1{font-size:clamp(24px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:10px;}
+.page-sub{font-size:15px;color:var(--muted);}
+section{padding:32px 0;border-bottom:1px solid var(--border);}
+section:last-of-type{border-bottom:none;}
+.sec-label{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+h2{font-size:20px;font-weight:800;margin-bottom:14px;}
+
+.camp-list{display:flex;flex-direction:column;gap:14px;margin-top:6px;}
+.camp-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:border-color 0.2s,transform 0.15s;cursor:pointer;}
+.camp-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.camp-card.featured{border-color:rgba(34,197,94,0.35);}
+.camp-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.camp-icon{font-size:32px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);border-radius:12px;flex-shrink:0;}
+.camp-info{flex:1;}
+.camp-name{font-size:15px;font-weight:700;margin-bottom:4px;}
+.camp-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.badge-eco{background:rgba(34,197,94,0.15);color:var(--accent);}
+.badge-trail{background:rgba(99,102,241,0.15);color:#818CF8;}
+.badge-cert{background:rgba(245,158,11,0.15);color:#EAB308;}
+.camp-addr{font-size:12px;color:var(--muted2);}
+.camp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+.camp-stat{text-align:center;}
+.camp-stat-val{font-size:16px;font-weight:800;color:var(--accent);}
+.camp-stat-label{font-size:10px;color:var(--muted2);margin-top:2px;}
+.avail-bar-wrap{background:var(--border);border-radius:4px;height:5px;margin-top:4px;}
+.avail-bar{height:5px;border-radius:4px;}
+.avail-green{background:var(--accent);}
+.avail-yellow{background:#EAB308;}
+.avail-red{background:#EF4444;}
+.camp-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:12px;}
+.price{font-size:14px;font-weight:700;}
+.price-label{font-size:10px;color:var(--muted2);}
+.book-btn{background:var(--accent);color:#000;font-size:12px;font-weight:700;padding:8px 18px;border-radius:10px;border:none;cursor:pointer;font-family:inherit;transition:background 0.2s;}
+.book-btn:hover{background:var(--accent-dim);}
+.book-btn:disabled{background:var(--muted2);cursor:not-allowed;}
+
+/* BOOKING MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:420px;width:90%;text-align:center;}
+.modal-icon{font-size:48px;margin-bottom:12px;}
+.modal-title{font-size:20px;font-weight:800;margin-bottom:8px;}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+.modal-btn{background:var(--accent);color:#000;font-size:14px;font-weight:700;padding:12px 28px;border-radius:12px;border:none;cursor:pointer;font-family:inherit;width:100%;}
+.modal-close{margin-top:10px;font-size:13px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:inherit;}
+
+@media(max-width:600px){.container{padding:0 16px;}.camp-stats{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">🌿 <span>Eco Trail</span> Explorer</a>
+  <div class="nav-links">
+    <a href="screen-01-trail.html" class="nav-link">01 코스탐색</a>
+    <a href="screen-02-carbon.html" class="nav-link">02 탄소계산</a>
+    <span class="nav-link active">03 캠핑장</span>
+    <a href="screen-04-challenge.html" class="nav-link">04 챌린지</a>
+    <a href="screen-05-esgreport.html" class="nav-link">05 ESG</a>
+    <a href="screen-04-challenge.html" class="nav-next">다음 →</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-hero">
+    <div class="screen-badge">⛺ Screen 03 — 친환경 캠핑장 예약</div>
+    <h1>코스 인근<br>에코 인증 캠핑장</h1>
+    <p class="page-sub">야영장 API 실시간 연동 · 잔여 사이트 즉시 확인 · 원클릭 예약</p>
+  </div>
+
+  <section>
+    <div class="sec-label">북한산 둘레길 3구간 인근 · 반경 15km</div>
+    <h2>에코 인증 캠핑장 <span style="color:var(--muted);font-size:15px;font-weight:400">4개소</span></h2>
+    <div class="camp-list">
+
+      <div class="camp-card featured">
+        <div class="camp-top">
+          <div class="camp-icon">🌲</div>
+          <div class="camp-info">
+            <div class="camp-name">가평 에코 글램핑 파크</div>
+            <div class="camp-badges">
+              <span class="badge badge-eco">🌿 에코 인증</span>
+              <span class="badge badge-trail">두루누비 연계</span>
+              <span class="badge badge-cert">탄소중립 캠핑</span>
+            </div>
+            <div class="camp-addr">📍 경기 가평군 청평면 · 코스까지 2.3km</div>
+          </div>
+        </div>
+        <div class="camp-stats">
+          <div class="camp-stat"><div class="camp-stat-val">8</div><div class="camp-stat-label">잔여 사이트</div><div class="avail-bar-wrap"><div class="avail-bar avail-green" style="width:53%"></div></div></div>
+          <div class="camp-stat"><div class="camp-stat-val">⭐ 4.8</div><div class="camp-stat-label">평점 (324)</div></div>
+          <div class="camp-stat"><div class="camp-stat-val">0.04 kg</div><div class="camp-stat-label">캠핑 탄소</div></div>
+          <div class="camp-stat"><div class="camp-stat-val">태양광</div><div class="camp-stat-label">전력 공급</div></div>
+        </div>
+        <div class="camp-footer">
+          <div><div class="price">55,000원 <span style="font-size:11px;color:var(--muted2)">/박</span></div><div class="price-label">주말 기준 · 2인 기준</div></div>
+          <button class="book-btn" onclick="openBooking('가평 에코 글램핑 파크')">원클릭 예약</button>
+        </div>
+      </div>
+
+      <div class="camp-card">
+        <div class="camp-top">
+          <div class="camp-icon">🏕</div>
+          <div class="camp-info">
+            <div class="camp-name">도봉 숲속 자연 캠핑장</div>
+            <div class="camp-badges">
+              <span class="badge badge-eco">🌿 에코 인증</span>
+              <span class="badge badge-trail">국립공원 인접</span>
+            </div>
+            <div class="camp-addr">📍 서울 도봉구 도봉동 · 코스까지 0.8km</div>
+          </div>
+        </div>
+        <div class="camp-stats">
+          <div class="camp-stat"><div class="camp-stat-val">3</div><div class="camp-stat-label">잔여 사이트</div><div class="avail-bar-wrap"><div class="avail-bar avail-yellow" style="width:20%"></div></div></div>
+          <div class="camp-stat"><div class="camp-stat-val">⭐ 4.6</div><div class="camp-stat-label">평점 (198)</div></div>
+          <div class="camp-stat"><div class="camp-stat-val">0.02 kg</div><div class="camp-stat-label">캠핑 탄소</div></div>
+          <div class="camp-stat"><div class="camp-stat-val">수돗물</div><div class="camp-stat-label">빗물 재활용</div></div>
+        </div>
+        <div class="camp-footer">
+          <div><div class="price">38,000원 <span style="font-size:11px;color:var(--muted2)">/박</span></div><div class="price-label">주말 기준 · 2인 기준</div></div>
+          <button class="book-btn" onclick="openBooking('도봉 숲속 자연 캠핑장')">원클릭 예약</button>
+        </div>
+      </div>
+
+      <div class="camp-card">
+        <div class="camp-top">
+          <div class="camp-icon">⛺</div>
+          <div class="camp-info">
+            <div class="camp-name">의정부 친환경 오토캠핑</div>
+            <div class="camp-badges">
+              <span class="badge badge-cert">친환경 인증</span>
+            </div>
+            <div class="camp-addr">📍 경기 의정부시 · 코스까지 5.1km</div>
+          </div>
+        </div>
+        <div class="camp-stats">
+          <div class="camp-stat"><div class="camp-stat-val">0</div><div class="camp-stat-label">잔여 사이트</div><div class="avail-bar-wrap"><div class="avail-bar avail-red" style="width:0%"></div></div></div>
+          <div class="camp-stat"><div class="camp-stat-val">⭐ 4.5</div><div class="camp-stat-label">평점 (87)</div></div>
+          <div class="camp-stat"><div class="camp-stat-val">0.06 kg</div><div class="camp-stat-label">캠핑 탄소</div></div>
+          <div class="camp-stat"><div class="camp-stat-val">오토</div><div class="camp-stat-label">주차 가능</div></div>
+        </div>
+        <div class="camp-footer">
+          <div><div class="price">45,000원 <span style="font-size:11px;color:var(--muted2)">/박</span></div><div class="price-label">주말 기준 · 2인 기준</div></div>
+          <button class="book-btn" disabled>예약 마감</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <div class="modal-title" id="modal-title">예약 완료!</div>
+    <div class="modal-sub" id="modal-sub">북한산 둘레길 3구간 당일 코스와<br>캠핑장이 연결 예약됐습니다.<br><br>에코 챌린지 포인트 +0.5 적립 완료 🌿</div>
+    <button class="modal-btn" onclick="window.location='screen-04-challenge.html'">에코 챌린지 확인 →</button>
+    <button class="modal-close" onclick="closeModal()">닫기</button>
+  </div>
+</div>
+
+<script>
+function openBooking(name){
+  document.getElementById('modal-title').textContent='예약 완료! 🎉';
+  document.getElementById('modal-sub').innerHTML='<strong>'+name+'</strong><br>북한산 둘레길 3구간 연계 패키지<br><br>에코 챌린지 포인트 +0.5 적립 완료 🌿';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+</script>
+</body>
+</html>

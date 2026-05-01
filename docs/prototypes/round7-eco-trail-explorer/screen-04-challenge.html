@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screen 04 — 에코 챌린지 · Eco Trail Explorer</title>
+<style>
+:root{--bg:#060609;--surface:#0D0D13;--card:#13131A;--border:#1E1E28;--fg:#F4F4F8;--muted:#9898AC;--muted2:#5E5E72;--accent:#22C55E;--accent-dim:#16A34A;--accent-soft:rgba(34,197,94,0.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(6,6,9,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--fg);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:8px;}
+.nav-link{color:var(--muted);font-size:12px;text-decoration:none;border:1px solid var(--border);padding:3px 10px;border-radius:6px;}
+.nav-link.active{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+.nav-next{background:var(--accent);color:#000;font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;text-decoration:none;}
+.container{max-width:900px;margin:0 auto;padding:0 24px;}
+section{padding:40px 0;border-bottom:1px solid var(--border);}
+section:last-of-type{border-bottom:none;}
+.sec-label{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+h2{font-size:20px;font-weight:800;margin-bottom:14px;}
+
+/* HERO */
+.challenge-hero{padding:48px 0 40px;text-align:center;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(34,197,94,0.12) 0%,transparent 70%);}
+.ch-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border:1px solid rgba(34,197,94,0.25);color:var(--accent);font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:20px;}
+.level-circle{width:100px;height:100px;border-radius:50%;border:3px solid var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;background:radial-gradient(circle,rgba(34,197,94,0.15),transparent);box-shadow:0 0 30px rgba(34,197,94,0.2);}
+.level-num{font-size:36px;font-weight:900;color:var(--accent);line-height:1;}
+.level-label{font-size:10px;color:var(--muted);font-weight:600;}
+h1{font-size:clamp(22px,4vw,36px);font-weight:800;margin-bottom:10px;}
+.hero-sub{font-size:15px;color:var(--muted);}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 12px;text-align:center;}
+.stat-val{font-size:24px;font-weight:900;color:var(--accent);line-height:1;margin-bottom:4px;}
+.stat-label{font-size:11px;color:var(--muted);}
+
+/* PROGRESS */
+.progress-section{}
+.xp-bar-wrap{background:var(--border);border-radius:8px;height:12px;margin:12px 0 6px;overflow:hidden;}
+.xp-bar{height:12px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#86EFAC);transition:width 1.2s ease;}
+.xp-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted2);}
+
+/* MONTHLY GRAPH */
+.graph-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:16px;}
+.graph-title{font-size:13px;font-weight:700;margin-bottom:16px;}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:80px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar-fill{width:100%;border-radius:4px 4px 0 0;background:var(--accent);opacity:0.7;transition:all 0.6s ease;min-height:4px;}
+.bar-fill.current{opacity:1;background:linear-gradient(180deg,#86EFAC,var(--accent));}
+.bar-month{font-size:9px;color:var(--muted2);}
+.bar-val{font-size:9px;color:var(--accent);font-weight:700;}
+
+/* BADGES */
+.badges-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:6px;}
+.badge-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 10px;text-align:center;}
+.badge-card.earned{border-color:rgba(34,197,94,0.4);background:rgba(34,197,94,0.04);}
+.badge-card.locked{opacity:0.4;}
+.badge-icon{font-size:28px;margin-bottom:8px;}
+.badge-name{font-size:11px;font-weight:700;margin-bottom:3px;}
+.badge-desc{font-size:9px;color:var(--muted2);}
+
+/* LEADERBOARD */
+.leaderboard{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+.lb-row{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;}
+.lb-row.me{border-color:rgba(34,197,94,0.4);background:rgba(34,197,94,0.04);}
+.lb-rank{font-size:16px;font-weight:800;width:24px;text-align:center;flex-shrink:0;}
+.lb-rank.gold{color:#F59E0B;}
+.lb-rank.silver{color:#9CA3AF;}
+.lb-rank.bronze{color:#CD7C35;}
+.lb-avatar{font-size:20px;flex-shrink:0;}
+.lb-name{flex:1;font-size:13px;font-weight:600;}
+.lb-stat{font-size:13px;font-weight:800;color:var(--accent);}
+.lb-label{font-size:10px;color:var(--muted2);}
+
+/* LEVELUP ANIM */
+.levelup-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:#000;font-size:14px;font-weight:800;padding:12px 24px;border-radius:40px;transition:transform 0.5s ease,opacity 0.5s;opacity:0;z-index:300;pointer-events:none;}
+.levelup-toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+@media(max-width:600px){.container{padding:0 16px;}.stats-grid{grid-template-columns:repeat(2,1fr);}.badges-grid{grid-template-columns:repeat(3,1fr);}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">🌿 <span>Eco Trail</span> Explorer</a>
+  <div class="nav-links">
+    <a href="screen-01-trail.html" class="nav-link">01 코스탐색</a>
+    <a href="screen-02-carbon.html" class="nav-link">02 탄소계산</a>
+    <a href="screen-03-camp.html" class="nav-link">03 캠핑장</a>
+    <span class="nav-link active">04 챌린지</span>
+    <a href="screen-05-esgreport.html" class="nav-link">05 ESG</a>
+    <a href="screen-05-esgreport.html" class="nav-next">다음 →</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="challenge-hero">
+    <div class="ch-badge">🏆 Screen 04 — 에코 챌린지</div>
+    <div class="level-circle" id="level-circle">
+      <div class="level-num" id="level-num">5</div>
+      <div class="level-label">레벨</div>
+    </div>
+    <h1>김지수님의 에코 챌린지</h1>
+    <p class="hero-sub">이번 달 탄소 2.4kgCO₂ 절감 · Lv.5 에코 수호자 달성 🌿</p>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val" id="total-co2">14.7</div><div class="stat-label">누적 절감 (kgCO₂)</div></div>
+      <div class="stat-box"><div class="stat-val">23</div><div class="stat-label">완주 코스 수</div></div>
+      <div class="stat-box"><div class="stat-val">🌳 2.8</div><div class="stat-label">나무 심은 효과 (그루)</div></div>
+      <div class="stat-box"><div class="stat-val">TOP 8%</div><div class="stat-label">전국 랭킹</div></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-label">레벨 진행도</div>
+    <h2>Lv.5 → Lv.6 달성 중</h2>
+    <div class="xp-label"><span>현재 XP: 2,340</span><span>다음 레벨: 3,000 XP</span></div>
+    <div class="xp-bar-wrap"><div class="xp-bar" id="xp-bar" style="width:0%"></div></div>
+    <div class="xp-label"><span style="color:var(--accent)">+2.4kg 적립 완료 오늘</span><span>660 XP 더 필요</span></div>
+
+    <div class="graph-wrap">
+      <div class="graph-title">📊 월별 탄소 절감 추이 (kgCO₂)</div>
+      <div class="bar-chart" id="bar-chart">
+        <div class="bar-col"><div class="bar-fill" style="height:35%"></div><div class="bar-val">1.1</div><div class="bar-month">11월</div></div>
+        <div class="bar-col"><div class="bar-fill" style="height:48%"></div><div class="bar-val">1.6</div><div class="bar-month">12월</div></div>
+        <div class="bar-col"><div class="bar-fill" style="height:42%"></div><div class="bar-val">1.4</div><div class="bar-month">1월</div></div>
+        <div class="bar-col"><div class="bar-fill" style="height:55%"></div><div class="bar-val">1.8</div><div class="bar-month">2월</div></div>
+        <div class="bar-col"><div class="bar-fill" style="height:65%"></div><div class="bar-val">2.1</div><div class="bar-month">3월</div></div>
+        <div class="bar-col"><div class="bar-fill" style="height:70%"></div><div class="bar-val">2.3</div><div class="bar-month">4월</div></div>
+        <div class="bar-col current"><div class="bar-fill current" style="height:78%"></div><div class="bar-val">2.4</div><div class="bar-month">5월▲</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">뱃지 컬렉션</div>
+    <h2>획득 뱃지 8 / 20</h2>
+    <div class="badges-grid">
+      <div class="badge-card earned"><div class="badge-icon">🌱</div><div class="badge-name">첫 코스</div><div class="badge-desc">첫 에코 코스 완주</div></div>
+      <div class="badge-card earned"><div class="badge-icon">🚇</div><div class="badge-name">대중교통</div><div class="badge-desc">5회 지하철 이동</div></div>
+      <div class="badge-card earned"><div class="badge-icon">⛺</div><div class="badge-name">캠퍼</div><div class="badge-desc">에코 캠핑 1박</div></div>
+      <div class="badge-card earned"><div class="badge-icon">🏔</div><div class="badge-name">북한산</div><div class="badge-desc">북한산 완주</div></div>
+      <div class="badge-card earned"><div class="badge-icon">🌿</div><div class="badge-name">Lv.5</div><div class="badge-desc">에코 수호자</div></div>
+      <div class="badge-card locked"><div class="badge-icon">🌊</div><div class="badge-name">제주 올레</div><div class="badge-desc">제주 코스 완주</div></div>
+      <div class="badge-card locked"><div class="badge-icon">🌍</div><div class="badge-name">10kg</div><div class="badge-desc">10kgCO₂ 절감</div></div>
+      <div class="badge-card locked"><div class="badge-icon">🦅</div><div class="badge-name">Lv.7</div><div class="badge-desc">에코 마스터</div></div>
+      <div class="badge-card locked"><div class="badge-icon">🏕</div><div class="badge-name">캠퍼 Pro</div><div class="badge-desc">10박 완료</div></div>
+      <div class="badge-card locked"><div class="badge-icon">🌲</div><div class="badge-name">30코스</div><div class="badge-desc">30개 코스 완주</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">전국 리더보드</div>
+    <h2>이번 달 랭킹 TOP 5</h2>
+    <div class="leaderboard">
+      <div class="lb-row"><div class="lb-rank gold">🥇</div><div class="lb-avatar">🧑</div><div class="lb-name">박**(강원)</div><div><div class="lb-stat">4.8 kg</div><div class="lb-label">이번 달 절감</div></div></div>
+      <div class="lb-row"><div class="lb-rank silver">🥈</div><div class="lb-avatar">👩</div><div class="lb-name">이**(제주)</div><div><div class="lb-stat">3.9 kg</div><div class="lb-label">이번 달 절감</div></div></div>
+      <div class="lb-row"><div class="lb-rank bronze">🥉</div><div class="lb-avatar">👨</div><div class="lb-name">최**(경기)</div><div><div class="lb-stat">3.2 kg</div><div class="lb-label">이번 달 절감</div></div></div>
+      <div class="lb-row me"><div class="lb-rank" style="color:var(--accent)">4</div><div class="lb-avatar">🙋</div><div class="lb-name">김지수 (나)</div><div><div class="lb-stat">2.4 kg</div><div class="lb-label">이번 달 절감</div></div></div>
+      <div class="lb-row"><div class="lb-rank" style="color:var(--muted)">5</div><div class="lb-avatar">👤</div><div class="lb-name">정**(부산)</div><div><div class="lb-stat">2.1 kg</div><div class="lb-label">이번 달 절감</div></div></div>
+    </div>
+  </section>
+</div>
+
+<div class="levelup-toast" id="toast">🎉 레벨 5 달성! 에코 수호자 뱃지 획득!</div>
+
+<script>
+setTimeout(()=>{document.getElementById('xp-bar').style.width='78%';},300);
+setTimeout(()=>{
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+},800);
+</script>
+</body>
+</html>
