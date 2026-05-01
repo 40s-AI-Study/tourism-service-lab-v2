@@ -23,16 +23,50 @@
 
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(6,6,9,0.88); backdrop-filter: blur(14px);
+      background: rgba(6,6,9,0.92); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 0 24px; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; flex-direction: column;
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; text-decoration: none; color: var(--fg); }
-    .nav-logo-icon { width: 32px; height: 32px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .nav-back { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 56px; flex-shrink: 0; }
+    .nav-sections { display: flex; overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--border); padding: 0 8px; }
+    .nav-sections::-webkit-scrollbar { display: none; }
+    .nsl { white-space: nowrap; font-size: 11px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 7px 12px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; flex-shrink: 0; }
+    .nsl:hover, .nsl.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; text-decoration: none; color: var(--fg); }
+    .nav-logo-icon { width: 28px; height: 28px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 13px; border: 1px solid var(--border); padding: 3px 10px; border-radius: 6px; transition: color 0.2s; }
     .nav-back:hover { color: var(--fg); }
-    .nav-badge { padding: 5px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 12px; color: var(--accent); font-weight: 700; }
+    .nav-badge { padding: 4px 10px; border: 1px solid var(--accent); border-radius: 999px; font-size: 11px; color: var(--accent); font-weight: 700; }
+    /* persona sim styles */
+    .persona-sim-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 24px; }
+    .psim-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    .psim-avatar { font-size: 32px; margin-bottom: 10px; }
+    .psim-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .psim-role { font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .psim-steps { display: flex; flex-direction: column; gap: 7px; }
+    .psim-step { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .psim-num { width: 18px; height: 18px; border-radius: 50%; background: var(--grad); color: #0a1a2a; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .psim-result { margin-top: 12px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); border-radius: 10px; padding: 10px; font-size: 11px; color: var(--accent); font-weight: 700; }
+    /* seq styles */
+    .seq-chain { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    .seq-row { display: flex; align-items: center; gap: 0; }
+    .seq-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; flex: 1; }
+    .seq-box-title { font-size: 11px; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
+    .seq-box-sub { font-size: 10px; color: var(--muted); }
+    .seq-arrow { padding: 0 8px; color: var(--accent); font-size: 14px; flex-shrink: 0; }
+    .cache-tag { display: inline-block; background: rgba(56,189,248,0.12); color: var(--accent); font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 20px; margin-top: 3px; }
+    /* screen cards */
+    .screen-hub { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px; }
+    .screen-hub-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; cursor: pointer; transition: border-color 0.2s, transform 0.15s; text-decoration: none; color: inherit; display: block; }
+    .screen-hub-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .shc-step { font-size: 10px; font-weight: 700; color: var(--accent); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px; }
+    .shc-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .shc-body { font-size: 11px; color: var(--muted); line-height: 1.6; }
+    .shc-cta { margin-top: 10px; text-align: center; font-size: 11px; font-weight: 700; color: var(--accent); }
+    @media (max-width: 700px) {
+      .persona-sim-grid { grid-template-columns: 1fr; }
+      .screen-hub { grid-template-columns: 1fr; }
+    }
 
     .hero { padding: 80px 24px 56px; text-align: center; max-width: 780px; margin: 0 auto; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid rgba(56,189,248,0.4); border-radius: 999px; font-size: 13px; color: var(--accent); margin-bottom: 24px; }
@@ -170,12 +204,32 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="../../">
-    <div class="nav-logo-icon">🌐</div>
-    Foreign AI Guide
-  </a>
-  <a class="nav-back" href="../../">← 포트폴리오</a>
-  <span class="nav-badge">BA 99/130 · 공동 3위</span>
+  <div class="nav-top">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-icon">🌐</div>
+      Foreign AI Guide
+    </a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a class="nav-back" href="../../">← 포트폴리오</a>
+      <span class="nav-badge">BA 99/130</span>
+    </div>
+  </div>
+  <div class="nav-sections" id="nav-sections">
+    <a href="#overview" class="nsl">02 개요</a>
+    <a href="#research" class="nsl">03 리서치</a>
+    <a href="#ideation" class="nsl">04 아이디어</a>
+    <a href="#criteria" class="nsl">05 심사기준</a>
+    <a href="#mockui" class="nsl">06 Mock UI</a>
+    <a href="#openapi" class="nsl">07 OpenAPI</a>
+    <a href="#teamscore" class="nsl">08 팀점수</a>
+    <a href="#business" class="nsl">09 사업성</a>
+    <a href="#aidiff" class="nsl">10 AI차별화</a>
+    <a href="#personas" class="nsl">11 페르소나</a>
+    <a href="#apisequence" class="nsl">12 API시퀀스</a>
+    <a href="#mvp" class="nsl">13 MVP</a>
+    <a href="#roadmap" class="nsl">14 개발일정</a>
+    <a href="#screens" class="nsl">15 화면</a>
+  </div>
 </nav>
 
 <!-- SECTION 1: HERO -->
@@ -247,7 +301,7 @@
 <hr class="divider">
 
 <!-- SECTION 2: 서비스 개요 -->
-<div class="section">
+<div class="section" id="overview">
   <div class="section-label">Section 02</div>
   <div class="section-title">서비스 개요 <span>(What)</span></div>
 
@@ -298,7 +352,7 @@
 <hr class="divider">
 
 <!-- SECTION 3: 리서치 근거 -->
-<div class="section">
+<div class="section" id="research">
   <div class="section-label">Section 03</div>
   <div class="section-title">리서치 근거 <span>(Why)</span></div>
 
@@ -349,7 +403,7 @@
 <hr class="divider">
 
 <!-- SECTION 4: 아이디어 도출 과정 -->
-<div class="section">
+<div class="section" id="ideation">
   <div class="section-label">Section 04</div>
   <div class="section-title">아이디어 도출 과정</div>
 
@@ -388,7 +442,7 @@
 <hr class="divider">
 
 <!-- SECTION 5: 공모전 심사 기준 -->
-<div class="section">
+<div class="section" id="criteria">
   <div class="section-label">Section 05</div>
   <div class="section-title">공모전 심사 기준 <span>대응</span></div>
 
@@ -435,7 +489,7 @@
 <hr class="divider">
 
 <!-- SECTION 6: 주요 화면 Mock UI -->
-<div class="section">
+<div class="section" id="mockui">
   <div class="section-label">Section 06</div>
   <div class="section-title">주요 화면 <span>Mock UI</span></div>
 
@@ -523,7 +577,7 @@
 <hr class="divider">
 
 <!-- SECTION 7: OpenAPI 활용 -->
-<div class="section">
+<div class="section" id="openapi">
   <div class="section-label">Section 07</div>
   <div class="section-title">OpenAPI <span>활용</span></div>
 
@@ -557,7 +611,7 @@
 <hr class="divider">
 
 <!-- SECTION 8: 팀 합의 점수 -->
-<div class="section">
+<div class="section" id="teamscore">
   <div class="section-label">Section 08</div>
   <div class="section-title">팀 합의 <span>점수</span></div>
 
@@ -595,7 +649,7 @@
 <hr class="divider">
 
 <!-- SECTION 9: 객관 사업성 -->
-<div class="section">
+<div class="section" id="business">
   <div class="section-label">Section 09</div>
   <div class="section-title">객관 <span>사업성</span></div>
 
@@ -646,7 +700,7 @@
 <hr class="divider">
 
 <!-- SECTION 10: AI 차별화 -->
-<div class="section">
+<div class="section" id="aidiff">
   <div class="section-label">Section 10</div>
   <div class="section-title">AI <span>차별화</span></div>
 
@@ -677,6 +731,182 @@
   </div>
 </div>
 
+<hr class="divider">
+
+<!-- SECTION 11: 페르소나 시뮬레이션 -->
+<div class="section" id="personas">
+  <div class="section-label">Section 11</div>
+  <div class="section-title">페르소나 <span>시뮬레이션</span></div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:8px">3종 페르소나별 5단계 사용자 여정 시뮬레이션 — 실제 앱 사용 흐름을 검증합니다.</p>
+  <div class="persona-sim-grid">
+    <div class="psim-card">
+      <div class="psim-avatar">👨‍💼</div>
+      <div class="psim-name">Tanaka Kenji (32세)</div>
+      <div class="psim-role">일본 도쿄 · 첫 방한 독립여행</div>
+      <div class="psim-steps">
+        <div class="psim-step"><div class="psim-num">1</div><span>앱 실행 → 🇯🇵 日本語 선택 · 경복궁 주변 위치 감지</span></div>
+        <div class="psim-step"><div class="psim-num">2</div><span>"景福宮の近くでランチは？" 질문 → AI 통인시장 추천 + 도보 5분 경로</span></div>
+        <div class="psim-step"><div class="psim-num">3</div><span>지하철 안내: 2호선→3호선 환승, 문화 팁 자동 표시 (노약자석 예절)</span></div>
+        <div class="psim-step"><div class="psim-num">4</div><span>편의점 결제 도움 → 실시간 대화 번역 (카운터 화면 보여주며)</span></div>
+        <div class="psim-step"><div class="psim-num">5</div><span>여행 루트 저장 + 다음 방한 시 이어서 사용 설정</span></div>
+      </div>
+      <div class="psim-result">✅ 시뮬레이션 결과: PASS — 언어 장벽 0개</div>
+    </div>
+    <div class="psim-card">
+      <div class="psim-avatar">👩‍🎓</div>
+      <div class="psim-name">Sofia Martinez (25세)</div>
+      <div class="psim-role">멕시코 · K-드라마 팬 배낭여행</div>
+      <div class="psim-steps">
+        <div class="psim-step"><div class="psim-num">1</div><span>🇪🇸 Español 선택 → K-드라마 촬영지 탐색 요청</span></div>
+        <div class="psim-step"><div class="psim-num">2</div><span>AI "이태원 클라쓰 촬영지 5곳" + 스페인어 설명 + 대중교통 경로 제공</span></div>
+        <div class="psim-step"><div class="psim-num">3</div><span>전주 한옥마을 지방 여행 계획 → 지방 소도시 AI 가이드 활성화</span></div>
+        <div class="psim-step"><div class="psim-num">4</div><span>식당 주문 도움 → 메뉴판 촬영 → 스페인어 번역 + 추천</span></div>
+        <div class="psim-step"><div class="psim-num">5</div><span>프리미엄 업그레이드 → 오프라인 캐시 + 음성 가이드 활성화</span></div>
+      </div>
+      <div class="psim-result">✅ 시뮬레이션 결과: PASS — 지방 소도시 방문 달성</div>
+    </div>
+    <div class="psim-card">
+      <div class="psim-avatar">👨‍👩‍👦</div>
+      <div class="psim-name">Wang Fang 가족 (40대)</div>
+      <div class="psim-role">상하이 · 가족여행 · 긴급상황 우려</div>
+      <div class="psim-steps">
+        <div class="psim-step"><div class="psim-num">1</div><span>🇨🇳 中文 선택 → 가족 여행 모드 · 병원·대사관 즐겨찾기 등록</span></div>
+        <div class="psim-step"><div class="psim-num">2</div><span>아이 복통 발생 → AI 긴급 신호 감지 → 가장 가까운 중국어 가능 병원 안내</span></div>
+        <div class="psim-step"><div class="psim-num">3</div><span>AI 한국어로 증상 전달 + 중국 대사관 영사 서비스 연결</span></div>
+        <div class="psim-step"><div class="psim-num">4</div><span>병원 접수 → AI 실시간 통역 (의사 ↔ 환자 양방향)</span></div>
+        <div class="psim-step"><div class="psim-num">5</div><span>처방전 중문 번역 + 가까운 약국 안내 + 여행 재개 루트 추천</span></div>
+      </div>
+      <div class="psim-result">✅ 시뮬레이션 결과: PASS — 긴급상황 3분 내 해결</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 12: API 매핑 & 호출 시퀀스 -->
+<div class="section" id="apisequence">
+  <div class="section-label">Section 12</div>
+  <div class="section-title">API 매핑 <span>&amp; 호출 시퀀스</span></div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:4px">5개 KTO OpenAPI + LLM 통합 아키텍처 — Node.js 프록시 레이어에서 다국어 캐싱 처리.</p>
+  <div class="seq-chain">
+    <div class="seq-row">
+      <div class="seq-box"><div class="seq-box-title">① 사용자 질문 입력 (5개국어)</div><div class="seq-box-sub">자연어 NLP 전처리 → 언어 감지 → 의도 분류</div></div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-box"><div class="seq-box-title">② 다국어 관광정보 API</div><div class="seq-box-sub">areaBasedList2 (EN/JP/CN/ES/TH)<div class="cache-tag">TTL 24h 캐시</div></div></div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-box"><div class="seq-box-title">③ LLM 응답 생성</div><div class="seq-box-sub">API 데이터 + 문화 맥락 결합 → 자연어 응답<div class="cache-tag">No cache</div></div></div>
+    </div>
+    <div class="seq-row">
+      <div class="seq-box"><div class="seq-box-title">④ 긴급상황 감지 (병렬)</div><div class="seq-box-sub">대화 스트리밍 분석 → 위기 키워드 감지</div></div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-box"><div class="seq-box-title">⑤ 긴급안전정보 API</div><div class="seq-box-sub">emergencyInfo → 병원·대사관·경찰 다국어 안내<div class="cache-tag">TTL 1h 캐시</div></div></div>
+      <div class="seq-arrow">→</div>
+      <div class="seq-box"><div class="seq-box-title">⑥ 교통정보연계 API</div><div class="seq-box-sub">realTimeRoute → 단계별 대중교통 경로 안내<div class="cache-tag">TTL 5min</div></div></div>
+    </div>
+  </div>
+  <table style="width:100%;border-collapse:collapse;margin-top:20px">
+    <thead><tr style="background:var(--surface)"><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">API</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">오퍼레이션</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">캐시</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">비고</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">다국어관광정보서비스</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">areaBasedList2, detailCommon2</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Redis TTL 24h</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">5개국어 정적 콘텐츠</td></tr>
+      <tr><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">영문관광정보서비스</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">areaBasedList2 (EN), detailImage2</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Redis TTL 12h</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">이미지·영문 설명 보완</td></tr>
+      <tr><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">관광지긴급안전정보</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">emergencyInfo (실시간)</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">TTL 1h</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">SOS 트리거 시 강제 갱신</td></tr>
+      <tr><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">교통정보연계서비스</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">realTimeRoute, transitInfo</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">TTL 5min</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">실시간 혼잡도 포함</td></tr>
+      <tr><td style="padding:11px 14px;font-size:13px;font-weight:600;color:var(--fg)">외국어관광안내콘텐츠</td><td style="padding:11px 14px;font-size:12px;color:var(--muted)">audioGuide, cultureTip</td><td style="padding:11px 14px;font-size:12px;color:var(--muted)">TTL 7d</td><td style="padding:11px 14px;font-size:12px;color:var(--muted)">오디오 가이드 오프라인 캐싱</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 13: MVP 기능 우선순위 -->
+<div class="section" id="mvp">
+  <div class="section-label">Section 13</div>
+  <div class="section-title">MVP <span>기능 우선순위</span></div>
+  <table style="width:100%;border-collapse:collapse">
+    <thead><tr style="background:var(--surface)"><th style="width:90px;padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">우선순위</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">기능</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">근거</th><th style="width:80px;padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">난이도</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:11px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Must</span></td><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">5개국어 AI 가이드 대화</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">핵심 차별화. 언어 장벽 해소 = 서비스 존재 이유</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,0.1);color:#EF4444;font-size:11px;padding:2px 8px;border-radius:8px">높음</span></td></tr>
+      <tr><td style="padding:11px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Must</span></td><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">긴급상황 자동 감지 + SOS 연결</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Wang Fang 시뮬 핵심. B2G 관광청 계약 요건</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)"><span style="background:rgba(245,158,11,0.1);color:#EAB308;font-size:11px;padding:2px 8px;border-radius:8px">중간</span></td></tr>
+      <tr><td style="padding:11px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Must</span></td><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">실시간 대중교통 경로 안내</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Kenji 시뮬 필수. 방한 외국인 불편 2위 "교통"</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)"><span style="background:rgba(245,158,11,0.1);color:#EAB308;font-size:11px;padding:2px 8px;border-radius:8px">중간</span></td></tr>
+      <tr><td style="padding:11px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(234,179,8,0.15);color:#EAB308;border:1px solid rgba(234,179,8,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Should</span></td><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">메뉴판·간판 실시간 번역 (카메라)</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Sofia 시뮬 식당 주문 단계. UX 완성도 핵심</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)"><span style="background:rgba(245,158,11,0.1);color:#EAB308;font-size:11px;padding:2px 8px;border-radius:8px">중간</span></td></tr>
+      <tr><td style="padding:11px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(234,179,8,0.15);color:#EAB308;border:1px solid rgba(234,179,8,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Should</span></td><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">무장애 여행 필터 (Barrier-Free 모드)</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">접근성 약자 3번째 페르소나. B2G 공모전 가산점</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)"><span style="background:rgba(34,197,94,0.1);color:#22C55E;font-size:11px;padding:2px 8px;border-radius:8px">낮음</span></td></tr>
+      <tr><td style="padding:11px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(234,179,8,0.15);color:#EAB308;border:1px solid rgba(234,179,8,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Should</span></td><td style="padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);font-weight:600;color:var(--fg)">오프라인 캐싱 (지하·음영지역)</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Sofia 프리미엄 전환 조건. 지방 여행 핵심</td><td style="padding:11px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)"><span style="background:rgba(245,158,11,0.1);color:#EAB308;font-size:11px;padding:2px 8px;border-radius:8px">중간</span></td></tr>
+      <tr><td style="padding:11px 14px"><span style="background:rgba(34,197,94,0.15);color:#22C55E;border:1px solid rgba(34,197,94,0.3);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Could</span></td><td style="padding:11px 14px;font-size:13px;font-weight:600;color:var(--fg)">국적별 여행 루트 커뮤니티</td><td style="padding:11px 14px;font-size:12px;color:var(--muted)">국적 집단 지성 데이터 축적. V2 개인화 기반</td><td style="padding:11px 14px;font-size:12px;color:var(--muted)"><span style="background:rgba(239,68,68,0.1);color:#EF4444;font-size:11px;padding:2px 8px;border-radius:8px">높음</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 14: 4주 개발 일정 -->
+<div class="section" id="roadmap">
+  <div class="section-label">Section 14</div>
+  <div class="section-title">4주 <span>개발 일정</span></div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:20px">공모전 마감 2026-05-06 기준. Must 기능 4주 완성 목표. React Native + Node.js + LLM API 스택.</p>
+  <table style="width:100%;border-collapse:collapse">
+    <thead><tr style="background:var(--surface)"><th style="width:80px;padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">주차</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">마일스톤</th><th style="padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">세부 태스크</th><th style="width:100px;padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">완료 기준</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:12px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(56,189,248,0.15);color:var(--accent);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Week 1</span><br><span style="font-size:10px;color:var(--muted2)">기반 구축</span></td><td style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--fg);border-bottom:1px solid var(--border)">LLM + API 파이프라인</td><td style="padding:12px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">React Native 초기화 / KTO 다국어 API 연동 / LLM 프록시 서버 (Node.js) / 언어 감지 + 선택 UI / Redis 캐시 레이어</td><td style="padding:12px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">5개국어 질문→응답 동작</td></tr>
+      <tr><td style="padding:12px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(56,189,248,0.15);color:var(--accent);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Week 2</span><br><span style="font-size:10px;color:var(--muted2)">핵심 기능</span></td><td style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--fg);border-bottom:1px solid var(--border)">AI 가이드 + 교통 + SOS</td><td style="padding:12px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">관광지 탐색 AI 대화 / 교통정보 API 연동 + 경로 안내 / 긴급상황 키워드 감지 로직 / SOS 화면 + 병원·대사관 다국어 안내 / 장소 목록 UI</td><td style="padding:12px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Kenji·Wang Fang 시뮬 PASS</td></tr>
+      <tr><td style="padding:12px 14px;border-bottom:1px solid var(--border)"><span style="background:rgba(56,189,248,0.15);color:var(--accent);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Week 3</span><br><span style="font-size:10px;color:var(--muted2)">보강</span></td><td style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--fg);border-bottom:1px solid var(--border)">카메라 번역 + 무장애 모드</td><td style="padding:12px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">카메라 OCR 번역 (메뉴판·간판) / 무장애 필터 UI 연동 / 오디오 가이드 API 연동 / 오프라인 캐싱 핵심 데이터 / 문화 팁 콘텐츠 DB 구축</td><td style="padding:12px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)">Sofia 시뮬 PASS</td></tr>
+      <tr><td style="padding:12px 14px"><span style="background:rgba(56,189,248,0.15);color:var(--accent);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px">Week 4</span><br><span style="font-size:10px;color:var(--muted2)">QA + 제출</span></td><td style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--fg)">E2E 테스트 + 제출</td><td style="padding:12px 14px;font-size:12px;color:var(--muted)">3 페르소나 전체 시나리오 E2E 테스트 / 버그픽스 버퍼 (1.5일) / 공모전 제출 패키징 (APK + 시연 영상 + 기획서) / B2G 제안서 초안 (KTO 대상)</td><td style="padding:12px 14px;font-size:12px;color:var(--muted)">전 페르소나 PASS + 제출</td></tr>
+    </tbody>
+  </table>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:16px;font-weight:800;color:var(--accent)">React Native</div><div style="font-size:11px;color:var(--muted);margin-top:4px">iOS + Android</div></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:16px;font-weight:800;color:var(--accent)">Node.js</div><div style="font-size:11px;color:var(--muted);margin-top:4px">LLM 프록시 + 캐시</div></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:16px;font-weight:800;color:var(--accent)">5개 API</div><div style="font-size:11px;color:var(--muted);margin-top:4px">KTO OpenAPI</div></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center"><div style="font-size:16px;font-weight:800;color:var(--accent)">4주 MVP</div><div style="font-size:11px;color:var(--muted);margin-top:4px">2026-05-06 제출</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 15: 실제 구현 화면 -->
+<div class="section" id="screens">
+  <div class="section-label">Section 15</div>
+  <div class="section-title">실제 구현 <span>화면</span></div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:4px">인터랙티브 모바일 앱 프로토타입 — 실제 클릭·탭·스크롤이 동작합니다.</p>
+  <div class="screen-hub">
+    <a class="screen-hub-card" href="index.html">
+      <div class="shc-step">Screen 01</div>
+      <div class="shc-title">🌐 언어 선택 화면</div>
+      <div class="shc-body">6개국어 탭 선택. 무장애 모드 토글. 위치 권한 허가. 앱 시작 CTA.</div>
+      <div class="shc-cta">→ 인터랙티브 앱 열기</div>
+    </a>
+    <a class="screen-hub-card" href="index.html">
+      <div class="shc-step">Screen 02</div>
+      <div class="shc-title">💬 AI 가이드 대화</div>
+      <div class="shc-body">5개국어 실시간 AI 채팅. 관광지 추천 + 문화 팁. 자동 타이핑 시뮬레이션.</div>
+      <div class="shc-cta">→ 인터랙티브 앱 열기</div>
+    </a>
+    <a class="screen-hub-card" href="index.html">
+      <div class="shc-step">Screen 03</div>
+      <div class="shc-title">🗺️ 장소 탐색</div>
+      <div class="shc-body">관광지 목록. 무장애 필터. 혼잡도 표시. 지역·카테고리 탭 전환.</div>
+      <div class="shc-cta">→ 인터랙티브 앱 열기</div>
+    </a>
+    <a class="screen-hub-card" href="index.html">
+      <div class="shc-step">Screen 04</div>
+      <div class="shc-title">📍 장소 상세</div>
+      <div class="shc-body">관광지 상세 정보. 오디오 가이드 재생. 접근성 시설 현황. 길 안내 CTA.</div>
+      <div class="shc-cta">→ 인터랙티브 앱 열기</div>
+    </a>
+    <a class="screen-hub-card" href="index.html">
+      <div class="shc-step">Screen 05</div>
+      <div class="shc-title">🆘 SOS 긴급 지원</div>
+      <div class="shc-body">긴급상황 AI 감지. 병원·대사관·112 다국어 연결. 외국어 위치 자동 전달.</div>
+      <div class="shc-cta">→ 인터랙티브 앱 열기</div>
+    </a>
+    <div class="screen-hub-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-style:dashed;cursor:default">
+      <div style="font-size:32px;margin-bottom:10px">🌐</div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:6px">전체 앱 체험</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">5개 화면 모두 포함된<br>인터랙티브 프로토타입</div>
+      <a href="index.html" style="background:var(--accent);color:#0a1a2a;font-size:12px;font-weight:700;padding:8px 16px;border-radius:10px;text-decoration:none">앱 시작하기 →</a>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div style="margin-bottom:8px">
     <strong style="color:var(--fg)">Foreign AI Guide</strong> — 2026 한국관광공사 관광 서비스 공모전
@@ -684,6 +914,21 @@
   <div>BA Score 99/130 (공동 3위) · 팀 합의 8.0/10 · AI Branch: companion</div>
   <div style="margin-top:8px"><a href="../../">← 전체 프로토타입 목록</a></div>
 </footer>
+
+<script>
+const nls = document.querySelectorAll('.nsl');
+const secs = document.querySelectorAll('.section[id]');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      nls.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector('.nsl[href="#' + e.target.id + '"]');
+      if (a) { a.classList.add('active'); a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+    }
+  });
+}, { threshold: 0.2, rootMargin: '-90px 0px -40% 0px' });
+secs.forEach(s => io.observe(s));
+</script>
 
 </body>
 </html>
