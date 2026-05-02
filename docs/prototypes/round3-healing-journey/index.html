@@ -576,6 +576,85 @@
     .pMapDots { position: absolute; inset: 0; background: radial-gradient(circle at 35% 60%,rgba(16,185,129,0.25) 0%,transparent 38%), radial-gradient(circle at 65% 35%,rgba(52,211,153,0.18) 0%,transparent 30%), radial-gradient(circle at 55% 75%,rgba(16,185,129,0.12) 0%,transparent 22%); }
     .pMapPin { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); font-size: 14px; }
     @media (max-width: 400px) { .proto-phone { width: 290px; } }
+
+    /* S7 emotion cards */
+    .emotionCard {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 13px; border-radius: 12px; margin-bottom: 8px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.18s;
+    }
+    .emotionCard:hover { border-color: rgba(16,185,129,0.35); background: rgba(16,185,129,0.07); }
+    .emotionCard.selected { background: rgba(16,185,129,0.12); border-color: var(--accent); }
+    .emotionEmoji { font-size: 22px; flex-shrink: 0; }
+    .emotionInfo { flex: 1; }
+    .emotionTitle { font-size: 12px; font-weight: 700; color: var(--fg); }
+    .emotionSub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+    .emotionCheck { font-size: 12px; color: var(--accent); font-weight: 800; transition: opacity 0.15s; }
+
+    /* S9 plan cards */
+    .planCard {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px; margin-bottom: 10px;
+    }
+    .planCard.highlight { border-color: var(--accent); background: rgba(16,185,129,0.06); }
+    .planFeatures { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+    .planFeat { font-size: 11px; }
+    .planFeat.on { color: var(--accent2); }
+    .planFeat.off { color: var(--muted2); }
+
+    /* §9 Persona cards */
+    .persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px; }
+    .persona-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px;
+    }
+    .persona-card.kr { border-left: 3px solid var(--accent); }
+    .persona-card.foreign { border-left: 3px solid #60A5FA; }
+    .persona-card.access { border-left: 3px solid #A78BFA; }
+    .persona-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .persona-avatar { width: 52px; height: 52px; border-radius: 14px; background: rgba(16,185,129,0.12); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+    .persona-card.foreign .persona-avatar { background: rgba(96,165,250,0.12); }
+    .persona-card.access .persona-avatar { background: rgba(167,139,250,0.12); }
+    .persona-name { font-size: 16px; font-weight: 800; color: var(--fg); }
+    .persona-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .persona-quote { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.6; margin-bottom: 14px; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 10px; border-left: 2px solid var(--border); }
+    .persona-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .persona-tag { padding: 4px 10px; border-radius: 999px; font-size: 11px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); color: var(--accent2); }
+    .persona-card.foreign .persona-tag { background: rgba(96,165,250,0.08); border-color: rgba(96,165,250,0.2); color: #93C5FD; }
+    .persona-card.access .persona-tag { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2); color: #C4B5FD; }
+    .persona-needs { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .persona-needs strong { color: var(--fg); }
+
+    /* §10 MVP table */
+    .mvp-section { margin-bottom: 28px; }
+    .mvp-label { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; padding: 6px 14px; border-radius: 8px; display: inline-block; }
+    .mvp-must .mvp-label { background: rgba(16,185,129,0.15); color: var(--accent2); }
+    .mvp-should .mvp-label { background: rgba(245,158,11,0.12); color: #FCD34D; }
+    .mvp-could .mvp-label { background: rgba(99,102,241,0.12); color: #A5B4FC; }
+    .mvp-items { display: flex; flex-direction: column; gap: 8px; }
+    .mvp-item { display: flex; align-items: flex-start; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; }
+    .mvp-must .mvp-item { border-left: 3px solid var(--accent); }
+    .mvp-should .mvp-item { border-left: 3px solid #F59E0B; }
+    .mvp-could .mvp-item { border-left: 3px solid #6366F1; }
+    .mvp-item-title { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
+    .mvp-item-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .mvp-item-api { font-size: 10px; font-family: monospace; color: var(--accent); background: rgba(16,185,129,0.08); padding: 2px 7px; border-radius: 4px; margin-top: 5px; display: inline-block; }
+
+    /* §11 Sprint timeline */
+    .sprint-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .sprint-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    }
+    .sprint-card.active-sprint { border-color: var(--accent); background: rgba(16,185,129,0.05); }
+    .sprint-week { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .sprint-title { font-size: 15px; font-weight: 800; color: var(--fg); margin-bottom: 4px; }
+    .sprint-date { font-size: 11px; color: var(--muted2); margin-bottom: 14px; }
+    .sprint-tasks { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .sprint-task { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; }
+    .sprint-task::before { content: '—'; color: var(--muted2); flex-shrink: 0; }
+    .sprint-milestone { margin-top: 14px; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; }
+    .sprint-card.active-sprint .sprint-milestone { background: rgba(16,185,129,0.12); color: var(--accent2); }
+    .sprint-milestone:not(.sprint-card.active-sprint .sprint-milestone) { background: rgba(255,255,255,0.04); color: var(--muted); }
   </style>
 </head>
 <body>
@@ -949,9 +1028,9 @@
 <!-- §6 인터랙티브 프로토타입 ───────────────────────── -->
 <div class="section">
   <div class="section-num">§6</div>
-  <div class="section-label">인터랙티브 프로토타입 — 6개 화면</div>
+  <div class="section-label">인터랙티브 프로토타입 — 9개 화면</div>
   <h2 class="section-title">모바일 앱 전체 플로우 직접 체험</h2>
-  <p class="section-desc">화면을 클릭·탭해 앱 흐름을 경험하세요. Visit Korea OpenAPI 픽스처 데이터 반영 · 모바일 우선 반응형</p>
+  <p class="section-desc">화면을 클릭·탭해 앱 흐름을 경험하세요. S1–S6 핵심 플로우 + S7 감정체크인 + S8 외국인 K-웰니스 + S9 구독플랜 · Visit Korea OpenAPI 픽스처 데이터 반영</p>
 
   <div class="proto-wrap">
 
@@ -963,6 +1042,9 @@
       <span class="proto-slabel" onclick="protoGo(4)">S4 일정 선택</span>
       <span class="proto-slabel" onclick="protoGo(5)">S5 진행 중</span>
       <span class="proto-slabel" onclick="protoGo(6)">S6 완료</span>
+      <span class="proto-slabel" onclick="protoGo(7)">S7 감정체크인</span>
+      <span class="proto-slabel" onclick="protoGo(8)">S8 외국인</span>
+      <span class="proto-slabel" onclick="protoGo(9)">S9 구독플랜</span>
     </div>
 
     <!-- Phone frame -->
@@ -1357,6 +1439,195 @@
         </div>
       </div>
 
+      <!-- ── Screen 7: 감정 체크인 ── -->
+      <div class="proto-screen" id="ps7">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(1)">←</button>
+          <span class="proto-stitle">번아웃 체크인</span>
+          <span class="proto-sbadge">맞춤 진단</span>
+        </div>
+        <div class="proto-body">
+          <div style="text-align:center;margin-bottom:14px;">
+            <div style="font-size:14px;font-weight:800;color:var(--fg);margin-bottom:4px;">지금 어떤 상태인가요?</div>
+            <div style="font-size:11px;color:var(--muted);">솔직하게 선택하면 가장 맞는 치유 모드를 추천해 드려요</div>
+          </div>
+          <div class="emotionCard selected" id="ec1" onclick="selectEmotion(1)">
+            <span class="emotionEmoji">😮‍💨</span>
+            <div class="emotionInfo">
+              <div class="emotionTitle">지쳐서 아무것도 못 하겠어요</div>
+              <div class="emotionSub">완전 번아웃 → 🌿 쉬며 회복 추천</div>
+            </div>
+            <span class="emotionCheck">✓</span>
+          </div>
+          <div class="emotionCard" id="ec2" onclick="selectEmotion(2)">
+            <span class="emotionEmoji">😔</span>
+            <div class="emotionInfo">
+              <div class="emotionTitle">머리가 복잡하고 멍해요</div>
+              <div class="emotionSub">정신적 피로 → 🎧 들으며 회복 추천</div>
+            </div>
+            <span class="emotionCheck" style="opacity:0">✓</span>
+          </div>
+          <div class="emotionCard" id="ec3" onclick="selectEmotion(3)">
+            <span class="emotionEmoji">😶</span>
+            <div class="emotionInfo">
+              <div class="emotionTitle">일상이 무기력하고 재미없어요</div>
+              <div class="emotionSub">무기력 → ✨ 발견하며 회복 추천</div>
+            </div>
+            <span class="emotionCheck" style="opacity:0">✓</span>
+          </div>
+          <div class="emotionCard" id="ec4" onclick="selectEmotion(4)">
+            <span class="emotionEmoji">😤</span>
+            <div class="emotionInfo">
+              <div class="emotionTitle">스트레스가 폭발할 것 같아요</div>
+              <div class="emotionSub">급성 스트레스 → 🌲 자연 힐링 추천</div>
+            </div>
+            <span class="emotionCheck" style="opacity:0">✓</span>
+          </div>
+          <div class="emotionCard" id="ec5" onclick="selectEmotion(5)">
+            <span class="emotionEmoji">🙂</span>
+            <div class="emotionInfo">
+              <div class="emotionTitle">그냥 환기가 필요해요</div>
+              <div class="emotionSub">가벼운 회복 → 자유 선택 모드</div>
+            </div>
+            <span class="emotionCheck" style="opacity:0">✓</span>
+          </div>
+          <div class="apiBadge" style="margin-top:8px;">
+            <span>📡 API</span>
+            <code>wellness-tourism</code>
+          </div>
+          <button class="pCta" onclick="protoGo(1)" style="margin-top:10px;">치유 모드 추천받기 →</button>
+        </div>
+        <div class="proto-tabbar">
+          <div class="ptab active"><span class="ptab-icon">🏠</span>홈</div>
+          <div class="ptab"><span class="ptab-icon">🗺️</span>코스</div>
+          <div class="ptab"><span class="ptab-icon">🎧</span>오디오</div>
+          <div class="ptab"><span class="ptab-icon">👤</span>내기록</div>
+        </div>
+      </div>
+
+      <!-- ── Screen 8: 외국인 K-웰니스 (English) ── -->
+      <div class="proto-screen" id="ps8">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(1)">←</button>
+          <span class="proto-stitle">🌏 K-Wellness</span>
+          <span class="proto-sbadge">EN</span>
+        </div>
+        <div class="proto-body">
+          <div style="text-align:center;margin-bottom:14px;">
+            <div style="font-size:16px;font-weight:900;color:var(--fg);margin-bottom:4px;">K-Wellness Journey</div>
+            <div style="font-size:11px;color:var(--muted);">Healing travel for foreign visitors · powered by Korea Tourism OpenAPI</div>
+          </div>
+          <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:10px 12px;margin-bottom:12px;">
+            <div style="font-size:10px;color:var(--accent2);font-weight:700;margin-bottom:3px;">🌟 Why K-Wellness?</div>
+            <div style="font-size:11px;color:var(--muted);">Temple stays, palace audio walks, and mindful nature trails — all with English guides and real-time crowd forecasts.</div>
+          </div>
+          <div class="pcourseCard" onclick="protoGo(3)">
+            <div class="pcThumb">🏯<div class="pMapDots"></div><span class="pcThumbBadge cLow">🟢 Quiet now</span></div>
+            <div class="pcBody">
+              <div class="pcName">Changdeokgung Palace Audio Walk</div>
+              <div class="pcTags">
+                <span class="pctag">⏱ 80min</span>
+                <span class="pctag">📍 2.3km</span>
+                <span class="pctag">🎧 EN audio 3</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);">tourism-info-english · audio-guide API · <span style="color:#F59E0B;">★4.9</span></div>
+            </div>
+          </div>
+          <div class="pcourseCard" onclick="protoGo(3)">
+            <div class="pcThumb">🧘<div class="pMapDots"></div><span class="pcThumbBadge cLow">🟢 Available</span></div>
+            <div class="pcBody">
+              <div class="pcName">Templestay Wellness Half-Day</div>
+              <div class="pcTags">
+                <span class="pctag">⏱ Half day</span>
+                <span class="pctag">🧘 Meditation</span>
+                <span class="pctag">🍵 Tea ceremony</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);">wellness-tourism · tourism-info-english API · <span style="color:#F59E0B;">★4.8</span></div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-top:8px;">
+            <div style="font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:600;">Available languages</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-size:10px;padding:3px 8px;border-radius:5px;background:rgba(16,185,129,0.15);color:var(--accent2);font-weight:700;">🇺🇸 EN</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,0.05);color:var(--muted);">🇯🇵 JP</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,0.05);color:var(--muted);">🇨🇳 ZH</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,0.05);color:var(--muted);">🇪🇸 ES</span>
+            </div>
+          </div>
+          <div class="apiBadge" style="margin-top:8px;">
+            <span>📡 API</span>
+            <code>tourism-info-english</code>
+            <code>audio-guide</code>
+          </div>
+          <button class="pCta" onclick="protoGo(2)" style="margin-top:10px;">Explore K-Wellness →</button>
+        </div>
+        <div class="proto-tabbar">
+          <div class="ptab active"><span class="ptab-icon">🏠</span>Home</div>
+          <div class="ptab"><span class="ptab-icon">🗺️</span>Courses</div>
+          <div class="ptab"><span class="ptab-icon">🎧</span>Audio</div>
+          <div class="ptab"><span class="ptab-icon">👤</span>My log</div>
+        </div>
+      </div>
+
+      <!-- ── Screen 9: 구독 플랜 선택 ── -->
+      <div class="proto-screen" id="ps9">
+        <div class="proto-sbar">
+          <button class="proto-back" onclick="protoGo(6)">←</button>
+          <span class="proto-stitle">치유 멤버십</span>
+          <span class="proto-sbadge">업그레이드</span>
+        </div>
+        <div class="proto-body">
+          <div style="text-align:center;margin-bottom:14px;">
+            <div style="font-size:14px;font-weight:800;color:var(--fg);margin-bottom:4px;">치유 여정을 더 깊이 경험하세요</div>
+            <div style="font-size:11px;color:var(--muted);">나에게 맞는 플랜을 선택해 보세요</div>
+          </div>
+          <div class="planCard">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+              <div>
+                <div style="font-size:12px;font-weight:800;color:var(--fg);">Free</div>
+                <div style="font-size:20px;font-weight:900;color:var(--fg);">₩0 <span style="font-size:12px;color:var(--muted);font-weight:400;">/월</span></div>
+              </div>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,0.07);color:var(--muted);">현재 플랜</span>
+            </div>
+            <ul class="planFeatures">
+              <li class="planFeat on">✓ 기본 코스 월 3회</li>
+              <li class="planFeat on">✓ 오디오 미리듣기 (30초)</li>
+              <li class="planFeat off">✗ 혼잡도 실시간 예보</li>
+              <li class="planFeat off">✗ 숨은 명소 발견 모드</li>
+              <li class="planFeat off">✗ 외국인 영문 서비스</li>
+            </ul>
+          </div>
+          <div class="planCard highlight">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+              <div>
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+                  <div style="font-size:12px;font-weight:800;color:var(--fg);">Premium</div>
+                  <span style="font-size:9px;padding:2px 6px;border-radius:4px;background:var(--accent);color:#000;font-weight:800;">추천</span>
+                </div>
+                <div style="font-size:20px;font-weight:900;color:var(--accent);">$15 <span style="font-size:12px;color:var(--muted);font-weight:400;">/월</span></div>
+              </div>
+              <div style="font-size:9px;color:var(--accent2);text-align:right;">약 ₩20,000<br>연간 결제 20%↓</div>
+            </div>
+            <ul class="planFeatures">
+              <li class="planFeat on">✓ 무제한 코스</li>
+              <li class="planFeat on">✓ 풀 오디오 스토리</li>
+              <li class="planFeat on">✓ 혼잡도 실시간 예보</li>
+              <li class="planFeat on">✓ 숨은 명소 발견 모드</li>
+              <li class="planFeat on">✓ 외국인 영문 서비스</li>
+            </ul>
+          </div>
+          <div style="font-size:10px;color:var(--muted2);text-align:center;margin:6px 0;">B2B 웰니스센터 파트너십 문의: wellness@치유여정.kr</div>
+          <button class="pCta" onclick="protoGo(1)" style="margin-top:6px;">Premium 시작하기 →</button>
+          <button class="pCta sec" onclick="protoGo(1)" style="margin-top:6px;">무료로 계속하기</button>
+        </div>
+        <div class="proto-tabbar">
+          <div class="ptab"><span class="ptab-icon">🏠</span>홈</div>
+          <div class="ptab"><span class="ptab-icon">🗺️</span>코스</div>
+          <div class="ptab"><span class="ptab-icon">🎧</span>오디오</div>
+          <div class="ptab active"><span class="ptab-icon">👤</span>내기록</div>
+        </div>
+      </div>
+
     </div><!-- /proto-phone -->
 
     <!-- Dot navigation -->
@@ -1367,6 +1638,9 @@
       <span class="proto-dot" onclick="protoGo(4)"></span>
       <span class="proto-dot" onclick="protoGo(5)"></span>
       <span class="proto-dot" onclick="protoGo(6)"></span>
+      <span class="proto-dot" onclick="protoGo(7)"></span>
+      <span class="proto-dot" onclick="protoGo(8)"></span>
+      <span class="proto-dot" onclick="protoGo(9)"></span>
     </div>
 
   </div><!-- /proto-wrap -->
@@ -1529,6 +1803,236 @@
   </div>
 </div>
 
+<!-- §9 페르소나 3종 ──────────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§9</div>
+  <div class="section-label">페르소나 3종 — Who</div>
+  <h2 class="section-title">핵심 사용자 유형별 니즈 분석</h2>
+  <p class="section-desc">KR 내국인 · 외국인 방문객 · 접근성 약자 3개 세그먼트를 정의해 서비스 포용 범위를 확보합니다.</p>
+
+  <div class="persona-grid">
+    <div class="persona-card kr">
+      <div class="persona-header">
+        <div class="persona-avatar">😮‍💨</div>
+        <div>
+          <div class="persona-name">번아웃 지윤 (31세)</div>
+          <div class="persona-role">서울 직장인 · 마케터 3년차</div>
+        </div>
+      </div>
+      <div class="persona-quote">"주말에 뭔가 하고 싶긴 한데 계획 세우는 것 자체가 스트레스야. 그냥 앱이 알아서 데려가줬으면."</div>
+      <div class="persona-tags">
+        <span class="persona-tag">🤫 조용한 회복자</span>
+        <span class="persona-tag">📱 모바일 퍼스트</span>
+        <span class="persona-tag">💳 경험 소비형</span>
+      </div>
+      <div class="persona-needs">
+        <strong>핵심 니즈:</strong> 결정 피로 없이 빠른 코스 배정 · 혼잡하지 않은 명소 · 오디오로 맥락 이해<br>
+        <strong>주요 화면:</strong> S7 감정체크인 → S1 모드선택 → S2 코스추천 → S5 진행 중
+      </div>
+    </div>
+
+    <div class="persona-card foreign">
+      <div class="persona-header">
+        <div class="persona-avatar">🌏</div>
+        <div>
+          <div class="persona-name">Emma Walsh (28세)</div>
+          <div class="persona-role">영국 출신 · K-컬처 팬 · 첫 한국 방문</div>
+        </div>
+      </div>
+      <div class="persona-quote">"K-drama에서 본 궁궐을 실제로 걷고 싶어. 근데 영어로 설명해주는 오디오가 있어야 몰입이 될 것 같아."</div>
+      <div class="persona-tags">
+        <span class="persona-tag">🎵 소리 감상가</span>
+        <span class="persona-tag">🇬🇧 English speaker</span>
+        <span class="persona-tag">📸 콘텐츠 공유형</span>
+      </div>
+      <div class="persona-needs">
+        <strong>핵심 니즈:</strong> 영문 오디오 가이드 · 혼잡도 기반 최적 방문 타이밍 · K-웰니스 문화 맥락 설명<br>
+        <strong>주요 화면:</strong> S8 외국인K-웰니스 → S3 코스상세 → S4 일정선택
+      </div>
+    </div>
+
+    <div class="persona-card access">
+      <div class="persona-header">
+        <div class="persona-avatar">🧓</div>
+        <div>
+          <div class="persona-name">이명숙 (62세)</div>
+          <div class="persona-role">은퇴 후 웰니스 여행 시작 · 무릎 관절 약함</div>
+        </div>
+      </div>
+      <div class="persona-quote">"오래 걷기가 힘들어서 자연 속에서 쉴 수 있는 짧은 코스가 필요해. 앱이 너무 복잡하면 못 써."</div>
+      <div class="persona-tags">
+        <span class="persona-tag">🌲 자연 힐러</span>
+        <span class="persona-tag">♿ 접근성 우선</span>
+        <span class="persona-tag">🕐 여유로운 일정형</span>
+      </div>
+      <div class="persona-needs">
+        <strong>핵심 니즈:</strong> 이동 거리 30분 이내 코스 필터 · 큰 글씨·단순 UI · eco-tourism 자연 명소 우선<br>
+        <strong>주요 화면:</strong> S1 쉬며회복 선택 → S2 코스추천(거리순) → S4 일정선택
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §10 MVP 기능 우선순위 ──────────────────────────── -->
+<div class="section">
+  <div class="section-num">§10</div>
+  <div class="section-label">MVP 기능 우선순위 — MoSCoW</div>
+  <h2 class="section-title">4주 MVP 범위 — Must / Should / Could</h2>
+  <p class="section-desc">공모전 데모 기준 Must 완성 → Should 2주 내 추가 → Could 이후 로드맵으로 배치합니다.</p>
+
+  <div class="mvp-section mvp-must">
+    <div class="mvp-label">Must — 데모 필수</div>
+    <div class="mvp-items">
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">감정 JTBD 진입 — 치유 모드 3종 선택</div>
+          <div class="mvp-item-desc">홈 화면에서 들으며 / 쉬며 / 발견하며 선택 → 모드별 코스 큐레이션 분기</div>
+          <span class="mvp-item-api">wellness-tourism · visitor-concentration-forecast</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">코스 추천 + 혼잡도 뱃지 실시간 표시</div>
+          <div class="mvp-item-desc">추천 코스 리스트에 🟢/🟡/🔴 혼잡도 상태 표시 · 필터 (한산한 곳 먼저)</div>
+          <span class="mvp-item-api">visitor-concentration-forecast · area-tourism-diversity</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">코스 상세 + 오디오 미리듣기 (30초)</div>
+          <div class="mvp-item-desc">장소별 오디오 스토리 30초 샘플 재생 · 혼잡도 시간대별 예보 캘린더</div>
+          <span class="mvp-item-api">audio-guide · wellness-tourism</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">방문 일정 선택 + 출발 확정</div>
+          <div class="mvp-item-desc">혼잡도 데이터 기반 최적 시간대 자동 추천 · 캘린더 저장</div>
+          <span class="mvp-item-api">visitor-concentration-forecast</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mvp-section mvp-should" style="margin-top:24px;">
+    <div class="mvp-label">Should — 2주 내 추가</div>
+    <div class="mvp-items">
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">감정 체크인 — 번아웃 진단 5문항</div>
+          <div class="mvp-item-desc">감정 상태 선택 → 맞춤 치유 모드 자동 분기 (S7)</div>
+          <span class="mvp-item-api">wellness-tourism</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">코스 진행 중 오디오 전체 재생 + 위치 연동</div>
+          <div class="mvp-item-desc">GPS 포인트 도착 시 오디오 자동 트리거 · 파형 애니메이션</div>
+          <span class="mvp-item-api">audio-guide · durunubi-trails</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">치유 완료 기록 + 회복 점수 시각화</div>
+          <div class="mvp-item-desc">완료 시 회복 점수(+12) 부여 · 숨은 명소 발견 배지 지급</div>
+          <span class="mvp-item-api">photo-contest-winners · area-tourism-diversity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mvp-section mvp-could" style="margin-top:24px;">
+    <div class="mvp-label">Could — 이후 로드맵</div>
+    <div class="mvp-items">
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">외국인 영문 K-웰니스 모드 (S8)</div>
+          <div class="mvp-item-desc">영문 오디오 가이드 + 다국어 UI (EN/JP/ZH/ES)</div>
+          <span class="mvp-item-api">tourism-info-english · audio-guide</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">Premium 구독 결제 + B2B 파트너십 포털 (S9)</div>
+          <div class="mvp-item-desc">$15/월 구독 모델 · 웰니스센터 B2B 계약 관리 대시보드</div>
+          <span class="mvp-item-api">모든 API 풀 접근</span>
+        </div>
+      </div>
+      <div class="mvp-item">
+        <div>
+          <div class="mvp-item-title">4계절 치유 코스 큐레이션 + 소셜 공유</div>
+          <div class="mvp-item-desc">계절별 특화 코스 자동 추천 · 인스타그램 공유 카드 생성</div>
+          <span class="mvp-item-api">eco-tourism · photo-contest-winners</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- §11 4주 개발 일정 ──────────────────────────────── -->
+<div class="section">
+  <div class="section-num">§11</div>
+  <div class="section-label">4주 개발 일정 — Roadmap</div>
+  <h2 class="section-title">공모전 제출까지 주차별 마일스톤</h2>
+  <p class="section-desc">Must 기능 3주 완성 → 4주차 QA·최적화·제출 준비. 각 주차 KTO OpenAPI 연동과 UI를 병행합니다.</p>
+
+  <div class="sprint-grid">
+    <div class="sprint-card active-sprint">
+      <div class="sprint-week">Week 1</div>
+      <div class="sprint-title">기반 설계 + API 연동</div>
+      <div class="sprint-date">05.05 – 05.11</div>
+      <ul class="sprint-tasks">
+        <li class="sprint-task">프로젝트 구조 설계 (React Native / Flutter)</li>
+        <li class="sprint-task">KTO OpenAPI 8종 키 발급 + 연동 테스트</li>
+        <li class="sprint-task">감정 JTBD 데이터 모델 설계</li>
+        <li class="sprint-task">S1 홈/모드선택 화면 구현</li>
+      </ul>
+      <div class="sprint-milestone">🎯 마일스톤: API 연동 완료 + S1 동작</div>
+    </div>
+
+    <div class="sprint-card">
+      <div class="sprint-week">Week 2</div>
+      <div class="sprint-title">핵심 플로우 구현</div>
+      <div class="sprint-date">05.12 – 05.18</div>
+      <ul class="sprint-tasks">
+        <li class="sprint-task">S2 코스추천 + 혼잡도 뱃지 실시간 반영</li>
+        <li class="sprint-task">S3 코스상세 + 오디오 미리듣기 30초</li>
+        <li class="sprint-task">S4 일정선택 — 최적 시간대 자동 추천</li>
+        <li class="sprint-task">visitor-concentration-forecast API 캐싱 전략 구현</li>
+      </ul>
+      <div class="sprint-milestone" style="background:rgba(255,255,255,0.04);color:var(--muted);">🎯 마일스톤: Must 코어 플로우 완성</div>
+    </div>
+
+    <div class="sprint-card">
+      <div class="sprint-week">Week 3</div>
+      <div class="sprint-title">Should 기능 + UI 완성</div>
+      <div class="sprint-date">05.19 – 05.25</div>
+      <ul class="sprint-tasks">
+        <li class="sprint-task">S5 진행중 — GPS + 오디오 자동 트리거</li>
+        <li class="sprint-task">S6 완료 — 회복 점수 + 숨은 명소 배지</li>
+        <li class="sprint-task">S7 감정체크인 플로우 연결</li>
+        <li class="sprint-task">다크 포레스트 UI 완성 + 애니메이션 polish</li>
+      </ul>
+      <div class="sprint-milestone" style="background:rgba(255,255,255,0.04);color:var(--muted);">🎯 마일스톤: 9개 화면 인터랙션 완성</div>
+    </div>
+
+    <div class="sprint-card">
+      <div class="sprint-week">Week 4</div>
+      <div class="sprint-title">QA · 최적화 · 제출 준비</div>
+      <div class="sprint-date">05.26 – 06.01</div>
+      <ul class="sprint-tasks">
+        <li class="sprint-task">API 응답 캐싱 최적화 (Redis / 로컬 캐시)</li>
+        <li class="sprint-task">접근성 검수 (시니어 페르소나 기준)</li>
+        <li class="sprint-task">S8 외국인 영문 모드 + S9 구독플랜 UI</li>
+        <li class="sprint-task">공모전 제출 자료 (기획서 PDF + 데모 영상)</li>
+      </ul>
+      <div class="sprint-milestone" style="background:rgba(255,255,255,0.04);color:var(--muted);">🎯 마일스톤: 공모전 제출 완료</div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div style="margin-bottom:8px;">
@@ -1546,33 +2050,90 @@
   var cur = 1;
 
   function protoGo(n) {
-    // screens
     document.querySelectorAll('.proto-screen').forEach(function (s, i) {
       s.classList.toggle('active', i + 1 === n);
     });
-    // dots
     document.querySelectorAll('.proto-dot').forEach(function (d, i) {
       d.classList.toggle('active', i + 1 === n);
     });
-    // labels
     document.querySelectorAll('.proto-slabel').forEach(function (l, i) {
       l.classList.toggle('active', i + 1 === n);
     });
     cur = n;
-    // scroll phone body to top
     var body = document.querySelector('#ps' + n + ' .proto-body');
     if (body) body.scrollTop = 0;
   }
 
   window.protoGo = protoGo;
 
+  // Time slot selection (S4)
   window.selectSlot = function (n) {
     document.querySelectorAll('.timeSlot').forEach(function (s) {
       s.classList.remove('selected');
     });
     var el = document.getElementById('slot' + n);
     if (el) el.classList.add('selected');
+    var label = document.querySelector('#ps4 .proto-body > div[style*="selected"]');
+    var texts = ['토요일 오전 7:00', '토요일 오전 9:00', '일요일 오전 8:00'];
+    var confirmEl = document.querySelector('#ps4 .proto-body > div:nth-last-child(3) div:first-child');
+    if (confirmEl) confirmEl.textContent = '✓ 선택됨: ' + texts[n - 1];
   };
+
+  // Filter chip toggle (S2)
+  document.querySelectorAll('.fChip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chip.classList.toggle('on');
+    });
+  });
+
+  // Audio play/pause toggle (S3 preview + S5 player)
+  var s3Playing = false;
+  var s3ProgressEl = document.querySelector('#ps3 .pPreview .mock-audio-progress-fill, #ps3 .pPreview div[style*="width:0%"]');
+  document.querySelectorAll('#ps3 .pPreview [style*="▶"], #ps3 .pPreview div[style*="border-radius:50%"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      s3Playing = !s3Playing;
+      btn.textContent = s3Playing ? '⏸' : '▶';
+    });
+  });
+
+  // S5 play/pause button
+  var s5Playing = true;
+  var s5PlayBtn = document.querySelector('#ps5 .pPlayBtn');
+  if (s5PlayBtn) {
+    s5PlayBtn.addEventListener('click', function () {
+      s5Playing = !s5Playing;
+      s5PlayBtn.textContent = s5Playing ? '⏸' : '▶';
+      document.querySelectorAll('#ps5 .pWaveBar').forEach(function (b) {
+        b.style.animationPlayState = s5Playing ? 'running' : 'paused';
+      });
+    });
+  }
+
+  // Emotion card selection (S7)
+  window.selectEmotion = function (n) {
+    for (var i = 1; i <= 5; i++) {
+      var card = document.getElementById('ec' + i);
+      if (!card) continue;
+      var check = card.querySelector('.emotionCheck');
+      if (i === n) {
+        card.classList.add('selected');
+        if (check) check.style.opacity = '1';
+      } else {
+        card.classList.remove('selected');
+        if (check) check.style.opacity = '0';
+      }
+    }
+  };
+
+  // S1 mode button — highlight selected mode
+  document.querySelectorAll('#ps1 .pmodeBtn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('#ps1 .pmodeBtn').forEach(function (b) {
+        b.classList.remove('sel');
+      });
+      btn.classList.add('sel');
+    });
+  });
 })();
 </script>
 </body>

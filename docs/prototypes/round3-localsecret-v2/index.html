@@ -2,1981 +2,1557 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LocalSecret v2 — Round 3 · 2026 Visit Korea Competition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>LocalSecret v2 — 숨은 명소 발견</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ─── CSS Variables ─────────────────────────────────────────── */
+    /* ── Variables ───────────────────────────────────────────── */
     :root {
-      --bg:       #060609;
-      --surface:  #0D0D13;
-      --card:     #13131A;
-      --border:   #1E1E28;
-      --fg:       #F4F4F8;
-      --muted:    #9898AC;
-      --accent:   #8B5CF6;
-      --accent2:  #A78BFA;
-      --accent-glow: rgba(139,92,246,0.25);
-      --accent-faint: rgba(139,92,246,0.08);
-      --radius:   12px;
-      --radius-lg: 20px;
-      --transition: 0.2s ease;
+      --bg:         #060609;
+      --surface:    #0D0D14;
+      --card:       #12121A;
+      --card2:      #17172200;
+      --border:     #1E1E2C;
+      --fg:         #F2F2F8;
+      --muted:      #8888A0;
+      --accent:     #8B5CF6;
+      --accent2:    #A78BFA;
+      --accent-glow: rgba(139,92,246,0.30);
+      --accent-faint: rgba(139,92,246,0.10);
+      --green:      #34D399;
+      --yellow:     #FBBF24;
+      --red:        #F87171;
+      --radius:     14px;
+      --radius-lg:  20px;
+      --trans:      0.28s cubic-bezier(.4,0,.2,1);
     }
 
-    /* ─── Reset & Base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
+    html { background: #020204; }
 
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    a { color: var(--accent2); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    img { display: block; max-width: 100%; }
-
-    /* ─── Layout helpers ────────────────────────────────────────── */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .section {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section:last-of-type { border-bottom: none; }
-
-    .section-label {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      background: var(--accent-faint);
-      border: 1px solid rgba(139,92,246,0.3);
-      border-radius: 100px;
-      padding: 4px 12px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: clamp(22px, 3vw, 30px);
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-
-    .section-sub {
-      color: var(--muted);
-      margin-bottom: 40px;
-      font-size: 14px;
-    }
-
-    /* ─── Navigation ────────────────────────────────────────────── */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(6,6,9,0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
+    /* ── Top bar ─────────────────────────────────────────────── */
+    #top-nav {
+      width: 100%;
+      max-width: 430px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 56px;
-      gap: 12px;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--fg);
-      text-decoration: none;
-    }
-
-    .nav-logo-icon {
-      width: 30px;
-      height: 30px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-back {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color var(--transition);
-    }
-    .nav-back:hover { color: var(--fg); text-decoration: none; }
-
-    .nav-badge {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      border-radius: 100px;
-      padding: 4px 10px;
-      white-space: nowrap;
-    }
-
-    /* ─── §1 Hero ───────────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding: 100px 0 80px;
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(6,6,9,0.90);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
-    /* Starry background */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,92,246,0.12) 0%, transparent 70%),
-                  radial-gradient(ellipse 40% 40% at 20% 60%, rgba(167,139,250,0.07) 0%, transparent 60%),
-                  var(--bg);
-      z-index: 0;
+    #top-nav .nav-left { display: flex; align-items: center; gap: 10px; }
+    #top-nav .nav-logo { font-size: 13px; font-weight: 700; color: var(--accent2); display: flex; align-items: center; gap: 6px; }
+    #top-nav .nav-logo-icon { font-size: 16px; }
+    #top-nav .nav-badge { font-size: 10px; background: var(--accent-faint); color: var(--accent2); border: 1px solid rgba(139,92,246,0.3); border-radius: 100px; padding: 2px 9px; font-weight: 600; }
+    #top-nav .nav-back-link { font-size: 12px; color: var(--muted); text-decoration: none; padding: 6px 0; }
+    #top-nav .nav-back-link:hover { color: var(--fg); }
+    #top-nav .nav-archive-btn {
+      font-size: 12px; color: var(--muted); background: var(--card);
+      border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px;
+      cursor: pointer; transition: color var(--trans), border-color var(--trans);
+    }
+    #top-nav .nav-archive-btn:hover { color: var(--accent2); border-color: var(--accent); }
+
+    /* ── Shell wrap ──────────────────────────────────────────── */
+    #shell-wrap {
+      width: 100%;
+      max-width: 430px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
     }
 
-    /* CSS stars */
-    .stars {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+    #shell {
+      width: 100%;
+      flex: 1;
+      position: relative;
       overflow: hidden;
     }
 
-    .stars::before,
-    .stars::after {
+    /* ── Screen base ─────────────────────────────────────────── */
+    .screen {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+    }
+    .screen::-webkit-scrollbar { display: none; }
+    .screen.hidden { display: none; }
+
+    @keyframes slideInLeft  { from { transform: translateX( 100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes slideInRight { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes slideOutLeft  { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+    @keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX( 100%); opacity: 0; } }
+
+    .screen.slide-in-left   { animation: slideInLeft   var(--trans) forwards; }
+    .screen.slide-in-right  { animation: slideInRight  var(--trans) forwards; }
+    .screen.slide-out-left  { animation: slideOutLeft  var(--trans) forwards; }
+    .screen.slide-out-right { animation: slideOutRight var(--trans) forwards; }
+
+    /* ── Screen header ───────────────────────────────────────── */
+    .screen-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(6,6,9,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    .back-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid var(--border);
+      color: var(--muted); font-size: 16px; cursor: pointer;
+      transition: background var(--trans), color var(--trans);
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .back-btn:hover, .back-btn:active { background: var(--card); color: var(--fg); }
+    .screen-title { font-size: 16px; font-weight: 700; }
+    .screen-subtitle { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       SCREEN 1 — ONBOARDING
+    ═══════════════════════════════════════════════════════════ */
+    #screen-onboarding {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* star background */
+    #screen-onboarding::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
-        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 40% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 55% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 30% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 60% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 5% 50%, rgba(167,139,250,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 45% 60%, rgba(167,139,250,0.4) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 90% 30%, rgba(167,139,250,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 65% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 20% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 50% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 35% 65%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(2px 2px at 92% 70%, rgba(139,92,246,0.7) 0%, transparent 100%),
-        radial-gradient(2px 2px at 8% 92%, rgba(167,139,250,0.5) 0%, transparent 100%);
-      background-repeat: no-repeat;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 60%, rgba(139,92,246,0.08) 0%, transparent 40%);
+      pointer-events: none;
     }
 
-    .stars::after {
-      background-image:
-        radial-gradient(1px 1px at 17% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 38% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 62% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 78% 62%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 48% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 3% 35%, rgba(167,139,250,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 95% 18%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 22% 95%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 57% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
-        radial-gradient(1px 1px at 83% 92%, rgba(255,255,255,0.4) 0%, transparent 100%);
-      background-repeat: no-repeat;
-      opacity: 0.6;
+    .onb-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .onb-star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: rgba(167,139,250,0.6);
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
     }
 
-    .hero-content {
+    .onb-inner {
       position: relative;
       z-index: 1;
-      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 24px 0;
     }
 
-    .hero-eyebrow {
+    .onb-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 8px;
+      margin-bottom: 36px;
     }
-
-    .hero-eyebrow-badge {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--accent2);
-      background: var(--accent-faint);
+    .onb-logo-icon { font-size: 22px; }
+    .onb-logo-text { font-size: 14px; font-weight: 700; color: var(--accent2); }
+    .onb-logo-badge {
+      margin-left: auto;
+      font-size: 10px; font-weight: 600;
+      background: var(--accent-faint); color: var(--accent2);
       border: 1px solid rgba(139,92,246,0.3);
-      border-radius: 100px;
-      padding: 5px 12px;
+      border-radius: 100px; padding: 3px 9px;
     }
 
-    .hero-title {
-      font-size: clamp(36px, 6vw, 64px);
+    .onb-headline {
+      font-size: clamp(24px, 7vw, 30px);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      line-height: 1.3;
+      margin-bottom: 10px;
     }
+    .onb-headline em { font-style: normal; color: var(--accent2); }
 
-    .hero-title .service-name {
-      display: block;
-      background: linear-gradient(135deg, var(--accent2) 0%, #C4B5FD 50%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-jtbd {
-      font-size: clamp(16px, 2.2vw, 20px);
+    .onb-sub {
+      font-size: 13px;
       color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 48px;
-      font-weight: 400;
       line-height: 1.6;
+      margin-bottom: 36px;
     }
 
-    .hero-jtbd strong {
-      color: var(--fg);
+    .onb-label {
+      font-size: 11px;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 14px;
     }
 
-    /* Emotion cards mock UI */
-    .emotion-cards {
+    .emotion-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      max-width: 680px;
-    }
-
-    @media (max-width: 600px) {
-      .emotion-cards { grid-template-columns: repeat(2, 1fr); }
+      margin-bottom: 32px;
     }
 
     .emotion-card {
       background: var(--card);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 20px 16px;
-      text-align: center;
       cursor: pointer;
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-      position: relative;
-      overflow: hidden;
+      transition: border-color var(--trans), background var(--trans), transform 0.15s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
-
-    .emotion-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-
-    .emotion-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: 0 8px 32px var(--accent-glow);
-    }
-
-    .emotion-card:hover::before { opacity: 1; }
-
-    .emotion-card.active {
-      border-color: var(--accent2);
-      box-shadow: 0 0 0 1px var(--accent2), 0 8px 32px var(--accent-glow);
-      background: linear-gradient(160deg, rgba(139,92,246,0.12), var(--card));
-    }
-
-    .emotion-card-icon {
-      font-size: 28px;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .emotion-card-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 4px;
-    }
-
-    .emotion-card-desc {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 32px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      font-weight: 600;
-      font-size: 14px;
-      border: none;
-      border-radius: 100px;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: opacity var(--transition), transform var(--transition);
-      box-shadow: 0 4px 20px var(--accent-glow);
-    }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 14px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 11px 20px;
-      cursor: pointer;
-      transition: color var(--transition), border-color var(--transition);
-    }
-    .btn-ghost:hover { color: var(--fg); border-color: var(--accent); }
-
-    /* ─── §2 서비스 개요 ────────────────────────────────────────── */
-    .summary-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-      margin-bottom: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .summary-box::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, var(--accent), var(--accent2));
-      border-radius: 0 0 0 0;
-    }
-
-    .summary-text {
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--fg);
-      padding-left: 16px;
-    }
-
-    .badges-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 36px;
-    }
-
-    .persona-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--fg);
-      transition: border-color var(--transition), background var(--transition);
-    }
-    .persona-badge:hover {
+    .emotion-card:active { transform: scale(0.96); }
+    .emotion-card.selected {
       border-color: var(--accent);
       background: var(--accent-faint);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
-    .persona-badge .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent2);
-      flex-shrink: 0;
-    }
+    .emotion-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .emotion-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .emotion-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+    .emotion-card.selected .emotion-desc { color: var(--accent2); }
 
-    /* Comparison table */
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-    }
-
-    table {
+    .onb-cta {
       width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    thead tr {
-      background: var(--surface);
-    }
-
-    th {
-      text-align: left;
-      padding: 14px 20px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-
-    td {
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
-      color: var(--fg);
-      vertical-align: top;
-    }
-
-    tr:last-child td { border-bottom: none; }
-
-    tr:hover td { background: var(--surface); }
-
-    td.highlight {
-      color: var(--accent2);
-      font-weight: 600;
-    }
-
-    td.service-name-cell {
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    td.service-name-cell.is-local {
-      color: var(--accent2);
-    }
-
-    .tag-pill {
-      display: inline-block;
-      background: var(--accent-faint);
-      border: 1px solid rgba(139,92,246,0.25);
-      color: var(--accent2);
-      font-size: 11px;
-      font-weight: 600;
-      border-radius: 100px;
-      padding: 2px 9px;
-    }
-
-    /* ─── §3 리서치 근거 ────────────────────────────────────────── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      padding: 17px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
       border-radius: var(--radius);
-      padding: 24px;
-      transition: border-color var(--transition);
-    }
-
-    .stat-card:hover { border-color: var(--accent); }
-
-    .stat-icon {
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .stat-number {
-      font-size: 32px;
+      font-size: 16px;
       font-weight: 700;
-      line-height: 1;
-      color: var(--accent2);
-      margin-bottom: 6px;
+      cursor: pointer;
+      transition: opacity var(--trans), transform 0.15s, box-shadow var(--trans);
+      margin-bottom: 16px;
     }
+    .onb-cta:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .onb-cta:not(:disabled):hover {
+      box-shadow: 0 4px 24px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+    .onb-cta:not(:disabled):active { transform: scale(0.98); }
 
-    .stat-label {
+    .onb-archive-link {
+      text-align: center;
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.5;
     }
-
-    .benchmark-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    .benchmark-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 24px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .benchmark-icon {
-      font-size: 28px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .benchmark-name {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .benchmark-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ─── §4 아이디어 도출 ──────────────────────────────────────── */
-    .axis-table-wrapper {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      margin-bottom: 32px;
-    }
-
-    .axis-table-header {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .axis-table-title {
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .score-total {
-      font-size: 20px;
-      font-weight: 700;
+    .onb-archive-link span {
       color: var(--accent2);
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color var(--trans);
     }
+    .onb-archive-link span:hover { text-decoration-color: var(--accent2); }
 
-    .score-sub {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .axis-score-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .axis-score-num {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--accent2);
-      min-width: 28px;
-      text-align: right;
-    }
-
-    .bar-track {
-      flex: 1;
-      height: 6px;
-      background: var(--border);
-      border-radius: 100px;
-      overflow: hidden;
-      min-width: 80px;
-    }
-
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 100px;
-    }
-
-    .change-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(139,92,246,0.12);
-      border: 1px solid rgba(139,92,246,0.25);
-      color: var(--accent2);
-      font-size: 11px;
-      font-weight: 600;
-      border-radius: var(--radius);
-      padding: 6px 12px;
-    }
-
-    .changes-list {
+    /* ═══════════════════════════════════════════════════════════
+       SCREEN 2 — LOADING
+    ═══════════════════════════════════════════════════════════ */
+    #screen-loading {
+      min-height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-    }
-
-    .change-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-    }
-
-    .change-item-icon {
-      font-size: 18px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .change-item-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .change-item-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .arrow-right {
-      color: var(--accent2);
-      font-weight: 700;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    /* ─── §5 평가 기준 대응 ─────────────────────────────────────── */
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-      margin-bottom: 36px;
-    }
-
-    .score-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 18px;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
       text-align: center;
-      transition: border-color var(--transition);
-    }
-    .score-card:hover { border-color: var(--accent); }
-
-    .score-card-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 10px;
-      line-height: 1.4;
+      gap: 0;
     }
 
-    .score-card-max {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 4px;
+    .loading-orb {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(139,92,246,0.5), rgba(139,92,246,0.1));
+      border: 2px solid rgba(139,92,246,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px;
+      margin-bottom: 32px;
+      animation: orb-pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 40px rgba(139,92,246,0.3);
+    }
+    @keyframes orb-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(139,92,246,0.3); }
+      50% { transform: scale(1.06); box-shadow: 0 0 50px rgba(139,92,246,0.5); }
     }
 
-    .score-card-value {
-      font-size: 28px;
+    .loading-title {
+      font-size: 18px;
       font-weight: 700;
-      color: var(--accent2);
-      line-height: 1;
       margin-bottom: 6px;
     }
 
-    .score-card-bar {
+    .loading-emotion-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600;
+      background: var(--accent-faint); color: var(--accent2);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 100px; padding: 4px 12px;
+      margin-bottom: 28px;
+    }
+
+    .loading-bar-wrap {
+      width: 100%;
+      max-width: 280px;
       height: 4px;
       background: var(--border);
       border-radius: 100px;
       overflow: hidden;
-      margin-top: 10px;
+      margin-bottom: 28px;
     }
-
-    .score-card-bar-fill {
+    .loading-bar-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       border-radius: 100px;
+      width: 0%;
+      transition: width 0.4s ease;
     }
 
-    .score-card.total-card {
-      background: linear-gradient(160deg, rgba(139,92,246,0.15), var(--card));
-      border-color: var(--accent);
-      grid-column: span 1;
-    }
-
-    .score-card.total-card .score-card-value {
-      font-size: 36px;
-      background: linear-gradient(135deg, var(--accent2), #C4B5FD);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .value-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .value-item {
+    .loading-steps {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 280px;
+      text-align: left;
+    }
+    .loading-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    .loading-step.active { color: var(--fg); }
+    .loading-step.done { color: var(--green); }
+    .step-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .loading-step.active .step-dot { background: var(--accent); animation: dot-pulse 1s ease-in-out infinite; }
+    .loading-step.done .step-dot { background: var(--green); }
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SCREEN 3 — RESULTS
+    ═══════════════════════════════════════════════════════════ */
+    #screen-results { padding-bottom: 32px; }
+
+    .results-header-info {
+      padding: 16px 20px;
+      background: var(--accent-faint);
+      border-bottom: 1px solid rgba(139,92,246,0.2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .results-emotion-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 700;
+      color: var(--accent2);
+    }
+    .results-count {
+      margin-left: auto;
+      font-size: 12px; color: var(--muted);
+    }
+    .results-algo-tag {
+      font-size: 10px; font-weight: 600;
+      background: rgba(52,211,153,0.12); color: var(--green);
+      border: 1px solid rgba(52,211,153,0.25);
+      border-radius: 100px; padding: 2px 8px;
+    }
+
+    .results-list {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
       gap: 14px;
     }
 
-    .value-item-icon {
-      font-size: 24px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .value-item-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .value-item-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ─── §6 주요 화면 Mock UI ──────────────────────────────────── */
-    .mockup-frame {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-
-    .mockup-header {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dot-red   { width: 10px; height: 10px; border-radius: 50%; background: #FF5F57; }
-    .dot-yellow{ width: 10px; height: 10px; border-radius: 50%; background: #FEBC2E; }
-    .dot-green { width: 10px; height: 10px; border-radius: 50%; background: #28C840; }
-
-    .mockup-title {
-      font-size: 12px;
-      color: var(--muted);
-      margin-left: 8px;
-      font-weight: 500;
-    }
-
-    .mockup-body {
-      padding: 32px;
-    }
-
-    /* Phone mock */
-    .phone-mock {
-      width: 260px;
-      margin: 0 auto;
-      background: #0A0A10;
-      border-radius: 36px;
-      border: 2px solid var(--border);
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
-    }
-
-    .phone-notch {
-      width: 80px;
-      height: 22px;
-      background: #0A0A10;
-      border-radius: 0 0 16px 16px;
-      margin: 0 auto;
-      border: 2px solid var(--border);
-      border-top: none;
-    }
-
-    .phone-screen {
-      background: linear-gradient(160deg, #0E0B18, #0A0A10);
-      padding: 16px 14px 20px;
-      min-height: 480px;
-    }
-
-    .phone-status {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .phone-time {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--fg);
-    }
-
-    .phone-icons {
-      font-size: 10px;
-      color: var(--fg);
-    }
-
-    .phone-screen-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--fg);
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-
-    .phone-screen-sub {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .phone-cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .phone-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color var(--transition);
-    }
-
-    .phone-card.selected {
-      border-color: var(--accent2);
-      background: rgba(139,92,246,0.1);
-    }
-
-    .phone-card-icon { font-size: 20px; margin-bottom: 6px; }
-    .phone-card-name { font-size: 11px; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
-    .phone-card-sub  { font-size: 9px; color: var(--muted); line-height: 1.3; }
-
-    .phone-discover-btn {
-      width: 100%;
-      margin-top: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      border: none;
-      border-radius: 100px;
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    /* Feature cards */
-    .feature-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-
-    .feature-card {
+    .place-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 18px;
+      cursor: pointer;
+      transition: border-color var(--trans), transform 0.15s, box-shadow var(--trans);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .place-card:hover { border-color: rgba(139,92,246,0.4); box-shadow: 0 2px 20px rgba(139,92,246,0.1); }
+    .place-card:active { transform: scale(0.985); }
+
+    .place-card-top {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .feature-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-
-    .feature-number {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--accent2);
-      background: var(--accent-faint);
-      border: 1px solid rgba(139,92,246,0.25);
-      border-radius: 100px;
-      padding: 3px 10px;
-      align-self: flex-start;
-    }
-
-    .feature-icon { font-size: 24px; }
-
-    .feature-title {
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    .feature-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    /* Journey timeline */
-    .journey-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .journey-item {
-      display: flex;
-      gap: 20px;
       align-items: flex-start;
-      position: relative;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
-    .journey-item + .journey-item .journey-content {
-      border-top: 1px solid var(--border);
-    }
-
-    .journey-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .place-thumb {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
       flex-shrink: 0;
-      width: 40px;
     }
 
-    .journey-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
+    .place-info { flex: 1; min-width: 0; }
+    .place-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .place-location { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+
+    .place-hgi-badge {
       flex-shrink: 0;
-      position: relative;
-      z-index: 1;
+      text-align: right;
     }
-
-    .journey-dot.active {
-      background: var(--accent-faint);
-      border-color: var(--accent2);
+    .hgi-value {
+      font-size: 22px; font-weight: 700; color: var(--accent2);
+      line-height: 1;
     }
+    .hgi-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 
-    .journey-line {
-      width: 2px;
-      flex: 1;
-      min-height: 32px;
-      background: var(--border);
-      margin-top: 4px;
+    .place-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
     }
-
-    .journey-content {
-      flex: 1;
-      padding: 4px 0 28px;
-    }
-
-    .journey-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .journey-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ─── §7 OpenAPI 활용 ───────────────────────────────────────── */
-    .api-freq {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      font-weight: 600;
+    .tag {
+      font-size: 11px; font-weight: 500;
       border-radius: 100px;
-      padding: 3px 10px;
+      padding: 3px 9px;
     }
+    .tag-crowd { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
+    .tag-emotion { background: var(--accent-faint); color: var(--accent2); border: 1px solid rgba(139,92,246,0.2); }
+    .tag-time { background: rgba(251,191,36,0.1); color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
 
-    .freq-high   { background: rgba(139,92,246,0.15); color: var(--accent2); border: 1px solid rgba(139,92,246,0.25); }
-    .freq-medium { background: rgba(100,100,150,0.12); color: #9898AC; border: 1px solid rgba(100,100,150,0.2); }
-    .freq-low    { background: rgba(60,60,90,0.12); color: #6666AA; border: 1px solid rgba(60,60,90,0.2); }
-
-    .api-name-kr {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 3px;
-      line-height: 1.4;
-    }
-
-    .api-name-en {
-      font-size: 11px;
+    .place-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
       color: var(--muted);
-      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .place-card-footer .arrow {
+      font-size: 14px;
+      color: var(--accent2);
     }
 
-    /* ─── §8 팀 합의 점수 ───────────────────────────────────────── */
-    .agent-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 32px;
-    }
+    /* ═══════════════════════════════════════════════════════════
+       SCREEN 4 — DETAIL
+    ═══════════════════════════════════════════════════════════ */
+    #screen-detail { padding-bottom: 120px; }
 
-    .agent-card {
+    .detail-hero {
+      height: 220px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .detail-hero-bg {
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px;
+    }
+    .detail-hero-gradient {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 140px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    .detail-hero-info {
+      position: relative;
+      z-index: 2;
+      padding: 0 20px 20px;
+    }
+    .detail-hero-location { font-size: 12px; color: var(--muted); margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+    .detail-hero-name { font-size: 22px; font-weight: 700; line-height: 1.2; }
+
+    .detail-body { padding: 20px; }
+
+    .detail-hgi-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: border-color var(--transition);
+      margin-bottom: 20px;
     }
-    .agent-card:hover { border-color: var(--accent); }
+    .detail-hgi-big { font-size: 36px; font-weight: 700; color: var(--accent2); line-height: 1; }
+    .detail-hgi-desc { flex: 1; }
+    .detail-hgi-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .detail-hgi-sub { font-size: 11px; color: var(--muted); }
+    .detail-hgi-bar-wrap { width: 80px; height: 6px; background: var(--border); border-radius: 100px; overflow: hidden; }
+    .detail-hgi-bar { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 
-    .agent-icon {
-      font-size: 24px;
-      width: 44px;
-      height: 44px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .agent-name {
-      font-size: 13px;
+    .detail-section-title {
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .agent-score {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent2);
-      line-height: 1;
-    }
-
-    .agent-score-sub {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .avg-score-box {
-      background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(167,139,250,0.08));
-      border: 1px solid var(--accent);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .avg-label {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--muted);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
-    .avg-value {
-      font-size: 64px;
-      font-weight: 700;
-      line-height: 1;
-      background: linear-gradient(135deg, var(--accent2), #C4B5FD);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .timing-card {
+      background: var(--card);
+      border: 1px solid rgba(52,211,153,0.25);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
     }
-
-    .avg-denom {
-      font-size: 24px;
-      font-weight: 400;
-      color: var(--muted);
-    }
-
-    .consensus-link {
-      display: inline-flex;
+    .timing-top {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--muted);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .timing-icon { font-size: 22px; }
+    .timing-title { font-size: 14px; font-weight: 700; color: var(--green); }
+    .timing-sub { font-size: 12px; color: var(--muted); }
+
+    .crowd-bar-list { display: flex; flex-direction: column; gap: 8px; }
+    .crowd-bar-item { display: flex; align-items: center; gap: 10px; }
+    .crowd-time { font-size: 11px; color: var(--muted); width: 48px; flex-shrink: 0; }
+    .crowd-track { flex: 1; height: 8px; background: var(--border); border-radius: 100px; overflow: hidden; }
+    .crowd-fill { height: 100%; border-radius: 100px; transition: width 0.6s ease 0.2s; }
+    .crowd-fill.low { background: var(--green); }
+    .crowd-fill.med { background: var(--yellow); }
+    .crowd-fill.high { background: var(--red); }
+    .crowd-label { font-size: 10px; width: 28px; flex-shrink: 0; text-align: right; }
+
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .detail-tag {
+      font-size: 12px; font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 100px;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 8px 16px;
-      transition: color var(--transition), border-color var(--transition);
-    }
-    .consensus-link:hover { color: var(--accent2); border-color: var(--accent); text-decoration: none; }
-
-    /* ─── Footer ────────────────────────────────────────────────── */
-    .footer {
-      padding: 32px 0;
-      text-align: center;
-    }
-
-    .footer-text {
-      font-size: 13px;
       color: var(--muted);
-      line-height: 2;
     }
 
-    .footer-divider {
-      display: inline-block;
-      margin: 0 8px;
-      opacity: 0.4;
+    .api-section { margin-bottom: 24px; }
+    .api-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .api-chip {
+      font-size: 10px; font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(139,92,246,0.08);
+      border: 1px solid rgba(139,92,246,0.2);
+      color: var(--accent2);
     }
 
-    /* ─── Utilities ─────────────────────────────────────────────── */
-    .flex-between {
+    .nearby-section { margin-bottom: 20px; }
+    .nearby-list { display: flex; flex-direction: column; gap: 10px; }
+    .nearby-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color var(--trans);
+    }
+    .nearby-item:hover { border-color: rgba(139,92,246,0.3); }
+    .nearby-emoji { font-size: 20px; }
+    .nearby-info { flex: 1; }
+    .nearby-name { font-size: 13px; font-weight: 600; }
+    .nearby-dist { font-size: 11px; color: var(--muted); }
+    .nearby-hgi { font-size: 12px; color: var(--accent2); font-weight: 700; }
+
+    .detail-actions {
+      position: fixed;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 430px;
+      padding: 16px 20px;
+      background: rgba(6,6,9,0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      gap: 12px;
+      z-index: 50;
+    }
+    .btn-save {
+      flex: 1;
+      padding: 15px;
+      background: var(--accent);
+      color: #fff;
+      border: none; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      transition: opacity var(--trans), transform 0.15s, box-shadow var(--trans);
+    }
+    .btn-save:hover { box-shadow: 0 4px 20px var(--accent-glow); transform: translateY(-1px); }
+    .btn-save:active { transform: scale(0.97); }
+    .btn-save.saved { background: var(--card); color: var(--green); border: 1px solid var(--green); }
+    .btn-nav {
+      padding: 15px 20px;
+      background: var(--card);
+      color: var(--fg);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: 15px; font-weight: 600;
+      cursor: pointer;
+      transition: border-color var(--trans);
+      white-space: nowrap;
+    }
+    .btn-nav:hover { border-color: rgba(139,92,246,0.4); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SCREEN 5 — ARCHIVE
+    ═══════════════════════════════════════════════════════════ */
+    #screen-archive { padding-bottom: 40px; }
+
+    .archive-list {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
       gap: 12px;
     }
 
-    .text-accent { color: var(--accent2); }
-    .text-muted  { color: var(--muted); }
+    .archive-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: border-color var(--trans);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .archive-card:hover { border-color: rgba(139,92,246,0.3); }
 
-    .mb-4  { margin-bottom: 4px; }
-    .mb-8  { margin-bottom: 8px; }
-    .mb-12 { margin-bottom: 12px; }
-    .mb-16 { margin-bottom: 16px; }
-    .mb-24 { margin-bottom: 24px; }
-    .mb-32 { margin-bottom: 32px; }
-    .mb-40 { margin-bottom: 40px; }
+    .archive-thumb {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .archive-info { flex: 1; min-width: 0; }
+    .archive-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .archive-meta { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .archive-emotion-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .archive-hgi { font-size: 14px; font-weight: 700; color: var(--accent2); flex-shrink: 0; }
 
-    @media (max-width: 720px) {
-      .section { padding: 56px 0; }
-      .hero { min-height: auto; padding: 80px 0 60px; }
-      .value-box { grid-template-columns: 1fr; }
-      .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .archive-empty {
+      padding: 80px 32px;
+      text-align: center;
+    }
+    .archive-empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .archive-empty-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .archive-empty-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .archive-empty-btn {
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #fff;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
     }
 
-    @media (max-width: 480px) {
-      .container { padding: 0 16px; }
-      .emotion-cards { grid-template-columns: repeat(2, 1fr); }
-      .feature-list { grid-template-columns: 1fr; }
-      .agent-grid { grid-template-columns: repeat(2, 1fr); }
-      .score-grid { grid-template-columns: repeat(2, 1fr); }
-      .summary-box { padding: 20px; }
-      .summary-text { font-size: 14px; }
+    .archive-stats {
+      margin: 0 20px 16px;
+      padding: 14px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      gap: 24px;
     }
+    .archive-stat { text-align: center; flex: 1; }
+    .archive-stat-val { font-size: 20px; font-weight: 700; color: var(--accent2); }
+    .archive-stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Toast ──────────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%; transform: translateX(-50%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 20px;
+      font-size: 13px; font-weight: 600;
+      color: var(--green);
+      z-index: 1000;
+      display: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      animation: toast-in 0.25s ease;
+    }
+    @keyframes toast-in { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
   </style>
 </head>
 <body>
 
-<!-- ─── Navigation ──────────────────────────────────────────────── -->
-<nav class="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <span class="nav-logo-icon">🔮</span>
-        <span>LocalSecret v2</span>
-      </a>
-      <div class="nav-right">
-        <a href="../" class="nav-back">← 목록으로</a>
-        <span class="nav-badge">Round 3 · 2위</span>
-      </div>
+<!-- ── Top Navigation ───────────────────────────────────────── -->
+<nav id="top-nav">
+  <div class="nav-left">
+    <div class="nav-logo">
+      <span class="nav-logo-icon">🔮</span>
+      <span>LocalSecret v2</span>
     </div>
+    <span class="nav-badge">Round 3 · ★1</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="nav-archive-btn" onclick="showScreen('screen-archive','left')">📦 아카이브</button>
+    <a href="../" class="nav-back-link">← 목록</a>
   </div>
 </nav>
 
-<!-- ─── §1 Hero ──────────────────────────────────────────────────── -->
-<section class="hero" id="s1">
-  <div class="hero-bg"></div>
-  <div class="stars"></div>
-  <div class="container">
-    <div class="hero-content">
+<!-- ── Shell ────────────────────────────────────────────────── -->
+<div id="shell-wrap">
+<div id="shell">
 
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-badge">§1 · Hero</span>
-        <span class="hero-eyebrow-badge">2026 Visit Korea Competition</span>
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 1 — ONBOARDING
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="screen" id="screen-onboarding">
+    <div class="onb-stars" id="stars-container"></div>
+    <div class="onb-inner">
+
+      <div class="onb-logo">
+        <span class="onb-logo-icon">🔮</span>
+        <span class="onb-logo-text">LocalSecret</span>
+        <span class="onb-logo-badge">HGI Algorithm</span>
       </div>
 
-      <h1 class="hero-title">
-        <span class="service-name">LocalSecret v2 🔮</span>
-        오늘, 어떤 발견을<br />원해?
+      <h1 class="onb-headline">
+        오늘, 어떤<br /><em>발견</em>을 원해?
       </h1>
+      <p class="onb-sub">아직 아무도 모르는 곳을 찾아드립니다.<br />혼잡도 최하위 숨은 명소 발견 플랫폼</p>
 
-      <p class="hero-jtbd">
-        <strong>아직 아무도 모르는 곳을 찾아드립니다.</strong><br />
-        혼잡도 예측을 역활용한 진짜 숨은 명소 발견 플랫폼
-      </p>
+      <div class="onb-label">오늘의 발견 감정 선택</div>
 
-      <!-- Emotion Cards Mock UI -->
-      <div class="emotion-cards">
-        <div class="emotion-card active">
-          <span class="emotion-card-icon">🗝️</span>
-          <div class="emotion-card-label">비밀</div>
-          <div class="emotion-card-desc">아무도 모르는<br />나만의 장소</div>
+      <div class="emotion-grid" id="emotion-grid">
+        <div class="emotion-card" data-emotion="secret" onclick="selectEmotion('secret', this)">
+          <span class="emotion-icon">🗝️</span>
+          <div class="emotion-name">비밀</div>
+          <div class="emotion-desc">아무도 모르는<br />나만의 장소</div>
         </div>
-        <div class="emotion-card">
-          <span class="emotion-card-icon">🌙</span>
-          <div class="emotion-card-label">고요</div>
-          <div class="emotion-card-desc">조용하고<br />평화로운 공간</div>
+        <div class="emotion-card" data-emotion="quiet" onclick="selectEmotion('quiet', this)">
+          <span class="emotion-icon">🌙</span>
+          <div class="emotion-name">고요</div>
+          <div class="emotion-desc">조용하고<br />평화로운 공간</div>
         </div>
-        <div class="emotion-card">
-          <span class="emotion-card-icon">🍂</span>
-          <div class="emotion-card-label">정취</div>
-          <div class="emotion-card-desc">감성 가득한<br />로컬 분위기</div>
+        <div class="emotion-card" data-emotion="atmosphere" onclick="selectEmotion('atmosphere', this)">
+          <span class="emotion-icon">🍂</span>
+          <div class="emotion-name">정취</div>
+          <div class="emotion-desc">감성 가득한<br />로컬 분위기</div>
         </div>
-        <div class="emotion-card">
-          <span class="emotion-card-icon">🌸</span>
-          <div class="emotion-card-label">계절</div>
-          <div class="emotion-card-desc">이 계절에만<br />볼 수 있는 곳</div>
+        <div class="emotion-card" data-emotion="seasonal" onclick="selectEmotion('seasonal', this)">
+          <span class="emotion-icon">🌸</span>
+          <div class="emotion-name">계절</div>
+          <div class="emotion-desc">이 계절에만<br />볼 수 있는 곳</div>
         </div>
       </div>
 
-      <div class="hero-cta-row">
-        <button class="btn-primary">발견 시작하기 →</button>
-        <button class="btn-ghost">서비스 소개 보기</button>
+      <button class="onb-cta" id="discover-btn" disabled onclick="startDiscovery()">
+        ✨ 숨은 명소 발견하기
+      </button>
+
+      <div class="onb-archive-link">
+        이전 발견 기록 보기 → <span onclick="showScreen('screen-archive','left')">내 발견 아카이브</span>
       </div>
 
     </div>
   </div>
-</section>
 
-<!-- ─── §2 서비스 개요 ────────────────────────────────────────────── -->
-<section class="section" id="s2">
-  <div class="container">
-    <span class="section-label">§2 · What</span>
-    <h2 class="section-title">서비스 개요</h2>
-    <p class="section-sub">LocalSecret v2가 해결하는 문제와 핵심 가치</p>
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 2 — LOADING
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="screen hidden" id="screen-loading">
+    <div class="loading-orb" id="loading-orb">🔮</div>
 
-    <!-- 200자 요약 -->
-    <div class="summary-box mb-32">
-      <p class="summary-text">
-        혼잡도 예측을 역활용해 아무도 없는 숨은 명소만 추천하는 오버투어리즘 해소형 여행 플랫폼.
-        발견의 설렘을 감정 JTBD로 재정의하여 기존 인기 순위 기반 추천의 한계를 넘어서고,
-        조용한 탐험가부터 미식모험가까지 다양한 여행 성향에 맞는 숨은 명소를 연결합니다.
-        KTO 비수도권 관광 분산 정책과 자연스럽게 연계되는 사회적 가치 창출형 서비스입니다.
-      </p>
+    <div class="loading-title">숨은 명소 탐색 중</div>
+    <div class="loading-emotion-badge" id="loading-emotion-badge">🗝️ 비밀 모드</div>
+
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-fill" id="loading-bar"></div>
     </div>
 
-    <!-- 성향 스펙트럼 -->
-    <h3 style="font-size:15px; font-weight:700; margin-bottom:14px; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:0.08em;">성향 스펙트럼</h3>
-    <div class="badges-row mb-40">
-      <span class="persona-badge"><span class="dot"></span> 조용한 탐험가</span>
-      <span class="persona-badge"><span class="dot"></span> 사진작가</span>
-      <span class="persona-badge"><span class="dot"></span> 전통감성</span>
-      <span class="persona-badge"><span class="dot"></span> 미식모험가</span>
-      <span class="persona-badge"><span class="dot"></span> 혼자여행러</span>
+    <div class="loading-steps" id="loading-steps">
+      <div class="loading-step" id="lstep-1">
+        <div class="step-dot"></div>
+        <span>KTO 혼잡도 데이터 수집 중...</span>
+      </div>
+      <div class="loading-step" id="lstep-2">
+        <div class="step-dot"></div>
+        <span>HGI 점수 계산 중 (역발상 정렬)...</span>
+      </div>
+      <div class="loading-step" id="lstep-3">
+        <div class="step-dot"></div>
+        <span>감정 매칭 알고리즘 적용 중...</span>
+      </div>
+      <div class="loading-step" id="lstep-4">
+        <div class="step-dot"></div>
+        <span>최저 혼잡 TOP 3 선별 완료!</span>
+      </div>
     </div>
-
-    <!-- Differentiation table -->
-    <h3 style="font-size:14px; font-weight:700; margin-bottom:16px; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:0.08em;">경쟁 서비스 비교</h3>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>서비스</th>
-            <th>추천 방식</th>
-            <th>핵심 차별점</th>
-            <th>오버투어리즘 대응</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="service-name-cell is-local">LocalSecret v2 🔮</td>
-            <td class="highlight">혼잡도 최하위 추천</td>
-            <td>감정 JTBD × 발견 경험 설계</td>
-            <td><span class="tag-pill">핵심 가치</span></td>
-          </tr>
-          <tr>
-            <td class="service-name-cell">야놀자</td>
-            <td>인기 순위 기반</td>
-            <td>가격·예약 편의성</td>
-            <td class="text-muted">미대응</td>
-          </tr>
-          <tr>
-            <td class="service-name-cell">트리플</td>
-            <td>AI 여행 일정 추천</td>
-            <td>일정 최적화 자동화</td>
-            <td class="text-muted">부분적</td>
-          </tr>
-          <tr>
-            <td class="service-name-cell">Klook</td>
-            <td>글로벌 인기 체험 중심</td>
-            <td>체험 예약 마켓플레이스</td>
-            <td class="text-muted">미대응</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
   </div>
-</section>
 
-<!-- ─── §3 리서치 근거 ────────────────────────────────────────────── -->
-<section class="section" id="s3">
-  <div class="container">
-    <span class="section-label">§3 · Why</span>
-    <h2 class="section-title">리서치 근거</h2>
-    <p class="section-sub">시장 데이터 및 글로벌 벤치마크 분석</p>
-
-    <!-- Market data stats -->
-    <div class="cards-grid mb-40">
-      <div class="stat-card">
-        <div class="stat-icon">📈</div>
-        <div class="stat-number">340%</div>
-        <div class="stat-label">"숨은 명소" 검색 증가율<br />(국내 20-40대, 최근 3년)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">😤</div>
-        <div class="stat-number">78%</div>
-        <div class="stat-label">인스타그램 명소에서<br />혼잡 경험 후 실망한 비율</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🗺️</div>
-        <div class="stat-number">92%</div>
-        <div class="stat-label">KTO 비수도권 관광객 유치<br />목표 달성도 부족 지역 비율</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🌿</div>
-        <div class="stat-number">61%</div>
-        <div class="stat-label">MZ세대 "조용한 여행"<br />선호도 (2025 한국관광公 조사)</div>
-      </div>
-    </div>
-
-    <!-- Global benchmarks -->
-    <h3 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">글로벌 벤치마크</h3>
-    <div class="benchmark-row">
-      <div class="benchmark-card">
-        <div class="benchmark-icon">🌍</div>
-        <div>
-          <div class="benchmark-name">Culture Trip</div>
-          <div class="benchmark-desc">에디토리얼 큐레이션으로 현지인만 아는 숨은 명소를 스토리텔링 방식으로 전달. 감정 연결 콘텐츠 전략 참고.</div>
-        </div>
-      </div>
-      <div class="benchmark-card">
-        <div class="benchmark-icon">🏡</div>
-        <div>
-          <div class="benchmark-name">Airbnb Experiences</div>
-          <div class="benchmark-desc">발견 체험의 감정적 가치 설계. 현지 호스트 중심 로컬 경험으로 차별화된 여행 정서 제공.</div>
-        </div>
-      </div>
-      <div class="benchmark-card">
-        <div class="benchmark-icon">⛩️</div>
-        <div>
-          <div class="benchmark-name">일본 "숨은 절" 투어 트렌드</div>
-          <div class="benchmark-desc">비인기 사원·사찰 탐방 트렌드. 미디어 노출 없는 공간의 고요함을 핵심 가치로 설정한 성공 사례.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── §4 아이디어 도출 과정 ─────────────────────────────────────── -->
-<section class="section" id="s4">
-  <div class="container">
-    <span class="section-label">§4 · How</span>
-    <h2 class="section-title">아이디어 도출 과정</h2>
-    <p class="section-sub">갈래 A 고도화: LocalSecret v1(5축 82점) 기반 v2 업그레이드</p>
-
-    <!-- 6축 강화 포인트 -->
-    <div class="axis-table-wrapper mb-32">
-      <div class="axis-table-header">
-        <div>
-          <div class="axis-table-title">6축 강화 포인트 — v2 평가 스코어</div>
-          <div class="score-sub" style="margin-top:4px; font-size:12px; color:var(--muted);">각 항목 최대 10점</div>
-        </div>
-        <div style="text-align:right;">
-          <div class="score-total">52 / 60</div>
-          <div class="score-sub">6축 합계</div>
-        </div>
-      </div>
-      <div class="table-wrap" style="border:none; border-radius:0;">
-        <table>
-          <thead>
-            <tr>
-              <th>평가 축</th>
-              <th>점수</th>
-              <th style="min-width:140px;">달성도</th>
-              <th>핵심 근거</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-weight:600;">감정 JTBD</td>
-              <td class="highlight">9 / 10</td>
-              <td>
-                <div class="axis-score-bar">
-                  <div class="bar-track"><div class="bar-fill" style="width:90%;"></div></div>
-                </div>
-              </td>
-              <td style="font-size:13px; color:var(--muted);">4감정 카드 Hero UX, 발견 정서 설계</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">성향 다양성</td>
-              <td class="highlight">9 / 10</td>
-              <td>
-                <div class="axis-score-bar">
-                  <div class="bar-track"><div class="bar-fill" style="width:90%;"></div></div>
-                </div>
-              </td>
-              <td style="font-size:13px; color:var(--muted);">5성향 스펙트럼 필터링 구현</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">숨은 명소</td>
-              <td class="highlight">10 / 10</td>
-              <td>
-                <div class="axis-score-bar">
-                  <div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div>
-                </div>
-              </td>
-              <td style="font-size:13px; color:var(--muted);">혼잡도 하위 역정렬 알고리즘 핵심</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">4계절</td>
-              <td class="highlight">8 / 10</td>
-              <td>
-                <div class="axis-score-bar">
-                  <div class="bar-track"><div class="bar-fill" style="width:80%;"></div></div>
-                </div>
-              </td>
-              <td style="font-size:13px; color:var(--muted);">계절별 최적 방문 타이밍 알림</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">이중렌즈</td>
-              <td class="highlight">8 / 10</td>
-              <td>
-                <div class="axis-score-bar">
-                  <div class="bar-track"><div class="bar-fill" style="width:80%;"></div></div>
-                </div>
-              </td>
-              <td style="font-size:13px; color:var(--muted);">혼잡도 × 감정 이중 필터 적용</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">UI 감정 차별화</td>
-              <td class="highlight">8 / 10</td>
-              <td>
-                <div class="axis-score-bar">
-                  <div class="bar-track"><div class="bar-fill" style="width:80%;"></div></div>
-                </div>
-              </td>
-              <td style="font-size:13px; color:var(--muted);">다크 미스터리 테마, 스타 맵 배경</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 통합 BA 점수 -->
-    <div class="summary-box mb-32" style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 3 — RESULTS
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="screen hidden" id="screen-results">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-onboarding','right')">←</div>
       <div>
-        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">통합 BA 점수</div>
-        <div style="font-size:36px; font-weight:700; line-height:1;">
-          <span class="text-accent">134</span>
-          <span style="font-size:16px; color:var(--muted); font-weight:400;"> / 160점</span>
-        </div>
-      </div>
-      <div style="color:var(--muted); font-size:22px;">→</div>
-      <div style="font-size:14px; color:var(--muted); line-height:1.7;">
-        v1 5축 <strong style="color:var(--fg);">82점</strong> + v2 6축 <strong style="color:var(--fg);">52점</strong> = <strong style="color:var(--accent2);">134점</strong><br />
-        전체 2위 달성
+        <div class="screen-title">숨은 명소 발견</div>
+        <div class="screen-subtitle">혼잡도 역발상 알고리즘 결과</div>
       </div>
     </div>
 
-    <!-- v1 → v2 변경점 -->
-    <h3 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">v1 → v2 핵심 변경점</h3>
-    <div class="changes-list">
-      <div class="change-item">
-        <div class="change-item-icon">🗺️</div>
-        <div style="flex:1;">
-          <div class="change-item-title">Hero Screen 리디자인</div>
-          <div class="change-item-desc">혼잡도 히트맵 시각화 UI <span class="arrow-right">→</span> 발견 감정 선택 4카드 인터페이스로 전환</div>
-        </div>
-      </div>
-      <div class="change-item">
-        <div class="change-item-icon">🎭</div>
-        <div style="flex:1;">
-          <div class="change-item-title">진입점 재설계</div>
-          <div class="change-item-desc">데이터 중심 탐색 <span class="arrow-right">→</span> 감정 주도 탐색으로 UX 패러다임 전환</div>
-        </div>
-      </div>
-      <div class="change-item">
-        <div class="change-item-icon">🔔</div>
-        <div style="flex:1;">
-          <div class="change-item-title">계절별 타이밍 알림 추가</div>
-          <div class="change-item-desc">단순 추천 <span class="arrow-right">→</span> "지금 이 순간" 방문 최적 타이밍 푸시 알림 신규 기능</div>
-        </div>
-      </div>
-      <div class="change-item">
-        <div class="change-item-icon">🎨</div>
-        <div style="flex:1;">
-          <div class="change-item-title">비주얼 아이덴티티 강화</div>
-          <div class="change-item-desc">일반 다크 테마 <span class="arrow-right">→</span> 미스터리·발견 감성 스타 맵 배경 + 보라 계열 accent 통일</div>
-        </div>
-      </div>
+    <div class="results-header-info">
+      <div class="results-emotion-badge" id="results-emotion-label">🗝️ 비밀 모드</div>
+      <span class="results-algo-tag">HGI 역정렬</span>
+      <span class="results-count">3곳 발견</span>
     </div>
 
+    <div class="results-list" id="results-list">
+      <!-- JS로 렌더링 -->
+    </div>
   </div>
-</section>
 
-<!-- ─── §5 공모전 평가 기준 대응 ──────────────────────────────────── -->
-<section class="section" id="s5">
-  <div class="container">
-    <span class="section-label">§5 · 평가 대응</span>
-    <h2 class="section-title">공모전 평가 기준 대응</h2>
-    <p class="section-sub">2026 Visit Korea Competition 심사 기준별 예상 점수</p>
-
-    <div class="score-grid mb-32">
-      <div class="score-card">
-        <div class="score-card-max">/ 30점</div>
-        <div class="score-card-value">27</div>
-        <div class="score-card-label">서비스 기획력</div>
-        <div class="score-card-bar"><div class="score-card-bar-fill" style="width:90%;"></div></div>
-      </div>
-      <div class="score-card">
-        <div class="score-card-max">/ 30점</div>
-        <div class="score-card-value">25</div>
-        <div class="score-card-label">서비스 완성도</div>
-        <div class="score-card-bar"><div class="score-card-bar-fill" style="width:83%;"></div></div>
-      </div>
-      <div class="score-card">
-        <div class="score-card-max">/ 20점</div>
-        <div class="score-card-value">17</div>
-        <div class="score-card-label">데이터 활용</div>
-        <div class="score-card-bar"><div class="score-card-bar-fill" style="width:85%;"></div></div>
-      </div>
-      <div class="score-card">
-        <div class="score-card-max">/ 20점</div>
-        <div class="score-card-value">17</div>
-        <div class="score-card-label">서비스 발전성</div>
-        <div class="score-card-bar"><div class="score-card-bar-fill" style="width:85%;"></div></div>
-      </div>
-      <div class="score-card">
-        <div class="score-card-max">가점</div>
-        <div class="score-card-value">+2</div>
-        <div class="score-card-label">지역 특화 가점</div>
-        <div class="score-card-bar"><div class="score-card-bar-fill" style="width:100%;"></div></div>
-      </div>
-      <div class="score-card total-card">
-        <div class="score-card-max">예상 합계</div>
-        <div class="score-card-value">~88</div>
-        <div class="score-card-label">총점 (100점 만점)</div>
-        <div class="score-card-bar"><div class="score-card-bar-fill" style="width:88%;"></div></div>
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 4 — DETAIL
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="screen hidden" id="screen-detail">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-results','right')">←</div>
+      <div>
+        <div class="screen-title" id="detail-screen-title">장소 상세</div>
+        <div class="screen-subtitle">HGI 알고리즘 분석 결과</div>
       </div>
     </div>
 
-    <!-- 사회적 가치 -->
-    <h3 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">사회적 가치 강점</h3>
-    <div class="value-box">
-      <div class="value-item">
-        <div class="value-item-icon">🌱</div>
-        <div>
-          <div class="value-item-title">오버투어리즘 해소</div>
-          <div class="value-item-desc">인기 명소 집중 현상을 완화하고 관광객을 자연스럽게 분산. 지역 생태계 지속 가능성에 기여.</div>
-        </div>
-      </div>
-      <div class="value-item">
-        <div class="value-item-icon">🗺️</div>
-        <div>
-          <div class="value-item-title">지역 관광 분산</div>
-          <div class="value-item-desc">KTO 비수도권 관광 분산 정책과 연계. 소외 지역 숨은 명소 발굴로 지역 경제 활성화에 기여.</div>
-        </div>
-      </div>
-      <div class="value-item">
-        <div class="value-item-icon">🤝</div>
-        <div>
-          <div class="value-item-title">지역 커뮤니티 연결</div>
-          <div class="value-item-desc">방문자 기록 공유로 지역 소상공인 및 로컬 문화 발굴자와의 연결 생태계 구축.</div>
-        </div>
+    <div class="detail-hero" id="detail-hero">
+      <div class="detail-hero-bg" id="detail-hero-bg"></div>
+      <div class="detail-hero-gradient"></div>
+      <div class="detail-hero-info">
+        <div class="detail-hero-location" id="detail-location">📍</div>
+        <div class="detail-hero-name" id="detail-name"></div>
       </div>
     </div>
 
-  </div>
-</section>
+    <div class="detail-body">
 
-<!-- ─── §6 주요 화면 Mock UI ──────────────────────────────────────── -->
-<section class="section" id="s6">
-  <div class="container">
-    <span class="section-label">§6 · Mock UI</span>
-    <h2 class="section-title">주요 화면</h2>
-    <p class="section-sub">CSS-only 인터랙티브 목업 · Hero Screen 및 주요 기능</p>
-
-    <!-- Hero Screen Mock -->
-    <div class="mockup-frame mb-40">
-      <div class="mockup-header">
-        <div class="dot-red"></div>
-        <div class="dot-yellow"></div>
-        <div class="dot-green"></div>
-        <span class="mockup-title">LocalSecret v2 — Hero Screen</span>
-      </div>
-      <div class="mockup-body" style="display:flex; justify-content:center; padding: 40px 32px;">
-        <!-- Phone mockup -->
-        <div class="phone-mock">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="phone-status">
-              <span class="phone-time">9:41</span>
-              <span class="phone-icons">▲ ● ■</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; margin-bottom:16px;">
-              <span style="font-size:14px;">🔮</span>
-              <span style="font-size:12px; font-weight:700; color:var(--accent2);">LocalSecret</span>
-              <span style="margin-left:auto; font-size:10px; background:var(--accent-faint); color:var(--accent2); border-radius:100px; padding:2px 8px; font-weight:600;">v2</span>
-            </div>
-            <div class="phone-screen-title">오늘, 어떤<br />발견을 원해?</div>
-            <div class="phone-screen-sub">아직 아무도 모르는 곳을 찾아드립니다</div>
-            <div class="phone-cards-grid">
-              <div class="phone-card selected">
-                <div class="phone-card-icon">🗝️</div>
-                <div class="phone-card-name">비밀</div>
-                <div class="phone-card-sub">나만의<br />장소 발견</div>
-              </div>
-              <div class="phone-card">
-                <div class="phone-card-icon">🌙</div>
-                <div class="phone-card-name">고요</div>
-                <div class="phone-card-sub">조용한<br />평화로운 곳</div>
-              </div>
-              <div class="phone-card">
-                <div class="phone-card-icon">🍂</div>
-                <div class="phone-card-name">정취</div>
-                <div class="phone-card-sub">감성 가득<br />로컬 분위기</div>
-              </div>
-              <div class="phone-card">
-                <div class="phone-card-icon">🌸</div>
-                <div class="phone-card-name">계절</div>
-                <div class="phone-card-sub">이 계절만의<br />특별한 곳</div>
-              </div>
-            </div>
-            <button class="phone-discover-btn">✨ 숨은 명소 발견하기</button>
+      <!-- HGI Score -->
+      <div class="detail-hgi-row">
+        <div class="detail-hgi-big" id="detail-hgi-val">94</div>
+        <div class="detail-hgi-desc">
+          <div class="detail-hgi-title">HGI 숨은명소 지수</div>
+          <div class="detail-hgi-sub">혼잡도역점수×0.5 + 다양성지수×0.3 + 트렌드패널티×0.2</div>
+        </div>
+        <div>
+          <div class="detail-hgi-bar-wrap">
+            <div class="detail-hgi-bar" id="detail-hgi-bar" style="width:94%"></div>
           </div>
         </div>
       </div>
+
+      <!-- 최적 방문 타이밍 -->
+      <div class="detail-section-title">🕐 오늘의 혼잡도 예측</div>
+      <div class="timing-card">
+        <div class="timing-top">
+          <span class="timing-icon">🟢</span>
+          <div>
+            <div class="timing-title" id="timing-best">오후 2–4시 방문 추천</div>
+            <div class="timing-sub">이 시간대 혼잡도 최저 · KTO API 예측</div>
+          </div>
+        </div>
+        <div class="crowd-bar-list" id="crowd-bars">
+          <!-- JS로 렌더링 -->
+        </div>
+      </div>
+
+      <!-- 감정 태그 -->
+      <div class="detail-section-title">감성 태그</div>
+      <div class="detail-tags" id="detail-tags"></div>
+
+      <!-- 인근 숨은 명소 -->
+      <div class="nearby-section">
+        <div class="detail-section-title">📍 인근 숨은 명소</div>
+        <div class="nearby-list" id="nearby-list"></div>
+      </div>
+
+      <!-- API 출처 -->
+      <div class="api-section">
+        <div class="detail-section-title">KTO OpenAPI 출처</div>
+        <div class="api-chips">
+          <span class="api-chip">visitor-concentration-forecast</span>
+          <span class="api-chip">area-tourism-diversity</span>
+          <span class="api-chip">area-tourism-demand-density</span>
+          <span class="api-chip">related-attractions</span>
+        </div>
+      </div>
+
     </div>
 
-    <!-- 주요 기능 3개 -->
-    <h3 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">주요 기능</h3>
-    <div class="feature-list mb-40">
-      <div class="feature-card">
-        <span class="feature-number">기능 01</span>
-        <div class="feature-icon">🗝️</div>
-        <div class="feature-title">감정별 숨은 명소 추천</div>
-        <div class="feature-desc">
-          비밀·고요·정취·계절 4가지 감정 JTBD를 선택하면, 해당 감정에 맞는 숨은 명소 3곳을 즉시 추천합니다. 발견의 설렘을 감정 언어로 설계한 핵심 UX.
-        </div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-number">기능 02</span>
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">혼잡도 반전 알고리즘</div>
-        <div class="feature-desc">
-          일반 서비스가 "인기 많은 순위"를 보여줄 때, LocalSecret은 혼잡도 최하위 장소를 최상위로 정렬합니다. KTO 관광지 집중률 데이터 역활용.
-        </div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-number">기능 03</span>
-        <div class="feature-icon">🔔</div>
-        <div class="feature-title">계절별 숨은 명소 타이밍 알림</div>
-        <div class="feature-desc">
-          "지금 이 순간 방문하면 가장 아름다운 곳"을 푸시 알림으로 전달. 사계절 데이터 기반으로 방문 최적 시기를 자동 감지합니다.
-        </div>
-      </div>
-    </div>
-
-    <!-- 사용자 여정 -->
-    <h3 style="font-size:12px; font-weight:700; margin-bottom:20px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">사용자 여정</h3>
-    <div class="journey-list">
-      <div class="journey-item">
-        <div class="journey-step">
-          <div class="journey-dot active">📱</div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-title">앱 열기</div>
-          <div class="journey-desc">다크 미스터리 스타 맵 Hero Screen 진입. "오늘, 어떤 발견을 원해?" 질문으로 시작.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-step">
-          <div class="journey-dot active">🎭</div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-title">발견 감정 선택</div>
-          <div class="journey-desc">비밀 / 고요 / 정취 / 계절 중 오늘의 기분에 맞는 감정 카드 선택.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-step">
-          <div class="journey-dot active">🗝️</div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-title">숨은 명소 3곳 추천</div>
-          <div class="journey-desc">혼잡도 최하위 + 감정 매칭 알고리즘으로 선별된 아무도 모르는 3곳 카드로 표시.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-step">
-          <div class="journey-dot active">⏰</div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-title">혼잡도 최저 시간 알림</div>
-          <div class="journey-desc">"오늘 오후 2-4시 방문 시 혼잡도 최저" 실시간 타이밍 가이드 제공.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-step">
-          <div class="journey-dot active">🚶</div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-title">방문</div>
-          <div class="journey-desc">나만의 숨은 명소에서 발견의 설렘 경험. 진정한 로컬 감성 여행.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-step">
-          <div class="journey-dot active">📷</div>
-          <div style="width:2px; flex:1; min-height:0;"></div>
-        </div>
-        <div class="journey-content" style="padding-bottom:0;">
-          <div class="journey-title">기록 & 공유</div>
-          <div class="journey-desc">방문 기록 저장 후 선택적 공유. 다른 탐험가와 숨은 명소 발견 커뮤니티 형성.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── §7 OpenAPI 활용 ────────────────────────────────────────────── -->
-<section class="section" id="s7">
-  <div class="container">
-    <span class="section-label">§7 · OpenAPI</span>
-    <h2 class="section-title">OpenAPI 활용</h2>
-    <p class="section-sub">한국관광공사 공공 데이터 API 5종 활용 계획</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>API 명칭</th>
-            <th>역할</th>
-            <th>호출 빈도</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="api-name-kr">한국관광공사_관광지 집중률 방문자 추이 예측 정보</div>
-              <div class="api-name-en">visitor-concentration-forecast</div>
-            </td>
-            <td>혼잡도 역활용 <strong>핵심</strong> — 혼잡도 최하위 명소 역정렬 알고리즘의 기반 데이터</td>
-            <td><span class="api-freq freq-high">● 높음</span></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="api-name-kr">한국관광공사_지역별 관광 다양성</div>
-              <div class="api-name-en">area-tourism-diversity</div>
-            </td>
-            <td>숨은 명소 다양성 필터 — 유형·지역 분산으로 추천 다양성 확보</td>
-            <td><span class="api-freq freq-high">● 높음</span></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="api-name-kr">한국관광공사_지역별 관광 수요 강도</div>
-              <div class="api-name-en">area-tourism-demand-density</div>
-            </td>
-            <td>비인기 지역 발굴 — 수요 강도 낮은 지역의 잠재 명소 우선 탐색</td>
-            <td><span class="api-freq freq-medium">○ 중간</span></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="api-name-kr">한국관광공사_관광지별 연관 관광지 정보</div>
-              <div class="api-name-en">related-attractions</div>
-            </td>
-            <td>인근 숨은 명소 연계 — 방문 예정 명소 주변 추가 발견 포인트 제안</td>
-            <td><span class="api-freq freq-medium">○ 중간</span></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="api-name-kr">한국관광공사_관광빅데이터 정보서비스</div>
-              <div class="api-name-en">tourism-big-data</div>
-            </td>
-            <td>급부상 신규 명소 감지 — 인기 급등 전 단계의 새로운 숨은 명소 실시간 발굴</td>
-            <td><span class="api-freq freq-medium">○ 중간</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── §8 팀 합의 점수 ────────────────────────────────────────────── -->
-<section class="section" id="s8">
-  <div class="container">
-    <span class="section-label">§8 · 팀 합의</span>
-    <h2 class="section-title">팀 합의 점수</h2>
-    <p class="section-sub">7 에이전트 합의 평가 결과</p>
-
-    <!-- Agent score badges -->
-    <div class="agent-grid mb-32">
-      <div class="agent-card">
-        <div class="agent-icon">🔍</div>
-        <div>
-          <div class="agent-name">리서치님</div>
-          <div class="agent-score">9<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-icon">💰</div>
-        <div>
-          <div class="agent-name">분석님</div>
-          <div class="agent-score">10<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-icon">📋</div>
-        <div>
-          <div class="agent-name">기획님</div>
-          <div class="agent-score">9<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-icon">🎨</div>
-        <div>
-          <div class="agent-name">디자인님</div>
-          <div class="agent-score">9<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-icon">🎭</div>
-        <div>
-          <div class="agent-name">시뮬님</div>
-          <div class="agent-score">9<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-icon">🔌</div>
-        <div>
-          <div class="agent-name">엔지니어님</div>
-          <div class="agent-score">9<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-icon">🎯</div>
-        <div>
-          <div class="agent-name">전략님</div>
-          <div class="agent-score">9<span class="agent-score-sub">/10</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 평균 점수 -->
-    <div class="avg-score-box">
-      <div class="avg-label">팀 평균 점수</div>
-      <div style="line-height:1;">
-        <span class="avg-value">9.1</span>
-        <span style="font-size:28px; color:var(--muted); font-weight:400;"> / 10</span>
-      </div>
-      <div style="margin-top:12px; font-size:13px; color:var(--muted);">
-        7 에이전트 합의 · LocalSecret v2 최종 평가
-      </div>
-    </div>
-
-    <!-- Consensus link -->
-    <div style="text-align:center;">
-      <a
-        href="../../../knowledge-base/reviews/round3-localsecret-v2-consensus.md"
-        class="consensus-link"
-      >
-        📄 합의 상세 기록 보기 →
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── Footer ──────────────────────────────────────────────────── -->
-<footer class="footer">
-  <div class="container">
-    <div style="margin-bottom:16px;">
-      <span style="font-size:20px;">🔮</span>
-    </div>
-    <div class="footer-text">
-      Tourism Service Lab
-      <span class="footer-divider">·</span>
-      2026 Visit Korea Competition
-      <span class="footer-divider">·</span>
-      Round 3
-      <br />
-      <span style="opacity:0.5; font-size:12px;">LocalSecret v2 — 숨은 명소 발견 플랫폼</span>
+    <!-- Sticky action bar -->
+    <div class="detail-actions">
+      <button class="btn-save" id="btn-save" onclick="saveCurrentPlace()">🗝️ 발견 저장하기</button>
+      <button class="btn-nav" onclick="showToast('길찾기 앱 연동 예정')">🗺️ 길찾기</button>
     </div>
   </div>
-</footer>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 5 — ARCHIVE
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="screen hidden" id="screen-archive">
+    <div class="screen-header">
+      <div class="back-btn" onclick="showScreen('screen-onboarding','right')">←</div>
+      <div>
+        <div class="screen-title">내 발견 아카이브</div>
+        <div class="screen-subtitle">저장한 숨은 명소 목록</div>
+      </div>
+    </div>
+
+    <div id="archive-content">
+      <!-- JS로 렌더링 -->
+    </div>
+  </div>
+
+</div><!-- #shell -->
+</div><!-- #shell-wrap -->
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+/* ── Data ─────────────────────────────────────────────────────── */
+const EMOTIONS = {
+  secret:      { label: '비밀',   icon: '🗝️',  color: '#8B5CF6' },
+  quiet:       { label: '고요',   icon: '🌙',  color: '#6366F1' },
+  atmosphere:  { label: '정취',   icon: '🍂',  color: '#D97706' },
+  seasonal:    { label: '계절',   icon: '🌸',  color: '#EC4899' },
+};
+
+const PLACES = {
+  secret: [
+    {
+      id: 'changpyeong',
+      name: '창평 슬로시티 돌담길',
+      location: '전남 담양군 창평면',
+      emoji: '🪨',
+      bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+      hgi: 94,
+      tags: ['#은둔형골목', '#돌담미로', '#인파제로', '#조선시대분위기'],
+      timing: '오전 7–9시',
+      crowds: [
+        { time: '오전 7시', pct: 8,  level: 'low',  label: '최저' },
+        { time: '오전 10시', pct: 22, level: 'low',  label: '낮음' },
+        { time: '오후 1시', pct: 45, level: 'med',  label: '보통' },
+        { time: '오후 3시', pct: 38, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 15, level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '담양 죽녹원 새벽', emoji: '🎋', dist: '8.2km', hgi: 88 },
+        { name: '순천 낙안읍성 골목', emoji: '🏯', dist: '45km', hgi: 85 },
+      ],
+    },
+    {
+      id: 'beopsu',
+      name: '영주 법수사 계곡',
+      location: '경북 영주시 부석면',
+      emoji: '🌿',
+      bg: 'linear-gradient(135deg, #0d1b0a 0%, #1a2d14 100%)',
+      hgi: 91,
+      tags: ['#계곡비밀', '#관광객제로', '#이끼바위', '#천년고찰옆'],
+      timing: '오전 6–8시',
+      crowds: [
+        { time: '오전 6시', pct: 4,  level: 'low',  label: '최저' },
+        { time: '오전 9시', pct: 12, level: 'low',  label: '최저' },
+        { time: '오후 12시', pct: 30, level: 'low',  label: '낮음' },
+        { time: '오후 3시', pct: 42, level: 'med',  label: '보통' },
+        { time: '오후 6시', pct: 18, level: 'low',  label: '낮음' },
+      ],
+      nearby: [
+        { name: '봉황산 비로사', emoji: '⛩️', dist: '3.1km', hgi: 83 },
+        { name: '소백산 희방사', emoji: '🏔️', dist: '22km', hgi: 79 },
+      ],
+    },
+    {
+      id: 'unjusa',
+      name: '화순 운주사 와불',
+      location: '전남 화순군 도암면',
+      emoji: '🗿',
+      bg: 'linear-gradient(135deg, #1c1209 0%, #2d1e0e 100%)',
+      hgi: 88,
+      tags: ['#와불미스터리', '#비밀석불군', '#새벽안개', '#역사수수께끼'],
+      timing: '오전 8–10시',
+      crowds: [
+        { time: '오전 8시', pct: 10, level: 'low',  label: '최저' },
+        { time: '오전 11시', pct: 28, level: 'low',  label: '낮음' },
+        { time: '오후 2시', pct: 50, level: 'med',  label: '보통' },
+        { time: '오후 4시', pct: 35, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 12, level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '화순 적벽', emoji: '🏜️', dist: '18km', hgi: 82 },
+        { name: '장흥 천관산 억새', emoji: '🌾', dist: '40km', hgi: 77 },
+      ],
+    },
+  ],
+  quiet: [
+    {
+      id: 'bangtae',
+      name: '인제 방태산 적가리계곡',
+      location: '강원 인제군 기린면',
+      emoji: '💧',
+      bg: 'linear-gradient(135deg, #061018 0%, #0a1f2e 100%)',
+      hgi: 96,
+      tags: ['#완전고요', '#사람없는계곡', '#원시자연', '#물소리만들림'],
+      timing: '오전 6–9시',
+      crowds: [
+        { time: '오전 6시', pct: 3,  level: 'low',  label: '최저' },
+        { time: '오전 9시', pct: 8,  level: 'low',  label: '최저' },
+        { time: '오후 12시', pct: 18, level: 'low',  label: '낮음' },
+        { time: '오후 3시', pct: 25, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 10, level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '방동약수 트레일', emoji: '🌲', dist: '6.5km', hgi: 91 },
+        { name: '소양강 상류 비경', emoji: '🌊', dist: '15km', hgi: 84 },
+      ],
+    },
+    {
+      id: 'cheongnyang',
+      name: '봉화 청량산 자소봉',
+      location: '경북 봉화군 명호면',
+      emoji: '🏔️',
+      bg: 'linear-gradient(135deg, #0e0e1a 0%, #181826 100%)',
+      hgi: 92,
+      tags: ['#12봉비밀', '#구름위정상', '#퇴계이황수도처', '#조용한산행'],
+      timing: '오전 7–9시',
+      crowds: [
+        { time: '오전 7시', pct: 5,  level: 'low',  label: '최저' },
+        { time: '오전 10시', pct: 15, level: 'low',  label: '낮음' },
+        { time: '오후 1시', pct: 32, level: 'low',  label: '낮음' },
+        { time: '오후 4시', pct: 22, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 8,  level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '청량폭포 비경', emoji: '💦', dist: '2.8km', hgi: 86 },
+        { name: '낙동강 발원지', emoji: '🌸', dist: '28km', hgi: 80 },
+      ],
+    },
+    {
+      id: 'naro',
+      name: '고흥 나로도 봉래산',
+      location: '전남 고흥군 봉래면',
+      emoji: '🌴',
+      bg: 'linear-gradient(135deg, #061408 0%, #0c2011 100%)',
+      hgi: 89,
+      tags: ['#섬속비경', '#우주발사장옆', '#난대림고요', '#일출포인트'],
+      timing: '오전 5–7시',
+      crowds: [
+        { time: '오전 5시', pct: 2,  level: 'low',  label: '최저' },
+        { time: '오전 8시', pct: 7,  level: 'low',  label: '최저' },
+        { time: '오전 11시', pct: 20, level: 'low',  label: '낮음' },
+        { time: '오후 2시', pct: 33, level: 'low',  label: '낮음' },
+        { time: '오후 5시', pct: 14, level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '내나로도 해수욕장', emoji: '🏖️', dist: '4.2km', hgi: 78 },
+        { name: '거문도 백도', emoji: '⛵', dist: '60km', hgi: 90 },
+      ],
+    },
+  ],
+  atmosphere: [
+    {
+      id: 'gyeongam',
+      name: '군산 경암동 철길마을',
+      location: '전북 군산시 경암동',
+      emoji: '🚂',
+      bg: 'linear-gradient(135deg, #1a0e05 0%, #2a1a08 100%)',
+      hgi: 87,
+      tags: ['#근대레트로', '#철길감성', '#시간멈춘마을', '#노을포인트'],
+      timing: '오후 5–7시',
+      crowds: [
+        { time: '오전 9시', pct: 12, level: 'low',  label: '낮음' },
+        { time: '오후 12시', pct: 28, level: 'low',  label: '낮음' },
+        { time: '오후 3시', pct: 45, level: 'med',  label: '보통' },
+        { time: '오후 5시', pct: 20, level: 'low',  label: '낮음' },
+        { time: '오후 7시', pct: 8,  level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '군산 근대역사박물관', emoji: '🏛️', dist: '1.2km', hgi: 70 },
+        { name: '동국사 은행나무', emoji: '🍁', dist: '2.5km', hgi: 75 },
+      ],
+    },
+    {
+      id: 'mokpo',
+      name: '목포 근대역사문화공간',
+      location: '전남 목포시 만호동',
+      emoji: '🏚️',
+      bg: 'linear-gradient(135deg, #150c05 0%, #251408 100%)',
+      hgi: 85,
+      tags: ['#근대건축군', '#골목정취', '#항구노을', '#시간여행감성'],
+      timing: '오후 4–6시',
+      crowds: [
+        { time: '오전 10시', pct: 18, level: 'low',  label: '낮음' },
+        { time: '오후 1시', pct: 35, level: 'low',  label: '낮음' },
+        { time: '오후 4시', pct: 25, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 15, level: 'low',  label: '최저' },
+        { time: '오후 8시', pct: 6,  level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '고하도 이순신 유적', emoji: '⚔️', dist: '5.8km', hgi: 72 },
+        { name: '신안 퍼플섬', emoji: '💜', dist: '35km', hgi: 83 },
+      ],
+    },
+    {
+      id: 'dongpirang',
+      name: '통영 동피랑 새벽 골목',
+      location: '경남 통영시 동피랑길',
+      emoji: '🎨',
+      bg: 'linear-gradient(135deg, #050d18 0%, #0a1a2d 100%)',
+      hgi: 83,
+      tags: ['#벽화골목새벽', '#관광객없는시간', '#통영항야경', '#새벽정취'],
+      timing: '오전 6–8시',
+      crowds: [
+        { time: '오전 6시', pct: 5,  level: 'low',  label: '최저' },
+        { time: '오전 9시', pct: 30, level: 'low',  label: '낮음' },
+        { time: '오후 12시', pct: 65, level: 'high', label: '높음' },
+        { time: '오후 3시', pct: 72, level: 'high', label: '높음' },
+        { time: '오후 6시', pct: 40, level: 'med',  label: '보통' },
+      ],
+      nearby: [
+        { name: '서피랑 99계단', emoji: '🌿', dist: '0.8km', hgi: 77 },
+        { name: '통영 미륵산 한려수도', emoji: '🌊', dist: '8.5km', hgi: 81 },
+      ],
+    },
+  ],
+  seasonal: [
+    {
+      id: 'sangnim',
+      name: '함양 상림숲 메타세쿼이아',
+      location: '경남 함양군 함양읍',
+      emoji: '🌲',
+      bg: 'linear-gradient(135deg, #080f04 0%, #121e08 100%)',
+      hgi: 93,
+      tags: ['#신록계절한정', '#천년고숲', '#피톤치드길', '#5월최고'],
+      timing: '오전 7–9시',
+      crowds: [
+        { time: '오전 7시', pct: 6,  level: 'low',  label: '최저' },
+        { time: '오전 10시', pct: 20, level: 'low',  label: '낮음' },
+        { time: '오후 1시', pct: 38, level: 'low',  label: '낮음' },
+        { time: '오후 4시', pct: 25, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 10, level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '지리산 뱀사골 계곡', emoji: '💧', dist: '28km', hgi: 88 },
+        { name: '남덕유산 적상산', emoji: '🍁', dist: '18km', hgi: 82 },
+      ],
+    },
+    {
+      id: 'namhae',
+      name: '남해 독일마을 벚꽃길',
+      location: '경남 남해군 삼동면',
+      emoji: '🌸',
+      bg: 'linear-gradient(135deg, #18060d 0%, #2a0d17 100%)',
+      hgi: 88,
+      tags: ['#봄한정풍경', '#유럽마을감성', '#벚꽃터널', '#이국적분위기'],
+      timing: '오전 8–10시',
+      crowds: [
+        { time: '오전 8시', pct: 10, level: 'low',  label: '최저' },
+        { time: '오전 11시', pct: 30, level: 'low',  label: '낮음' },
+        { time: '오후 2시', pct: 55, level: 'med',  label: '보통' },
+        { time: '오후 5시', pct: 45, level: 'med',  label: '보통' },
+        { time: '오후 7시', pct: 20, level: 'low',  label: '낮음' },
+      ],
+      nearby: [
+        { name: '남해 물건방조어부림', emoji: '🌊', dist: '6.2km', hgi: 84 },
+        { name: '다랭이마을 계단논', emoji: '🌾', dist: '11km', hgi: 80 },
+      ],
+    },
+    {
+      id: 'auraji',
+      name: '정선 아우라지 봄 풍경',
+      location: '강원 정선군 여량면',
+      emoji: '⛵',
+      bg: 'linear-gradient(135deg, #06100e 0%, #0c1e1b 100%)',
+      hgi: 85,
+      tags: ['#아리랑발원지', '#두강합류점', '#봄안개', '#계절한정절경'],
+      timing: '오전 6–8시',
+      crowds: [
+        { time: '오전 6시', pct: 4,  level: 'low',  label: '최저' },
+        { time: '오전 9시', pct: 12, level: 'low',  label: '최저' },
+        { time: '오후 12시', pct: 22, level: 'low',  label: '낮음' },
+        { time: '오후 3시', pct: 30, level: 'low',  label: '낮음' },
+        { time: '오후 6시', pct: 14, level: 'low',  label: '최저' },
+      ],
+      nearby: [
+        { name: '정선 병방치 스카이워크', emoji: '🌉', dist: '15km', hgi: 72 },
+        { name: '동강 래프팅 비경', emoji: '🏞️', dist: '20km', hgi: 78 },
+      ],
+    },
+  ],
+};
+
+/* ── State ───────────────────────────────────────────────────── */
+let selectedEmotion = null;
+let currentPlaceIdx = null;
+let savedPlaces = JSON.parse(localStorage.getItem('ls_saved') || '[]');
+
+/* ── Stars ───────────────────────────────────────────────────── */
+(function renderStars() {
+  const container = document.getElementById('stars-container');
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement('div');
+    s.className = 'onb-star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top  = Math.random() * 100 + '%';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    s.style.animationDuration = (2 + Math.random() * 2) + 's';
+    container.appendChild(s);
+  }
+})();
+
+/* ── Screen transitions ──────────────────────────────────────── */
+function showScreen(targetId, direction) {
+  const screens = document.querySelectorAll('.screen');
+  const current = Array.from(screens).find(s => !s.classList.contains('hidden'));
+  const target  = document.getElementById(targetId);
+  if (!target || current === target) return;
+
+  const outClass = direction === 'left'  ? 'slide-out-left'  : 'slide-out-right';
+  const inClass  = direction === 'left'  ? 'slide-in-left'   : 'slide-in-right';
+
+  current.classList.add(outClass);
+  target.classList.remove('hidden');
+  target.classList.add(inClass);
+
+  target.addEventListener('animationend', () => {
+    target.classList.remove(inClass);
+  }, { once: true });
+
+  current.addEventListener('animationend', () => {
+    current.classList.remove(outClass);
+    current.classList.add('hidden');
+    if (targetId === 'screen-archive') renderArchive();
+  }, { once: true });
+}
+
+/* ── Emotion selection ───────────────────────────────────────── */
+function selectEmotion(emotion, el) {
+  selectedEmotion = emotion;
+  document.querySelectorAll('.emotion-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('discover-btn').disabled = false;
+}
+
+/* ── Discovery flow ──────────────────────────────────────────── */
+function startDiscovery() {
+  if (!selectedEmotion) return;
+  showScreen('screen-loading', 'left');
+  runLoadingAnimation().then(() => {
+    renderResults();
+    showScreen('screen-results', 'left');
+  });
+}
+
+function runLoadingAnimation() {
+  const em = EMOTIONS[selectedEmotion];
+  document.getElementById('loading-emotion-badge').textContent = em.icon + ' ' + em.label + ' 모드';
+
+  const bar = document.getElementById('loading-bar');
+  const steps = ['lstep-1','lstep-2','lstep-3','lstep-4'];
+  const durations = [600, 900, 800, 500];
+
+  return new Promise(resolve => {
+    let idx = 0;
+    let progress = 0;
+
+    function tick() {
+      if (idx >= steps.length) { resolve(); return; }
+      const step = document.getElementById(steps[idx]);
+
+      if (idx > 0) {
+        document.getElementById(steps[idx-1]).classList.remove('active');
+        document.getElementById(steps[idx-1]).classList.add('done');
+        document.getElementById(steps[idx-1]).querySelector('.step-dot').textContent = '';
+      }
+      step.classList.add('active');
+
+      const target = (idx + 1) * 25;
+      const increment = (target - progress) / 10;
+      let ticks = 0;
+      const fill = setInterval(() => {
+        progress += increment;
+        bar.style.width = Math.min(progress, 100) + '%';
+        ticks++;
+        if (ticks >= 10) clearInterval(fill);
+      }, durations[idx] / 10);
+
+      idx++;
+      setTimeout(tick, durations[idx - 1]);
+    }
+
+    setTimeout(tick, 200);
+  });
+}
+
+/* ── Render results ──────────────────────────────────────────── */
+function renderResults() {
+  const em = EMOTIONS[selectedEmotion];
+  document.getElementById('results-emotion-label').textContent = em.icon + ' ' + em.label + ' 모드';
+
+  const places = PLACES[selectedEmotion];
+  const list = document.getElementById('results-list');
+  list.innerHTML = places.map((p, i) => `
+    <div class="place-card" onclick="showDetail(${i})">
+      <div class="place-card-top">
+        <div class="place-thumb" style="background:${p.bg}">${p.emoji}</div>
+        <div class="place-info">
+          <div class="place-name">${p.name}</div>
+          <div class="place-location">📍 ${p.location}</div>
+        </div>
+        <div class="place-hgi-badge">
+          <div class="hgi-value">${p.hgi}</div>
+          <div class="hgi-label">HGI</div>
+        </div>
+      </div>
+      <div class="place-tags">
+        <span class="tag tag-crowd">● 혼잡도 최저</span>
+        <span class="tag tag-emotion">${em.icon} ${em.label}</span>
+        <span class="tag tag-time">⏰ ${p.timing}</span>
+      </div>
+      <div class="place-card-footer">
+        <span>${p.tags[0]} ${p.tags[1]}</span>
+        <span class="arrow">→</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── Show detail ─────────────────────────────────────────────── */
+function showDetail(idx) {
+  currentPlaceIdx = idx;
+  const p = PLACES[selectedEmotion][idx];
+  const em = EMOTIONS[selectedEmotion];
+
+  document.getElementById('detail-screen-title').textContent = p.name;
+  document.getElementById('detail-hero-bg').style.background = p.bg;
+  document.getElementById('detail-hero-bg').textContent = p.emoji;
+  document.getElementById('detail-location').innerHTML = '📍 ' + p.location;
+  document.getElementById('detail-name').textContent = p.name;
+  document.getElementById('detail-hgi-val').textContent = p.hgi;
+  document.getElementById('detail-hgi-bar').style.width = p.hgi + '%';
+  document.getElementById('timing-best').textContent = p.timing + ' 방문 추천';
+
+  // Crowd bars
+  const crowdBars = document.getElementById('crowd-bars');
+  crowdBars.innerHTML = p.crowds.map(c => `
+    <div class="crowd-bar-item">
+      <span class="crowd-time">${c.time}</span>
+      <div class="crowd-track">
+        <div class="crowd-fill ${c.level}" style="width:0%" data-target="${c.pct}%"></div>
+      </div>
+      <span class="crowd-label" style="color: ${c.level==='low'?'var(--green)':c.level==='med'?'var(--yellow)':'var(--red)'}">${c.label}</span>
+    </div>
+  `).join('');
+  // animate bars
+  setTimeout(() => {
+    crowdBars.querySelectorAll('.crowd-fill').forEach(el => {
+      el.style.width = el.dataset.target;
+    });
+  }, 100);
+
+  // Tags
+  const tagsEl = document.getElementById('detail-tags');
+  tagsEl.innerHTML = [
+    ...p.tags.map(t => `<span class="detail-tag">${t}</span>`),
+    `<span class="detail-tag" style="background:var(--accent-faint);color:var(--accent2);border-color:rgba(139,92,246,0.3)">${em.icon} ${em.label}</span>`,
+  ].join('');
+
+  // Nearby
+  const nearbyList = document.getElementById('nearby-list');
+  nearbyList.innerHTML = p.nearby.map(n => `
+    <div class="nearby-item">
+      <span class="nearby-emoji">${n.emoji}</span>
+      <div class="nearby-info">
+        <div class="nearby-name">${n.name}</div>
+        <div class="nearby-dist">📍 ${n.dist} 거리</div>
+      </div>
+      <span class="nearby-hgi">${n.hgi}</span>
+    </div>
+  `).join('');
+
+  // Save button state
+  const isSaved = savedPlaces.some(s => s.id === p.id);
+  const saveBtn = document.getElementById('btn-save');
+  saveBtn.textContent = isSaved ? '✅ 저장됨' : '🗝️ 발견 저장하기';
+  saveBtn.className = 'btn-save' + (isSaved ? ' saved' : '');
+
+  showScreen('screen-detail', 'left');
+}
+
+/* ── Save place ──────────────────────────────────────────────── */
+function saveCurrentPlace() {
+  const p = PLACES[selectedEmotion][currentPlaceIdx];
+  const em = EMOTIONS[selectedEmotion];
+
+  if (savedPlaces.some(s => s.id === p.id)) {
+    showToast('이미 저장된 장소입니다');
+    return;
+  }
+
+  savedPlaces.push({
+    id: p.id,
+    name: p.name,
+    location: p.location,
+    emoji: p.emoji,
+    bg: p.bg,
+    hgi: p.hgi,
+    emotion: selectedEmotion,
+    emotionLabel: em.label,
+    emotionIcon: em.icon,
+    savedAt: new Date().toLocaleDateString('ko-KR'),
+  });
+  localStorage.setItem('ls_saved', JSON.stringify(savedPlaces));
+
+  const btn = document.getElementById('btn-save');
+  btn.textContent = '✅ 저장됨';
+  btn.className = 'btn-save saved';
+  showToast('🗝️ 발견 아카이브에 저장되었습니다!');
+}
+
+/* ── Archive ─────────────────────────────────────────────────── */
+function renderArchive() {
+  const el = document.getElementById('archive-content');
+
+  if (savedPlaces.length === 0) {
+    el.innerHTML = `
+      <div class="archive-empty">
+        <div class="archive-empty-icon">🗝️</div>
+        <div class="archive-empty-title">아직 저장된 발견이 없어요</div>
+        <div class="archive-empty-sub">숨은 명소를 발견하고 나만의 아카이브를 채워보세요</div>
+        <button class="archive-empty-btn" onclick="showScreen('screen-onboarding','right')">발견 시작하기 →</button>
+      </div>
+    `;
+    return;
+  }
+
+  const avgHgi = Math.round(savedPlaces.reduce((a, p) => a + p.hgi, 0) / savedPlaces.length);
+  const emotions = [...new Set(savedPlaces.map(p => p.emotionIcon))].join(' ');
+
+  el.innerHTML = `
+    <div class="archive-stats">
+      <div class="archive-stat">
+        <div class="archive-stat-val">${savedPlaces.length}</div>
+        <div class="archive-stat-label">발견한 곳</div>
+      </div>
+      <div class="archive-stat">
+        <div class="archive-stat-val">${avgHgi}</div>
+        <div class="archive-stat-label">평균 HGI</div>
+      </div>
+      <div class="archive-stat">
+        <div class="archive-stat-val">${emotions}</div>
+        <div class="archive-stat-label">감정 유형</div>
+      </div>
+    </div>
+    <div class="archive-list">
+      ${savedPlaces.map(p => `
+        <div class="archive-card">
+          <div class="archive-thumb" style="background:${p.bg}">${p.emoji}</div>
+          <div class="archive-info">
+            <div class="archive-name">${p.name}</div>
+            <div class="archive-meta">
+              <span class="archive-emotion-dot" style="background:${p.emotion === 'seasonal' ? '#EC4899' : p.emotion === 'atmosphere' ? '#D97706' : 'var(--accent)'}"></span>
+              ${p.emotionIcon} ${p.emotionLabel} · ${p.savedAt}
+            </div>
+          </div>
+          <div class="archive-hgi">${p.hgi}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ── Toast ───────────────────────────────────────────────────── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.display = 'none'; }, 2400);
+}
+
+/* ── Shell height fix ────────────────────────────────────────── */
+function setShellHeight() {
+  const nav = document.getElementById('top-nav');
+  const shell = document.getElementById('shell');
+  const available = window.innerHeight - nav.offsetHeight;
+  shell.style.height = available + 'px';
+  document.getElementById('shell-wrap').style.height = available + 'px';
+}
+window.addEventListener('resize', setShellHeight);
+setShellHeight();
+</script>
 </body>
 </html>
