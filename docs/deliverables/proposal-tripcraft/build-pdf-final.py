@@ -1,16 +1,255 @@
 #!/usr/bin/env python3
 """Build PROPOSAL_FINAL.pdf from PROPOSAL_FINAL.md via headless Chrome.
    Redesigned: formal Korean government-style 제안서 aesthetic.
+   v2: cover cleanup, real prototype screenshots, page-break hardening.
 """
 import markdown
 import subprocess
 import re
+import base64
+import sys
 from pathlib import Path
 
-ROOT = Path(__file__).parent
-MD   = ROOT / "PROPOSAL_FINAL.md"
-HTML = ROOT / "PROPOSAL_FINAL.html"
-PDF  = ROOT / "PROPOSAL_FINAL.pdf"
+ROOT   = Path(__file__).parent
+MD     = ROOT / "PROPOSAL_FINAL.md"
+HTML   = ROOT / "PROPOSAL_FINAL.html"
+PDF    = ROOT / "PROPOSAL_FINAL.pdf"
+PROTO  = ROOT.parent.parent / "prototypes" / "tripcraft-korea" / "index.html"
+SCREENS_DIR = ROOT / "assets" / "screens"
+SCREEN_FLOW = ROOT / "assets" / "screen-flow.svg"
+
+CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+# ════════════════════════════════════════════════════════════════════════════
+# STEP A — Capture 6 prototype screen PNGs via Chrome headless
+# ════════════════════════════════════════════════════════════════════════════
+
+def capture_screens():
+    """Extract each screen section from index.html, render to PNG via Chrome."""
+    SCREENS_DIR.mkdir(parents=True, exist_ok=True)
+
+    source = PROTO.read_text(encoding="utf-8")
+
+    # Extract all <style> blocks from the prototype
+    styles = "\n".join(re.findall(r"<style>(.*?)</style>", source, re.DOTALL))
+
+    # Titles for each screen (for the SVG labels)
+    titles = {
+        "s1": "① 카테고리 선택",
+        "s2": "② 지역 선택",
+        "s3": "③ 여행 코스",
+        "s4": "④ 오디오 가이드",
+        "s5": "⑤ 경비 요약",
+        "s6": "⑥ 팔도 스탬프",
+    }
+
+    pngs = {}
+
+    for sid in ["s1", "s2", "s3", "s4", "s5", "s6"]:
+        # Extract the phone-shell wrapper that contains this screen-area
+        # The structure is: .phone-shell > .phone-island + .status-bar + .screen-area#sN
+        # We extract from the enclosing .phone-shell div
+        pattern = rf'(<div class="phone-shell">.*?<div class="screen-area" id="{sid}">.*?</div>\s*</div>\s*</div>)'
+        m = re.search(pattern, source, re.DOTALL)
+        if not m:
+            # Fallback: just grab the screen-area itself
+            pattern2 = rf'(<div class="screen-area" id="{sid}">.*?</div>\s*</div>)'
+            m = re.search(pattern2, source, re.DOTALL)
+
+        if not m:
+            print(f"[WARN] Could not extract {sid} from prototype HTML")
+            continue
+
+        shell_html = m.group(1)
+
+        # Build standalone HTML for this frame
+        frame_html = f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TripCraft {sid}</title>
+<style>
+{styles}
+/* Override body/page to show just the phone shell centered */
+html, body {{
+  margin: 0; padding: 0;
+  background: #060609;
+  width: 375px;
+  height: 812px;
+  overflow: hidden;
+}}
+.phone-shell {{
+  position: relative;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  width: 375px;
+  height: 812px;
+  overflow: hidden;
+}}
+.screen-area {{
+  overflow: hidden !important;
+}}
+</style>
+</head>
+<body>
+{shell_html}
+</body>
+</html>"""
+
+        tmp_html = Path(f"/tmp/tcraft_{sid}.html")
+        tmp_png  = Path(f"/tmp/tcraft_{sid}.png")
+        tmp_html.write_text(frame_html, encoding="utf-8")
+
+        cmd = [
+            CHROME,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-sandbox",
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-extensions",
+            "--hide-scrollbars",
+            "--virtual-time-budget=4000",
+            "--force-device-scale-factor=2",
+            f"--window-size=375,812",
+            f"--screenshot={tmp_png}",
+            f"file://{tmp_html.resolve()}",
+        ]
+
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+
+        if tmp_png.exists() and tmp_png.stat().st_size > 5000:
+            dest = SCREENS_DIR / f"{sid}.png"
+            dest.write_bytes(tmp_png.read_bytes())
+            pngs[sid] = dest
+            print(f"[OK] Screenshot {sid}: {tmp_png.stat().st_size:,} bytes → {dest}")
+        else:
+            print(f"[WARN] Screenshot {sid} failed or too small. stderr: {result.stderr[:200]}")
+
+    return pngs, titles
+
+
+def build_screen_flow_svg(pngs, titles):
+    """Build a self-contained SVG with base64-embedded PNGs in a 3×2 grid."""
+
+    # Grid layout: 3 columns × 2 rows
+    # SVG viewBox: 1000 × 760 (tighter than 920, fits in PDF page)
+    COL_W    = 280
+    ROW_H    = 420
+    PAD_X    = 30
+    PAD_Y    = 50
+    GAP_X    = 30
+    GAP_Y    = 38
+    IMG_W    = 220
+    IMG_H    = 380
+    LABEL_Y  = 14  # label offset below image
+
+    svg_w = PAD_X * 2 + COL_W * 3 + GAP_X * 2
+    svg_h = PAD_Y + 28 + (ROW_H * 2 + GAP_Y) + 20   # title + 2 rows + bottom pad
+
+    cells = []
+    for i, sid in enumerate(["s1", "s2", "s3", "s4", "s5", "s6"]):
+        col = i % 3
+        row = i // 3
+        x = PAD_X + col * (COL_W + GAP_X) + (COL_W - IMG_W) // 2
+        y = PAD_Y + 32 + row * (ROW_H + GAP_Y)
+        lx = PAD_X + col * (COL_W + GAP_X) + COL_W // 2
+        ly = y + IMG_H + LABEL_Y
+
+        if sid in pngs:
+            raw = pngs[sid].read_bytes()
+            b64 = base64.b64encode(raw).decode("ascii")
+            img_tag = (
+                f'<image x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
+                f'preserveAspectRatio="xMidYMid meet" '
+                f'href="data:image/png;base64,{b64}" '
+                f'clip-path="url(#rr{i})" />'
+            )
+            clip_def = (
+                f'<clipPath id="rr{i}">'
+                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" rx="10" ry="10"/>'
+                f'</clipPath>'
+            )
+        else:
+            # Fallback placeholder
+            img_tag = (
+                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
+                f'rx="10" ry="10" fill="#13131A" stroke="#2D5BFF" stroke-width="1.5"/>'
+                f'<text x="{x + IMG_W//2}" y="{y + IMG_H//2}" text-anchor="middle" '
+                f'font-family="sans-serif" font-size="14" fill="#5E5E72">{sid}</text>'
+            )
+            clip_def = ""
+
+        # Shadow rect (drawn before image for layering)
+        shadow = (
+            f'<rect x="{x+3}" y="{y+3}" width="{IMG_W}" height="{IMG_H}" '
+            f'rx="10" ry="10" fill="rgba(0,0,0,0.25)"/>'
+        )
+        # Border rect (drawn after image)
+        border = (
+            f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
+            f'rx="10" ry="10" fill="none" stroke="#2D5BFF" stroke-width="1.2" opacity="0.6"/>'
+        )
+        # Label badge
+        label_text = titles.get(sid, sid)
+        badge_w = len(label_text) * 8.5 + 14
+        badge_x = lx - badge_w / 2
+        label = (
+            f'<rect x="{badge_x:.0f}" y="{ly - 11}" width="{badge_w:.0f}" height="16" '
+            f'rx="8" fill="#1a3a8a"/>'
+            f'<text x="{lx}" y="{ly + 1}" text-anchor="middle" '
+            f'font-family="\'Apple SD Gothic Neo\', \'Noto Sans KR\', sans-serif" '
+            f'font-size="10" font-weight="700" fill="#93C5FD">{label_text}</text>'
+        )
+
+        cells.append((clip_def, shadow, img_tag, border, label))
+
+    # Assemble SVG
+    defs_parts   = "\n  ".join(c[0] for c in cells if c[0])
+    shadow_parts = "\n  ".join(c[1] for c in cells)
+    img_parts    = "\n  ".join(c[2] for c in cells)
+    border_parts = "\n  ".join(c[3] for c in cells)
+    label_parts  = "\n  ".join(c[4] for c in cells)
+
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 {svg_w} {svg_h}" width="{svg_w}" height="{svg_h}">
+  <defs>
+  {defs_parts}
+  </defs>
+
+  <!-- Background -->
+  <rect width="{svg_w}" height="{svg_h}" fill="#060609" rx="10"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="{svg_w}" height="36" fill="#0D0D13" rx="10"/>
+  <rect x="0" y="26" width="{svg_w}" height="10" fill="#0D0D13"/>
+  <text x="{svg_w//2}" y="22" text-anchor="middle"
+        font-family="'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
+        font-size="13" font-weight="700" fill="#F4F4F8">TripCraft Korea 주요 화면 구성도</text>
+
+  <!-- Shadows -->
+  {shadow_parts}
+
+  <!-- Phone screenshots -->
+  {img_parts}
+
+  <!-- Borders -->
+  {border_parts}
+
+  <!-- Labels -->
+  {label_parts}
+</svg>"""
+
+    SCREEN_FLOW.write_text(svg, encoding="utf-8")
+    print(f"[OK] screen-flow.svg built: {SCREEN_FLOW.stat().st_size:,} bytes")
+    return SCREEN_FLOW
+
+
+# ════════════════════════════════════════════════════════════════════════════
+# STEP B — Build PDF
+# ════════════════════════════════════════════════════════════════════════════
 
 # ── 1. Read & strip YAML frontmatter ────────────────────────────────────────
 text = MD.read_text(encoding="utf-8")
@@ -36,18 +275,18 @@ def fix_img(match):
 html_body = re.sub(r'src="([^"]+)"', fix_img, html_body)
 
 # ── 5. Inject formal cover block BEFORE body content ────────────────────────
+# Subtitle line REMOVED; meta updated with platform info
 COVER = """
 <header class="cover">
   <div class="cover-label">2026 관광데이터 활용 공모전 · ① 웹·앱 개발 부문 제안서</div>
   <div class="cover-title">TripCraft Korea</div>
-  <div class="cover-subtitle">카테고리 테마 기반 개인화 여행 플래너</div>
   <div class="cover-slogan">데이터 가치를 넘어, 서비스로 실현하다 — 관광데이터 스케일 UP</div>
   <div class="cover-meta">
     <span>작성일&nbsp;2026-05-06</span>
     <span class="sep">·</span>
-    <span>한국관광공사 × 카카오 공동주최</span>
-    <span class="sep">·</span>
     <span>부문 ① 웹·앱 개발</span>
+    <span class="sep">·</span>
+    <span>플랫폼 모바일 앱(iOS / Android)</span>
   </div>
 </header>
 """
@@ -55,10 +294,8 @@ COVER = """
 html_body = COVER + html_body
 
 # ── 6. Post-process: wrap ## headings with section-band markup ───────────────
-# markdown renders ## as <h2>; we need the circle number + band layout
 def upgrade_h2(match):
     inner = match.group(1)
-    # extract leading number like "1)" or "2)"
     num_m = re.match(r"^(\d+)\)", inner.strip())
     num   = num_m.group(1) if num_m else "●"
     title = inner.strip()
@@ -69,10 +306,8 @@ def upgrade_h2(match):
 
 html_body = re.sub(r"<h2>(.*?)</h2>", upgrade_h2, html_body)
 
-# Wrap ### headings with badge markup
 def upgrade_h3(match):
     inner = match.group(1)
-    # extract "1-1" style badge
     badge_m = re.match(r"^(\d+-\d+)\s+(.*)", inner.strip())
     if badge_m:
         badge = badge_m.group(1)
@@ -136,7 +371,7 @@ html, body {
 .cover {
   background: linear-gradient(135deg, #0d3a8e 0%, var(--blue) 60%, #2563eb 100%);
   color: #fff;
-  padding: 10pt 18pt 8pt 18pt;
+  padding: 9pt 18pt 7pt 18pt;
   margin: 0 0 7pt 0;
   border-radius: 4pt;
   page-break-after: avoid;
@@ -154,14 +389,9 @@ html, body {
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  margin-bottom: 3pt;
-}
-.cover-subtitle {
-  font-size: 13pt;
-  font-weight: 500;
-  color: #bfdbfe;
   margin-bottom: 4pt;
 }
+/* cover-subtitle REMOVED */
 .cover-slogan {
   display: inline-block;
   background: rgba(255,107,53,0.92);
@@ -189,7 +419,9 @@ h2 {
   margin: 7pt 0 3pt 0;
   padding: 0;
   border-radius: 3pt;
+  page-break-before: auto;
   page-break-after: avoid;
+  page-break-inside: avoid;
   overflow: hidden;
   font-size: 12pt;
 }
@@ -220,6 +452,7 @@ h3 {
   padding-bottom: 2pt;
   border-bottom: 1.5pt solid var(--blue-light);
   page-break-after: avoid;
+  page-break-inside: avoid;
 }
 .sub-badge {
   display: inline-block;
@@ -245,6 +478,8 @@ p {
   font-size: 12pt;
   line-height: 1.35;
   text-align: justify;
+  orphans: 3;
+  widows: 3;
 }
 li {
   font-size: 12pt;
@@ -255,6 +490,15 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 strong { color: var(--blue-dark); font-weight: 700; }
 em { color: var(--text-light); }
 
+/* ── First content after h3 must stay with the heading ───────────────────── */
+h3 + p,
+h3 + table,
+h3 + ul,
+h3 + ol,
+h3 + blockquote {
+  page-break-before: avoid;
+}
+
 /* ── Blockquotes as callout boxes ────────────────────────────────────────── */
 blockquote {
   border-left: 4pt solid var(--blue);
@@ -264,6 +508,7 @@ blockquote {
   font-size: 12pt;
   color: var(--text);
   border-radius: 0 3pt 3pt 0;
+  page-break-inside: avoid;
 }
 
 /* ── Tables ──────────────────────────────────────────────────────────────── */
@@ -273,6 +518,11 @@ table {
   margin: 3pt 0;
   font-size: 11pt;
   font-variant-numeric: tabular-nums;
+  page-break-inside: auto;
+}
+tr {
+  page-break-inside: avoid;
+  page-break-after: auto;
 }
 th {
   background: var(--blue);
@@ -323,8 +573,9 @@ img {
   border-radius: 4pt;
   box-shadow: 0 1pt 4pt rgba(0,0,0,0.10);
   page-break-inside: avoid;
+  page-break-after: avoid;
 }
-img[src*="screen-flow"]   { max-width: 100%; max-height: 600px; object-fit: contain; margin: 6pt auto 3pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
+img[src*="screen-flow"]   { max-width: 100%; max-height: 560px; object-fit: contain; margin: 6pt auto 3pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
 img[src*="hero-mockup"]   { max-width: 42%; max-height: 320px; object-fit: contain; }
 img[src*="architecture"]  { max-width: 70%; }
 
@@ -362,13 +613,7 @@ pre code { background: transparent; color: inherit; padding: 0; }
 /* ── HR ──────────────────────────────────────────────────────────────────── */
 hr { border: none; border-top: 0.5pt solid var(--border); margin: 4pt 0; }
 
-/* ── Page breaks ─────────────────────────────────────────────────────────── */
-h2 { page-break-inside: avoid; }
-h3 { page-break-inside: avoid; }
-table { page-break-inside: auto; }
-tr    { page-break-inside: avoid; }
-
-/* ── Utility: footer italic line (작성일 line) ───────────────────────────── */
+/* ── Utility: footer italic line ─────────────────────────────────────────── */
 body > p:last-child {
   font-size: 10pt;
   color: var(--text-light);
@@ -397,9 +642,8 @@ HTML.write_text(full_html, encoding="utf-8")
 print(f"[OK] HTML built: {HTML} ({HTML.stat().st_size:,} bytes)")
 
 # ── 9. Chrome headless → PDF ──────────────────────────────────────────────────
-chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 cmd = [
-    chrome,
+    CHROME,
     "--headless=new",
     "--disable-gpu",
     "--no-sandbox",

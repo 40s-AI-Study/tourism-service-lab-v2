@@ -50,6 +50,8 @@
 
 ![TripCraft Korea 주요 화면 구성도](assets/screen-flow.svg)
 
+> 실시간 시연: https://40s-ai-study.github.io/tourism-service-lab-v2/prototypes/tripcraft-korea/ (PDF 본문에 모든 화면 포함)
+
 ### 2-3 서비스 차별성
 
 기존 여행 앱은 단순 검색·예약에 머물지만, TripCraft Korea는 한국관광공사 공공데이터 5종을 결합해 다음 5가지를 동시에 제공하는 유일한 서비스다.

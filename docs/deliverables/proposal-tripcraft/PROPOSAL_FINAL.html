@@ -51,7 +51,7 @@ html, body {
 .cover {
   background: linear-gradient(135deg, #0d3a8e 0%, var(--blue) 60%, #2563eb 100%);
   color: #fff;
-  padding: 10pt 18pt 8pt 18pt;
+  padding: 9pt 18pt 7pt 18pt;
   margin: 0 0 7pt 0;
   border-radius: 4pt;
   page-break-after: avoid;
@@ -69,14 +69,9 @@ html, body {
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  margin-bottom: 3pt;
-}
-.cover-subtitle {
-  font-size: 13pt;
-  font-weight: 500;
-  color: #bfdbfe;
   margin-bottom: 4pt;
 }
+/* cover-subtitle REMOVED */
 .cover-slogan {
   display: inline-block;
   background: rgba(255,107,53,0.92);
@@ -104,7 +99,9 @@ h2 {
   margin: 7pt 0 3pt 0;
   padding: 0;
   border-radius: 3pt;
+  page-break-before: auto;
   page-break-after: avoid;
+  page-break-inside: avoid;
   overflow: hidden;
   font-size: 12pt;
 }
@@ -135,6 +132,7 @@ h3 {
   padding-bottom: 2pt;
   border-bottom: 1.5pt solid var(--blue-light);
   page-break-after: avoid;
+  page-break-inside: avoid;
 }
 .sub-badge {
   display: inline-block;
@@ -160,6 +158,8 @@ p {
   font-size: 12pt;
   line-height: 1.35;
   text-align: justify;
+  orphans: 3;
+  widows: 3;
 }
 li {
   font-size: 12pt;
@@ -170,6 +170,15 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 strong { color: var(--blue-dark); font-weight: 700; }
 em { color: var(--text-light); }
 
+/* ── First content after h3 must stay with the heading ───────────────────── */
+h3 + p,
+h3 + table,
+h3 + ul,
+h3 + ol,
+h3 + blockquote {
+  page-break-before: avoid;
+}
+
 /* ── Blockquotes as callout boxes ────────────────────────────────────────── */
 blockquote {
   border-left: 4pt solid var(--blue);
@@ -179,6 +188,7 @@ blockquote {
   font-size: 12pt;
   color: var(--text);
   border-radius: 0 3pt 3pt 0;
+  page-break-inside: avoid;
 }
 
 /* ── Tables ──────────────────────────────────────────────────────────────── */
@@ -188,6 +198,11 @@ table {
   margin: 3pt 0;
   font-size: 11pt;
   font-variant-numeric: tabular-nums;
+  page-break-inside: auto;
+}
+tr {
+  page-break-inside: avoid;
+  page-break-after: auto;
 }
 th {
   background: var(--blue);
@@ -238,8 +253,9 @@ img {
   border-radius: 4pt;
   box-shadow: 0 1pt 4pt rgba(0,0,0,0.10);
   page-break-inside: avoid;
+  page-break-after: avoid;
 }
-img[src*="screen-flow"]   { max-width: 100%; max-height: 600px; object-fit: contain; margin: 6pt auto 3pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
+img[src*="screen-flow"]   { max-width: 100%; max-height: 560px; object-fit: contain; margin: 6pt auto 3pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
 img[src*="hero-mockup"]   { max-width: 42%; max-height: 320px; object-fit: contain; }
 img[src*="architecture"]  { max-width: 70%; }
 
@@ -277,13 +293,7 @@ pre code { background: transparent; color: inherit; padding: 0; }
 /* ── HR ──────────────────────────────────────────────────────────────────── */
 hr { border: none; border-top: 0.5pt solid var(--border); margin: 4pt 0; }
 
-/* ── Page breaks ─────────────────────────────────────────────────────────── */
-h2 { page-break-inside: avoid; }
-h3 { page-break-inside: avoid; }
-table { page-break-inside: auto; }
-tr    { page-break-inside: avoid; }
-
-/* ── Utility: footer italic line (작성일 line) ───────────────────────────── */
+/* ── Utility: footer italic line ─────────────────────────────────────────── */
 body > p:last-child {
   font-size: 10pt;
   color: var(--text-light);
@@ -299,14 +309,13 @@ body > p:last-child {
 <header class="cover">
   <div class="cover-label">2026 관광데이터 활용 공모전 · ① 웹·앱 개발 부문 제안서</div>
   <div class="cover-title">TripCraft Korea</div>
-  <div class="cover-subtitle">카테고리 테마 기반 개인화 여행 플래너</div>
   <div class="cover-slogan">데이터 가치를 넘어, 서비스로 실현하다 — 관광데이터 스케일 UP</div>
   <div class="cover-meta">
     <span>작성일&nbsp;2026-05-06</span>
     <span class="sep">·</span>
-    <span>한국관광공사 × 카카오 공동주최</span>
-    <span class="sep">·</span>
     <span>부문 ① 웹·앱 개발</span>
+    <span class="sep">·</span>
+    <span>플랫폼 모바일 앱(iOS / Android)</span>
   </div>
 </header>
 <h1>『2026 관광데이터 활용 공모전』 ① 웹·앱 개발 부문 제안서</h1>
@@ -406,6 +415,9 @@ body > p:last-child {
 </tbody>
 </table>
 <p><img alt="TripCraft Korea 주요 화면 구성도" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/screen-flow.svg" /></p>
+<blockquote>
+<p>실시간 시연: https://40s-ai-study.github.io/tourism-service-lab-v2/prototypes/tripcraft-korea/ (PDF 본문에 모든 화면 포함)</p>
+</blockquote>
 <h3><span class="sub-badge">2-3</span><span class="sub-title">서비스 차별성</span></h3>
 <p>기존 여행 앱은 단순 검색·예약에 머물지만, TripCraft Korea는 한국관광공사 공공데이터 5종을 결합해 다음 5가지를 동시에 제공하는 유일한 서비스다.</p>
 <table>
