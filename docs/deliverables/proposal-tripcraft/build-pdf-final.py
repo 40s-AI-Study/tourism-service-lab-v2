@@ -1,77 +1,102 @@
 #!/usr/bin/env python3
 """Build PROPOSAL_FINAL.pdf from PROPOSAL_FINAL.md via headless Chrome.
    Redesigned: formal Korean government-style 제안서 aesthetic.
-   v2: cover cleanup, real prototype screenshots, page-break hardening.
+   v3: Fix1(cover replaces H1), Fix2+3(3 screens, distinct capture), Fix5(table CSS+colgroup).
 """
 import markdown
 import subprocess
 import re
 import base64
+import hashlib
 import sys
 from pathlib import Path
 
-ROOT   = Path(__file__).parent
-MD     = ROOT / "PROPOSAL_FINAL.md"
-HTML   = ROOT / "PROPOSAL_FINAL.html"
-PDF    = ROOT / "PROPOSAL_FINAL.pdf"
-PROTO  = ROOT.parent.parent / "prototypes" / "tripcraft-korea" / "index.html"
+ROOT        = Path(__file__).parent
+MD          = ROOT / "PROPOSAL_FINAL.md"
+HTML        = ROOT / "PROPOSAL_FINAL.html"
+PDF         = ROOT / "PROPOSAL_FINAL.pdf"
+PROTO       = ROOT.parent.parent / "prototypes" / "tripcraft-korea" / "index.html"
 SCREENS_DIR = ROOT / "assets" / "screens"
 SCREEN_FLOW = ROOT / "assets" / "screen-flow.svg"
 
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 # ════════════════════════════════════════════════════════════════════════════
-# STEP A — Capture 6 prototype screen PNGs via Chrome headless
+# STEP A — Capture 3 prototype screen PNGs via Chrome headless
+# Targets: s3 (코스 추천), s4 (오디오 가이드), s6 (팔도 스탬프)
 # ════════════════════════════════════════════════════════════════════════════
 
+def extract_section(source, sid):
+    """Extract the complete .phone-shell wrapper containing screen-area#sid.
+    Handles nested tags robustly by walking character-by-character after finding
+    the opening tag, counting open/close div tags until balance returns to 0.
+    """
+    # Find the .phone-shell div that contains id="{sid}"
+    # First locate the position of id="{sid}"
+    marker = f'id="{sid}"'
+    pos = source.find(marker)
+    if pos == -1:
+        return None
+
+    # Walk backwards to find the enclosing <div class="phone-shell">
+    search_back = source[:pos]
+    shell_start = search_back.rfind('<div class="phone-shell">')
+    if shell_start == -1:
+        return None
+
+    # Now extract from shell_start forward, counting div depth
+    chunk = source[shell_start:]
+    depth = 0
+    i = 0
+    while i < len(chunk):
+        if chunk[i] == '<':
+            if chunk[i:i+5] == '</div':
+                depth -= 1
+                if depth == 0:
+                    # Find the closing >
+                    end = chunk.index('>', i)
+                    return chunk[:end + 1]
+                i += 5
+                continue
+            elif chunk[i:i+4] == '<div':
+                depth += 1
+        i += 1
+    return None
+
+
 def capture_screens():
-    """Extract each screen section from index.html, render to PNG via Chrome."""
+    """Capture 3 specific screens from index.html as standalone renders."""
     SCREENS_DIR.mkdir(parents=True, exist_ok=True)
 
     source = PROTO.read_text(encoding="utf-8")
 
-    # Extract all <style> blocks from the prototype
+    # Extract ALL <style> blocks from the prototype
     styles = "\n".join(re.findall(r"<style>(.*?)</style>", source, re.DOTALL))
 
-    # Titles for each screen (for the SVG labels)
-    titles = {
-        "s1": "① 카테고리 선택",
-        "s2": "② 지역 선택",
-        "s3": "③ 여행 코스",
-        "s4": "④ 오디오 가이드",
-        "s5": "⑤ 경비 요약",
-        "s6": "⑥ 팔도 스탬프",
-    }
+    targets = [
+        ("s3", "course",  "① 코스 추천"),
+        ("s4", "audio",   "② 오디오 가이드"),
+        ("s6", "stamp",   "③ 팔도 스탬프"),
+    ]
 
     pngs = {}
+    labels = {}
 
-    for sid in ["s1", "s2", "s3", "s4", "s5", "s6"]:
-        # Extract the phone-shell wrapper that contains this screen-area
-        # The structure is: .phone-shell > .phone-island + .status-bar + .screen-area#sN
-        # We extract from the enclosing .phone-shell div
-        pattern = rf'(<div class="phone-shell">.*?<div class="screen-area" id="{sid}">.*?</div>\s*</div>\s*</div>)'
-        m = re.search(pattern, source, re.DOTALL)
-        if not m:
-            # Fallback: just grab the screen-area itself
-            pattern2 = rf'(<div class="screen-area" id="{sid}">.*?</div>\s*</div>)'
-            m = re.search(pattern2, source, re.DOTALL)
-
-        if not m:
-            print(f"[WARN] Could not extract {sid} from prototype HTML")
+    for sid, name, label in targets:
+        shell_html = extract_section(source, sid)
+        if not shell_html:
+            print(f"[WARN] Could not extract phone-shell for {sid}")
             continue
 
-        shell_html = m.group(1)
-
-        # Build standalone HTML for this frame
+        # Build standalone HTML: phone shell centered, sized to visible area
         frame_html = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TripCraft {sid}</title>
 <style>
 {styles}
-/* Override body/page to show just the phone shell centered */
+/* Override: show phone shell at exact design dimensions */
 html, body {{
   margin: 0; padding: 0;
   background: #060609;
@@ -80,17 +105,20 @@ html, body {{
   overflow: hidden;
 }}
 .phone-shell {{
-  position: relative;
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
-  width: 375px;
-  height: 812px;
-  overflow: hidden;
+  position: relative !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  width: 375px !important;
+  height: 812px !important;
+  overflow: hidden !important;
 }}
 .screen-area {{
   overflow: hidden !important;
+  height: calc(812px - 50px) !important;
 }}
+/* Ensure animated elements render in static state */
+* {{ animation-play-state: paused !important; }}
 </style>
 </head>
 <body>
@@ -111,7 +139,8 @@ html, body {{
             "--no-default-browser-check",
             "--disable-extensions",
             "--hide-scrollbars",
-            "--virtual-time-budget=4000",
+            "--virtual-time-budget=5000",
+            "--run-all-compositor-stages-before-draw",
             "--force-device-scale-factor=2",
             f"--window-size=375,812",
             f"--screenshot={tmp_png}",
@@ -121,113 +150,131 @@ html, body {{
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
 
         if tmp_png.exists() and tmp_png.stat().st_size > 5000:
-            dest = SCREENS_DIR / f"{sid}.png"
+            dest = SCREENS_DIR / f"{name}.png"
             dest.write_bytes(tmp_png.read_bytes())
-            pngs[sid] = dest
-            print(f"[OK] Screenshot {sid}: {tmp_png.stat().st_size:,} bytes → {dest}")
+            pngs[name] = dest
+            labels[name] = label
+            md5 = hashlib.md5(tmp_png.read_bytes()).hexdigest()
+            print(f"[OK] Screenshot {sid} ({name}): {tmp_png.stat().st_size:,} bytes → {dest} | md5={md5}")
         else:
-            print(f"[WARN] Screenshot {sid} failed or too small. stderr: {result.stderr[:200]}")
+            print(f"[WARN] Screenshot {sid} failed or too small. stderr: {result.stderr[:300]}")
 
-    return pngs, titles
+    # Verify all 3 PNGs are distinct
+    if len(pngs) == 3:
+        hashes = [hashlib.md5(p.read_bytes()).hexdigest() for p in pngs.values()]
+        names  = list(pngs.keys())
+        if len(set(hashes)) < 3:
+            print(f"[ERR] Some PNG files are identical! Hashes: {list(zip(names, hashes))}")
+        else:
+            print(f"[OK] All 3 PNGs are visually distinct (different md5 hashes)")
+        for n, h in zip(names, hashes):
+            print(f"     {n}.png  md5={h}")
+
+    return pngs, labels
 
 
-def build_screen_flow_svg(pngs, titles):
-    """Build a self-contained SVG with base64-embedded PNGs in a 3×2 grid."""
+def build_screen_flow_svg(pngs, labels):
+    """Build a self-contained SVG with 3 base64-embedded PNGs, horizontal layout.
+    viewBox 1000×640, 3-wide, fits nicely in A4 portrait page.
+    """
+    # Layout constants
+    SVG_W  = 1000
+    SVG_H  = 580
+    IMG_W  = 250
+    IMG_H  = 460
+    PAD_X  = 60    # left/right outer padding
+    GAP_X  = 65    # gap between columns
+    TOP_Y  = 72    # image top Y (below title bar)
 
-    # Grid layout: 3 columns × 2 rows
-    # SVG viewBox: 1000 × 760 (tighter than 920, fits in PDF page)
-    COL_W    = 280
-    ROW_H    = 420
-    PAD_X    = 30
-    PAD_Y    = 50
-    GAP_X    = 30
-    GAP_Y    = 38
-    IMG_W    = 220
-    IMG_H    = 380
-    LABEL_Y  = 14  # label offset below image
+    # 3 columns: x positions
+    total_imgs = IMG_W * 3 + GAP_X * 2
+    start_x = (SVG_W - total_imgs) // 2
 
-    svg_w = PAD_X * 2 + COL_W * 3 + GAP_X * 2
-    svg_h = PAD_Y + 28 + (ROW_H * 2 + GAP_Y) + 20   # title + 2 rows + bottom pad
+    screen_names = ["course", "audio", "stamp"]
+    badge_labels = [
+        labels.get("course", "① 코스 추천"),
+        labels.get("audio",  "② 오디오 가이드"),
+        labels.get("stamp",  "③ 팔도 스탬프"),
+    ]
 
     cells = []
-    for i, sid in enumerate(["s1", "s2", "s3", "s4", "s5", "s6"]):
-        col = i % 3
-        row = i // 3
-        x = PAD_X + col * (COL_W + GAP_X) + (COL_W - IMG_W) // 2
-        y = PAD_Y + 32 + row * (ROW_H + GAP_Y)
-        lx = PAD_X + col * (COL_W + GAP_X) + COL_W // 2
-        ly = y + IMG_H + LABEL_Y
+    for i, (sname, badge_text) in enumerate(zip(screen_names, badge_labels)):
+        x = start_x + i * (IMG_W + GAP_X)
+        y = TOP_Y
 
-        if sid in pngs:
-            raw = pngs[sid].read_bytes()
+        label_cx = x + IMG_W // 2
+        label_y  = y + IMG_H + 22
+
+        if sname in pngs:
+            raw = pngs[sname].read_bytes()
             b64 = base64.b64encode(raw).decode("ascii")
-            img_tag = (
-                f'<image x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
-                f'preserveAspectRatio="xMidYMid meet" '
-                f'href="data:image/png;base64,{b64}" '
-                f'clip-path="url(#rr{i})" />'
-            )
+            clip_id = f"clip{i}"
             clip_def = (
-                f'<clipPath id="rr{i}">'
-                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" rx="10" ry="10"/>'
+                f'<clipPath id="{clip_id}">'
+                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" rx="12" ry="12"/>'
                 f'</clipPath>'
             )
-        else:
-            # Fallback placeholder
-            img_tag = (
-                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
-                f'rx="10" ry="10" fill="#13131A" stroke="#2D5BFF" stroke-width="1.5"/>'
-                f'<text x="{x + IMG_W//2}" y="{y + IMG_H//2}" text-anchor="middle" '
-                f'font-family="sans-serif" font-size="14" fill="#5E5E72">{sid}</text>'
+            shadow = (
+                f'<rect x="{x+4}" y="{y+4}" width="{IMG_W}" height="{IMG_H}" '
+                f'rx="12" ry="12" fill="#000000" opacity="0.30"/>'
             )
+            img_tag = (
+                f'<image x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
+                f'preserveAspectRatio="xMidYMid slice" '
+                f'href="data:image/png;base64,{b64}" '
+                f'clip-path="url(#{clip_id})" />'
+            )
+            border = (
+                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
+                f'rx="12" ry="12" fill="none" stroke="#2D5BFF" stroke-width="1.5" opacity="0.7"/>'
+            )
+        else:
             clip_def = ""
+            shadow   = ""
+            img_tag  = (
+                f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
+                f'rx="12" ry="12" fill="#13131A" stroke="#2D5BFF" stroke-width="1.5"/>'
+                f'<text x="{x + IMG_W//2}" y="{y + IMG_H//2}" text-anchor="middle" '
+                f'font-family="sans-serif" font-size="14" fill="#5E5E72">{sname}</text>'
+            )
+            border = ""
 
-        # Shadow rect (drawn before image for layering)
-        shadow = (
-            f'<rect x="{x+3}" y="{y+3}" width="{IMG_W}" height="{IMG_H}" '
-            f'rx="10" ry="10" fill="rgba(0,0,0,0.25)"/>'
-        )
-        # Border rect (drawn after image)
-        border = (
-            f'<rect x="{x}" y="{y}" width="{IMG_W}" height="{IMG_H}" '
-            f'rx="10" ry="10" fill="none" stroke="#2D5BFF" stroke-width="1.2" opacity="0.6"/>'
-        )
-        # Label badge
-        label_text = titles.get(sid, sid)
-        badge_w = len(label_text) * 8.5 + 14
-        badge_x = lx - badge_w / 2
-        label = (
-            f'<rect x="{badge_x:.0f}" y="{ly - 11}" width="{badge_w:.0f}" height="16" '
-            f'rx="8" fill="#1a3a8a"/>'
-            f'<text x="{lx}" y="{ly + 1}" text-anchor="middle" '
+        # Badge pill below image
+        badge_w = max(len(badge_text) * 12 + 24, 100)
+        badge_x = label_cx - badge_w // 2
+        badge = (
+            f'<rect x="{badge_x}" y="{label_y - 14}" width="{badge_w}" height="22" '
+            f'rx="11" fill="#1a3a8a"/>'
+            f'<text x="{label_cx}" y="{label_y + 3}" text-anchor="middle" '
             f'font-family="\'Apple SD Gothic Neo\', \'Noto Sans KR\', sans-serif" '
-            f'font-size="10" font-weight="700" fill="#93C5FD">{label_text}</text>'
+            f'font-size="13" font-weight="700" fill="#93C5FD">{badge_text}</text>'
         )
 
-        cells.append((clip_def, shadow, img_tag, border, label))
+        cells.append((clip_def, shadow, img_tag, border, badge))
 
-    # Assemble SVG
     defs_parts   = "\n  ".join(c[0] for c in cells if c[0])
-    shadow_parts = "\n  ".join(c[1] for c in cells)
+    shadow_parts = "\n  ".join(c[1] for c in cells if c[1])
     img_parts    = "\n  ".join(c[2] for c in cells)
-    border_parts = "\n  ".join(c[3] for c in cells)
-    label_parts  = "\n  ".join(c[4] for c in cells)
+    border_parts = "\n  ".join(c[3] for c in cells if c[3])
+    badge_parts  = "\n  ".join(c[4] for c in cells)
+
+    title_text = "TripCraft Korea 핵심 화면 (코스 추천 · 오디오 가이드 · 팔도 스탬프)"
 
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 {svg_w} {svg_h}" width="{svg_w}" height="{svg_h}">
+     viewBox="0 0 {SVG_W} {SVG_H}" width="{SVG_W}" height="{SVG_H}">
   <defs>
   {defs_parts}
   </defs>
 
   <!-- Background -->
-  <rect width="{svg_w}" height="{svg_h}" fill="#060609" rx="10"/>
+  <rect width="{SVG_W}" height="{SVG_H}" fill="#060609" rx="12"/>
 
   <!-- Title bar -->
-  <rect x="0" y="0" width="{svg_w}" height="36" fill="#0D0D13" rx="10"/>
-  <rect x="0" y="26" width="{svg_w}" height="10" fill="#0D0D13"/>
-  <text x="{svg_w//2}" y="22" text-anchor="middle"
+  <rect x="0" y="0" width="{SVG_W}" height="56" fill="#0D0D13" rx="12"/>
+  <rect x="0" y="44" width="{SVG_W}" height="12" fill="#0D0D13"/>
+  <text x="{SVG_W // 2}" y="34" text-anchor="middle"
         font-family="'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
-        font-size="13" font-weight="700" fill="#F4F4F8">TripCraft Korea 주요 화면 구성도</text>
+        font-size="18" font-weight="700" fill="#1a56db">{title_text}</text>
 
   <!-- Shadows -->
   {shadow_parts}
@@ -239,7 +286,7 @@ def build_screen_flow_svg(pngs, titles):
   {border_parts}
 
   <!-- Labels -->
-  {label_parts}
+  {badge_parts}
 </svg>"""
 
     SCREEN_FLOW.write_text(svg, encoding="utf-8")
@@ -251,20 +298,28 @@ def build_screen_flow_svg(pngs, titles):
 # STEP B — Build PDF
 # ════════════════════════════════════════════════════════════════════════════
 
-# ── 1. Read & strip YAML frontmatter ────────────────────────────────────────
+# ── 1. Capture screens first (so SVG is ready before HTML build) ─────────────
+pngs, labels = capture_screens()
+build_screen_flow_svg(pngs, labels)
+
+# ── 2. Read & strip YAML frontmatter ────────────────────────────────────────
 text = MD.read_text(encoding="utf-8")
 text = re.sub(r"^---\n.*?\n---\n", "", text, count=1, flags=re.DOTALL)
 
-# ── 2. Remove the existing H1 (we replace it with a styled cover block) ─────
-text = re.sub(r"^#\s+.*\n(\*\*TripCraft Korea\*\*.*\n)?", "", text, count=1)
+# ── 3. FIX 1: Remove the H1 line (and optional subtitle bold line after it)
+#    This ensures the markdown-rendered HTML has NO <h1> — cover replaces it.
+text = re.sub(r"^#\s+[^\n]+\n(\*\*TripCraft Korea\*\*[^\n]*\n)?", "", text, count=1)
 
-# ── 3. Render markdown → HTML ────────────────────────────────────────────────
+# ── 4. Render markdown → HTML ────────────────────────────────────────────────
 html_body = markdown.markdown(
     text,
     extensions=["tables", "fenced_code", "attr_list"],
 )
 
-# ── 4. Resolve image paths to absolute file:// URIs ─────────────────────────
+# ── 5. FIX 1 guard: Remove any stray <h1>…</h1> that markdown might emit ────
+html_body = re.sub(r"<h1[^>]*>.*?</h1>", "", html_body, flags=re.DOTALL)
+
+# ── 6. Resolve image paths to absolute file:// URIs ─────────────────────────
 def fix_img(match):
     src = match.group(1)
     if src.startswith("http"):
@@ -274,8 +329,7 @@ def fix_img(match):
 
 html_body = re.sub(r'src="([^"]+)"', fix_img, html_body)
 
-# ── 5. Inject formal cover block BEFORE body content ────────────────────────
-# Subtitle line REMOVED; meta updated with platform info
+# ── 7. Inject formal cover block BEFORE body content ────────────────────────
 COVER = """
 <header class="cover">
   <div class="cover-label">2026 관광데이터 활용 공모전 · ① 웹·앱 개발 부문 제안서</div>
@@ -293,7 +347,7 @@ COVER = """
 
 html_body = COVER + html_body
 
-# ── 6. Post-process: wrap ## headings with section-band markup ───────────────
+# ── 8. Post-process: wrap ## headings with section-band markup ───────────────
 def upgrade_h2(match):
     inner = match.group(1)
     num_m = re.match(r"^(\d+)\)", inner.strip())
@@ -322,14 +376,76 @@ def upgrade_h3(match):
 
 html_body = re.sub(r"<h3>(.*?)</h3>", upgrade_h3, html_body)
 
-# ── 7. CSS ───────────────────────────────────────────────────────────────────
+# ── 9. FIX 5: Inject <colgroup> for specific tables ─────────────────────────
+#
+# Strategy: detect the h3 badge text preceding each table, then inject
+# <colgroup> right after <table> in the next table element.
+
+def inject_colgroup(html, h3_badge_text, col_widths):
+    """Find the first <table> after the h3 with given badge text, inject colgroup."""
+    # Find the h3 containing the badge text
+    h3_pat = re.escape(h3_badge_text)
+    m = re.search(h3_pat, html)
+    if not m:
+        return html, False
+    pos_after_h3 = m.end()
+    # Find the next <table> after that position
+    table_m = re.search(r"<table>", html[pos_after_h3:])
+    if not table_m:
+        return html, False
+    insert_pos = pos_after_h3 + table_m.end()
+    # Build colgroup
+    cols = "".join(f'<col style="width:{w}%">' for w in col_widths)
+    colgroup = f"<colgroup>{cols}</colgroup>"
+    html = html[:insert_pos] + colgroup + html[insert_pos:]
+    return html, True
+
+colgroup_count = 0
+
+# 2-2 main features table: 4 columns (# / 핵심 기능 / 작동 방식 / 활용 데이터)
+html_body, ok = inject_colgroup(html_body, "2-2", [6, 18, 48, 28])
+if ok: colgroup_count += 1; print("[OK] colgroup injected: 2-2 features table")
+
+# 2-3 차별점 5행 table: 3 columns (핵심 차별점 / 기존 서비스 / TripCraft Korea)
+# This is the FIRST table after 2-3
+html_body, ok = inject_colgroup(html_body, "2-3", [28, 30, 42])
+if ok: colgroup_count += 1; print("[OK] colgroup injected: 2-3 차별점 table")
+
+# 3-1 KTO 14종 table: 2 columns
+html_body, ok = inject_colgroup(html_body, "3-1", [36, 64])
+if ok: colgroup_count += 1; print("[OK] colgroup injected: 3-1 KTO table")
+
+# 4-1 로드맵 table: 4 columns (단계 / 핵심 기능 / 월 이용자 목표 / 파트너십)
+html_body, ok = inject_colgroup(html_body, "4-1", [14, 36, 18, 32])
+if ok: colgroup_count += 1; print("[OK] colgroup injected: 4-1 roadmap table")
+
+print(f"[OK] Total colgroup injections: {colgroup_count}")
+
+# Also inject colgroup for the カカオ 4종 table (second table in 3-1 section)
+# Find second <table> after 3-1 badge
+m = re.search(r"3-1", html_body)
+if m:
+    rest = html_body[m.end():]
+    # Find second table
+    t1 = re.search(r"<table>", rest)
+    if t1:
+        rest2 = rest[t1.end():]
+        t2 = re.search(r"<table>", rest2)
+        if t2:
+            abs_pos = m.end() + t1.end() + t2.end()
+            cols = "<colgroup><col style='width:26%'><col style='width:74%'></colgroup>"
+            html_body = html_body[:abs_pos] + cols + html_body[abs_pos:]
+            colgroup_count += 1
+            print("[OK] colgroup injected: 3-1 kakao table")
+
+# ── 10. CSS ──────────────────────────────────────────────────────────────────
 CSS = """
 /* ── Page setup ─────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 
 @page {
   size: A4;
-  margin: 10mm 12mm 12mm 12mm;
+  margin: 8mm 11mm 10mm 11mm;
   @bottom-center {
     content: "TripCraft Korea  ·  " counter(page) " / 5";
     font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
@@ -391,7 +507,6 @@ html, body {
   line-height: 1.05;
   margin-bottom: 4pt;
 }
-/* cover-subtitle REMOVED */
 .cover-slogan {
   display: inline-block;
   background: rgba(255,107,53,0.92);
@@ -416,7 +531,7 @@ h2 {
   gap: 0;
   background: linear-gradient(90deg, var(--blue) 0%, #2563eb 70%, #3b82f6 100%);
   color: #fff;
-  margin: 7pt 0 3pt 0;
+  margin: 5pt 0 2pt 0;
   padding: 0;
   border-radius: 3pt;
   page-break-before: auto;
@@ -448,8 +563,8 @@ h3 {
   display: flex;
   align-items: baseline;
   gap: 5pt;
-  margin: 5pt 0 2pt 0;
-  padding-bottom: 2pt;
+  margin: 3pt 0 1pt 0;
+  padding-bottom: 1pt;
   border-bottom: 1.5pt solid var(--blue-light);
   page-break-after: avoid;
   page-break-inside: avoid;
@@ -474,9 +589,9 @@ h3 {
 
 /* ── Body text ───────────────────────────────────────────────────────────── */
 p {
-  margin: 2pt 0;
+  margin: 1pt 0;
   font-size: 12pt;
-  line-height: 1.35;
+  line-height: 1.3;
   text-align: justify;
   orphans: 3;
   widows: 3;
@@ -503,20 +618,22 @@ h3 + blockquote {
 blockquote {
   border-left: 4pt solid var(--blue);
   background: var(--blue-bg);
-  margin: 3pt 0;
-  padding: 3pt 8pt;
-  font-size: 12pt;
+  margin: 2pt 0;
+  padding: 2pt 7pt;
+  font-size: 11pt;
   color: var(--text);
   border-radius: 0 3pt 3pt 0;
   page-break-inside: avoid;
 }
 
-/* ── Tables ──────────────────────────────────────────────────────────────── */
+/* ── FIX 5: Tables — fixed layout, Korean word-break, clean cell wrapping ── */
 table {
-  border-collapse: collapse;
+  table-layout: fixed;
   width: 100%;
-  margin: 3pt 0;
+  border-collapse: collapse;
+  margin: 4pt 0;
   font-size: 11pt;
+  line-height: 1.4;
   font-variant-numeric: tabular-nums;
   page-break-inside: auto;
 }
@@ -528,19 +645,25 @@ th {
   background: var(--blue);
   color: #fff;
   font-weight: 700;
-  font-size: 11.5pt;
+  font-size: 10.5pt;
   padding: 4pt 6pt;
   text-align: left;
   vertical-align: middle;
   border: 1pt solid var(--blue-dark);
   line-height: 1.3;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 td {
   border: 0.5pt solid var(--border);
   padding: 4pt 6pt;
-  vertical-align: top;
+  vertical-align: middle;
   text-align: left;
   line-height: 1.3;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 tr:nth-child(even) td { background: var(--row-alt); }
 tr:nth-child(odd)  td { background: #fff; }
@@ -575,8 +698,7 @@ img {
   page-break-inside: avoid;
   page-break-after: avoid;
 }
-img[src*="screen-flow"]   { max-width: 100%; max-height: 560px; object-fit: contain; margin: 6pt auto 3pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
-img[src*="hero-mockup"]   { max-width: 42%; max-height: 320px; object-fit: contain; }
+img[src*="screen-flow"]   { max-width: 100%; max-height: 420px; object-fit: contain; margin: 3pt auto 2pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
 img[src*="architecture"]  { max-width: 70%; }
 
 /* Image caption (em tag immediately after img) */
@@ -624,7 +746,7 @@ body > p:last-child {
 }
 """
 
-# ── 8. Assemble full HTML ─────────────────────────────────────────────────────
+# ── 11. Assemble full HTML ────────────────────────────────────────────────────
 full_html = f"""<!doctype html>
 <html lang="ko">
 <head>
@@ -641,7 +763,14 @@ full_html = f"""<!doctype html>
 HTML.write_text(full_html, encoding="utf-8")
 print(f"[OK] HTML built: {HTML} ({HTML.stat().st_size:,} bytes)")
 
-# ── 9. Chrome headless → PDF ──────────────────────────────────────────────────
+# ── 12. FIX 1 verification: grep for <h1> in output HTML ─────────────────────
+h1_count = len(re.findall(r"<h1[^>]*>", full_html))
+if h1_count == 0:
+    print(f"[OK] Fix 1 verified: zero <h1> tags in output HTML")
+else:
+    print(f"[WARN] Fix 1 FAILED: found {h1_count} <h1> tag(s) in output HTML")
+
+# ── 13. Chrome headless → PDF ─────────────────────────────────────────────────
 cmd = [
     CHROME,
     "--headless=new",

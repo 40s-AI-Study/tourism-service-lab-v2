@@ -50,7 +50,7 @@
 
 ![TripCraft Korea 주요 화면 구성도](assets/screen-flow.svg)
 
-> 실시간 시연: https://40s-ai-study.github.io/tourism-service-lab-v2/prototypes/tripcraft-korea/ (PDF 본문에 모든 화면 포함)
+> 실시간 시연: https://40s-ai-study.github.io/tourism-service-lab-v2/prototypes/tripcraft-korea/index.html
 
 ### 2-3 서비스 차별성
 
@@ -73,8 +73,6 @@
 | 소외 지역 스탬프 가중 | ✗ | ✗ | ✗ | ✗ | **✓** |
 
 > 5가지 차별점이 단일 화면에 통합되어 동작하는 점이 핵심이다. 단순 기능 나열이 아닌, 한국관광공사 공공데이터를 결합한 알고리즘으로 만들어내는 차별이다.
-
-![TripCraft Korea 원페이지 플랜 화면 예시](assets/hero-mockup.svg)
 
 ### 2-4 서비스 내 지역 특화 관련 사항
 
