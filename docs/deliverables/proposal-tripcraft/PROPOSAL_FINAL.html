@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>2026 관광데이터 활용 공모전 제안서 — TripCraft Korea (최종)</title>
+<style>
+@page { size: A4; margin: 8mm 9mm; }
+* { box-sizing: border-box; }
+html, body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-size: 12pt;
+  line-height: 1.28;
+  color: #111;
+  margin: 0;
+  padding: 0;
+}
+h1 { font-size: 15pt; text-align: center; border-bottom: 2px solid #1a56db; padding: 1pt 0; margin: 0 0 2pt; color: #0f172a; }
+h2 { font-size: 13pt; color: #fff; background: #1a56db; padding: 2pt 6pt; margin: 4pt 0 2pt; page-break-after: avoid; }
+h3 { font-size: 12pt; color: #1a56db; margin: 3pt 0 1pt; padding-bottom: 1pt; border-bottom: 1px solid #cbd5e1; page-break-after: avoid; }
+p { margin: 2pt 0; font-size: 12pt; text-align: justify; }
+li { font-size: 12pt; margin: 1pt 0; }
+strong { color: #1a56db; }
+blockquote {
+  border-left: 3px solid #94a3b8;
+  background: #f8fafc;
+  margin: 2pt 0;
+  padding: 2pt 6pt;
+  font-size: 12pt;
+  color: #334155;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2pt 0;
+  font-size: 12pt;
+  page-break-inside: avoid;
+}
+th, td {
+  border: 1px solid #94a3b8;
+  padding: 2pt 4pt;
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.22;
+}
+th { background: #1a56db; color: #fff; font-weight: 700; }
+tr:nth-child(even) td { background: #f8fafc; }
+img { max-width: 55%; height: auto; display: block; margin: 2pt auto; page-break-inside: avoid; }
+img[src*="hero-mockup"] { max-width: 22%; }
+img[src*="architecture"] { max-width: 60%; }
+img[src*="user-journey"] { max-width: 70%; }
+code { background: #f1f5f9; padding: 0 2pt; border-radius: 2px; font-size: 12pt; }
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 4pt 6pt;
+  border-radius: 3px;
+  font-size: 12pt;
+  line-height: 1.18;
+  page-break-inside: avoid;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  margin: 2pt 0;
+}
+pre code { background: transparent; color: inherit; padding: 0; font-size: 12pt; }
+hr { border: none; border-top: 1px solid #cbd5e1; margin: 3pt 0; }
+ul, ol { margin: 2pt 0 2pt 16pt; }
+</style>
+</head>
+<body>
+<h1>『2026 관광데이터 활용 공모전』 ① 웹·앱 개발 부문 제안서</h1>
+<p><strong>TripCraft Korea</strong> — 카테고리 테마 기반 개인화 여행 플래너 / 슬로건: 데이터 가치를 넘어, 서비스로 실현하다</p>
+<h2>1) 서비스 기획배경 및 필요성</h2>
+<h3>1-1 서비스 기획 배경</h3>
+<p>국내 관광 시장은 네 가지 구조적 문제가 하나의 순환 고리를 이루며 정체되고 있다. 북촌한옥마을 거주 인구는 2023년 기준 2018년 대비 <strong>27.6% 감소</strong>했고, 서울·경기·제주가 전체 관광 지출의 <strong>55% 이상</strong>을 흡수하는 반면 전남·전북·강원 내륙은 다양성 지수 하위 33%에 머문다. 현 여행자는 최소 5개 앱을 넘나드는 정보 파편화에 직면하며, 2024년 방한 외국인 <strong>1,750만 명</strong> 중 외국인 개별 여행객 70% 이상에게 통합 다국어 가이드는 존재하지 않는다.</p>
+<p><img alt="사용자 여정 흐름도 — 4가지 문제와 TripCraft Korea 해결 구조" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/user-journey-flow.svg" /></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>구조적 문제</th>
+<th>핵심 지표</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>오버투어리즘</td>
+<td>북촌 거주 인구 △27.6%, 주말 일 1.5만 명</td>
+<td>서울시 북촌 관광관리 실태조사 2023</td>
+</tr>
+<tr>
+<td>2</td>
+<td>수도권·제주 쏠림</td>
+<td>관광 지출 점유 55%↑</td>
+<td>문체부 국내관광 통계조사 2024</td>
+</tr>
+<tr>
+<td>3</td>
+<td>여행 정보 파편화</td>
+<td>평균 5개 앱 사용, 준비 시간 40% 차지</td>
+<td>한국소비자원 여행 행태 조사 2024</td>
+</tr>
+<tr>
+<td>4</td>
+<td>외국인 개별 여행객 다국어 공백</td>
+<td>방한 1,750만 명·개별 여행객 70%+, 통합 다국어 가이드 부재</td>
+<td>KTO 외래관광객 실태조사 2024</td>
+</tr>
+</tbody>
+</table>
+<h3>1-2 서비스 필요성</h3>
+<p>위 네 문제는 인스타 바이럴 → 플랫폼 인기순 노출 → 정보 파편화 → 외국인 수도권 고립으로 연결되는 단일 순환이다. <strong>TripCraft Korea</strong>는 이 순환을 한국관광공사 공공데이터 3종과 카카오 서비스 4종의 알고리즘 결합으로 직접 끊어내며, KTO 2025~2027 핵심 정책 '지역 균형 관광'과 정합한다. 슬로건 <strong>'데이터 가치를 넘어, 서비스로 실현하다'</strong> 를 실천하는 본 서비스는 소외 지역 가중치 1.5배·팔도 스탬프 리워드 2배로 공사 정책 목표를 사용자 동기로 전환한다. 분산 추천 시뮬레이션 기준 상위 10% 과부하 관광지 주말 집중도 <strong>20~30% 완화</strong>, 소외 지역 선택 비율 15% → <strong>33% 이상</strong> 달성이 핵심 운영 목표다.</p>
+<h2>2) 서비스 개요</h2>
+<h3>2-1 기획 서비스 소개명</h3>
+<p><strong>TripCraft Korea — 카테고리 테마 기반 개인화 여행 플래너</strong></p>
+<p>카테고리(문화유산·미식·자연·축제·힐링·포토스팟·K-컬처)와 지역을 선택하면 한국관광공사 혼잡도·다양성 공공데이터를 실시간 결합해 최적 동선·경비·예약 안내·오디오·스탬프가 포함된 <strong>원페이지 실행 플랜</strong>을 5초 만에 자동 생성한다.</p>
+<h3>2-2 기획 서비스 주요 기능</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>핵심 기능</th>
+<th>작동 방식</th>
+<th>활용 한국관광공사 데이터</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td><strong>관광 정보 검색</strong></td>
+<td>지역·관광지 종류·키워드로 전국 26만 곳에서 원하는 장소를 빠르게 찾습니다.</td>
+<td>국문관광정보 서비스</td>
+</tr>
+<tr>
+<td>②</td>
+<td><strong>맞춤형 여행 코스 자동 추천</strong></td>
+<td>가고자 하는 지역과 일정·인원을 고르면 5초 안에 1박2일 또는 2박3일 일정표가 자동 생성됩니다.</td>
+<td>연관관광지정보 / 기초지자체 중심관광지정보</td>
+</tr>
+<tr>
+<td>③</td>
+<td><strong>혼잡도 회피 + 비슷한 분위기 대안 추천</strong></td>
+<td>인기가 폭발한 장소를 피하고 싶을 때, 분위기가 비슷하면서 한산한 다른 시·도의 후보 3곳을 보여줍니다.</td>
+<td>관광지집중률·방문자추이예측 / 관광빅데이터 정보서비스</td>
+</tr>
+<tr>
+<td>④</td>
+<td><strong>위치 기반 오디오 가이드 자동 재생</strong></td>
+<td>문화유산 50m 안으로 들어가면 휴대폰이 진동하며 해당 장소의 이야기를 자동으로 들려줍니다 (한국어·영어·일어·중국어).</td>
+<td>관광지 오디오가이드 정보서비스 / 다국어 관광정보 서비스</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td><strong>여행 경비 자동 합산</strong></td>
+<td>입장료·숙박비·이동비·식비를 자동 계산해 1인 또는 4인 가족 기준 총경비를 한 화면에 보여줍니다.</td>
+<td>국문관광정보 서비스 (입장료·숙박료) / 카카오 모빌리티</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td><strong>팔도 스탬프 적립</strong></td>
+<td>16개 시·도(서울 제외)를 방문할 때마다 인증 사진·영수증으로 스탬프를 모으고 지역상품권 리워드를 받습니다.</td>
+<td>지역별 관광다양성 / 카카오 간편 로그인</td>
+</tr>
+</tbody>
+</table>
+<h3>2-3 서비스 차별성</h3>
+<table>
+<thead>
+<tr>
+<th>서비스</th>
+<th style="text-align: center;">관광지 종류 큐레이션</th>
+<th style="text-align: center;">위치 기반 오디오</th>
+<th style="text-align: center;">혼잡도 최적화</th>
+<th style="text-align: center;">경비 자동합산</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>트리플</td>
+<td style="text-align: center;">△</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+</tr>
+<tr>
+<td>야놀자</td>
+<td style="text-align: center;">△</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">△</td>
+</tr>
+<tr>
+<td>마이리얼트립</td>
+<td style="text-align: center;">△</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">△</td>
+</tr>
+<tr>
+<td>ChatGPT</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✗</td>
+</tr>
+<tr>
+<td><strong>TripCraft Korea</strong></td>
+<td style="text-align: center;"><strong>✓</strong></td>
+<td style="text-align: center;"><strong>✓</strong></td>
+<td style="text-align: center;"><strong>✓</strong></td>
+<td style="text-align: center;"><strong>✓</strong></td>
+</tr>
+</tbody>
+</table>
+<p>핵심 3대 차별점: (1) <strong>분위기 보존 분산</strong> — 바이럴 장소를 포기시키지 않고 분위기가 91% 이상 유사한 대안을 같은 카테고리 맥락으로 제시한다. (2) <strong>실행 가능한 원페이지</strong> — 지도 경로·예약 안내·경비 합산·오디오 안내가 결합된 단일 화면을 제공한다. (3) <strong>걸으면 따라오는 이야기</strong> — 문화유산 50m 진입 시 5개국어 오디오가 자동 재생되어 별도 조작 없이 외국인 개별 여행객을 포괄한다.</p>
+<p><img alt="원페이지 플랜 UI 목업" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/hero-mockup.svg" /></p>
+<h3>2-4 서비스 내 지역 특화 관련 사항</h3>
+<p>TripCraft Korea는 <strong>서울 제외 16개 시도 전국 커버 지역특화 엔진</strong>으로, 선택 시도의 향토자원·소외 지수·지역관광기관(RTO) 협업 콘텐츠를 1:1 결합해 코스를 자동 생성한다. 16개 시도 각각에 지역특화 엔진이 동작하는 <strong>지역특화 서비스 집합</strong>으로 부산·대전·광주·세종·충남·경북·강원·제주 8개 지역관광기관 <strong>RTO 특별상</strong> 후보 지위를 확보한다.</p>
+<table>
+<thead>
+<tr>
+<th>구현 내용</th>
+<th>설명</th>
+<th>적용 시도</th>
+<th>활용 공공데이터</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>소외 지역 노출 강화</td>
+<td>관광 다양성 지수 하위 33% 시도의 노출·리워드를 1.5~2배 가중</td>
+<td>강원·충남·전북·전남·경북 등</td>
+<td>지역별 관광다양성 서비스</td>
+</tr>
+<tr>
+<td>지역관광기관 협업 콘텐츠 우선 노출</td>
+<td>8개 지역관광기관 추천 코스·축제 카드 우선 노출</td>
+<td>부산·대전·광주·세종·충남·경북·강원·제주</td>
+<td>기초지자체 중심관광지정보 서비스</td>
+</tr>
+<tr>
+<td>지역 경제 활성화</td>
+<td>팔도 스탬프 + 지역상품권 리워드 (소외 지역 가중 적용)</td>
+<td>서울 제외 16개 시도</td>
+<td>지역별 관광자원수요 서비스</td>
+</tr>
+</tbody>
+</table>
+<h2>3) 데이터 활용 방안</h2>
+<h3>3-1 활용 예정 한국관광공사 공공데이터</h3>
+<p>공공데이터포털 등록 정식명 기준 <strong>14종</strong> 활용.</p>
+<table>
+<thead>
+<tr>
+<th>한국관광공사 공공데이터 (정식명)</th>
+<th>어떻게 활용하나요?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>한국관광공사 국문관광정보 서비스</td>
+<td>전국 26만 곳 관광지의 이름·주소·입장료·사진 등 기본 정보를 가져와 코스 추천에 사용합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 관광지 오디오가이드정보 서비스</td>
+<td>사용자가 문화유산 50m 이내로 다가가면 자동으로 해당 장소의 한국어·외국어 오디오 설명을 들려줍니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 관광지집중률·방문자추이예측 서비스</td>
+<td>관광지의 향후 30일 혼잡도를 예측해 한산한 시간대를 자동 추천합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 관광빅데이터 정보서비스</td>
+<td>지역별 실제 방문자 통계를 바탕으로 인기 관광지 대비 얼마나 여유로운지를 비율로 보여줍니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 연관관광지정보 서비스</td>
+<td>선택한 장소와 함께 가기 좋은 인근 관광지를 자동으로 연결해 이동 동선을 구성합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 기초지자체 중심관광지정보 서비스</td>
+<td>시·군·구 단위 대표 관광지를 불러와 지도 위에 첫 추천 후보로 표시합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 지역별 관광다양성 서비스</td>
+<td>관광객이 적게 찾는 시·도를 파악해 해당 지역의 추천 노출과 스탬프 리워드를 자동으로 높입니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 지역별 관광수요강도 서비스</td>
+<td>지역별 관광 소비·체류 강도를 분석해 소비 잠재력이 높은 여행지를 우선 추천합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 지역별 관광자원수요 서비스</td>
+<td>관광지 종류별 수요를 분석해 사용자가 선택한 테마(문화·자연·미식 등)에 맞는 후보를 추립니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 관광사진 정보서비스</td>
+<td>관광지 대표 사진을 불러와 코스 카드와 화면 상단 비주얼에 활용합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 공모전수상작 정보서비스</td>
+<td>포토스팟 카테고리에서 수상작 사진과 촬영 각도 정보를 제공해 방문 전 미리 볼 수 있게 합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 영문관광정보 서비스</td>
+<td>영어권 외국인 개별 여행객에게 관광지 이름·설명·안내 정보를 영어로 제공합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 일문관광정보 서비스</td>
+<td>일본어권 여행객에게 동일한 정보를 일본어로 제공합니다.</td>
+</tr>
+<tr>
+<td>한국관광공사 중문(간체)관광정보 서비스</td>
+<td>중국어권 여행객에게 동일한 정보를 중국어 간체자로 제공합니다.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>카카오 연동 서비스 4종</strong></p>
+<table>
+<thead>
+<tr>
+<th>카카오 서비스</th>
+<th>서비스 내 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>카카오맵</td>
+<td>17개 시도 관광지 핀과 이동 동선을 지도에 시각화하고, 버튼 한 번으로 길찾기를 바로 실행합니다.</td>
+</tr>
+<tr>
+<td>카카오 간편 로그인</td>
+<td>별도 회원가입 없이 카카오 계정으로 로그인하고 내 일정과 스탬프 기록을 저장합니다.</td>
+</tr>
+<tr>
+<td>카카오톡 공유</td>
+<td>완성된 원페이지 일정표와 대안 장소를 카카오톡 친구에게 바로 공유합니다.</td>
+</tr>
+<tr>
+<td>카카오 모빌리티</td>
+<td>장소 간 거리·소요시간을 자동 계산하고 자가용 이용 시 이동 비용도 함께 산출합니다.</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2 데이터 활용 방식</h3>
+<p>한국관광공사 빅데이터 3종을 인공지능 분석과 교차 연산해 <strong>새로운 3가지 기준</strong>을 만들어냅니다. 단순 정보 나열이 아닌, 데이터를 결합하는 알고리즘으로 설계한 차별화 방식입니다.</p>
+<p><img alt="한국관광공사 공공데이터 연계 구조도" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/architecture-diagram.svg" /></p>
+<p><strong>TripCraft Korea가 만들어내는 새로운 3가지 기준</strong></p>
+<ol>
+<li><strong>여유로움 정도</strong> — 인기 폭발 장소 대비 후보지가 얼마나 한산한지를 한국관광공사 방문자 통계로 비교해 백분율로 표시합니다.</li>
+<li><strong>소외 지역 가산점</strong> — 관광객이 적게 찾는 시·도(관광 다양성 지수 하위 33%)에는 추천 노출과 적립 리워드를 1.5배~2배 자동 가산합니다.</li>
+<li><strong>분위기 유사도</strong> — 사진과 설명의 분위기를 인공지능이 분석해 0~100% 유사도 점수로 환산하고, 사용자가 좋아한 인기 장소와 분위기가 비슷한 곳 중 덜 붐비는 후보를 추천합니다.</li>
+</ol>
+<p><strong>시나리오 — 문화유산 카테고리 (경주, 오디오 포함)</strong></p>
+<ul>
+<li>경주 문화유산 수요 지수와 소외 지역 가산점을 먼저 계산합니다.</li>
+<li>관광지 종류별 분류를 기준으로 문화유산 후보 50곳을 추립니다.</li>
+<li>각 장소의 입장료·예약 안내·위치 좌표를 불러옵니다.</li>
+<li>50m 반경 이내 오디오 안내 지점을 연결해 언어·계절별 자동 재생 목록을 구성합니다.</li>
+<li>카카오맵 길찾기와 연동해 버튼 한 번으로 경로를 즉시 실행합니다.</li>
+</ul>
+<h2>4) 서비스 발전 방향</h2>
+<h3>4-1 개발 서비스 향후 발전방향</h3>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>핵심 기능</th>
+<th>월 이용자 수 목표</th>
+<th>파트너십</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>공모전 시연 버전</strong></td>
+<td>분산 추천·원페이지 플랜·팔도 스탬프 프로토타입, 전국 26만건 관광 정보 연동</td>
+<td>시연 환경</td>
+<td>KTO 공모전</td>
+</tr>
+<tr>
+<td><strong>6개월</strong></td>
+<td>코스 저장·실시간 재조정·다국어 플랜(영·중·일)</td>
+<td><strong>5,000명</strong></td>
+<td>야놀자·여기어때 제휴</td>
+</tr>
+<tr>
+<td><strong>1년</strong></td>
+<td>통신사 실시간 혼잡도·증강현실 포토스팟·지자체 전용 화이트라벨</td>
+<td><strong>50,000명</strong> (외국인 20%)</td>
+<td>KTO 디지털 관광주민증 연동·지자체 3곳 계약</td>
+</tr>
+<tr>
+<td><strong>3년</strong></td>
+<td>일본·동남아 아웃바운드 스탬프, K-Tourism Pass, 다중 언어 대화형 추천</td>
+<td><strong>300,000명</strong></td>
+<td>항공사·카드사·JTB 협업</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>운영 목표 지표</th>
+<th>정의</th>
+<th>1년 목표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>분산률</td>
+<td>추천 후 소외 시도(다양성 하위 33%) 선택 비율</td>
+<td><strong>35% 이상</strong></td>
+</tr>
+<tr>
+<td>재방문율</td>
+<td>스탬프 1개 이상 적립자의 30일 내 재플랜 비율</td>
+<td><strong>40% 이상</strong></td>
+</tr>
+<tr>
+<td>외국인 비율</td>
+<td>비한국어 언어 설정 월 이용자 비율</td>
+<td><strong>20% 이상</strong></td>
+</tr>
+</tbody>
+</table>
+<p>방한 외국인이 출국 전 앱을 설치하고 17개 시도 팔도 스탬프 완주를 버킷리스트로 삼아 다회 방한을 계획하며, K-컬처의 관심을 서울 한 곳이 아닌 17개 시도 전체로 연결하는 <strong>글로벌 K-Tourism Hub</strong>로 진화한다.</p>
+<p><em>작성일: 2026-05-05 / TripCraft Korea 기획팀 / 한국관광공사 × 카카오 2026 관광데이터 활용 공모전 ① 웹·앱 개발 부문</em></p>
+</body>
+</html>

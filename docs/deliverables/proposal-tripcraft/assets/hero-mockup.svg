@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, -apple-system, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="appHeader" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f2d6e"/>
+      <stop offset="60%" stop-color="#1a56db"/>
+      <stop offset="100%" stop-color="#1d6fb5"/>
+    </linearGradient>
+    <linearGradient id="frameShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="cat1g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a56db"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="cat2g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="cat3g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="cat4g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="cat5g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cat6g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#db2777"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="tabBarBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="phoneShadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="#0f172a" flood-opacity="0.28"/>
+    </filter>
+    <filter id="cardSh">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#00000018"/>
+    </filter>
+    <clipPath id="screenClip">
+      <rect x="113" y="100" width="574" height="1000" rx="0"/>
+    </clipPath>
+    <clipPath id="phoneClip">
+      <rect x="98" y="60" width="604" height="1088" rx="52"/>
+    </clipPath>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="800" height="1200" fill="url(#pageBg)"/>
+
+  <!-- Decorative background blobs -->
+  <circle cx="120" cy="200" r="180" fill="#dbeafe" opacity="0.3"/>
+  <circle cx="700" cy="900" r="160" fill="#d1fae5" opacity="0.25"/>
+  <circle cx="680" cy="180" r="120" fill="#fef3c7" opacity="0.2"/>
+
+  <!-- ===== iPhone frame ===== -->
+  <!-- Outer shadow frame -->
+  <rect x="98" y="60" width="604" height="1088" rx="52" fill="url(#frameShadow)" filter="url(#phoneShadow)"/>
+
+  <!-- Phone body -->
+  <rect x="103" y="65" width="594" height="1078" rx="50" fill="#1e293b"/>
+
+  <!-- Screen area -->
+  <rect x="113" y="78" width="574" height="1052" rx="42" fill="white"/>
+
+  <!-- ===== SCREEN CONTENT ===== -->
+  <g clip-path="url(#phoneClip)">
+
+    <!-- ===== Header gradient ===== -->
+    <rect x="98" y="60" width="604" height="295" fill="url(#appHeader)"/>
+
+    <!-- Status bar -->
+    <text x="160" y="112" font-size="13" fill="white" opacity="0.9" font-weight="600">9:41</text>
+    <!-- Signal/wifi/battery icons -->
+    <rect x="528" y="102" width="22" height="11" rx="3" fill="white" opacity="0.7"/>
+    <rect x="529" y="103" width="18" height="9" rx="2" fill="white" opacity="0.9"/>
+    <rect x="551" y="105" width="3" height="5" rx="1" fill="white" opacity="0.5"/>
+    <circle cx="510" cy="107" r="5" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="510" cy="107" r="2.5" fill="white" opacity="0.5"/>
+    <circle cx="493" cy="107" r="1.5" fill="white" opacity="0.9"/>
+    <circle cx="487" cy="107" r="1.5" fill="white" opacity="0.6"/>
+    <circle cx="481" cy="107" r="1.5" fill="white" opacity="0.35"/>
+
+    <!-- Dynamic island / notch -->
+    <rect x="295" y="76" width="210" height="34" rx="17" fill="#0f172a"/>
+
+    <!-- App logo area -->
+    <circle cx="175" cy="172" r="32" fill="white" opacity="0.15"/>
+    <!-- TC logo mark -->
+    <text x="175" y="180" text-anchor="middle" font-size="22" font-weight="900" fill="white" opacity="0.95">TC</text>
+
+    <!-- App title -->
+    <text x="400" y="155" text-anchor="middle" font-size="26" font-weight="900" fill="white" letter-spacing="0.5">TripCraft Korea</text>
+    <text x="400" y="178" text-anchor="middle" font-size="12.5" fill="white" opacity="0.8" letter-spacing="0.3">카테고리 테마 여행 플래너</text>
+
+    <!-- Tagline pill -->
+    <rect x="270" y="190" width="260" height="26" rx="13" fill="white" opacity="0.18"/>
+    <text x="400" y="207" text-anchor="middle" font-size="10.5" fill="white" font-weight="600">혼잡도 · 오디오 · 경비 · 스탬프 올인원</text>
+
+    <!-- Search bar -->
+    <rect x="135" y="228" width="530" height="44" rx="22" fill="white" opacity="0.95"/>
+    <circle cx="168" cy="250" r="10" fill="none" stroke="#94a3b8" stroke-width="2"/>
+    <line x1="175" y1="257" x2="181" y2="263" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+    <text x="195" y="255" font-size="13" fill="#94a3b8">어디로 여행을 떠나실 건가요?</text>
+    <!-- mic icon -->
+    <rect x="632" y="237" width="22" height="28" rx="6" fill="none" stroke="#64748b" stroke-width="1.5" opacity="0.6"/>
+    <line x1="643" y1="265" x2="643" y2="272" stroke="#64748b" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Section title -->
+    <text x="148" y="308" font-size="15" font-weight="800" fill="#1e293b">여행 카테고리 선택</text>
+    <text x="650" y="308" text-anchor="end" font-size="11" fill="#64748b">전체 보기 ›</text>
+
+    <!-- ===== Category cards grid (2 cols, 3 rows) ===== -->
+
+    <!-- Row 1 -->
+    <!-- Card: 문화유산 -->
+    <rect x="135" y="318" width="240" height="130" rx="16" fill="url(#cat1g)" filter="url(#cardSh)"/>
+    <!-- Decorative shape -->
+    <circle cx="330" cy="318" r="70" fill="white" opacity="0.07"/>
+    <!-- Roof icon -->
+    <path d="M195,370 Q215,350 235,345 Q255,350 275,370 Z" fill="white" opacity="0.35"/>
+    <rect x="220" y="370" width="12" height="20" rx="2" fill="white" opacity="0.3"/>
+    <rect x="242" y="370" width="12" height="20" rx="2" fill="white" opacity="0.3"/>
+    <rect x="205" y="388" width="60" height="6" rx="2" fill="white" opacity="0.25"/>
+    <!-- Texts -->
+    <text x="155" y="425" font-size="15" font-weight="800" fill="white">문화유산</text>
+    <text x="155" y="442" font-size="9" fill="white" opacity="0.85">오디오 자동재생</text>
+
+    <!-- Card: 미식 -->
+    <rect x="392" y="318" width="240" height="130" rx="16" fill="url(#cat2g)" filter="url(#cardSh)"/>
+    <circle cx="580" cy="310" r="65" fill="white" opacity="0.07"/>
+    <!-- Bowl icon -->
+    <path d="M452,372 Q470,390 512,392 Q554,390 572,372 Z" fill="white" opacity="0.3"/>
+    <ellipse cx="512" cy="372" rx="60" ry="14" fill="white" opacity="0.2"/>
+    <path d="M500,352 Q496,340 500,330" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M512,350 Q508,338 512,328" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M524,352 Q528,340 524,330" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <text x="412" y="425" font-size="15" font-weight="800" fill="white">미식</text>
+    <text x="412" y="442" font-size="9" fill="white" opacity="0.85">향토 음식 발굴</text>
+
+    <!-- Row 2 -->
+    <!-- Card: 자연/에코트레일 -->
+    <rect x="135" y="462" width="240" height="130" rx="16" fill="url(#cat3g)" filter="url(#cardSh)"/>
+    <circle cx="330" cy="462" r="65" fill="white" opacity="0.07"/>
+    <!-- Mountain -->
+    <path d="M175,555 L210,505 L245,555 Z" fill="white" opacity="0.25"/>
+    <path d="M215,555 L255,490 L295,555 Z" fill="white" opacity="0.3"/>
+    <path d="M248,490 L255,506 L262,490 Z" fill="white" opacity="0.5"/>
+    <text x="155" y="570" font-size="15" font-weight="800" fill="white">자연/에코</text>
+    <text x="155" y="586" font-size="9" fill="white" opacity="0.85">혼잡 없는 자연 루트</text>
+
+    <!-- Card: 축제/이벤트 -->
+    <rect x="392" y="462" width="240" height="130" rx="16" fill="url(#cat4g)" filter="url(#cardSh)"/>
+    <circle cx="580" cy="455" r="65" fill="white" opacity="0.07"/>
+    <!-- Firework -->
+    <circle cx="512" cy="520" r="6" fill="white" opacity="0.8"/>
+    <line x1="512" y1="512" x2="512" y2="492" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <line x1="519" y1="514" x2="533" y2="498" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <line x1="520" y1="520" x2="540" y2="520" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <line x1="519" y1="526" x2="533" y2="542" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <line x1="505" y1="514" x2="491" y2="498" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <line x1="504" y1="520" x2="484" y2="520" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <line x1="505" y1="526" x2="491" y2="542" stroke="white" stroke-width="1.8" opacity="0.7"/>
+    <circle cx="512" cy="492" r="3" fill="#fbbf24" opacity="0.9"/>
+    <circle cx="533" cy="498" r="3" fill="#fef3c7" opacity="0.9"/>
+    <circle cx="540" cy="520" r="3" fill="#fbbf24" opacity="0.9"/>
+    <text x="412" y="570" font-size="15" font-weight="800" fill="white">축제/이벤트</text>
+    <text x="412" y="586" font-size="9" fill="white" opacity="0.85">계절 축제 동적 큐레이션</text>
+
+    <!-- Row 3 -->
+    <!-- Card: 힐링/웰니스 -->
+    <rect x="135" y="606" width="240" height="130" rx="16" fill="url(#cat5g)" filter="url(#cardSh)"/>
+    <circle cx="330" cy="600" r="65" fill="white" opacity="0.07"/>
+    <!-- Lotus -->
+    <ellipse cx="235" cy="685" rx="12" ry="20" fill="white" opacity="0.35"/>
+    <ellipse cx="218" cy="690" rx="9" ry="16" fill="white" opacity="0.25" transform="rotate(-25,218,690)"/>
+    <ellipse cx="252" cy="690" rx="9" ry="16" fill="white" opacity="0.25" transform="rotate(25,252,690)"/>
+    <circle cx="235" cy="680" r="6" fill="white" opacity="0.6"/>
+    <ellipse cx="235" cy="706" rx="28" ry="7" fill="white" opacity="0.2"/>
+    <text x="155" y="716" font-size="15" font-weight="800" fill="white">힐링/웰니스</text>
+    <text x="155" y="733" font-size="9" fill="white" opacity="0.85">저밀도 온천·명상 코스</text>
+
+    <!-- Card: 포토스팟 -->
+    <rect x="392" y="606" width="240" height="130" rx="16" fill="url(#cat6g)" filter="url(#cardSh)"/>
+    <circle cx="580" cy="600" r="65" fill="white" opacity="0.07"/>
+    <!-- Camera -->
+    <rect x="477" y="655" width="70" height="50" rx="8" fill="white" opacity="0.3"/>
+    <rect x="492" y="647" width="28" height="12" rx="4" fill="white" opacity="0.25"/>
+    <circle cx="512" cy="680" r="16" fill="white" opacity="0.35"/>
+    <circle cx="512" cy="680" r="10" fill="white" opacity="0.5"/>
+    <circle cx="512" cy="680" r="5" fill="white" opacity="0.8"/>
+    <text x="412" y="716" font-size="15" font-weight="800" fill="white">포토스팟</text>
+    <text x="412" y="733" font-size="9" fill="white" opacity="0.85">CLIP 유사도 대안 추천</text>
+
+    <!-- ===== Featured banner ===== -->
+    <rect x="135" y="754" width="497" height="80" rx="14" fill="#0f172a"/>
+    <rect x="135" y="754" width="497" height="80" rx="14" fill="url(#appHeader)" opacity="0.85"/>
+    <!-- Star badge -->
+    <circle cx="172" cy="794" r="22" fill="white" opacity="0.15"/>
+    <text x="172" y="800" text-anchor="middle" font-size="20" fill="#fbbf24">★</text>
+    <!-- Text -->
+    <text x="210" y="782" font-size="13" font-weight="800" fill="white">이번 주 추천 여행지</text>
+    <text x="210" y="800" font-size="11" fill="white" opacity="0.85">경주 · 전주 · 강릉 — 여유로움 지수 상위 3곳</text>
+    <text x="210" y="818" font-size="9.5" fill="#93c5fd">혼잡도 낮음 · 오디오 지원 · 스탬프 보너스 2배</text>
+    <!-- Arrow button -->
+    <circle cx="604" cy="794" r="16" fill="white" opacity="0.2"/>
+    <text x="604" y="800" text-anchor="middle" font-size="14" fill="white">›</text>
+
+    <!-- ===== Recent / stamp section ===== -->
+    <text x="148" y="862" font-size="14" font-weight="800" fill="#1e293b">내 팔도 스탬프 현황</text>
+    <text x="650" y="862" text-anchor="end" font-size="11" fill="#64748b">전체 보기 ›</text>
+
+    <!-- Stamp progress bar -->
+    <rect x="148" y="872" width="500" height="10" rx="5" fill="#e2e8f0"/>
+    <rect x="148" y="872" width="176" height="10" rx="5" fill="#059669"/>
+    <text x="148" y="898" font-size="11" fill="#64748b">방문 완료: 6/17 시도</text>
+    <text x="648" y="898" text-anchor="end" font-size="11" font-weight="700" fill="#059669">35%</text>
+
+    <!-- Stamp dots row -->
+    <g transform="translate(148, 912)">
+      <!-- Visited stamps -->
+      <circle cx="16" cy="16" r="13" fill="#1a56db" opacity="0.9"/>
+      <text x="16" y="21" text-anchor="middle" font-size="7.5" fill="white" font-weight="700">서울</text>
+      <circle cx="52" cy="16" r="13" fill="#059669" opacity="0.9"/>
+      <text x="52" y="21" text-anchor="middle" font-size="7.5" fill="white" font-weight="700">경주</text>
+      <circle cx="88" cy="16" r="13" fill="#d97706" opacity="0.9"/>
+      <text x="88" y="21" text-anchor="middle" font-size="7.5" fill="white" font-weight="700">전주</text>
+      <circle cx="124" cy="16" r="13" fill="#7c3aed" opacity="0.9"/>
+      <text x="124" y="21" text-anchor="middle" font-size="7.5" fill="white" font-weight="700">강릉</text>
+      <circle cx="160" cy="16" r="13" fill="#dc2626" opacity="0.9"/>
+      <text x="160" y="21" text-anchor="middle" font-size="7.5" fill="white" font-weight="700">제주</text>
+      <circle cx="196" cy="16" r="13" fill="#0891b2" opacity="0.9"/>
+      <text x="196" y="21" text-anchor="middle" font-size="7.5" fill="white" font-weight="700">부산</text>
+      <!-- Unvisited stamps -->
+      <circle cx="232" cy="16" r="13" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="232" y="21" text-anchor="middle" font-size="7.5" fill="#94a3b8">대구</text>
+      <circle cx="268" cy="16" r="13" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="268" y="21" text-anchor="middle" font-size="7.5" fill="#94a3b8">대전</text>
+      <circle cx="304" cy="16" r="13" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="304" y="21" text-anchor="middle" font-size="7.5" fill="#94a3b8">광주</text>
+      <circle cx="340" cy="16" r="13" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="340" y="21" text-anchor="middle" font-size="7.5" fill="#94a3b8">인천</text>
+      <circle cx="376" cy="16" r="13" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+      <text x="376" y="21" text-anchor="middle" font-size="7.5" fill="#94a3b8">수원</text>
+      <circle cx="412" cy="16" r="13" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="412" y="21" text-anchor="middle" font-size="8" fill="#c7d2da">+6</text>
+    </g>
+
+    <!-- ===== Tab bar ===== -->
+    <rect x="98" y="1005" width="604" height="100" fill="url(#tabBarBg)"/>
+    <!-- Separator line -->
+    <line x1="98" y1="1005" x2="702" y2="1005" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Tab: 홈 (active) -->
+    <rect x="133" y="1015" width="80" height="60" rx="8" fill="#eff6ff"/>
+    <!-- Home icon -->
+    <path d="M163,1038 L173,1028 L183,1038 L183,1055 L168,1055 L168,1045 L178,1045 L178,1055 L163,1055 Z" fill="#1a56db" opacity="0.8"/>
+    <text x="173" y="1074" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a56db">홈</text>
+
+    <!-- Tab: 지도 -->
+    <rect x="263" y="1015" width="80" height="60" rx="8" fill="none"/>
+    <circle cx="303" cy="1038" r="10" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
+    <circle cx="303" cy="1038" r="4" fill="#94a3b8" opacity="0.7"/>
+    <path d="M303,1048 L299,1057 L303,1053 L307,1057 Z" fill="#94a3b8" opacity="0.7"/>
+    <text x="303" y="1074" text-anchor="middle" font-size="10.5" fill="#94a3b8">지도</text>
+
+    <!-- Tab: 스탬프 -->
+    <rect x="393" y="1015" width="80" height="60" rx="8" fill="none"/>
+    <circle cx="433" cy="1038" r="12" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="433" y="1043" text-anchor="middle" font-size="9" fill="#94a3b8" font-weight="700">팔도</text>
+    <text x="433" y="1074" text-anchor="middle" font-size="10.5" fill="#94a3b8">스탬프</text>
+
+    <!-- Tab: 마이 -->
+    <rect x="523" y="1015" width="80" height="60" rx="8" fill="none"/>
+    <circle cx="563" cy="1033" r="9" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
+    <path d="M545,1058 Q545,1043 563,1043 Q581,1043 581,1058" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="563" y="1074" text-anchor="middle" font-size="10.5" fill="#94a3b8">마이</text>
+
+    <!-- Home indicator bar -->
+    <rect x="300" y="1092" width="200" height="5" rx="2.5" fill="#1e293b" opacity="0.2"/>
+
+  </g>
+
+  <!-- ===== Labels outside phone ===== -->
+  <!-- Left callout: AI 코스 생성 -->
+  <line x1="98" y1="400" x2="50" y2="400" stroke="#1a56db" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <rect x="10" y="383" width="42" height="34" rx="6" fill="#1a56db" fill-opacity="0.1" stroke="#1a56db" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="31" y="398" text-anchor="middle" font-size="8.5" fill="#1a56db" font-weight="700">AI 코스</text>
+  <text x="31" y="411" text-anchor="middle" font-size="8.5" fill="#1a56db" font-weight="700">생성</text>
+
+  <!-- Right callout: 혼잡도 -->
+  <line x1="702" y1="510" x2="748" y2="510" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <rect x="748" y="494" width="42" height="34" rx="6" fill="#d97706" fill-opacity="0.1" stroke="#d97706" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="769" y="509" text-anchor="middle" font-size="8.5" fill="#d97706" font-weight="700">혼잡도</text>
+  <text x="769" y="522" text-anchor="middle" font-size="8.5" fill="#d97706" font-weight="700">실시간</text>
+
+  <!-- Left callout: 오디오 -->
+  <line x1="98" y1="680" x2="50" y2="680" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <rect x="8" y="663" width="44" height="34" rx="6" fill="#dc2626" fill-opacity="0.1" stroke="#dc2626" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="30" y="678" text-anchor="middle" font-size="8.5" fill="#dc2626" font-weight="700">오디오</text>
+  <text x="30" y="691" text-anchor="middle" font-size="8.5" fill="#dc2626" font-weight="700">자동재생</text>
+
+  <!-- Right callout: 경비 합산 -->
+  <line x1="702" y1="800" x2="748" y2="800" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <rect x="748" y="784" width="42" height="34" rx="6" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="769" y="799" text-anchor="middle" font-size="8.5" fill="#059669" font-weight="700">경비</text>
+  <text x="769" y="812" text-anchor="middle" font-size="8.5" fill="#059669" font-weight="700">자동합산</text>
+
+  <!-- Bottom label -->
+  <text x="400" y="1165" text-anchor="middle" font-size="11" fill="#94a3b8" font-weight="600">TripCraft Korea — 앱 첫 화면 Hi-Fi Mockup</text>
+  <text x="400" y="1182" text-anchor="middle" font-size="9.5" fill="#cbd5e1">한국관광공사×카카오 공모전 | 2026</text>
+</svg>

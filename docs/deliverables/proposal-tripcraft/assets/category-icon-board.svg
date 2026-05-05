@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, -apple-system, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgBoard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="hdrBoard" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a56db"/>
+      <stop offset="100%" stop-color="#0e9f6e"/>
+    </linearGradient>
+    <!-- Card gradients -->
+    <linearGradient id="c1grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#eff6ff"/>
+    </linearGradient>
+    <linearGradient id="c2grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fffbeb"/>
+    </linearGradient>
+    <linearGradient id="c3grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d1fae5"/>
+      <stop offset="100%" stop-color="#ecfdf5"/>
+    </linearGradient>
+    <linearGradient id="c4grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fff5f5"/>
+    </linearGradient>
+    <linearGradient id="c5grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ede9fe"/>
+      <stop offset="100%" stop-color="#f5f3ff"/>
+    </linearGradient>
+    <linearGradient id="c6grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fce7f3"/>
+      <stop offset="100%" stop-color="#fdf4ff"/>
+    </linearGradient>
+    <filter id="cs">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00000012"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="600" fill="url(#bgBoard)"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1000" height="50" fill="url(#hdrBoard)"/>
+  <text x="500" y="32" text-anchor="middle" font-size="19" font-weight="700" fill="white" letter-spacing="1">TripCraft Korea — 카테고리 아이콘 보드</text>
+
+  <!-- ===================== CARD 1: 문화유산 ===================== -->
+  <rect x="30" y="66" width="290" height="230" rx="16" fill="url(#c1grad)" stroke="#3b82f6" stroke-width="1.8" filter="url(#cs)"/>
+  <!-- Top accent bar -->
+  <rect x="30" y="66" width="290" height="8" rx="8" fill="#1a56db"/>
+  <rect x="30" y="70" width="290" height="4" fill="#1a56db"/>
+
+  <!-- Korean roof icon (기와 지붕) -->
+  <g transform="translate(175, 130)">
+    <!-- Main roof shape -->
+    <path d="M-55,20 Q-40,-10 0,-25 Q40,-10 55,20 Z" fill="#1a56db" opacity="0.75"/>
+    <!-- Ridge -->
+    <rect x="-5" y="-28" width="10" height="8" rx="2" fill="#1e40af" opacity="0.9"/>
+    <!-- Eave tips -->
+    <path d="M-55,20 Q-62,18 -58,12" fill="none" stroke="#1a56db" stroke-width="2" opacity="0.6"/>
+    <path d="M55,20 Q62,18 58,12" fill="none" stroke="#1a56db" stroke-width="2" opacity="0.6"/>
+    <!-- Pillars -->
+    <rect x="-30" y="20" width="8" height="20" fill="#93c5fd" opacity="0.8"/>
+    <rect x="22" y="20" width="8" height="20" fill="#93c5fd" opacity="0.8"/>
+    <!-- Base -->
+    <rect x="-40" y="40" width="80" height="6" rx="2" fill="#1a56db" opacity="0.5"/>
+  </g>
+
+  <text x="175" y="220" text-anchor="middle" font-size="17" font-weight="800" fill="#1e3a8a">문화유산</text>
+  <text x="175" y="240" text-anchor="middle" font-size="9.5" fill="#1d4ed8">궁궐·고택·비석 역사 탐방</text>
+  <text x="175" y="255" text-anchor="middle" font-size="9.5" fill="#1d4ed8">오디오 가이드 자동 재생</text>
+  <line x1="60" y1="266" x2="290" y2="266" stroke="#3b82f6" stroke-width="0.7" opacity="0.4"/>
+  <rect x="60" y="274" width="230" height="14" rx="5" fill="#1a56db" opacity="0.12"/>
+  <text x="175" y="285" text-anchor="middle" font-size="8.5" fill="#1e3a8a" font-weight="600">audio-guide · storyLocationBasedList</text>
+
+  <!-- ===================== CARD 2: 미식 ===================== -->
+  <rect x="355" y="66" width="290" height="230" rx="16" fill="url(#c2grad)" stroke="#f59e0b" stroke-width="1.8" filter="url(#cs)"/>
+  <rect x="355" y="66" width="290" height="8" rx="8" fill="#d97706"/>
+  <rect x="355" y="70" width="290" height="4" fill="#d97706"/>
+
+  <!-- Bowl + chopsticks icon (그릇·젓가락) -->
+  <g transform="translate(500, 130)">
+    <!-- Bowl -->
+    <path d="M-35,15 Q-40,35 0,40 Q40,35 35,15 Z" fill="#f59e0b" opacity="0.7"/>
+    <ellipse cx="0" cy="15" rx="35" ry="10" fill="#fbbf24" opacity="0.9"/>
+    <ellipse cx="0" cy="15" rx="25" ry="7" fill="#fef3c7" opacity="0.8"/>
+    <!-- Steam lines -->
+    <path d="M-10,-5 Q-5,-15 -10,-25" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <path d="M0,-5 Q5,-15 0,-25" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <path d="M10,-5 Q15,-15 10,-25" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <!-- Chopsticks -->
+    <line x1="42" y1="-20" x2="52" y2="35" stroke="#92400e" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+    <line x1="50" y1="-20" x2="58" y2="35" stroke="#92400e" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <text x="500" y="220" text-anchor="middle" font-size="17" font-weight="800" fill="#451a03">미식</text>
+  <text x="500" y="240" text-anchor="middle" font-size="9.5" fill="#78350f">지역 향토 음식·로컬 시장</text>
+  <text x="500" y="255" text-anchor="middle" font-size="9.5" fill="#78350f">숨은 맛집 발굴 코스</text>
+  <line x1="385" y1="266" x2="615" y2="266" stroke="#f59e0b" stroke-width="0.7" opacity="0.4"/>
+  <rect x="385" y="274" width="230" height="14" rx="5" fill="#d97706" opacity="0.12"/>
+  <text x="500" y="285" text-anchor="middle" font-size="8.5" fill="#451a03" font-weight="600">tourism-info-korean · contentTypeId=38</text>
+
+  <!-- ===================== CARD 3: 자연/에코트레일 ===================== -->
+  <rect x="680" y="66" width="290" height="230" rx="16" fill="url(#c3grad)" stroke="#10b981" stroke-width="1.8" filter="url(#cs)"/>
+  <rect x="680" y="66" width="290" height="8" rx="8" fill="#059669"/>
+  <rect x="680" y="70" width="290" height="4" fill="#059669"/>
+
+  <!-- Mountain + leaf icon (산·잎) -->
+  <g transform="translate(825, 128)">
+    <!-- Mountains -->
+    <path d="M-55,30 L-25,-20 L5,30 Z" fill="#10b981" opacity="0.6"/>
+    <path d="M-15,30 L25,-30 L65,30 Z" fill="#059669" opacity="0.75"/>
+    <!-- Snow cap -->
+    <path d="M15,-30 L25,-12 L35,-30 Z" fill="white" opacity="0.8"/>
+    <!-- Leaf -->
+    <path d="M-55,15 Q-62,-5 -45,-15 Q-35,-5 -42,15 Z" fill="#34d399" opacity="0.8"/>
+    <line x1="-49" y1="15" x2="-45" y2="-10" stroke="#059669" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <text x="825" y="220" text-anchor="middle" font-size="17" font-weight="800" fill="#022c22">자연/에코트레일</text>
+  <text x="825" y="240" text-anchor="middle" font-size="9.5" fill="#065f46">국립공원·트레킹·해변</text>
+  <text x="825" y="255" text-anchor="middle" font-size="9.5" fill="#065f46">혼잡 없는 자연 루트 최적화</text>
+  <line x1="710" y1="266" x2="940" y2="266" stroke="#10b981" stroke-width="0.7" opacity="0.4"/>
+  <rect x="710" y="274" width="230" height="14" rx="5" fill="#059669" opacity="0.12"/>
+  <text x="825" y="285" text-anchor="middle" font-size="8.5" fill="#022c22" font-weight="600">visitor-concentration-forecast</text>
+
+  <!-- ===================== CARD 4: 축제/이벤트 ===================== -->
+  <rect x="30" y="320" width="290" height="230" rx="16" fill="url(#c4grad)" stroke="#ef4444" stroke-width="1.8" filter="url(#cs)"/>
+  <rect x="30" y="320" width="290" height="8" rx="8" fill="#dc2626"/>
+  <rect x="30" y="324" width="290" height="4" fill="#dc2626"/>
+
+  <!-- Fireworks icon (폭죽) -->
+  <g transform="translate(175, 390)">
+    <!-- Central burst -->
+    <circle cx="0" cy="0" r="6" fill="#ef4444" opacity="0.9"/>
+    <!-- Burst lines -->
+    <line x1="0" y1="-8" x2="0" y2="-30" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+    <line x1="21" y1="-21" x2="8" y2="-8" stroke="#f59e0b" stroke-width="2" opacity="0.8"/>
+    <line x1="30" y1="0" x2="8" y2="0" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+    <line x1="21" y1="21" x2="8" y2="8" stroke="#fbbf24" stroke-width="2" opacity="0.8"/>
+    <line x1="0" y1="30" x2="0" y2="8" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+    <line x1="-21" y1="21" x2="-8" y2="8" stroke="#f59e0b" stroke-width="2" opacity="0.8"/>
+    <line x1="-30" y1="0" x2="-8" y2="0" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+    <line x1="-21" y1="-21" x2="-8" y2="-8" stroke="#fbbf24" stroke-width="2" opacity="0.8"/>
+    <!-- Dots at tips -->
+    <circle cx="0" cy="-30" r="3" fill="#f59e0b" opacity="0.9"/>
+    <circle cx="21" cy="-21" r="3" fill="#ef4444" opacity="0.9"/>
+    <circle cx="30" cy="0" r="3" fill="#fbbf24" opacity="0.9"/>
+    <circle cx="21" cy="21" r="3" fill="#ef4444" opacity="0.9"/>
+    <circle cx="0" cy="30" r="3" fill="#f59e0b" opacity="0.9"/>
+    <circle cx="-21" cy="21" r="3" fill="#fbbf24" opacity="0.9"/>
+    <circle cx="-30" cy="0" r="3" fill="#ef4444" opacity="0.9"/>
+    <circle cx="-21" cy="-21" r="3" fill="#f59e0b" opacity="0.9"/>
+    <!-- secondary burst -->
+    <circle cx="45" cy="-35" r="4" fill="#f59e0b" opacity="0.7"/>
+    <line x1="45" y1="-35" x2="52" y2="-50" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+    <line x1="45" y1="-35" x2="60" y2="-38" stroke="#fbbf24" stroke-width="1.5" opacity="0.6"/>
+    <line x1="45" y1="-35" x2="52" y2="-20" stroke="#ef4444" stroke-width="1.5" opacity="0.6"/>
+    <line x1="45" y1="-35" x2="30" y2="-28" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <text x="175" y="455" text-anchor="middle" font-size="17" font-weight="800" fill="#450a0a">축제/이벤트</text>
+  <text x="175" y="475" text-anchor="middle" font-size="9.5" fill="#7f1d1d">계절 축제·지역 행사</text>
+  <text x="175" y="490" text-anchor="middle" font-size="9.5" fill="#7f1d1d">날짜 기반 동적 큐레이션</text>
+  <line x1="60" y1="500" x2="290" y2="500" stroke="#ef4444" stroke-width="0.7" opacity="0.4"/>
+  <rect x="60" y="508" width="230" height="14" rx="5" fill="#dc2626" opacity="0.12"/>
+  <text x="175" y="519" text-anchor="middle" font-size="8.5" fill="#450a0a" font-weight="600">tourism-big-data · locgoRegnVisitrDDList</text>
+
+  <!-- ===================== CARD 5: 힐링/웰니스 ===================== -->
+  <rect x="355" y="320" width="290" height="230" rx="16" fill="url(#c5grad)" stroke="#8b5cf6" stroke-width="1.8" filter="url(#cs)"/>
+  <rect x="355" y="320" width="290" height="8" rx="8" fill="#7c3aed"/>
+  <rect x="355" y="324" width="290" height="4" fill="#7c3aed"/>
+
+  <!-- Lotus + hot spring icon (연꽃·온천) -->
+  <g transform="translate(500, 390)">
+    <!-- Hot spring ripples -->
+    <ellipse cx="0" cy="20" rx="38" ry="10" fill="#c4b5fd" opacity="0.5"/>
+    <ellipse cx="0" cy="20" rx="28" ry="7" fill="#a78bfa" opacity="0.4"/>
+    <!-- Steam -->
+    <path d="M-12,10 Q-8,-2 -12,-14" stroke="#8b5cf6" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M0,8 Q4,-4 0,-16" stroke="#7c3aed" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M12,10 Q16,-2 12,-14" stroke="#8b5cf6" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <!-- Lotus petals -->
+    <ellipse cx="0" cy="-5" rx="10" ry="18" fill="#c4b5fd" opacity="0.8"/>
+    <ellipse cx="-16" cy="0" rx="8" ry="15" fill="#ddd6fe" opacity="0.8" transform="rotate(-30,-16,0)"/>
+    <ellipse cx="16" cy="0" rx="8" ry="15" fill="#ddd6fe" opacity="0.8" transform="rotate(30,16,0)"/>
+    <ellipse cx="-26" cy="8" rx="6" ry="12" fill="#ede9fe" opacity="0.7" transform="rotate(-55,-26,8)"/>
+    <ellipse cx="26" cy="8" rx="6" ry="12" fill="#ede9fe" opacity="0.7" transform="rotate(55,26,8)"/>
+    <!-- Center -->
+    <circle cx="0" cy="-5" r="6" fill="#7c3aed" opacity="0.8"/>
+    <circle cx="0" cy="-5" r="3" fill="#fef3c7" opacity="0.9"/>
+  </g>
+
+  <text x="500" y="455" text-anchor="middle" font-size="17" font-weight="800" fill="#2e1065">힐링/웰니스</text>
+  <text x="500" y="475" text-anchor="middle" font-size="9.5" fill="#4c1d95">온천·템플스테이·명상 공간</text>
+  <text x="500" y="490" text-anchor="middle" font-size="9.5" fill="#4c1d95">저밀도 동선 추천</text>
+  <line x1="385" y1="500" x2="615" y2="500" stroke="#8b5cf6" stroke-width="0.7" opacity="0.4"/>
+  <rect x="385" y="508" width="230" height="14" rx="5" fill="#7c3aed" opacity="0.12"/>
+  <text x="500" y="519" text-anchor="middle" font-size="8.5" fill="#2e1065" font-weight="600">area-tourism-diversity · 소외 지역 가중치</text>
+
+  <!-- ===================== CARD 6: 포토스팟 ===================== -->
+  <rect x="680" y="320" width="290" height="230" rx="16" fill="url(#c6grad)" stroke="#ec4899" stroke-width="1.8" filter="url(#cs)"/>
+  <rect x="680" y="320" width="290" height="8" rx="8" fill="#db2777"/>
+  <rect x="680" y="324" width="290" height="4" fill="#db2777"/>
+
+  <!-- Camera icon (카메라) -->
+  <g transform="translate(825, 390)">
+    <!-- Camera body -->
+    <rect x="-35" y="-15" width="70" height="50" rx="8" fill="#db2777" opacity="0.75"/>
+    <!-- Viewfinder bump -->
+    <rect x="-15" y="-25" width="30" height="14" rx="4" fill="#db2777" opacity="0.6"/>
+    <!-- Lens outer -->
+    <circle cx="0" cy="12" r="18" fill="#be185d" opacity="0.9"/>
+    <!-- Lens inner -->
+    <circle cx="0" cy="12" r="13" fill="#fce7f3" opacity="0.9"/>
+    <circle cx="0" cy="12" r="8" fill="#9d174d" opacity="0.7"/>
+    <circle cx="0" cy="12" r="4" fill="#fce7f3" opacity="0.6"/>
+    <!-- Flash -->
+    <rect x="22" y="-10" width="8" height="6" rx="2" fill="#fbbf24" opacity="0.9"/>
+    <!-- Shutter button -->
+    <circle cx="-22" cy="-10" r="5" fill="#be185d" opacity="0.8"/>
+    <!-- Sparkles around camera -->
+    <text x="-42" y="-18" font-size="12" fill="#f9a8d4" opacity="0.8">✦</text>
+    <text x="30" y="-20" font-size="10" fill="#fbbf24" opacity="0.8">★</text>
+    <text x="38" y="30" font-size="10" fill="#f9a8d4" opacity="0.7">✦</text>
+  </g>
+
+  <text x="825" y="455" text-anchor="middle" font-size="17" font-weight="800" fill="#500724">포토스팟</text>
+  <text x="825" y="475" text-anchor="middle" font-size="9.5" fill="#831843">인스타 감성·일출·야경</text>
+  <text x="825" y="490" text-anchor="middle" font-size="9.5" fill="#831843">CLIP 유사도 대안 장소 제안</text>
+  <line x1="710" y1="500" x2="940" y2="500" stroke="#ec4899" stroke-width="0.7" opacity="0.4"/>
+  <rect x="710" y="508" width="230" height="14" rx="5" fill="#db2777" opacity="0.12"/>
+  <text x="825" y="519" text-anchor="middle" font-size="8.5" fill="#500724" font-weight="600">CLIP 임베딩 · photo-contest-winners</text>
+
+  <!-- Footer -->
+  <rect x="30" y="565" width="940" height="26" rx="6" fill="white" fill-opacity="0.7" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="500" y="582" text-anchor="middle" font-size="9" fill="#6b7280">* 각 카테고리는 contentTypeId 매핑 + 전용 API 조합으로 개인화 플랜 생성. K-컬처 카테고리 (7번째)는 별도 상세 화면에서 제공.</text>
+</svg>
