@@ -309,6 +309,10 @@ th:first-child { text-align: left; }
 /* Bold numbers and percentages */
 td strong { color: var(--blue-dark); }
 
+/* Accent last column in comparison tables */
+td:last-child { background: rgba(26,86,219,0.08) !important; font-weight: 600; }
+td:first-child { background: inherit; font-weight: 400; }
+
 /* ── Images ──────────────────────────────────────────────────────────────── */
 img {
   max-width: 95%;
@@ -320,9 +324,8 @@ img {
   box-shadow: 0 1pt 4pt rgba(0,0,0,0.10);
   page-break-inside: avoid;
 }
-img[src*="screen-flow"]   { max-width: 100%; max-height: 250px; object-fit: contain; margin: 6pt auto 3pt; }
-img[src*="user-journey"]  { max-width: 95%; max-height: 150px; object-fit: contain; }
-img[src*="hero-mockup"]   { max-width: 28%; max-height: 200px; object-fit: contain; }
+img[src*="screen-flow"]   { max-width: 100%; max-height: 600px; object-fit: contain; margin: 6pt auto 3pt; border-radius: 8pt; box-shadow: 0 4pt 18pt rgba(0,0,0,0.15); }
+img[src*="hero-mockup"]   { max-width: 42%; max-height: 320px; object-fit: contain; }
 img[src*="architecture"]  { max-width: 70%; }
 
 /* Image caption (em tag immediately after img) */
@@ -399,11 +402,17 @@ cmd = [
     chrome,
     "--headless=new",
     "--disable-gpu",
+    "--no-sandbox",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-extensions",
+    "--virtual-time-budget=8000",
+    "--run-all-compositor-stages-before-draw",
     "--no-pdf-header-footer",
     f"--print-to-pdf={PDF}",
     f"file://{HTML.resolve()}",
 ]
-result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+result = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
 if PDF.exists():
     print(f"[OK] PDF built:  {PDF} ({PDF.stat().st_size:,} bytes)")
 else:
