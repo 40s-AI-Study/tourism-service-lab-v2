@@ -2,75 +2,314 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>2026 관광데이터 활용 공모전 제안서 — TripCraft Korea (최종)</title>
+<title>2026 관광데이터 활용 공모전 제안서 — TripCraft Korea</title>
 <style>
-@page { size: A4; margin: 8mm 9mm; }
-* { box-sizing: border-box; }
+/* ── Page setup ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+@page {
+  size: A4;
+  margin: 10mm 12mm 12mm 12mm;
+  @bottom-center {
+    content: "TripCraft Korea  ·  " counter(page) " / 5";
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+    padding-top: 4pt;
+    border-top: 0.5pt solid #cbd5e1;
+  }
+}
+
+/* ── CSS variables ───────────────────────────────────────────────────────── */
+:root {
+  --blue:        #1a56db;
+  --blue-dark:   #1241a8;
+  --blue-light:  #dbeafe;
+  --blue-bg:     #f1f5ff;
+  --orange:      #FF6B35;
+  --green:       #10B981;
+  --text:        #1f2937;
+  --text-light:  #4b5563;
+  --border:      #cbd5e1;
+  --row-alt:     #f0f6ff;
+}
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 html, body {
   font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   font-size: 12pt;
-  line-height: 1.28;
-  color: #111;
+  line-height: 1.35;
+  color: var(--text);
   margin: 0;
   padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
-h1 { font-size: 15pt; text-align: center; border-bottom: 2px solid #1a56db; padding: 1pt 0; margin: 0 0 2pt; color: #0f172a; }
-h2 { font-size: 13pt; color: #fff; background: #1a56db; padding: 2pt 6pt; margin: 4pt 0 2pt; page-break-after: avoid; }
-h3 { font-size: 12pt; color: #1a56db; margin: 3pt 0 1pt; padding-bottom: 1pt; border-bottom: 1px solid #cbd5e1; page-break-after: avoid; }
-p { margin: 2pt 0; font-size: 12pt; text-align: justify; }
-li { font-size: 12pt; margin: 1pt 0; }
-strong { color: #1a56db; }
-blockquote {
-  border-left: 3px solid #94a3b8;
-  background: #f8fafc;
-  margin: 2pt 0;
-  padding: 2pt 6pt;
+
+/* ── Cover block ─────────────────────────────────────────────────────────── */
+.cover {
+  background: linear-gradient(135deg, #0d3a8e 0%, var(--blue) 60%, #2563eb 100%);
+  color: #fff;
+  padding: 10pt 18pt 8pt 18pt;
+  margin: 0 0 7pt 0;
+  border-radius: 4pt;
+  page-break-after: avoid;
+}
+.cover-label {
+  font-size: 8.5pt;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-bottom: 3pt;
+  text-transform: uppercase;
+}
+.cover-title {
+  font-size: 26pt;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 3pt;
+}
+.cover-subtitle {
+  font-size: 13pt;
+  font-weight: 500;
+  color: #bfdbfe;
+  margin-bottom: 4pt;
+}
+.cover-slogan {
+  display: inline-block;
+  background: rgba(255,107,53,0.92);
+  color: #fff;
+  font-size: 10pt;
+  font-weight: 700;
+  padding: 2pt 8pt;
+  border-radius: 2pt;
+  margin-bottom: 4pt;
+}
+.cover-meta {
+  font-size: 9pt;
+  color: #bfdbfe;
+  margin-top: 1pt;
+}
+.cover-meta .sep { margin: 0 4pt; opacity: 0.6; }
+
+/* ── Section (##) band headers ───────────────────────────────────────────── */
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: linear-gradient(90deg, var(--blue) 0%, #2563eb 70%, #3b82f6 100%);
+  color: #fff;
+  margin: 7pt 0 3pt 0;
+  padding: 0;
+  border-radius: 3pt;
+  page-break-after: avoid;
+  overflow: hidden;
   font-size: 12pt;
-  color: #334155;
 }
+.sec-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22pt;
+  height: 100%;
+  background: rgba(0,0,0,0.20);
+  font-size: 12pt;
+  font-weight: 900;
+  padding: 4pt 6pt;
+  align-self: stretch;
+}
+.sec-title {
+  padding: 4pt 8pt;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* ── Sub-section (###) headers ───────────────────────────────────────────── */
+h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 5pt;
+  margin: 5pt 0 2pt 0;
+  padding-bottom: 2pt;
+  border-bottom: 1.5pt solid var(--blue-light);
+  page-break-after: avoid;
+}
+.sub-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 0.5pt 4pt 1pt;
+  border-radius: 2pt;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sub-title {
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Body text ───────────────────────────────────────────────────────────── */
+p {
+  margin: 2pt 0;
+  font-size: 12pt;
+  line-height: 1.35;
+  text-align: justify;
+}
+li {
+  font-size: 12pt;
+  margin: 1pt 0;
+  line-height: 1.35;
+}
+ul, ol { margin: 2pt 0 2pt 16pt; }
+strong { color: var(--blue-dark); font-weight: 700; }
+em { color: var(--text-light); }
+
+/* ── Blockquotes as callout boxes ────────────────────────────────────────── */
+blockquote {
+  border-left: 4pt solid var(--blue);
+  background: var(--blue-bg);
+  margin: 3pt 0;
+  padding: 3pt 8pt;
+  font-size: 12pt;
+  color: var(--text);
+  border-radius: 0 3pt 3pt 0;
+}
+
+/* ── Tables ──────────────────────────────────────────────────────────────── */
 table {
   border-collapse: collapse;
   width: 100%;
-  margin: 2pt 0;
-  font-size: 12pt;
-  page-break-inside: avoid;
+  margin: 3pt 0;
+  font-size: 11pt;
+  font-variant-numeric: tabular-nums;
 }
-th, td {
-  border: 1px solid #94a3b8;
-  padding: 2pt 4pt;
+th {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 11.5pt;
+  padding: 4pt 6pt;
+  text-align: left;
+  vertical-align: middle;
+  border: 1pt solid var(--blue-dark);
+  line-height: 1.3;
+}
+td {
+  border: 0.5pt solid var(--border);
+  padding: 4pt 6pt;
   vertical-align: top;
   text-align: left;
-  line-height: 1.22;
+  line-height: 1.3;
 }
-th { background: #1a56db; color: #fff; font-weight: 700; }
-tr:nth-child(even) td { background: #f8fafc; }
-img { max-width: 55%; height: auto; display: block; margin: 2pt auto; page-break-inside: avoid; }
-img[src*="hero-mockup"] { max-width: 22%; }
-img[src*="architecture"] { max-width: 60%; }
-img[src*="user-journey"] { max-width: 70%; }
-code { background: #f1f5f9; padding: 0 2pt; border-radius: 2px; font-size: 12pt; }
+tr:nth-child(even) td { background: var(--row-alt); }
+tr:nth-child(odd)  td { background: #fff; }
+
+/* center-aligned cells (comparison table) */
+td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+  text-align: center;
+}
+/* but first col always left */
+td:first-child { text-align: left; }
+th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5) {
+  text-align: center;
+}
+th:first-child { text-align: left; }
+
+/* Bold numbers and percentages */
+td strong { color: var(--blue-dark); }
+
+/* ── Images ──────────────────────────────────────────────────────────────── */
+img {
+  max-width: 95%;
+  height: auto;
+  display: block;
+  margin: 4pt auto 2pt;
+  border: 1pt solid var(--border);
+  border-radius: 4pt;
+  box-shadow: 0 1pt 4pt rgba(0,0,0,0.10);
+  page-break-inside: avoid;
+}
+img[src*="screen-flow"]   { max-width: 100%; max-height: 250px; object-fit: contain; margin: 6pt auto 3pt; }
+img[src*="user-journey"]  { max-width: 95%; max-height: 150px; object-fit: contain; }
+img[src*="hero-mockup"]   { max-width: 28%; max-height: 200px; object-fit: contain; }
+img[src*="architecture"]  { max-width: 70%; }
+
+/* Image caption (em tag immediately after img) */
+img + em, p > img + em {
+  display: block;
+  text-align: center;
+  font-size: 10pt;
+  color: var(--text-light);
+  font-style: italic;
+  margin: 0 auto 2pt;
+}
+
+/* ── Code ────────────────────────────────────────────────────────────────── */
+code {
+  background: #f1f5f9;
+  padding: 0 3pt;
+  border-radius: 2pt;
+  font-size: 11.5pt;
+}
 pre {
   background: #0f172a;
   color: #e2e8f0;
-  padding: 4pt 6pt;
-  border-radius: 3px;
-  font-size: 12pt;
-  line-height: 1.18;
+  padding: 5pt 8pt;
+  border-radius: 3pt;
+  font-size: 11pt;
+  line-height: 1.3;
   page-break-inside: avoid;
   overflow-x: hidden;
   white-space: pre-wrap;
-  margin: 2pt 0;
+  margin: 3pt 0;
 }
-pre code { background: transparent; color: inherit; padding: 0; font-size: 12pt; }
-hr { border: none; border-top: 1px solid #cbd5e1; margin: 3pt 0; }
-ul, ol { margin: 2pt 0 2pt 16pt; }
+pre code { background: transparent; color: inherit; padding: 0; }
+
+/* ── HR ──────────────────────────────────────────────────────────────────── */
+hr { border: none; border-top: 0.5pt solid var(--border); margin: 4pt 0; }
+
+/* ── Page breaks ─────────────────────────────────────────────────────────── */
+h2 { page-break-inside: avoid; }
+h3 { page-break-inside: avoid; }
+table { page-break-inside: auto; }
+tr    { page-break-inside: avoid; }
+
+/* ── Utility: footer italic line (작성일 line) ───────────────────────────── */
+body > p:last-child {
+  font-size: 10pt;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 8pt;
+  border-top: 0.5pt solid var(--border);
+  padding-top: 4pt;
+}
 </style>
 </head>
 <body>
+
+<header class="cover">
+  <div class="cover-label">2026 관광데이터 활용 공모전 · ① 웹·앱 개발 부문 제안서</div>
+  <div class="cover-title">TripCraft Korea</div>
+  <div class="cover-subtitle">카테고리 테마 기반 개인화 여행 플래너</div>
+  <div class="cover-slogan">데이터 가치를 넘어, 서비스로 실현하다 — 관광데이터 스케일 UP</div>
+  <div class="cover-meta">
+    <span>작성일&nbsp;2026-05-06</span>
+    <span class="sep">·</span>
+    <span>한국관광공사 × 카카오 공동주최</span>
+    <span class="sep">·</span>
+    <span>부문 ① 웹·앱 개발</span>
+  </div>
+</header>
 <h1>『2026 관광데이터 활용 공모전』 ① 웹·앱 개발 부문 제안서</h1>
 <p><strong>TripCraft Korea</strong> — 카테고리 테마 기반 개인화 여행 플래너 / 슬로건: 데이터 가치를 넘어, 서비스로 실현하다</p>
-<h2>1) 서비스 기획배경 및 필요성</h2>
-<h3>1-1 서비스 기획 배경</h3>
+<h2><span class="sec-num">1</span><span class="sec-title">1) 서비스 기획배경 및 필요성</span></h2>
+<h3><span class="sub-badge">1-1</span><span class="sub-title">서비스 기획 배경</span></h3>
 <p>국내 관광 시장은 네 가지 구조적 문제가 하나의 순환 고리를 이루며 정체되고 있다. 북촌한옥마을 거주 인구는 2023년 기준 2018년 대비 <strong>27.6% 감소</strong>했고, 서울·경기·제주가 전체 관광 지출의 <strong>55% 이상</strong>을 흡수하는 반면 전남·전북·강원 내륙은 다양성 지수 하위 33%에 머문다. 현 여행자는 최소 5개 앱을 넘나드는 정보 파편화에 직면하며, 2024년 방한 외국인 <strong>1,750만 명</strong> 중 외국인 개별 여행객 70% 이상에게 통합 다국어 가이드는 존재하지 않는다.</p>
 <p><img alt="사용자 여정 흐름도 — 4가지 문제와 TripCraft Korea 해결 구조" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/user-journey-flow.svg" /></p>
 <table>
@@ -109,13 +348,13 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 </tr>
 </tbody>
 </table>
-<h3>1-2 서비스 필요성</h3>
+<h3><span class="sub-badge">1-2</span><span class="sub-title">서비스 필요성</span></h3>
 <p>위 네 문제는 인스타 바이럴 → 플랫폼 인기순 노출 → 정보 파편화 → 외국인 수도권 고립으로 연결되는 단일 순환이다. <strong>TripCraft Korea</strong>는 이 순환을 한국관광공사 공공데이터 3종과 카카오 서비스 4종의 알고리즘 결합으로 직접 끊어내며, KTO 2025~2027 핵심 정책 '지역 균형 관광'과 정합한다. 슬로건 <strong>'데이터 가치를 넘어, 서비스로 실현하다'</strong> 를 실천하는 본 서비스는 소외 지역 가중치 1.5배·팔도 스탬프 리워드 2배로 공사 정책 목표를 사용자 동기로 전환한다. 분산 추천 시뮬레이션 기준 상위 10% 과부하 관광지 주말 집중도 <strong>20~30% 완화</strong>, 소외 지역 선택 비율 15% → <strong>33% 이상</strong> 달성이 핵심 운영 목표다.</p>
-<h2>2) 서비스 개요</h2>
-<h3>2-1 기획 서비스 소개명</h3>
+<h2><span class="sec-num">2</span><span class="sec-title">2) 서비스 개요</span></h2>
+<h3><span class="sub-badge">2-1</span><span class="sub-title">기획 서비스 소개명</span></h3>
 <p><strong>TripCraft Korea — 카테고리 테마 기반 개인화 여행 플래너</strong></p>
 <p>카테고리(문화유산·미식·자연·축제·힐링·포토스팟·K-컬처)와 지역을 선택하면 한국관광공사 혼잡도·다양성 공공데이터를 실시간 결합해 최적 동선·경비·예약 안내·오디오·스탬프가 포함된 <strong>원페이지 실행 플랜</strong>을 5초 만에 자동 생성한다.</p>
-<h3>2-2 기획 서비스 주요 기능</h3>
+<h3><span class="sub-badge">2-2</span><span class="sub-title">기획 서비스 주요 기능</span></h3>
 <table>
 <thead>
 <tr>
@@ -165,7 +404,7 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 </tbody>
 </table>
 <p><img alt="TripCraft Korea 주요 화면 구성도" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/screen-flow.svg" /></p>
-<h3>2-3 서비스 차별성</h3>
+<h3><span class="sub-badge">2-3</span><span class="sub-title">서비스 차별성</span></h3>
 <table>
 <thead>
 <tr>
@@ -216,7 +455,7 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 </table>
 <p>핵심 3대 차별점: (1) <strong>분위기 보존 분산</strong> — 바이럴 장소를 포기시키지 않고 분위기가 91% 이상 유사한 대안을 같은 카테고리 맥락으로 제시한다. (2) <strong>실행 가능한 원페이지</strong> — 지도 경로·예약 안내·경비 합산·오디오 안내가 결합된 단일 화면을 제공한다. (3) <strong>걸으면 따라오는 이야기</strong> — 문화유산 50m 진입 시 5개국어 오디오가 자동 재생되어 별도 조작 없이 외국인 개별 여행객을 포괄한다.</p>
 <p><img alt="원페이지 플랜 UI 목업" src="file:///Users/sklee01/tourism-service-lab-v2/docs/deliverables/proposal-tripcraft/assets/hero-mockup.svg" /></p>
-<h3>2-4 서비스 내 지역 특화 관련 사항</h3>
+<h3><span class="sub-badge">2-4</span><span class="sub-title">서비스 내 지역 특화 관련 사항</span></h3>
 <p>TripCraft Korea는 <strong>서울 제외 16개 시도 전국 커버 지역특화 엔진</strong>으로, 선택 시도의 향토자원·소외 지수·지역관광기관(RTO) 협업 콘텐츠를 1:1 결합해 코스를 자동 생성한다. 16개 시도 각각에 지역특화 엔진이 동작하는 <strong>지역특화 서비스 집합</strong>으로 부산·대전·광주·세종·충남·경북·강원·제주 8개 지역관광기관 <strong>RTO 특별상</strong> 후보 지위를 확보한다.</p>
 <table>
 <thead>
@@ -248,8 +487,8 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 </tr>
 </tbody>
 </table>
-<h2>3) 데이터 활용 방안</h2>
-<h3>3-1 활용 예정 한국관광공사 공공데이터</h3>
+<h2><span class="sec-num">3</span><span class="sec-title">3) 데이터 활용 방안</span></h2>
+<h3><span class="sub-badge">3-1</span><span class="sub-title">활용 예정 한국관광공사 공공데이터</span></h3>
 <p>공공데이터포털 등록 정식명 기준 <strong>14종</strong> 활용.</p>
 <table>
 <thead>
@@ -344,7 +583,7 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 </tr>
 </tbody>
 </table>
-<h3>3-2 데이터 활용 방식</h3>
+<h3><span class="sub-badge">3-2</span><span class="sub-title">데이터 활용 방식</span></h3>
 <p>한국관광공사 빅데이터 3종을 인공지능 분석과 교차 연산해 <strong>새로운 3가지 기준</strong>을 만들어냅니다. 단순 정보 나열이 아닌, 데이터를 결합하는 알고리즘으로 설계한 차별화 방식입니다.</p>
 <p><strong>TripCraft Korea가 만들어내는 새로운 3가지 기준</strong></p>
 <ol>
@@ -360,8 +599,8 @@ ul, ol { margin: 2pt 0 2pt 16pt; }
 <li>50m 반경 이내 오디오 안내 지점을 연결해 언어·계절별 자동 재생 목록을 구성합니다.</li>
 <li>카카오맵 길찾기와 연동해 버튼 한 번으로 경로를 즉시 실행합니다.</li>
 </ul>
-<h2>4) 서비스 발전 방향</h2>
-<h3>4-1 개발 서비스 향후 발전방향</h3>
+<h2><span class="sec-num">4</span><span class="sec-title">4) 서비스 발전 방향</span></h2>
+<h3><span class="sub-badge">4-1</span><span class="sub-title">개발 서비스 향후 발전방향</span></h3>
 <table>
 <thead>
 <tr>
