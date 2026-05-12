@@ -1,19 +1,28 @@
 ---
 type: deliverable
 id: submission-proposal
-title: "KoreaPath AI — 공모전 제출 제안서 (5페이지)"
+title: "KoreaPath AI — 공모전 제출 제안서 초안 (구버전, 보관용)"
 author_agent: ceo
 author_model: claude-sonnet-4-6
 created: 2026-04-17T11:00:00+09:00
-status: in-review
+updated: 2026-05-12T00:00:00+09:00
+status: superseded
 llm_compatibility: universal
 competition: 2026 관광데이터 활용 공모전 (웹·앱 개발 부문)
 deadline: 2026-05-06T16:00:00+09:00
 format: 5페이지 이내 PDF / 12포인트 이상
 related: [service-plan, wireframes, business-model, tech-architecture]
+superseded_by: docs/deliverables/proposal-tripcraft/PROPOSAL_FINAL.pdf
 ---
 
-# KoreaPath AI 서비스 기획 제안서
+> ⚠️ **이 문서는 구버전입니다.** 최종 제출 서비스는 **TripCraft Korea**로 변경되었습니다.
+> - 최종 제출본: `docs/deliverables/proposal-tripcraft/PROPOSAL_FINAL.pdf`
+> - 최종 제출일: 2026-05-06
+> - 최신 서비스 기획서: `docs/deliverables/service-plan.md` (TripCraft Korea 기준, 2026-05-12 업데이트)
+
+---
+
+# KoreaPath AI 서비스 기획 제안서 (구버전 — 보관용)
 
 > **제출 부문**: 2026 관광데이터 활용 공모전 ① 웹·앱 개발 부문
 > **서비스 한 줄 소개**: 여행 조건을 5초 입력하면 혼잡도 예측 + Visit Korea OpenAPI 데이터를 결합해 개인화 코스를 자동 생성하고, 방문 당일 실시간 동선을 재조정해주는 AI 여행 플래너
