@@ -5,7 +5,7 @@ title: "K-Culture Deep Dive — 몰입형 문화 체험 UX 종합 설계"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:35:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 service: k-culture-deep-dive
 related_issue: TOU-68

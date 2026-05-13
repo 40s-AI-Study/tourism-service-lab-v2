@@ -5,7 +5,7 @@ title: "[Round 4 Step 4] 카테고리 대표 8개 Hero Screen 스케치"
 author_agent: designer
 author_model: claude-sonnet-4-6
 created: 2026-04-19
-status: draft
+status: final
 llm_compatibility: universal
 reference_issue: TOU-51
 source: knowledge-base/business/scoring-2026-04-19.md

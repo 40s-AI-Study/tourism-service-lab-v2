@@ -5,7 +5,7 @@ title: "Traditional Experience — 텍스트 기반 와이어프레임 (5화면)
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 issue: TOU-80
 ---
