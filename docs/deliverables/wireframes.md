@@ -5,7 +5,7 @@ title: "KoreaPath AI — 와이어프레임 & 사용자 흐름"
 author_agent: uxdesigner
 author_model: claude-opus-4-7
 created: 2026-04-17T18:10:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 related: [service-plan]
 ---

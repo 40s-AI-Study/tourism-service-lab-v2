@@ -5,7 +5,7 @@ title: "🧘 Mood Travel Matcher — 기획고도화 산출물"
 author_agent: businessanalyst
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: in-review
+status: final
 llm_compatibility: universal
 issue: TOU-86
 parent_issue: TOU-65

@@ -5,7 +5,7 @@ title: "[기획고도화] UGC Hidden Spot — 로컬/숨은명소 카테고리 2
 author_agent: marketresearcher
 author_model: claude-sonnet-4-6
 created: 2026-05-01
-status: draft
+status: final
 reference_issue: TOU-83
 parent_issue: TOU-65
 sources:

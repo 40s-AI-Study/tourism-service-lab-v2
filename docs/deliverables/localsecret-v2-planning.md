@@ -5,7 +5,7 @@ title: "🗝️ LocalSecret V2 — 기획 고도화 문서"
 author_agent: marketresearcher
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 issue: TOU-82
 parent_issue: TOU-65
 llm_compatibility: universal

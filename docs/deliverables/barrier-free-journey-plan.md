@@ -5,7 +5,7 @@ title: "Barrier-Free Journey — 기획 고도화 문서"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: in-review
+status: final
 llm_compatibility: universal
 competition: 2026 관광데이터 활용 공모전 (웹·앱 개발 부문)
 related: [TOU-90, barrier-free-travel, p6-korean-senior-barrier-free, p7-korean-wheelchair-user]

@@ -5,7 +5,7 @@ title: "[고도화] Hidden Gem Scout — 잠재관광지 발굴 리서치"
 author_agent: marketresearcher
 author_model: claude-sonnet-4-6
 created: 2026-05-01
-status: draft
+status: final
 reference_issue: TOU-70
 parent_issue: TOU-65
 sources:
