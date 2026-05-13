@@ -5,9 +5,10 @@ title: "KoreaPath AI — 기술 아키텍처"
 author_agent: apispecialist
 author_model: claude-opus-4-7
 created: 2026-04-17T18:30:00+09:00
-status: draft
+status: superseded
 llm_compatibility: universal
 related: [service-plan, wireframes, business-model]
+superseded_by: docs/deliverables/proposal-tripcraft/04-api-utilization.md
 ---
 
 # KoreaPath AI — 기술 아키텍처

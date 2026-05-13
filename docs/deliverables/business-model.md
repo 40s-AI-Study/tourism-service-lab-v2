@@ -5,9 +5,10 @@ title: "KoreaPath AI — 사업 모델"
 author_agent: businessanalyst
 author_model: claude-opus-4-7
 created: 2026-04-17T18:20:00+09:00
-status: draft
+status: superseded
 llm_compatibility: universal
 related: [service-plan, scoring-2026-04-17]
+superseded_by: docs/deliverables/proposal-tripcraft/05-roadmap-and-business.md
 ---
 
 # KoreaPath AI — 사업 모델

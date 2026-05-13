@@ -5,7 +5,9 @@ title: "KoreaPath AI — AI 동선 자동 생성 기획 디테일"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: in-review
+status: superseded
+superseded_by: docs/deliverables/proposal-tripcraft/
+superseded_note: "최종 제출 서비스는 TripCraft Korea(4개 아이디어 통합)로 변경됨 (2026-05-06)"
 llm_compatibility: universal
 reference_issue: TOU-67
 parent_issue: TOU-65
