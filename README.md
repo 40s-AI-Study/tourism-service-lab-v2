@@ -1,17 +1,18 @@
 # Tourism Service Lab
 
-> 2026 관광데이터 활용 공모전(웹·앱 개발) 준비를 위한 **AI 다중 에이전트 자율 기획 프로젝트**
+> 2026 관광데이터 활용 공모전(웹·앱 개발) — **AI 다중 에이전트 자율 기획 프로젝트** 🏁 **제출 완료 2026-05-06**
 
 ## 프로젝트 개요
 
 한국관광공사(KTO) Visit Korea Open API를 활용한 관광 서비스 기획을 **Paperclip 기반 AI 에이전트 7명**이 자율적으로 수행합니다. 시장 조사 → 페르소나 → 아이디어 발산 → 시뮬레이션 → 합의 리뷰 → 프로토타입 → 최종 기획서 전 과정을 멀티 에이전트가 병렬 협업합니다.
 
-## 목표
+## 목표 (달성)
 
-- **공모전**: 2026 관광데이터 활용 공모전 (웹·앱 개발) — 마감 **2026-05-06 16:00**
+- **공모전**: 2026 관광데이터 활용 공모전 (웹·앱 개발) — ✅ 마감 **2026-05-06 16:00 제출 완료**
+- **최종 제출 서비스**: **TripCraft Korea** — 카테고리 테마 기반 개인화 여행 플래너
 - **타겟 사용자**: 20-40대 한국인 + 외국인 (양측 모두 사용 가능)
-- **활용 데이터**: Visit Korea Open API 27종 (https://api.visitkorea.or.kr)
-- **산출물**: 실제 공모전 제출 가능한 수준의 서비스 기획안 + 프로토타입
+- **활용 데이터**: KTO OpenAPI 12종 + 카카오 4종 (https://api.visitkorea.or.kr)
+- **산출물**: `docs/deliverables/proposal-tripcraft/PROPOSAL_FINAL.pdf` + 27개 인터랙티브 프로토타입
 
 ## AI 스터디 목적
 
@@ -60,24 +61,32 @@ tourism-service-lab-v2/
 - CEO Roll Call: heartbeat마다 팀 상태 점검·봉인 에이전트 깨움
 - 작업 완료 시 `git push` 필수 (Push Discipline)
 
-## 실행 진행 상황
+## 최종 진행 현황 (전 라운드 완료)
 
 | Round | 단계 | 상태 | 주요 산출물 |
 |---|---|---|---|
-| **Phase 0-2** | GitHub 인프라 + 지식베이스 + 회사 창립 | ✅ 완료 | 27개 API 카탈로그, 7 에이전트 셋업 |
-| **Round 1** | 시장 리서치 → 페르소나 5 → 아이디어 10 → 시뮬 15 | ✅ 완료 | PASS 6개 |
-| **Round 2** | 신규 아이디어 10 + 페르소나 5 추가 (P6~P10) + 시뮬 100건 | ✅ 완료 | PASS 6개 추가 (총 12) |
-| **Stage 5** | 기획서·와이어프레임·사업모델·기술아키텍처 (`docs/deliverables/`) | ✅ 완료 | 4종 + 제출 제안서 |
-| **프로토타입** | PASS 12개 전체 HTML + 합의 리뷰 12개 | ✅ 완료 | 12 프로토타입 + 12 리뷰 |
-| **Round 3** | 기존 자산 × 새 관점 6축 융합 (감정·UI/UX 중심 재발상) | 🔄 진행 중 (TOU-40) | 업그레이드 아이디어 5-10 + 상위 3 |
+| **Phase 0-2** | GitHub 인프라 + 지식베이스 + 회사 창립 | ✅ | KTO API + 7 에이전트 |
+| **Round 1~2** | 아이디어 20개 + 페르소나 10명 + 시뮬 60건 | ✅ | PASS 12개 |
+| **Round 3** | 기존 자산 × 새 관점 6축 융합 | ✅ | 아이디어 5개 추가, 프로토타입 3개 |
+| **Round 4~5** | 59개 전체 TAM/SAM/SOM + BEP + 경쟁사 검증 | ✅ | 150점 매트릭스 |
+| **Round 6** | 115점 컷 → 상위 10 확정 | ✅ | LocalSecret v2(123) 1위 |
+| **Round 7** | 상위 10 인터랙티브 프로토타입 HTML | ✅ | 27개 프로토타입 |
+| **최종 제출** | TripCraft Korea — 4개 아이디어 통합 | ✅ **2026-05-06** | `PROPOSAL_FINAL.pdf` |
 
 ## 아이디어 포트폴리오
 
-**PASS 12개 — Round 1·2 통과**
-- Round 1 (6): Audio Story Korea 8.7 · K-Local Explorer 7.9 · KoreaPath AI 7.2 · KoreaTrend Radar 6.7 · EcoTrail Korea 7.0 · PetKorea 6.0
-- Round 2 (6): KoreaFestival Live 9.0 · TasteData Korea 9.0 · PhotoHunt Korea 8.0 · KoreaWork & Wander 7.0 · KoreaDemand Atlas 7.5 · SilverTrail Korea 7.0
+**총 59개 아이디어 · 262건 시뮬 · 상위 10 확정**
 
-**로컬 뷰어**: `http://127.0.0.1:3300/docs/prototypes/` (python3 -m http.server 3300 실행 시)
+| 순위 | 서비스명 | 점수 |
+|---|---|---|
+| 🥇 1 | LocalSecret v2 | 123/150 |
+| 🥈 2 | KoreaPath AI | 119/150 |
+| 🥉 3 | K-Universe | 118/150 |
+| ... | (상위 10개 전체) | `knowledge-base/business/round6-final-ranking.md` |
+
+**최종 제출**: TripCraft Korea (4개 아이디어 통합) → `docs/deliverables/proposal-tripcraft/`
+
+**프로토타입 뷰어**: `http://127.0.0.1:3300/docs/prototypes/` (27개 인터랙티브 HTML)
 
 ## 관련 링크
 
@@ -106,8 +115,10 @@ tourism-service-lab-v2/
 
 모든 AI 에이전트 커밋에는 `Co-Authored-By: Paperclip <noreply@paperclip.ing>` 추가.
 
-## 상태 (2026-04-18 기준)
+## 상태 (2026-05-13 기준)
 
 - 시작일: 2026-04-17
-- 현재 단계: **Round 3** (기존 자산 × 새 관점 6축 융합)
-- 공모전 마감: 2026-05-06 16:00 (D-18)
+- 제출 완료: **2026-05-06** — TripCraft Korea
+- 현재 단계: 예비심사 결과 대기 (5월 중)
+- 프로토타입 뷰어: http://127.0.0.1:3300/docs/prototypes/
+- 회고 문서: [docs/00-plans/2026-retrospective.md](docs/00-plans/2026-retrospective.md)
