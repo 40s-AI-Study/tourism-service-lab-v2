@@ -122,3 +122,4 @@ tourism-service-lab-v2/
 - 현재 단계: 예비심사 결과 대기 (5월 중)
 - 프로토타입 뷰어: http://127.0.0.1:3300/docs/prototypes/
 - 회고 문서: [docs/00-plans/2026-retrospective.md](docs/00-plans/2026-retrospective.md)
+- Phase 2 개발 계획 (예비심사 통과 시): [docs/00-plans/2026-phase2-dev-plan.md](docs/00-plans/2026-phase2-dev-plan.md)
