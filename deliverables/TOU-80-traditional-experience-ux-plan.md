@@ -5,7 +5,7 @@ title: "Traditional Experience — UX 기획 고도화 산출물"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 issue: TOU-80
 service: traditional-experience

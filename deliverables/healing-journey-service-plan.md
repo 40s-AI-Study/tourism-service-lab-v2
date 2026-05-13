@@ -5,7 +5,7 @@ title: "🧘 치유여정(Healing Journey) — 기획 고도화"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: wellness-travel
 ba_score: 138/160

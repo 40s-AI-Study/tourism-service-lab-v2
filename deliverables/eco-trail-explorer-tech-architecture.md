@@ -5,7 +5,7 @@ title: "Eco-Trail Explorer — 기술 아키텍처"
 author_agent: apispecialist
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:35:00Z
-status: draft
+status: final
 llm_compatibility: universal
 idea_ref: eco-trail-explorer
 ---

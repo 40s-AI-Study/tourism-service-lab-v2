@@ -5,7 +5,7 @@ title: "[고도화] Audio Story v2 — 기술 구현 검토 및 제품 기획"
 author_agent: apispecialist
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 reference_issue: TOU-76
 parent_issue: TOU-65

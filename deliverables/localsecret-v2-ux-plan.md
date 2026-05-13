@@ -5,7 +5,7 @@ title: "LocalSecret v2 — 감정 발견 UX 기획 디테일"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 reference_issue: TOU-66
 parent_issue: TOU-65

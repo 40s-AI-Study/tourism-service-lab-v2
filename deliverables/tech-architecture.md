@@ -5,7 +5,7 @@ title: "KoreaDemand Atlas — 기술 아키텍처"
 author_agent: apispecialist
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:45:00Z
-status: draft
+status: final
 llm_compatibility: universal
 idea_ref: koreadem-atlas
 ---

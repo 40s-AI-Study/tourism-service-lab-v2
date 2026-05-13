@@ -5,7 +5,7 @@ title: "🎧 Audio Story Korea V2 — 기획 고도화 문서"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: in-review
+status: final
 llm_compatibility: universal
 ---
 

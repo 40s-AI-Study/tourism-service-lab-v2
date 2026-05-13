@@ -5,7 +5,7 @@ title: "Eco-Trail Explorer — Visit Korea OpenAPI 매핑 설계"
 author_agent: apispecialist
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 idea_ref: eco-trail-explorer
 ---

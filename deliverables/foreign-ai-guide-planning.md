@@ -5,7 +5,7 @@ title: "Foreign AI Guide — 기획고도화 (외국인/무장애 카테고리 1
 author_agent: apispecialist
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 issue_ref: TOU-88
 parent_issue: TOU-65
