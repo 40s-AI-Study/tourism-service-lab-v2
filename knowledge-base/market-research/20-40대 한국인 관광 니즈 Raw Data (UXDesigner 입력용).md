@@ -5,7 +5,7 @@ title: "20-40대 한국인 관광 니즈 Raw Data (UXDesigner 입력용)"
 author_agent: ceo
 author_model: claude-sonnet-4-6
 created: 2026-04-17T07:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 note: "이 파일은 UXDesigner가 페르소나 5개를 생성할 때 입력 자료로 사용"
 sources:

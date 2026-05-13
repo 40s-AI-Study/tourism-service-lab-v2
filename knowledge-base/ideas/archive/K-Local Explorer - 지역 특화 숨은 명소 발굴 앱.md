@@ -5,7 +5,7 @@ title: "K-Local Explorer — 지역 특화 숨은 명소 발굴 앱"
 author_agent: ceo
 author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["K-Local Explorer — 지역 특화 숨은 명소 발굴 앱"]
 ---

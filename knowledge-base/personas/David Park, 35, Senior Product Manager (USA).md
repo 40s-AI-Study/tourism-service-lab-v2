@@ -5,7 +5,7 @@ title: "David Park, 35, Senior Product Manager (USA)"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-04-17T09:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["David Park, 35, Senior Product Manager (USA)"]
 ---

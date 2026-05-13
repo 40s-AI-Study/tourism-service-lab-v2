@@ -5,7 +5,7 @@ title: "무장애 여행 통합 정보 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:15:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 무장애-접근성-여행
 ai_role: ai-enhanced

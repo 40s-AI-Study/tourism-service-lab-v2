@@ -5,7 +5,7 @@ title: "제철 식재료 & 지역 음식 시즌 캘린더"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:11:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 미식-로컬탐험
 ai_role: ai-assist

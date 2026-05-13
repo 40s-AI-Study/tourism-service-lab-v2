@@ -5,7 +5,7 @@ title: "Audio Story Korea v2 — 숨은 문화유산 오디오 탐험 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-18T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 parent_idea: "knowledge-base/ideas/Audio Story Korea - 몰입형 문화재 오디오 스토리텔링 앱.md"
 branch: A

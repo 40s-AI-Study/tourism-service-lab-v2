@@ -5,7 +5,7 @@ title: "웰니스 리트리트 통합 예약 플랫폼"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:04:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 감정-힐링-여행
 ai_role: ai-assist

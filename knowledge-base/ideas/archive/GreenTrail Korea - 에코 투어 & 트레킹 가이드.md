@@ -5,7 +5,7 @@ title: "GreenTrail Korea — 에코 투어 & 트레킹 가이드"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["GreenTrail Korea — 에코 투어 & 트레킹 가이드"]
 ---

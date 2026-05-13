@@ -5,7 +5,7 @@ title: "KoreaWellness × 최동훈 (한국 40대 가족)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaWellness - 번아웃 직장인을 위한 웰니스 관광 큐레이션]]"

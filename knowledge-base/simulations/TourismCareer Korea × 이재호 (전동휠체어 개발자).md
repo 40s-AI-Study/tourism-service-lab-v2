@@ -5,7 +5,7 @@ title: "TourismCareer Korea × 이재호 (전동휠체어 개발자)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[TourismCareer Korea - 관광 취업·인턴십 + 지역 현장 탐방 앱]]"

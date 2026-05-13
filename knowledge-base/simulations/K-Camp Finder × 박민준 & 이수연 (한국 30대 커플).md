@@ -5,7 +5,7 @@ title: "K-Camp Finder × 박민준 & 이수연 (한국 30대 커플)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[K-Camp Finder - AI 추천 캠핑·글램핑 플랫폼]]"

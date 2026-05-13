@@ -5,7 +5,7 @@ title: "반려동물 동반 여행 올인원 통합 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:12:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 반려동물-동반여행
 ai_role: ai-enhanced

@@ -5,7 +5,7 @@ title: "KoreaFestival Live × 타나카 하루카 (일본 직장인)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaFestival Live - 실시간 축제·이벤트 여행 레이더]]"

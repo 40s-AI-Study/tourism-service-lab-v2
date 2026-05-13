@@ -5,7 +5,7 @@ title: "FamilyKorea — 가족여행 올인원 스마트 플래너"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["FamilyKorea — 가족여행 올인원 스마트 플래너"]
 ---

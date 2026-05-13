@@ -5,7 +5,7 @@ title: "LocalSecret v2 — 감정으로 발견하는 숨은 한국"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-18T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 parent_idea: "knowledge-base/ideas/LocalSecret - 혼잡 회피 + 숨은 명소 발견 앱.md"
 branch: A

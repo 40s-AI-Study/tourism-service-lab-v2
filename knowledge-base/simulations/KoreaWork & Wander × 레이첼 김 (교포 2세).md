@@ -5,7 +5,7 @@ title: "KoreaWork & Wander × 레이첼 김 (교포 2세)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaWork & Wander - 디지털 노마드 워케이션 인텔리전스]]"

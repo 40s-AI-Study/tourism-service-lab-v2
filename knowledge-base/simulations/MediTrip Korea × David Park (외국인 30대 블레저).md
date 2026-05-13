@@ -5,7 +5,7 @@ title: "MediTrip Korea × David Park (외국인 30대 블레저)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[MediTrip Korea - 외국인 의료관광 비자 원스톱 가이드]]"

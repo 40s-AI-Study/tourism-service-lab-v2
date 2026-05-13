@@ -5,7 +5,7 @@ title: "PhotoHunt Korea × 타나카 하루카 (일본 직장인)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[PhotoHunt Korea - AI 포토 스팟 큐레이터 & 포토 투어 앱]]"

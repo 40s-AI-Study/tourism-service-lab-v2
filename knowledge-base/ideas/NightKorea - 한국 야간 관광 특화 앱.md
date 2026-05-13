@@ -5,7 +5,7 @@ title: "NightKorea — 한국 야간 관광 특화 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["NightKorea — 한국 야간 관광 특화 앱"]
 ---

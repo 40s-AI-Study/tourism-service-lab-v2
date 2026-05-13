@@ -5,7 +5,7 @@ title: "KoreaDemand Atlas × 김지원 (한국 20대 솔로)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaDemand Atlas - 관광 수요 강도 기반 지역 발굴 플랫폼]]"

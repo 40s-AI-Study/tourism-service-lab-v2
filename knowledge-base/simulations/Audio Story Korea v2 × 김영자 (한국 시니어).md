@@ -5,7 +5,7 @@ title: "Audio Story Korea v2 × 김영자 (한국 시니어)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-18T12:00:00+09:00
-status: draft
+status: final
 round: 3
 idea_version: v2
 llm_compatibility: universal

@@ -5,7 +5,7 @@ title: "PetKorea — 반려동물 동반 여행 올인원 앱"
 author_agent: ceo
 author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["PetKorea — 반려동물 동반 여행 올인원 앱"]
 ---

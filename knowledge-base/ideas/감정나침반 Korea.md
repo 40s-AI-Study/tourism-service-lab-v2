@@ -5,7 +5,7 @@ title: "감정나침반 Korea — 기분이 목적지가 되는 여행 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-18T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 branch: C
 new_idea_justification: "기존 20개 아이디어 중 '감정 자체를 출발점으로 삼는 앱' 전무 — 모든 기존 아이디어는 목적지·카테고리·기능 중심이며, 감정 질문을 첫 화면 핵심 UX로 삼는 아이디어 없음"

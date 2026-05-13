@@ -5,7 +5,7 @@ title: "PetKorea × 레이첼 김 (교포 2세)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[PetKorea - 반려동물 동반 여행 올인원 앱]]"

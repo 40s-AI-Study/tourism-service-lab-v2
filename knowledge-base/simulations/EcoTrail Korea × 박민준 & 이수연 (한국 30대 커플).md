@@ -5,7 +5,7 @@ title: "EcoTrail Korea × 박민준 & 이수연 (한국 30대 커플)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[EcoTrail Korea - 친환경 트레킹·자전거·생태관광 올인원 앱]]"

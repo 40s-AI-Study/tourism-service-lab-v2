@@ -5,7 +5,7 @@ title: "K-BeautyMed Tour × 레이첼 김 (교포 2세)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[K-BeautyMed Tour - K뷰티·성형 의료관광 외국인 특화 앱]]"

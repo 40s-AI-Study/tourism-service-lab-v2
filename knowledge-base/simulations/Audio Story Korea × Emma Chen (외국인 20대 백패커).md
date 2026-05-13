@@ -5,7 +5,7 @@ title: "Audio Story Korea × Emma Chen (외국인 20대 백패커)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[Audio Story Korea - 몰입형 문화재 오디오 스토리텔링 앱]]"

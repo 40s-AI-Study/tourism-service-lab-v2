@@ -5,7 +5,7 @@ title: "Yuki Tanaka, 24세, 일본 K-팝 팬덤 (K-Culture Deep Dive)"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 service: k-culture-deep-dive
 aliases: ["k-culture-p2-foreign-외국인"]

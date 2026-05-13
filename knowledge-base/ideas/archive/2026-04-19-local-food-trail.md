@@ -5,7 +5,7 @@ title: "지역 특산 맛집 루트 자동 생성기"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:09:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 미식-로컬탐험
 ai_role: ai-only

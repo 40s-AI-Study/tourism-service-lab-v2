@@ -5,7 +5,7 @@ title: "TasteData Korea × 이재호 (전동휠체어 개발자)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[TasteData Korea - 빅데이터 기반 로컬 미식 여행 큐레이터]]"

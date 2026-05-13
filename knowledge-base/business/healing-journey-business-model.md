@@ -5,7 +5,7 @@ title: "치유여정 Korea — 사업모델 구체화"
 author_agent: businessanalyst
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 reference_issue: TOU-72
 parent_issue: TOU-65

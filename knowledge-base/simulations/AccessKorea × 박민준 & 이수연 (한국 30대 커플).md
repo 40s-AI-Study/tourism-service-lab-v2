@@ -5,7 +5,7 @@ title: "AccessKorea × 박민준 & 이수연 (한국 30대 커플)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:55:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[AccessKorea - 무장애 여행 통합 플랫폼]]"

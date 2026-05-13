@@ -5,7 +5,7 @@ title: "EuroKorea Gateway - 유럽어권 관광객 특화 다국어 허브"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T12:20:00Z
-status: draft
+status: final
 llm_compatibility: universal
 round: 2
 apis_used:

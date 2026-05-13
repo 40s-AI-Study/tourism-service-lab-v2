@@ -5,7 +5,7 @@ title: "K-문화 주제별 심층 체험 투어 큐레이션"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:07:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 외국인-한국-여행
 ai_role: ai-enhanced

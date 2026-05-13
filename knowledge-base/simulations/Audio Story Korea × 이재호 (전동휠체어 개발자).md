@@ -5,7 +5,7 @@ title: "Audio Story Korea × 이재호 (전동휠체어 개발자)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[Audio Story Korea - 몰입형 문화재 오디오 스토리텔링 앱]]"

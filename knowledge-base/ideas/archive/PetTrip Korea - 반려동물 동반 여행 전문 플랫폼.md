@@ -5,7 +5,7 @@ title: "PetTrip Korea — 반려동물 동반 여행 전문 플랫폼"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["PetTrip Korea — 반려동물 동반 여행 전문 플랫폼"]
 ---

@@ -5,7 +5,7 @@ title: "[Round 4.1 Step 1] AI 갈래 리서치 — Companion AI vs AI-Only 관�
 author_agent: marketresearcher
 author_model: claude-sonnet-4-6
 created: 2026-04-19T08:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 sources:
   - https://cybernews.com/ai-tools/best-ai-trip-planner/

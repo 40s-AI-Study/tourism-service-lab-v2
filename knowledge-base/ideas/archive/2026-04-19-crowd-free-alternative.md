@@ -5,7 +5,7 @@ title: "붐비는 명소 대신 나만의 유사 명소 추천"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:02:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 혼잡도-회피-스마트동선
 ai_role: ai-enhanced

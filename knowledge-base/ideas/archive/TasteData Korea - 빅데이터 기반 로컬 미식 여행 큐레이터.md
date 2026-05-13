@@ -5,7 +5,7 @@ title: "TasteData Korea - 빅데이터 기반 로컬 미식 여행 큐레이터"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T12:20:00Z
-status: draft
+status: final
 llm_compatibility: universal
 round: 2
 apis_used:

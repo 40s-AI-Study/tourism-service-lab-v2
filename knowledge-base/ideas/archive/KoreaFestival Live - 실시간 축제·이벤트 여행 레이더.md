@@ -5,7 +5,7 @@ title: "KoreaFestival Live - 실시간 축제·이벤트 여행 레이더"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T12:10:00Z
-status: draft
+status: final
 llm_compatibility: universal
 round: 2
 apis_used:

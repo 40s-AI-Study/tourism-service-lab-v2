@@ -5,7 +5,7 @@ title: "KoreaPath AI × Emma Chen (외국인 20대 백패커)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:15:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"

@@ -5,7 +5,7 @@ title: "KoreaTrend Radar × Emma Chen (외국인 20대 백패커)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaTrend Radar - 관광 빅데이터 기반 실시간 핫플 추천 앱]]"

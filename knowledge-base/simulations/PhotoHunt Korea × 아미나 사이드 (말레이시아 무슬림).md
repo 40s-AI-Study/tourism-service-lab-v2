@@ -5,7 +5,7 @@ title: "PhotoHunt Korea × 아미나 사이드 (말레이시아 무슬림)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[PhotoHunt Korea - AI 포토 스팟 큐레이터 & 포토 투어 앱]]"

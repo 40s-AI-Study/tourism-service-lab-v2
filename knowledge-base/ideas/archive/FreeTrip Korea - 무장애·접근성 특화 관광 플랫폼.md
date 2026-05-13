@@ -5,7 +5,7 @@ title: "FreeTrip Korea — 무장애·접근성 특화 관광 플랫폼"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["FreeTrip Korea — 무장애·접근성 특화 관광 플랫폼"]
 ---

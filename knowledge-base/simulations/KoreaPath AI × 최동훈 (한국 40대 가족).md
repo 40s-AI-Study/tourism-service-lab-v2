@@ -5,7 +5,7 @@ title: "KoreaPath AI × 최동훈 (한국 40대 가족)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:10:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱]]"

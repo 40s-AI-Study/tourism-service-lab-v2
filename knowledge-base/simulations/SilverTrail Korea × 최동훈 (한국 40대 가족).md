@@ -5,7 +5,7 @@ title: "SilverTrail Korea × 최동훈 (한국 40대 가족)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[SilverTrail Korea - 액티브 시니어 슬로우 트래블 플랫폼]]"

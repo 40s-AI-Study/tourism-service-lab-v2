@@ -5,7 +5,7 @@ title: "K-Local Explorer × 김지원 (한국 20대 솔로)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[K-Local Explorer - 지역 특화 숨은 명소 발굴 앱]]"

@@ -5,7 +5,7 @@ title: "여행 중 반려동물 긴급 동물병원 안내"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:14:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 반려동물-동반여행
 ai_role: ai-assist

@@ -5,7 +5,7 @@ title: "K-Universe — K-컬처 성지순례 + 팬 여행 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T10:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["K-Universe — K-컬처 성지순례 + 팬 여행 앱"]
 ---

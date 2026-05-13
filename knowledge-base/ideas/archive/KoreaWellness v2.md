@@ -5,7 +5,7 @@ title: "KoreaWellness v2 — 감정 치유 여행 큐레이터"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-18T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 parent_idea: "knowledge-base/ideas/KoreaWellness - 번아웃 직장인을 위한 웰니스 관광 큐레이션.md"
 branch: A

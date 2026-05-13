@@ -5,7 +5,7 @@ title: "휠체어 접근 가능 실시간 관광 동선 지도"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:16:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 무장애-접근성-여행
 ai_role: ai-only

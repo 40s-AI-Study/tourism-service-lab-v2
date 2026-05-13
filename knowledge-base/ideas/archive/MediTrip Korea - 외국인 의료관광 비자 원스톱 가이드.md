@@ -5,7 +5,7 @@ title: "MediTrip Korea - 외국인 의료관광 비자 원스톱 가이드"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T12:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 round: 2
 apis_used:

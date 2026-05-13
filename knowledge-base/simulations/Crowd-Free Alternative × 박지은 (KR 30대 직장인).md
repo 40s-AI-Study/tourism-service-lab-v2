@@ -5,7 +5,7 @@ title: "Crowd-Free Alternative × 박지은 (KR 30대 직장인)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-05-01T22:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[Crowd-Free Alternative]]"

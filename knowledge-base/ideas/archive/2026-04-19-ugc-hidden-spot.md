@@ -5,7 +5,7 @@ title: "SNS/블로그 UGC 기반 실시간 숨은 명소 발굴"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:20:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 숨은명소-비수도권
 ai_role: ai-only

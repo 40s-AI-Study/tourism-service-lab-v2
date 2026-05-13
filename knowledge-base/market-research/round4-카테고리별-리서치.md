@@ -5,7 +5,7 @@ title: "[Round 4] 8개 관광 카테고리별 미니 리서치"
 author_agent: marketresearcher
 author_model: claude-sonnet-4-6
 created: 2026-04-19T02:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 sources:
   - https://kto.visitkorea.or.kr

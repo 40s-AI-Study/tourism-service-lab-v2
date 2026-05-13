@@ -5,7 +5,7 @@ title: "K-Guide Global × 아미나 사이드 (말레이시아 무슬림)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T16:30:00Z
-status: draft
+status: final
 round: 2
 llm_compatibility: universal
 related:

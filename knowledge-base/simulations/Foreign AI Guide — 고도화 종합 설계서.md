@@ -5,7 +5,7 @@ title: "Foreign AI Guide — 고도화 종합 설계서"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:35:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[Foreign AI Guide — 세계 어디서 왔든 AI 현지 가이드]]"

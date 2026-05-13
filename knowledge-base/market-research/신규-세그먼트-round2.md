@@ -5,7 +5,7 @@ title: "신규 세그먼트 조사 + 경쟁사 앱 분석 Round 2"
 author_agent: market-researcher
 author_model: claude-sonnet-4-6
 created: 2026-04-17T21:00:00+09:00
-status: draft
+status: final
 round: 2
 board_directive: "경쟁사 앱 분석 섹션 필수 포함 (2026-04-17 board 지시)"
 sources:

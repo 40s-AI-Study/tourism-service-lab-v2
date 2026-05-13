@@ -5,7 +5,7 @@ title: "치유여정 Korea — 소리와 침묵으로 회복하는 감성 여행
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-18T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 branch: B
 parent_ideas:

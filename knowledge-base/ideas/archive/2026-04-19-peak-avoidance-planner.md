@@ -5,7 +5,7 @@ title: "혼잡 피크 회피 방문 타이밍 추천앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 혼잡도-회피-스마트동선
 ai_role: ai-assist

@@ -5,7 +5,7 @@ title: "치유여정 Korea × David Park (외국인 30대 블레저)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-18T12:00:00+09:00
-status: draft
+status: final
 round: 3
 idea_version: fusion
 llm_compatibility: universal

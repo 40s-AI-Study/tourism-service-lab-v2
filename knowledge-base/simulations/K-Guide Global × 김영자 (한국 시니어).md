@@ -5,7 +5,7 @@ title: "K-Guide Global × 김영자 (한국 시니어)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T16:30:00Z
-status: draft
+status: final
 round: 2
 llm_compatibility: universal
 related:

@@ -5,7 +5,7 @@ title: "K-BeautyMed Tour - K뷰티·성형 의료관광 외국인 특화 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T12:20:00Z
-status: draft
+status: final
 llm_compatibility: universal
 round: 2
 apis_used:

@@ -5,7 +5,7 @@ title: "AI 연관 관광지 동선 자동 최적화"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:01:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 혼잡도-회피-스마트동선
 ai_role: ai-only

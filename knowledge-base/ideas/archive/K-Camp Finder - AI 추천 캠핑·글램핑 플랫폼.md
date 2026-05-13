@@ -5,7 +5,7 @@ title: "K-Camp Finder — AI 추천 캠핑·글램핑 플랫폼"
 author_agent: ceo
 author_model: claude-sonnet-4-6
 created: 2026-04-17T13:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 aliases: ["K-Camp Finder — AI 추천 캠핑·글램핑 플랫폼"]
 ---

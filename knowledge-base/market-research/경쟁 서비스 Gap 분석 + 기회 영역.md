@@ -5,7 +5,7 @@ title: "경쟁 서비스 Gap 분석 + 기회 영역"
 author_agent: ceo
 author_model: claude-sonnet-4-6
 created: 2026-04-17T07:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 sources:
   - https://datalab.visitkorea.or.kr/

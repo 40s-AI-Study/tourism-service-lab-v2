@@ -5,7 +5,7 @@ title: "빅데이터 기반 진짜 숨은 맛집 발굴기"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:10:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 미식-로컬탐험
 ai_role: ai-enhanced

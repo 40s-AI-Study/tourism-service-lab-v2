@@ -5,7 +5,7 @@ title: "Round 2 페르소나 매칭 평가"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-04-17T15:00:00Z
-status: draft
+status: final
 round: 2
 llm_compatibility: universal
 ---

@@ -5,7 +5,7 @@ title: "AccessKorea × 최동훈 (한국 40대 가족)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T15:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[AccessKorea - 무장애 여행 통합 플랫폼]]"

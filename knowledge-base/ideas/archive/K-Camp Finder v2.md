@@ -5,7 +5,7 @@ title: "K-Camp Finder v2 — 4계절 감성 캠핑 플랫폼"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-18T10:00:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 parent_idea: "knowledge-base/ideas/K-Camp Finder - AI 추천 캠핑·글램핑 플랫폼.md"
 branch: A

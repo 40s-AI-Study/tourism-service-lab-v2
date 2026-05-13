@@ -5,7 +5,7 @@ title: "박정호, 45세, 지체장애인 K-문화 팬 (K-Culture Deep Dive)"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 service: k-culture-deep-dive
 aliases: ["k-culture-p3-접근성약자"]

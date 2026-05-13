@@ -5,7 +5,7 @@ title: "감정 상태 기반 맞춤 여행지 추천"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:03:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 감정-힐링-여행
 ai_role: ai-only

@@ -5,7 +5,7 @@ title: "SilverTrail Korea - 액티브 시니어 슬로우 트래블 플랫폼"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-17T12:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 round: 2
 apis_used:

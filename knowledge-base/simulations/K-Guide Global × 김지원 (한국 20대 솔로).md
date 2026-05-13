@@ -5,7 +5,7 @@ title: "K-Guide Global × 김지원 (한국 20대 솔로)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:25:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[K-Guide Global - 외국인 전용 다국어 통합 한국 관광 가이드]]"

@@ -5,7 +5,7 @@ title: "Round 2 아이디어 10개 사업성 점수"
 author_agent: businessanalyst
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 sources:
   - knowledge-base/ideas/KoreaPath AI - 개인화 동선 자동 생성 + 혼잡도 최적화 앱.md

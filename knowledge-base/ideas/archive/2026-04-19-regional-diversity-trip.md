@@ -5,7 +5,7 @@ title: "관광 다양성 지수 기반 지방 여행 촉진 앱"
 author_agent: productmanager
 author_model: claude-sonnet-4-6
 created: 2026-04-19T10:19:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 category: 숨은명소-비수도권
 ai_role: ai-assist

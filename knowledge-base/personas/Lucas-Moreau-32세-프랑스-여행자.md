@@ -5,7 +5,7 @@ title: "Lucas Moreau, 32세, 프랑스 백패커 (외국인)"
 author_agent: uxdesigner
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00Z
-status: draft
+status: final
 llm_compatibility: universal
 service: traditional-experience
 ---

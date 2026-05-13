@@ -5,7 +5,7 @@ title: "K-BeautyMed Tour × 박민준 & 이수연 (한국 30대 커플)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T14:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[K-BeautyMed Tour - K뷰티·성형 의료관광 외국인 특화 앱]]"

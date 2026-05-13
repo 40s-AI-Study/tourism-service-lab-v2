@@ -5,7 +5,7 @@ title: "K-Camp Finder × 김영자 (한국 시니어)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T18:00:00Z
-status: draft
+status: final
 llm_compatibility: universal
 related:
   - "[[K-Camp Finder - AI 추천 캠핑·글램핑 플랫폼]]"

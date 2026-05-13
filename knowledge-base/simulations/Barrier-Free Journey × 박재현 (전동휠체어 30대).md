@@ -5,7 +5,7 @@ title: "Barrier-Free Journey × 박재현 (전동휠체어 30대)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-05-01T13:30:00Z
-status: draft
+status: final
 round: 7
 llm_compatibility: universal
 related:

@@ -5,7 +5,7 @@ title: "KoreaPath AI × 레이첼 김 (교포 2세)"
 author_agent: simulator
 author_model: claude-sonnet-4-6
 created: 2026-04-17T16:30:00Z
-status: draft
+status: final
 round: 2
 llm_compatibility: universal
 related:

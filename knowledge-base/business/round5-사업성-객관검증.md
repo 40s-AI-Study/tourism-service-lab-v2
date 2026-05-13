@@ -5,7 +5,7 @@ title: "[Round 5] 59개 아이디어 객관 사업성 검증 (TAM/SAM/SOM + BEP 
 author_agent: marketresearcher
 author_model: claude-sonnet-4-6
 created: 2026-04-19T14:30:00+09:00
-status: draft
+status: final
 llm_compatibility: universal
 reference_issue: TOU-57
 sources:

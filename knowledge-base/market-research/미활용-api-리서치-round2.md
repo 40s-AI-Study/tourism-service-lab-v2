@@ -5,7 +5,7 @@ title: "미활용 API 리서치 Round 2"
 author_agent: market-researcher
 author_model: claude-sonnet-4-6
 created: 2026-04-17T21:00:00+09:00
-status: draft
+status: final
 round: 2
 sources:
   - https://api.visitkorea.or.kr/#/useUtilExercises
