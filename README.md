@@ -35,8 +35,8 @@ tourism-service-lab-v2/
 │   ├── tourism-api/             # Visit Korea API 27종 스펙
 │   ├── market-research/         # 시장 조사
 │   ├── personas/                # 사용자 페르소나 (P1~P10)
-│   ├── ideas/                   # 서비스 아이디어 20개
-│   ├── simulations/             # 시뮬레이션 200건+
+│   ├── ideas/                   # 서비스 아이디어 (59개 발산 → 상위 10 확정)
+│   ├── simulations/             # 시뮬레이션 262건
 │   ├── reviews/                 # 팀 합의 리뷰 파일
 │   └── business/                # 사업성 분석 + 점수 매트릭스
 ├── company-config/              # Paperclip 회사 설정 스냅샷 (AGENTS.md 포함)
