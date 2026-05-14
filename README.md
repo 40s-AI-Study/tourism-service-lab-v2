@@ -102,6 +102,7 @@ tourism-service-lab-v2/
 - [002 공통 메타데이터 JSON 스키마](docs/01-decisions/002-common-metadata-schema.md)
 - [003 상위 3 아이디어 선정](docs/01-decisions/003-top3-idea-selection.md)
 - [004 TripCraft Korea 최종 제출 결정](docs/01-decisions/004-tripcraft-korea-final-submission.md)
+- [005 7-에이전트 병렬 협업 아키텍처](docs/01-decisions/005-multi-agent-architecture.md)
 
 ## 커밋 규칙
 
