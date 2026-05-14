@@ -101,6 +101,7 @@ tourism-service-lab-v2/
 - [001 LLM-agnostic AGENTS.md 템플릿](docs/01-decisions/001-llm-agnostic-agents-template.md)
 - [002 공통 메타데이터 JSON 스키마](docs/01-decisions/002-common-metadata-schema.md)
 - [003 상위 3 아이디어 선정](docs/01-decisions/003-top3-idea-selection.md)
+- [004 TripCraft Korea 최종 제출 결정](docs/01-decisions/004-tripcraft-korea-final-submission.md)
 
 ## 커밋 규칙
 
