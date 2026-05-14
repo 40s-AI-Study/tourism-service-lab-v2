@@ -103,6 +103,7 @@ tourism-service-lab-v2/
 - [003 상위 3 아이디어 선정](docs/01-decisions/003-top3-idea-selection.md)
 - [004 TripCraft Korea 최종 제출 결정](docs/01-decisions/004-tripcraft-korea-final-submission.md)
 - [005 7-에이전트 병렬 협업 아키텍처](docs/01-decisions/005-multi-agent-architecture.md)
+- [006 Phase 2 기술 스택 결정](docs/01-decisions/006-phase2-tech-stack.md) *(예비심사 통과 시 확정)*
 
 ## 커밋 규칙
 
