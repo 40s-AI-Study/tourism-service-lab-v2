@@ -1,0 +1,17 @@
+{
+  "api_id": "tourism-big-data",
+  "title": "한국관광공사_관광빅데이터 정보서비스",
+  "service": "DataLabService",
+  "base_url": "http://apis.data.go.kr/B551011/DataLabService",
+  "operations_total": 2,
+  "operations_success": 0,
+  "operations_failed": 2,
+  "fail_breakdown": {
+    "http_403_forbidden": 2,
+    "http_500_server_error": 0,
+    "http_404_not_found": 0,
+    "other": 0
+  },
+  "fetch_date": "2026-05-15",
+  "fetch_timestamp_utc": "2026-05-15T07:26:22.610298+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "api_id": "tourism-info-korean",
+  "title": "한국관광공사_국문 관광정보 서비스",
+  "service": "KorService2",
+  "base_url": "http://apis.data.go.kr/B551011/KorService2",
+  "operations_total": 9,
+  "operations_success": 0,
+  "operations_failed": 9,
+  "fail_breakdown": {
+    "http_403_forbidden": 7,
+    "http_500_server_error": 0,
+    "http_404_not_found": 1,
+    "other": 1
+  },
+  "fetch_date": "2026-05-15",
+  "fetch_timestamp_utc": "2026-05-15T07:27:16.589268+00:00"
+}

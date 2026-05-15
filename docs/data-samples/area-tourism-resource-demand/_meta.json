@@ -1,0 +1,17 @@
+{
+  "api_id": "area-tourism-resource-demand",
+  "title": "한국관광공사_지역별 관광 자원 수요",
+  "service": "AreaTarResDemService",
+  "base_url": "http://apis.data.go.kr/B551011/AreaTarResDemService",
+  "operations_total": 2,
+  "operations_success": 2,
+  "operations_failed": 0,
+  "fail_breakdown": {
+    "http_403_forbidden": 0,
+    "http_500_server_error": 0,
+    "http_404_not_found": 0,
+    "other": 0
+  },
+  "fetch_date": "2026-05-15",
+  "fetch_timestamp_utc": "2026-05-15T07:25:50.638828+00:00"
+}

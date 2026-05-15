@@ -1,0 +1,17 @@
+{
+  "api_id": "area-tourism-diversity",
+  "title": "한국관광공사_지역별 관광 다양성",
+  "service": "AreaTarDivService",
+  "base_url": "http://apis.data.go.kr/B551011/AreaTarDivService",
+  "operations_total": 3,
+  "operations_success": 0,
+  "operations_failed": 3,
+  "fail_breakdown": {
+    "http_403_forbidden": 3,
+    "http_500_server_error": 0,
+    "http_404_not_found": 0,
+    "other": 0
+  },
+  "fetch_date": "2026-05-15",
+  "fetch_timestamp_utc": "2026-05-15T07:25:52.321581+00:00"
+}

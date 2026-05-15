@@ -1,0 +1,17 @@
+{
+  "api_id": "visitor-concentration-forecast",
+  "title": "한국관광공사_관광지 집중률 방문자 추이 예측 정보",
+  "service": "TatsCnctrRateService",
+  "base_url": "http://apis.data.go.kr/B551011/TatsCnctrRateService",
+  "operations_total": 2,
+  "operations_success": 0,
+  "operations_failed": 2,
+  "fail_breakdown": {
+    "http_403_forbidden": 1,
+    "http_500_server_error": 0,
+    "http_404_not_found": 1,
+    "other": 0
+  },
+  "fetch_date": "2026-05-15",
+  "fetch_timestamp_utc": "2026-05-15T07:26:14.953479+00:00"
+}

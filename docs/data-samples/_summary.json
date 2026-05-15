@@ -1,0 +1,611 @@
+{
+  "schema_version": "1.0",
+  "fetch_date": "2026-05-15",
+  "fetch_timestamp_utc": "2026-05-15T07:27:16.592601+00:00",
+  "total_apis": 27,
+  "total_operations": 170,
+  "total_success": 2,
+  "total_failed": 168,
+  "success_rate_pct": 1.2,
+  "apis": [
+    {
+      "api_id": "area-tourism-resource-demand",
+      "title": "한국관광공사_지역별 관광 자원 수요",
+      "service": "AreaTarResDemService",
+      "operations_total": 2,
+      "operations_success": 2,
+      "operations_failed": 0,
+      "fail_breakdown": {
+        "http_403_forbidden": 0,
+        "http_500_server_error": 0,
+        "http_404_not_found": 0,
+        "other": 0
+      },
+      "failed_operation_names": []
+    },
+    {
+      "api_id": "area-tourism-demand-density",
+      "title": "한국관광공사_지역별 관광 수요 강도",
+      "service": "AreaTarDemDsService",
+      "operations_total": 2,
+      "operations_success": 0,
+      "operations_failed": 2,
+      "fail_breakdown": {
+        "http_403_forbidden": 2,
+        "http_500_server_error": 0,
+        "http_404_not_found": 0,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "areaTarExpDsList",
+        "areaTarSjrnDsList"
+      ]
+    },
+    {
+      "api_id": "area-tourism-diversity",
+      "title": "한국관광공사_지역별 관광 다양성",
+      "service": "AreaTarDivService",
+      "operations_total": 3,
+      "operations_success": 0,
+      "operations_failed": 3,
+      "fail_breakdown": {
+        "http_403_forbidden": 3,
+        "http_500_server_error": 0,
+        "http_404_not_found": 0,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "areaExpDivList",
+        "areaIntlDivList",
+        "areaTouDivList"
+      ]
+    },
+    {
+      "api_id": "photo-contest-winners",
+      "title": "한국관광공사_관광공모전(사진) 수상작 정보",
+      "service": "PhokoAwrdService",
+      "operations_total": 6,
+      "operations_success": 0,
+      "operations_failed": 6,
+      "fail_breakdown": {
+        "http_403_forbidden": 2,
+        "http_500_server_error": 0,
+        "http_404_not_found": 4,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "phokoAwrdList",
+        "phokoAwrdSyncList",
+        "koKeyword",
+        "enKeyword",
+        "orgImage",
+        "thumbImage"
+      ]
+    },
+    {
+      "api_id": "wellness-tourism",
+      "title": "한국관광공사_웰니스관광정보",
+      "service": "WellnessTursmService",
+      "operations_total": 10,
+      "operations_success": 0,
+      "operations_failed": 10,
+      "fail_breakdown": {
+        "http_403_forbidden": 6,
+        "http_500_server_error": 0,
+        "http_404_not_found": 3,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList",
+        "locationBasedList",
+        "searchKeyword",
+        "detailCommon",
+        "detailInfo",
+        "detailImage",
+        "lDongListYn",
+        "orgImage",
+        "thumbImage",
+        "wellnessTursmSyncList"
+      ]
+    },
+    {
+      "api_id": "medical-tourism",
+      "title": "한국관광공사_의료관광정보",
+      "service": "MdclTursmService",
+      "operations_total": 7,
+      "operations_success": 0,
+      "operations_failed": 7,
+      "fail_breakdown": {
+        "http_403_forbidden": 4,
+        "http_500_server_error": 0,
+        "http_404_not_found": 2,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList",
+        "locationBasedList",
+        "searchKeyword",
+        "detailCommon",
+        "lDongListYn",
+        "mdclTursmDivInfo",
+        "mdclTursmSyncList"
+      ]
+    },
+    {
+      "api_id": "pet-friendly-travel",
+      "title": "한국관광공사_반려동물_동반여행_서비스",
+      "service": "KorPetTourService2",
+      "operations_total": 10,
+      "operations_success": 0,
+      "operations_failed": 10,
+      "fail_breakdown": {
+        "http_403_forbidden": 6,
+        "http_500_server_error": 0,
+        "http_404_not_found": 3,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "etcAcmpyInfo",
+        "lDongListYn",
+        "petTourSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "related-attractions",
+      "title": "한국관광공사_관광지별 연관 관광지 정보",
+      "service": "TarRlteTarService1",
+      "operations_total": 3,
+      "operations_success": 0,
+      "operations_failed": 3,
+      "fail_breakdown": {
+        "http_403_forbidden": 1,
+        "http_500_server_error": 0,
+        "http_404_not_found": 0,
+        "other": 2
+      },
+      "failed_operation_names": [
+        "areaBasedList1",
+        "searchKeyword",
+        "searchKeyword1"
+      ]
+    },
+    {
+      "api_id": "central-attractions-by-municipality",
+      "title": "한국관광공사_기초지자체 중심 관광지 정보",
+      "service": "LocgoHubTarService1",
+      "operations_total": 2,
+      "operations_success": 0,
+      "operations_failed": 2,
+      "fail_breakdown": {
+        "http_403_forbidden": 1,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "areaBasedList",
+        "areaBasedList1"
+      ]
+    },
+    {
+      "api_id": "visitor-concentration-forecast",
+      "title": "한국관광공사_관광지 집중률 방문자 추이 예측 정보",
+      "service": "TatsCnctrRateService",
+      "operations_total": 2,
+      "operations_success": 0,
+      "operations_failed": 2,
+      "fail_breakdown": {
+        "http_403_forbidden": 1,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "tatsCnctrRateList",
+        "tatsCnctrRatedList"
+      ]
+    },
+    {
+      "api_id": "tourism-jobs",
+      "title": "한국관광공사_관광인_채용정보_서비스",
+      "service": "tursmService",
+      "operations_total": 7,
+      "operations_success": 0,
+      "operations_failed": 7,
+      "fail_breakdown": {
+        "http_403_forbidden": 3,
+        "http_500_server_error": 0,
+        "http_404_not_found": 3,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "empmnInfoList",
+        "empmnInfoDetail",
+        "empmnInfoNo",
+        "labrrNumInfo",
+        "srchRecruitInfoSeq",
+        "syncList",
+        "tursmEmpmnInfoURL"
+      ]
+    },
+    {
+      "api_id": "durunubi-trails",
+      "title": "한국관광공사_두루누비 정보 서비스",
+      "service": "Durunubi",
+      "operations_total": 3,
+      "operations_success": 0,
+      "operations_failed": 3,
+      "fail_breakdown": {
+        "http_403_forbidden": 2,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "routeList",
+        "courseList",
+        "crsTourInfo"
+      ]
+    },
+    {
+      "api_id": "tourism-big-data",
+      "title": "한국관광공사_관광빅데이터 정보서비스",
+      "service": "DataLabService",
+      "operations_total": 2,
+      "operations_success": 0,
+      "operations_failed": 2,
+      "fail_breakdown": {
+        "http_403_forbidden": 2,
+        "http_500_server_error": 0,
+        "http_404_not_found": 0,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "locgoRegnVisitrDDList",
+        "metcoRegnVisitrDDList"
+      ]
+    },
+    {
+      "api_id": "audio-guide",
+      "title": "한국관광공사_관광지 오디오 가이드정보",
+      "service": "Odii",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 6,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 2
+      },
+      "failed_operation_names": [
+        "themeBasedList",
+        "themeLocationBasedList",
+        "themeSearchList",
+        "themeBasedSyncList",
+        "themeCategory",
+        "storyBasedList",
+        "storyLocationBasedList",
+        "storySearchList",
+        "storyBasedSyncList"
+      ]
+    },
+    {
+      "api_id": "gocamping",
+      "title": "한국관광공사_고캠핑 정보 조회서비스",
+      "service": "GoCamping",
+      "operations_total": 5,
+      "operations_success": 0,
+      "operations_failed": 5,
+      "fail_breakdown": {
+        "http_403_forbidden": 4,
+        "http_500_server_error": 0,
+        "http_404_not_found": 0,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "basedList",
+        "locationBasedList",
+        "searchList",
+        "imageList",
+        "basedSyncList"
+      ]
+    },
+    {
+      "api_id": "tourism-photos",
+      "title": "한국관광공사_관광사진 정보",
+      "service": "PhotoGalleryService1",
+      "operations_total": 5,
+      "operations_success": 0,
+      "operations_failed": 5,
+      "fail_breakdown": {
+        "http_403_forbidden": 2,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 2
+      },
+      "failed_operation_names": [
+        "galleryList1",
+        "gallerySearchList1",
+        "galSearchKeyword",
+        "galPhotographyLocation",
+        "gallerySyncDetailList1"
+      ]
+    },
+    {
+      "api_id": "eco-tourism",
+      "title": "한국관광공사_생태 관광 정보",
+      "service": "GreenTourService1",
+      "operations_total": 3,
+      "operations_success": 0,
+      "operations_failed": 3,
+      "fail_breakdown": {
+        "http_403_forbidden": 2,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "areaBasedList",
+        "areaBasedList1",
+        "areaBasedSyncList1"
+      ]
+    },
+    {
+      "api_id": "barrier-free-travel",
+      "title": "한국관광공사_무장애 여행 정보",
+      "service": "KorWithService2",
+      "operations_total": 8,
+      "operations_success": 0,
+      "operations_failed": 8,
+      "fail_breakdown": {
+        "http_403_forbidden": 6,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-russian",
+      "title": "한국관광공사_노어 관광정보서비스",
+      "service": "RusService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-spanish",
+      "title": "한국관광공사_서어 관광정보서비스",
+      "service": "SpnService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-french",
+      "title": "한국관광공사_불어 관광정보서비스",
+      "service": "FreService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-german",
+      "title": "한국관광공사_독어 관광정보서비스",
+      "service": "GerService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-japanese",
+      "title": "한국관광공사_일문 관광정보서비스",
+      "service": "JpnService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-chinese-traditional",
+      "title": "한국관광공사_중문 번체 관광정보서비스",
+      "service": "ChtService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-chinese-simplified",
+      "title": "한국관광공사_중문 간체 관광정보서비스",
+      "service": "ChsService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-english",
+      "title": "한국관광공사_영문 관광정보서비스",
+      "service": "EngService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 8,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 0
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    },
+    {
+      "api_id": "tourism-info-korean",
+      "title": "한국관광공사_국문 관광정보 서비스",
+      "service": "KorService2",
+      "operations_total": 9,
+      "operations_success": 0,
+      "operations_failed": 9,
+      "fail_breakdown": {
+        "http_403_forbidden": 7,
+        "http_500_server_error": 0,
+        "http_404_not_found": 1,
+        "other": 1
+      },
+      "failed_operation_names": [
+        "areaBasedList2",
+        "locationBasedList2",
+        "searchKeyword2",
+        "searchFestival2",
+        "detailCommon2",
+        "detailInfo2",
+        "detailImage2",
+        "areaBasedSyncList2",
+        "subImageYN"
+      ]
+    }
+  ]
+}
