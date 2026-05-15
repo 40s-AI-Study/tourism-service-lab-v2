@@ -1,14 +1,8 @@
 {
   "ok": true,
   "status": 200,
+  "contentType": "application/json",
   "url": "https://apis.data.go.kr/B551011/TatsCnctrRateService/tatsCnctrRatedList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&areaCd=51&signguCd=51130&tAtsNm=%EA%B0%84%ED%98%84%EA%B4%80%EA%B4%91%EC%A7%80",
-  "params_used": {
-    "areaCd": "51",
-    "signguCd": "51130",
-    "tAtsNm": "%EA%B0%84%ED%98%84%EA%B4%80%EA%B4%91%EC%A7%80"
-  },
-  "items_count": 5,
-  "totalCount": 30,
   "json": {
     "response": {
       "header": {

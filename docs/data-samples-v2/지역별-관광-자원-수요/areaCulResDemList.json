@@ -1,8 +1,15 @@
 {
   "ok": true,
   "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/AreaTarResDemService/areaCulResDemList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202404&areaCd=11&signguCd=11530&culResDemIxCd=1205",
+  "url": "https://apis.data.go.kr/B551011/AreaTarResDemService/areaCulResDemList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202509&areaCd=11&signguCd=11530&culResDemIxCd=1201",
+  "params_used": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "culResDemIxCd": "1201"
+  },
+  "items_count": 1,
+  "totalCount": 1,
   "json": {
     "response": {
       "header": {
@@ -13,14 +20,14 @@
         "items": {
           "item": [
             {
-              "baseYm": "202404",
+              "baseYm": "202509",
               "areaCd": "11",
               "areaNm": "서울특별시",
               "signguCd": "11530",
               "signguNm": "구로구",
-              "culResDemIxCd": "1205",
-              "culResDemIxNm": "내비게이션 자연관광 유형 검색량",
-              "culResDemIxVal": "68.8"
+              "culResDemIxCd": "1201",
+              "culResDemIxNm": "내비게이션 문화관광유형 검색량",
+              "culResDemIxVal": "75.75"
             }
           ]
         },

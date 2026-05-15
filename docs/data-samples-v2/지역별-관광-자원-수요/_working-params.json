@@ -1,0 +1,14 @@
+{
+  "areaTarSvcDemList": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "tarSvcDemIxCd": "1101"
+  },
+  "areaCulResDemList": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "culResDemIxCd": "1201"
+  }
+}

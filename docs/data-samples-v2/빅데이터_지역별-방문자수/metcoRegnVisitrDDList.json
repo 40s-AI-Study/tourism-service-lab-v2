@@ -1,13 +1,13 @@
 {
   "ok": true,
   "status": 200,
-  "url": "https://apis.data.go.kr/B551011/DataLabService/metcoRegnVisitrDDList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&startYmd=20240101&endYmd=20240131",
+  "url": "https://apis.data.go.kr/B551011/DataLabService/metcoRegnVisitrDDList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&startYmd=20210513&endYmd=20210513",
   "params_used": {
-    "startYmd": "20240101",
-    "endYmd": "20240131"
+    "startYmd": "20210513",
+    "endYmd": "20210513"
   },
   "items_count": 5,
-  "totalCount": 1581,
+  "totalCount": 51,
   "json": {
     "response": {
       "header": {
@@ -20,58 +20,58 @@
             {
               "areaCode": "11",
               "areaNm": "서울특별시",
-              "daywkDivCd": "1",
-              "daywkDivNm": "월요일",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
               "touDivCd": "1",
               "touDivNm": "현지인(a)",
-              "touNum": "3595560.5",
-              "baseYmd": "20240101"
+              "touNum": "4828435.5",
+              "baseYmd": "20210513"
             },
             {
               "areaCode": "11",
               "areaNm": "서울특별시",
-              "daywkDivCd": "1",
-              "daywkDivNm": "월요일",
-              "touDivCd": "1",
-              "touDivNm": "현지인(a)",
-              "touNum": "4420433.5",
-              "baseYmd": "20240108"
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "2",
+              "touDivNm": "외지인(b)",
+              "touNum": "1255828.0",
+              "baseYmd": "20210513"
             },
             {
               "areaCode": "11",
               "areaNm": "서울특별시",
-              "daywkDivCd": "1",
-              "daywkDivNm": "월요일",
-              "touDivCd": "1",
-              "touDivNm": "현지인(a)",
-              "touNum": "4413286.5",
-              "baseYmd": "20240115"
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "3",
+              "touDivNm": "외국인(c)",
+              "touNum": "3994.5399999999995",
+              "baseYmd": "20210513"
             },
             {
-              "areaCode": "11",
-              "areaNm": "서울특별시",
-              "daywkDivCd": "1",
-              "daywkDivNm": "월요일",
+              "areaCode": "26",
+              "areaNm": "부산광역시",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
               "touDivCd": "1",
               "touDivNm": "현지인(a)",
-              "touNum": "4334876.0",
-              "baseYmd": "20240122"
+              "touNum": "1424962.0",
+              "baseYmd": "20210513"
             },
             {
-              "areaCode": "11",
-              "areaNm": "서울특별시",
-              "daywkDivCd": "1",
-              "daywkDivNm": "월요일",
-              "touDivCd": "1",
-              "touDivNm": "현지인(a)",
-              "touNum": "4456973.5",
-              "baseYmd": "20240129"
+              "areaCode": "26",
+              "areaNm": "부산광역시",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "2",
+              "touDivNm": "외지인(b)",
+              "touNum": "286916.0",
+              "baseYmd": "20210513"
             }
           ]
         },
         "numOfRows": 5,
         "pageNo": 1,
-        "totalCount": 1581
+        "totalCount": 51
       }
     }
   }

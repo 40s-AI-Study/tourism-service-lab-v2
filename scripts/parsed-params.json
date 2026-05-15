@@ -1,0 +1,796 @@
+{
+  "관광지_집중률_방문자_추이_예측_정보": {
+    "op_names": [],
+    "param_groups": [
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "페이지번호",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB(웹), ETC(기타)",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "관광지 지역코드 ( \"참고문서\" 매뉴얼 파일중 '관광지_시군구_코드정보' 파일 참고 )",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "관광지 시군구코드 ( \"참고문서\" 매뉴얼 파일중 '관광지_시군구_코드정보' 파일 참고 )",
+          "required": false
+        },
+        {
+          "name": "tAtsNm",
+          "sample": "",
+          "desc": "관광지명",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답메세지 형식 : REST방식의 URL호출 시 json값 추가(디폴트 응답메세지 형식은XML)",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "페이지번호",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB(웹), ETC(기타)",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "관광지 지역코드 ( \"참고문서\" 매뉴얼 파일중 '관광지_시군구_코드정보' 파일 참고 )",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "관광지 시군구코드 ( \"참고문서\" 매뉴얼 파일중 '관광지_시군구_코드정보' 파일 참고 )",
+          "required": false
+        },
+        {
+          "name": "tAtsNm",
+          "sample": "",
+          "desc": "관광지명",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답메세지 형식 : REST방식의 URL호출 시 json값 추가(디폴트 응답메세지 형식은XML)",
+          "required": false
+        }
+      ]
+    ]
+  },
+  "기초지자체_중심_관광지_정보": {
+    "op_names": [],
+    "param_groups": [
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "페이지번호",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB(웹), ETC(기타)",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "기준 날짜 조회(형식:YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "중심지 지역 코드 ( 매뉴얼 문서 시군구 코드정보 참고 )",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "중심지 시군구 코드 ( 매뉴얼 문서 시군구 코드정보 참고 )",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답메세지 형식 : REST방식의 URL호출 시 json값 추가(디폴트 응답메세지 형식은XML)",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "페이지번호",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB(웹), ETC(기타)",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "기준 날짜 조회(형식:YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "중심지 지역 코드 ( 매뉴얼 문서 시군구 코드정보 참고 )",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "중심지 시군구 코드 ( 매뉴얼 문서 시군구 코드정보 참고 )",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답메세지 형식 : REST방식의 URL호출 시 json값 추가(디폴트 응답메세지 형식은XML)",
+          "required": false
+        }
+      ]
+    ]
+  },
+  "지역별_관광_다양성": {
+    "op_names": [],
+    "param_groups": [
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "조회시작년도",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "조회시작년도",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키 (서비스키)",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "현재 페이지 번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB (웹사이트), ETC",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "조회 기준 연월 (형식 : YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "지역 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "시군구 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "touDivIxCd",
+          "sample": "",
+          "desc": "관광객 다양성 지표 코드 (31 : 전체, 3101 : 10대 방문객수, 3102 : 20대 방문객수, 3103 : 30대 방문객수, 3104 : 40대 방문객수, 3105 : 50대 방문객수, 3106 : 60대 방문객수, 3107 : 70대 방문객수)",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답 메세지 형식 : REST 방식의 URL 호출 시 json값 추가(디폴트 응답 메세지 형식 XML)",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키 (서비스키)",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "현재 페이지 번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB (웹사이트), ETC",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "조회 기준 연월 (형식 : YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "지역 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "시군구 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "touDivIxCd",
+          "sample": "",
+          "desc": "관광객 다양성 지표 코드 (31 : 전체, 3101 : 10대 방문객수, 3102 : 20대 방문객수, 3103 : 30대 방문객수, 3104 : 40대 방문객수, 3105 : 50대 방문객수, 3106 : 60대 방문객수, 3107 : 70대 방문객수)",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답 메세지 형식 : REST 방식의 URL 호출 시 json값 추가(디폴트 응답 메세지 형식 XML)",
+          "required": false
+        }
+      ]
+    ]
+  },
+  "지역별_관광_수요_강도": {
+    "op_names": [],
+    "param_groups": [
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "조회시작년도",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키 (서비스키)",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "현재 페이지 번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB (웹사이트), ETC",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "조회 기준 연월 (형식 : YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "지역 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "시군구 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "tarSjrnDsIxCd",
+          "sample": "",
+          "desc": "관광 체류 강도 지표 코드 (21 : 전체, 2101 : 타권역 방문자 비중, 2102 : 숙박 비중, 2103 : 1박 방문자수, 2104 : 2박 방문자수, 2105 : 3박 방문자수)",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답 메세지 형식 : REST 방식의 URL 호출 시 json값 추가(디폴트 응답 메세지 형식 XML)",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키 (서비스키)",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "현재 페이지 번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB (웹사이트), ETC",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "조회 기준 연월 (형식 : YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "지역 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "시군구 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "tarSjrnDsIxCd",
+          "sample": "",
+          "desc": "관광 체류 강도 지표 코드 (21 : 전체, 2101 : 타권역 방문자 비중, 2102 : 숙박 비중, 2103 : 1박 방문자수, 2104 : 2박 방문자수, 2105 : 3박 방문자수)",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답 메세지 형식 : REST 방식의 URL 호출 시 json값 추가(디폴트 응답 메세지 형식 XML)",
+          "required": false
+        }
+      ]
+    ]
+  },
+  "지역별_관광_자원_수요": {
+    "op_names": [],
+    "param_groups": [
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "조회시작년도",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키 (서비스키)",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "현재 페이지 번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB (웹사이트), ETC",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "조회 기준 연월 (형식 : YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "지역 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "시군구 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "culResDemIxCd",
+          "sample": "",
+          "desc": "문화 자원 수요 지표 코드 (12 : 전체, 1201 : 내비게이션 문화 관광 유형 검색량, 1202 : 내비게이션 레저 스포츠 유형 검색량, 1203 : 내비게이션 역사 관광 유형 검색량, 1204 : 내비게이션 체험 관광 유형 검색량, 1205 : 내비게이션 자연 관광 유형 검색량)",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답 메세지 형식 : REST 방식의 URL 호출 시 json값 추가(디폴트 응답 메세지 형식 XML)",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "공공데이터포털에서 받은 인증키 (서비스키)",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한 페이지 결과 수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "현재 페이지 번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WEB (웹사이트), ETC",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "desc": "조회 기준 연월 (형식 : YYYYMM)",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "desc": "지역 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "desc": "시군구 코드 (지역/시군구 코드 파일 참고)",
+          "required": false
+        },
+        {
+          "name": "culResDemIxCd",
+          "sample": "",
+          "desc": "문화 자원 수요 지표 코드 (12 : 전체, 1201 : 내비게이션 문화 관광 유형 검색량, 1202 : 내비게이션 레저 스포츠 유형 검색량, 1203 : 내비게이션 역사 관광 유형 검색량, 1204 : 내비게이션 체험 관광 유형 검색량, 1205 : 내비게이션 자연 관광 유형 검색량)",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "desc": "응답 메세지 형식 : REST 방식의 URL 호출 시 json값 추가(디폴트 응답 메세지 형식 XML)",
+          "required": false
+        }
+      ]
+    ]
+  },
+  "한국관광공사_빅데이터_지역별_방문자수": {
+    "op_names": [],
+    "param_groups": [
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "조회시작년도",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한페이지결과수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "페이지번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WIN (윈도우폰), ETC(기타)",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "인증키(서비스키)",
+          "required": false
+        },
+        {
+          "name": "startYmd",
+          "sample": "",
+          "desc": "시작연월일(YYYYMMDD)",
+          "required": false
+        },
+        {
+          "name": "endYmd",
+          "sample": "",
+          "desc": "종료연월일(YYYYMMDD)",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "stdt",
+          "sample": "",
+          "desc": "",
+          "required": false
+        }
+      ],
+      [
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "desc": "한페이지결과수",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "desc": "페이지번호",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "desc": "OS 구분 : IOS (아이폰), AND (안드로이드), WIN (윈도우폰), ETC(기타)",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "desc": "서비스명(어플명)",
+          "required": false
+        },
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "desc": "인증키(서비스키)",
+          "required": false
+        },
+        {
+          "name": "startYmd",
+          "sample": "",
+          "desc": "시작연월일(YYYYMMDD)",
+          "required": false
+        },
+        {
+          "name": "endYmd",
+          "sample": "",
+          "desc": "종료연월일(YYYYMMDD)",
+          "required": false
+        }
+      ]
+    ]
+  }
+}

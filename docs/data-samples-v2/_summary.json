@@ -22,13 +22,13 @@
         "op": "imageList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "locationBasedList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "searchList",
@@ -49,7 +49,7 @@
         "op": "galleryDetailList1",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "galleryList1",
@@ -88,7 +88,7 @@
         "op": "storyBasedSyncList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "storyLocationBasedList",
@@ -112,7 +112,7 @@
         "op": "themeBasedSyncList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "themeLocationBasedList",
@@ -122,7 +122,7 @@
       },
       {
         "op": "themeSearchList",
-        "items": 2,
+        "items": 5,
         "totalCount": 2,
         "status": "OK"
       }
@@ -139,8 +139,7 @@
         "op": "tatsCnctrRatedList",
         "items": 5,
         "totalCount": 30,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       }
     ]
   },
@@ -177,7 +176,7 @@
       },
       {
         "op": "detailCommon2",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
         "status": "OK"
       },
@@ -191,11 +190,11 @@
         "op": "detailInfo2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailIntro2",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
         "status": "OK"
       },
@@ -254,15 +253,14 @@
         "op": "areaBasedList1",
         "items": 5,
         "totalCount": 100,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       }
     ]
   },
   {
     "slug": "두루누비-정보-서비스",
     "title": "[승인] 한국관광공사_두루누비 정보 서비스_GW",
-    "base": "https://apis.data.go.kr/B551011/Durunubi",
+    "base": "https://apis.data.go.kr/B551011/DurunubiService",
     "ops_total": 2,
     "ops_with_data": 2,
     "samples": [
@@ -274,7 +272,7 @@
       },
       {
         "op": "routeList",
-        "items": 4,
+        "items": 5,
         "totalCount": 4,
         "status": "OK"
       }
@@ -282,7 +280,7 @@
   },
   {
     "slug": "무장애-여행-정보",
-    "title": "[승인] 한국관광공사_무장애 여행 정보",
+    "title": "[승인] 한국관광공사_무장애 여행 정보_GW",
     "base": "https://apis.data.go.kr/B551011/KorWithService2",
     "ops_total": 13,
     "ops_with_data": 11,
@@ -313,7 +311,7 @@
       },
       {
         "op": "detailCommon2",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
         "status": "OK"
       },
@@ -327,11 +325,11 @@
         "op": "detailInfo2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailIntro2",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
         "status": "OK"
       },
@@ -339,7 +337,7 @@
         "op": "detailWithTour2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "lclsSystmCode2",
@@ -361,7 +359,7 @@
       },
       {
         "op": "searchKeyword2",
-        "items": 2,
+        "items": 5,
         "totalCount": 2,
         "status": "OK"
       }
@@ -369,8 +367,8 @@
   },
   {
     "slug": "반려동물_동반여행_서비스",
-    "title": "[승인] 한국관광공사_반려동물_동반여행_서비스",
-    "base": "https://apis.data.go.kr/B551011/KorPetTourService2",
+    "title": "[승인] 한국관광공사_반려동물_동반여행_서비스_GW",
+    "base": "https://apis.data.go.kr/B551011/KorPetTourService",
     "ops_total": 13,
     "ops_with_data": 8,
     "samples": [
@@ -396,31 +394,31 @@
         "op": "detailCommon2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailImage2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailInfo2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailIntro2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailPetTour2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "lclsSystmCode2",
@@ -448,7 +446,7 @@
       },
       {
         "op": "searchKeyword2",
-        "items": 3,
+        "items": 5,
         "totalCount": 3,
         "status": "OK"
       }
@@ -465,22 +463,20 @@
         "op": "locgoRegnVisitrDDList",
         "items": 5,
         "totalCount": 772,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       },
       {
         "op": "metcoRegnVisitrDDList",
         "items": 5,
         "totalCount": 51,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       }
     ]
   },
   {
     "slug": "생태-관광-정보",
     "title": "[승인] 한국관광공사_생태 관광 정보_GW",
-    "base": "https://apis.data.go.kr/B551011/GreenTourService1",
+    "base": "https://apis.data.go.kr/B551011/EcoTourService",
     "ops_total": 3,
     "ops_with_data": 3,
     "samples": [
@@ -507,7 +503,7 @@
   {
     "slug": "웰니스관광정보",
     "title": "[승인] 한국관광공사_웰니스관광정보",
-    "base": "https://apis.data.go.kr/B551011/WellnessTursmService",
+    "base": "https://apis.data.go.kr/B551011/WellnessTourService",
     "ops_total": 9,
     "ops_with_data": 0,
     "samples": [
@@ -515,62 +511,62 @@
         "op": "areaBasedList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailCommon",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailImage",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailInfo",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailIntro",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "ldongCode",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "locationBasedList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "searchKeyword",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "wellnessTursmSyncList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       }
     ]
   },
   {
     "slug": "의료관광정보",
     "title": "[승인] 한국관광공사_의료관광정보",
-    "base": "https://apis.data.go.kr/B551011/MdclTursmService",
+    "base": "https://apis.data.go.kr/B551011/MdclTourService",
     "ops_total": 8,
     "ops_with_data": 0,
     "samples": [
@@ -578,49 +574,49 @@
         "op": "areaBasedList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailCommon",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailIntro",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailMdclTursm",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "ldongCode",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "locationBasedList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "mdclTursmSyncList",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "searchKeyword",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       }
     ]
   },
@@ -659,25 +655,25 @@
         "op": "detailCommon2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailImage2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailInfo2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "detailIntro2",
         "items": 0,
         "totalCount": 0,
-        "status": "OK"
+        "status": "EMPTY"
       },
       {
         "op": "lclsSystmCode2",
@@ -726,24 +722,21 @@
     "samples": [
       {
         "op": "areaExpDivList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       },
       {
         "op": "areaIntlDivList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       },
       {
         "op": "areaTouDivList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       }
     ]
   },
@@ -756,17 +749,15 @@
     "samples": [
       {
         "op": "areaTarExpDsList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       },
       {
         "op": "areaTarSjrnDsList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       }
     ]
   },
@@ -779,17 +770,15 @@
     "samples": [
       {
         "op": "areaCulResDemList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       },
       {
         "op": "areaTarSvcDemList",
-        "items": 1,
+        "items": 5,
         "totalCount": 1,
-        "status": "OK",
-        "note": "retried TOU-107"
+        "status": "OK"
       }
     ]
   }

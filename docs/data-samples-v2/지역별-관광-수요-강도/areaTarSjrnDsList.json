@@ -1,8 +1,15 @@
 {
   "ok": true,
   "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/AreaTarDemDsService/areaTarSjrnDsList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202509&areaCd=11&signguCd=11530&tarSjrnDsIxCd=2101",
+  "url": "https://apis.data.go.kr/B551011/AreaTarDemDsService/areaTarSjrnDsList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202509&areaCd=11&signguCd=11530&tarSjrnDsIxCd=2103",
+  "params_used": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "tarSjrnDsIxCd": "2103"
+  },
+  "items_count": 1,
+  "totalCount": 1,
   "json": {
     "response": {
       "header": {
@@ -18,9 +25,9 @@
               "areaNm": "서울특별시",
               "signguCd": "11530",
               "signguNm": "구로구",
-              "tarSjrnDsIxCd": "2101",
-              "tarSjrnDsIxNm": "타권역 방문자 비중",
-              "tarSjrnDsIxVal": "79.08"
+              "tarSjrnDsIxCd": "2103",
+              "tarSjrnDsIxNm": "1박 방문자수",
+              "tarSjrnDsIxVal": "75.45"
             }
           ]
         },

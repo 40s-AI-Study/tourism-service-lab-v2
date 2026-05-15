@@ -7,7 +7,11 @@
 - 방식: data.go.kr 활용신청 현황의 endpoint·ServiceKey를 Playwright로 추출 후 HTTPS 직접 호출
 - 저장: `docs/data-samples-v2/{api-slug}/{operation}.json`
 
-## 요약
+## 개발자 문서
+
+- [**DEVELOPER_GUIDE.md**](./DEVELOPER_GUIDE.md) — TripCraft Korea 서비스 통합용 17 API 완전 가이드 (인증·에러·매핑·샘플코드)
+
+## 요약 (105 오퍼레이션 중 **71개 데이터 확보**)
 
 | # | API 정식명 | 오퍼레이션 수 | 데이터 포함 | 비고 |
 |---|---|:-:|:-:|---|

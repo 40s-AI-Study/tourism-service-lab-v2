@@ -1,0 +1,20 @@
+{
+  "areaTouDivList": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "touDivIxCd": "3103"
+  },
+  "areaExpDivList": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "expDivIxCd": "3201"
+  },
+  "areaIntlDivList": {
+    "baseYm": "202509",
+    "areaCd": "11",
+    "signguCd": "11530",
+    "intlDivIxCd": "3301"
+  }
+}

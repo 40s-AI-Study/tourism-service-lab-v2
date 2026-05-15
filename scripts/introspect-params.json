@@ -1,0 +1,424 @@
+{
+  "빅데이터_지역별-방문자수": {
+    "title": "[승인] 한국관광공사_빅데이터_지역별 방문자수_GW",
+    "service": "DataLabService",
+    "operations": [
+      "metcoRegnVisitrDDList",
+      "locgoRegnVisitrDDList"
+    ],
+    "param_containers": {
+      "": [
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "startYmd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "endYmd",
+          "sample": "",
+          "required": false
+        }
+      ]
+    },
+    "raw_titles": [
+      "기본정보",
+      "서비스정보",
+      "활용신청 상세기능정보",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "활용정보",
+      "라이센스표시",
+      "이메일주소"
+    ],
+    "url": "https://www.data.go.kr/iim/api/selectAPIAcountView.do"
+  },
+  "관광지-집중률-방문자-추이-예측-정보": {
+    "title": "[승인] 한국관광공사_관광지 집중률 방문자 추이 예측 정보",
+    "service": "TatsCnctrRateService",
+    "operations": [
+      "tatsCnctrRatedList"
+    ],
+    "param_containers": {
+      "": [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "tAtsNm",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "required": false
+        }
+      ]
+    },
+    "raw_titles": [
+      "기본정보",
+      "서비스정보",
+      "활용신청 상세기능정보",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "활용정보",
+      "라이센스표시",
+      "이메일주소"
+    ],
+    "url": "https://www.data.go.kr/iim/api/selectAPIAcountView.do"
+  },
+  "기초지자체-중심-관광지-정보": {
+    "title": "[승인] 한국관광공사_기초지자체 중심 관광지 정보",
+    "service": "LocgoHubTarService1",
+    "operations": [
+      "areaBasedList1"
+    ],
+    "param_containers": {
+      "": [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "required": false
+        }
+      ]
+    },
+    "raw_titles": [
+      "기본정보",
+      "서비스정보",
+      "활용신청 상세기능정보",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "활용정보",
+      "라이센스표시",
+      "이메일주소"
+    ],
+    "url": "https://www.data.go.kr/iim/api/selectAPIAcountView.do"
+  },
+  "지역별-관광-다양성": {
+    "title": "[승인] 한국관광공사_지역별 관광 다양성",
+    "service": "AreaTarDivService",
+    "operations": [
+      "areaTouDivList",
+      "areaExpDivList",
+      "areaIntlDivList"
+    ],
+    "param_containers": {
+      "": [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "touDivIxCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "required": false
+        }
+      ]
+    },
+    "raw_titles": [
+      "기본정보",
+      "서비스정보",
+      "활용신청 상세기능정보",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "활용정보",
+      "라이센스표시",
+      "이메일주소"
+    ],
+    "url": "https://www.data.go.kr/iim/api/selectAPIAcountView.do"
+  },
+  "지역별-관광-수요-강도": {
+    "title": "[승인] 한국관광공사_지역별 관광 수요 강도",
+    "service": "AreaTarDemDsService",
+    "operations": [
+      "areaTarSjrnDsList",
+      "areaTarExpDsList"
+    ],
+    "param_containers": {
+      "": [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "tarSjrnDsIxCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "required": false
+        }
+      ]
+    },
+    "raw_titles": [
+      "기본정보",
+      "서비스정보",
+      "활용신청 상세기능정보",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "활용정보",
+      "라이센스표시",
+      "이메일주소"
+    ],
+    "url": "https://www.data.go.kr/iim/api/selectAPIAcountView.do"
+  },
+  "지역별-관광-자원-수요": {
+    "title": "[승인] 한국관광공사_지역별 관광 자원 수요",
+    "service": "AreaTarResDemService",
+    "operations": [
+      "areaTarSvcDemList",
+      "areaCulResDemList"
+    ],
+    "param_containers": {
+      "": [
+        {
+          "name": "serviceKey",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "numOfRows",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "pageNo",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileOS",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "MobileApp",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "baseYm",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "areaCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "signguCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "tarSvcDemIxCd",
+          "sample": "",
+          "required": false
+        },
+        {
+          "name": "_type",
+          "sample": "",
+          "required": false
+        }
+      ]
+    },
+    "raw_titles": [
+      "기본정보",
+      "서비스정보",
+      "활용신청 상세기능정보",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "요청변수(Request Parameter)",
+      "활용정보",
+      "라이센스표시",
+      "이메일주소"
+    ],
+    "url": "https://www.data.go.kr/iim/api/selectAPIAcountView.do"
+  }
+}

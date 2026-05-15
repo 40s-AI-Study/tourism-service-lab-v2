@@ -1,0 +1,294 @@
+[
+  {
+    "slug": "빅데이터_지역별-방문자수",
+    "op": "metcoRegnVisitrDDList",
+    "items": 5,
+    "total": 51,
+    "params": {
+      "startYmd": "20210513",
+      "endYmd": "20210513"
+    },
+    "attempts": [
+      {
+        "params": {
+          "startYmd": "20210513",
+          "endYmd": "20210513"
+        },
+        "items": 5,
+        "total": 51,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "빅데이터_지역별-방문자수",
+    "op": "locgoRegnVisitrDDList",
+    "items": 5,
+    "total": 772,
+    "params": {
+      "startYmd": "20210513",
+      "endYmd": "20210513"
+    },
+    "attempts": [
+      {
+        "params": {
+          "startYmd": "20210513",
+          "endYmd": "20210513"
+        },
+        "items": 5,
+        "total": 772,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "관광지-집중률-방문자-추이-예측-정보",
+    "op": "tatsCnctrRatedList",
+    "items": 5,
+    "total": 30,
+    "params": {
+      "areaCd": "51",
+      "signguCd": "51130",
+      "tAtsNm": "%EA%B0%84%ED%98%84%EA%B4%80%EA%B4%91%EC%A7%80"
+    },
+    "attempts": [
+      {
+        "params": {
+          "areaCd": "51",
+          "signguCd": "51130",
+          "tAtsNm": "%EA%B0%84%ED%98%84%EA%B4%80%EA%B4%91%EC%A7%80"
+        },
+        "items": 5,
+        "total": 30,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "기초지자체-중심-관광지-정보",
+    "op": "areaBasedList1",
+    "items": 0,
+    "total": 0,
+    "params": null,
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202503",
+          "areaCd": "11",
+          "signguCd": "11530"
+        },
+        "items": 0,
+        "total": 0,
+        "code": null,
+        "msg": null
+      },
+      {
+        "params": {
+          "baseYm": "202502",
+          "areaCd": "11",
+          "signguCd": "11530"
+        },
+        "items": 0,
+        "total": 0,
+        "code": null,
+        "msg": null
+      },
+      {
+        "params": {
+          "baseYm": "202401",
+          "areaCd": "11",
+          "signguCd": "11110"
+        },
+        "items": 0,
+        "total": 0,
+        "code": null,
+        "msg": null
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-다양성",
+    "op": "areaTouDivList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "touDivIxCd": "3103"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "touDivIxCd": "3103"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-다양성",
+    "op": "areaExpDivList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "expDivIxCd": "3201"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "expDivIxCd": "3201"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-다양성",
+    "op": "areaIntlDivList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "intlDivIxCd": "3301"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "intlDivIxCd": "3301"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-수요-강도",
+    "op": "areaTarSjrnDsList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "tarSjrnDsIxCd": "2103"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "tarSjrnDsIxCd": "2103"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-수요-강도",
+    "op": "areaTarExpDsList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "tarExpDsIxCd": "2201"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "tarExpDsIxCd": "2201"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-자원-수요",
+    "op": "areaTarSvcDemList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "tarSvcDemIxCd": "1101"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "tarSvcDemIxCd": "1101"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-자원-수요",
+    "op": "areaCulResDemList",
+    "items": 1,
+    "total": 1,
+    "params": {
+      "baseYm": "202509",
+      "areaCd": "11",
+      "signguCd": "11530",
+      "culResDemIxCd": "1201"
+    },
+    "attempts": [
+      {
+        "params": {
+          "baseYm": "202509",
+          "areaCd": "11",
+          "signguCd": "11530",
+          "culResDemIxCd": "1201"
+        },
+        "items": 1,
+        "total": 1,
+        "code": "0000",
+        "msg": "OK"
+      }
+    ]
+  }
+]
