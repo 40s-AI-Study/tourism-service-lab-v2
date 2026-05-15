@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Fetch real samples for all 17 approved KTO APIs using metadata
 scraped from data.go.kr by scrape-datago-apis.py."""
-import json, re, time, urllib.parse, urllib.request, ssl
+import json, os, re, time, urllib.parse, urllib.request, ssl
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# 환경변수 KTO_SERVICE_KEY가 설정된 경우 메타데이터의 키를 덮어씁니다.
+# 미설정 시 scripts/datago-apis.json의 __serviceKeys__[0] 값을 그대로 사용합니다.
+_ENV_SERVICE_KEY = os.environ.get("KTO_SERVICE_KEY", "")
 
 ROOT = Path(__file__).resolve().parent.parent
 META = ROOT / "scripts/datago-apis.json"
@@ -194,7 +198,7 @@ def main():
                 base = f"https://apis.data.go.kr/{m.group(1)}/{m.group(2)}"
                 break
         keys = d.get("__serviceKeys__", [])
-        skey = keys[0] if keys else ""
+        skey = _ENV_SERVICE_KEY or (keys[0] if keys else "")
         ops = extract_operations(d)
         # also include operation names appearing in endpoints
         for e in endpoints:

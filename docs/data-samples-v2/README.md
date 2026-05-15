@@ -10,6 +10,11 @@
 ## 개발자 문서
 
 - [**DEVELOPER_GUIDE.md**](./DEVELOPER_GUIDE.md) — TripCraft Korea 서비스 통합용 17 API 완전 가이드 (인증·에러·매핑·샘플코드)
+- [**DATA_SPEC.md**](./DATA_SPEC.md) — 전체 17 API 응답 필드 스펙 마스터 인덱스
+- [**CREDENTIALS.md**](./CREDENTIALS.md) — 인증키 정보 및 보안 정책
+
+> ⚠️ **실제 운영 시 주의**: `CREDENTIALS.md`에 기재된 ServiceKey는 **로컬 개발 참조용**입니다.  
+> 배포 환경에서는 반드시 환경변수(`KTO_SERVICE_KEY`)로 분리하십시오.
 
 ## 요약 (105 오퍼레이션 중 **71개 데이터 확보**)
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Final fixer: uses EXACT sample params scraped from data.go.kr detail pages.
 Each operation gets its spec sample params first, with light fallback variants."""
-import json, ssl, time, urllib.parse, urllib.request
+import json, os, ssl, time, urllib.parse, urllib.request
 from pathlib import Path
 
 ROOT = Path("/Users/sklee01/tourism-service-lab-v2")
 OUT_DIR = ROOT/"docs/data-samples-v2"
 CTX = ssl.create_default_context()
 CTX.check_hostname = False; CTX.verify_mode = ssl.CERT_NONE
-SK = "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+SK = os.environ.get("KTO_SERVICE_KEY", "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e")
 COMMON = {"MobileOS": "ETC", "MobileApp": "TripCraftKorea", "_type": "json",
           "numOfRows": "5", "pageNo": "1"}
 
