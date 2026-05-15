@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Festival de Rosas de Jungnang - Seúl 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1350px; overflow: hidden; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .card {
+    width: 1080px; height: 1350px; position: relative;
+    background: linear-gradient(160deg, #2d0a1e 0%, #6b1d4e 25%, #c2446e 55%, #f4a0b5 80%, #fce4ec 100%);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 80px 70px;
+  }
+  .roses {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; pointer-events: none;
+  }
+  .rose {
+    position: absolute; font-size: 60px; opacity: 0.12;
+  }
+  .rose:nth-child(1) { top: 4%; left: 5%; font-size: 70px; opacity: 0.15; transform: rotate(-20deg); }
+  .rose:nth-child(2) { top: 8%; left: 40%; font-size: 50px; opacity: 0.1; transform: rotate(15deg); }
+  .rose:nth-child(3) { top: 3%; left: 75%; font-size: 65px; opacity: 0.12; transform: rotate(-10deg); }
+  .rose:nth-child(4) { top: 16%; left: 20%; font-size: 45px; opacity: 0.08; transform: rotate(25deg); }
+  .rose:nth-child(5) { top: 14%; left: 60%; font-size: 55px; opacity: 0.1; transform: rotate(-30deg); }
+  .rose:nth-child(6) { top: 20%; left: 85%; font-size: 40px; opacity: 0.08; transform: rotate(5deg); }
+  .petal-glow {
+    position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(244,160,181,0.15) 0%, transparent 70%);
+  }
+  .top-section { position: relative; z-index: 2; }
+  .badge {
+    display: inline-block; background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 30px; padding: 12px 28px;
+    font-size: 22px; color: #f4a0b5; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 30px;
+  }
+  .photo-badge {
+    display: inline-block; background: rgba(244,160,181,0.2);
+    border: 1px solid rgba(244,160,181,0.4);
+    border-radius: 20px; padding: 8px 20px;
+    font-size: 18px; color: #f4a0b5; font-weight: 500; margin-left: 15px; margin-bottom: 30px;
+  }
+  .title {
+    font-size: 72px; font-weight: 800; color: #fff;
+    line-height: 1.15; letter-spacing: -1px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    font-size: 30px; color: rgba(255,255,255,0.75);
+    font-weight: 300; line-height: 1.4;
+  }
+  .middle-section {
+    position: relative; z-index: 2;
+    display: flex; gap: 20px; justify-content: center;
+  }
+  .info-pill {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px; padding: 24px 32px;
+    text-align: center; flex: 1;
+  }
+  .info-pill .icon { font-size: 36px; margin-bottom: 10px; }
+  .info-pill .label { font-size: 18px; color: rgba(255,255,255,0.55); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 2px; }
+  .info-pill .value { font-size: 26px; color: #fff; font-weight: 700; }
+  .bottom-section { position: relative; z-index: 2; }
+  .stats-row {
+    display: flex; gap: 16px; margin-bottom: 30px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px; padding: 22px; text-align: center; flex: 1;
+  }
+  .stat .number { font-size: 36px; color: #f4a0b5; font-weight: 800; margin-bottom: 4px; }
+  .stat .desc { font-size: 18px; color: rgba(255,255,255,0.7); font-weight: 400; }
+  .highlight-box {
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px; padding: 35px 40px;
+    margin-bottom: 30px;
+  }
+  .highlight-text {
+    font-size: 28px; color: rgba(255,255,255,0.85); line-height: 1.6; font-weight: 300;
+  }
+  .highlight-text strong { color: #f4a0b5; font-weight: 700; }
+  .free-tag {
+    display: inline-block; background: #f4a0b5; color: #2d0a1e;
+    border-radius: 16px; padding: 14px 40px;
+    font-size: 28px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .branding {
+    position: absolute; bottom: 30px; right: 70px;
+    font-size: 16px; color: rgba(255,255,255,0.3); letter-spacing: 1px; z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="roses">
+    <div class="rose">🌹</div><div class="rose">🌹</div><div class="rose">🌹</div>
+    <div class="rose">🌹</div><div class="rose">🌹</div><div class="rose">🌹</div>
+  </div>
+  <div class="petal-glow"></div>
+
+  <div class="top-section">
+    <span class="badge">Seúl 2026</span>
+    <span class="photo-badge">📸 Instagrameable</span>
+    <h1 class="title">Festival<br>de Rosas<br>de Jungnang</h1>
+    <p class="subtitle">중랑 장미축제 · Río Jungnangcheon</p>
+  </div>
+
+  <div class="middle-section">
+    <div class="info-pill">
+      <div class="icon">📅</div>
+      <div class="label">Fecha</div>
+      <div class="value">15–23 May</div>
+    </div>
+    <div class="info-pill">
+      <div class="icon">📍</div>
+      <div class="label">Lugar</div>
+      <div class="value">Jungnang</div>
+    </div>
+    <div class="info-pill">
+      <div class="icon">🎫</div>
+      <div class="label">Entrada</div>
+      <div class="value">Gratis</div>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="stats-row">
+      <div class="stat"><div class="number">5.8km</div><div class="desc">Sendero</div></div>
+      <div class="stat"><div class="number">20K+</div><div class="desc">Rosales</div></div>
+      <div class="stat"><div class="number">100+</div><div class="desc">Variedades</div></div>
+    </div>
+    <div class="highlight-box">
+      <p class="highlight-text">
+        Un <strong>túnel de rosas</strong> a orillas del río.
+        El lugar más <strong>instagrameable</strong> de Seúl en mayo.
+      </p>
+    </div>
+    <span class="free-tag">Entrada Gratuita</span>
+  </div>
+
+  <div class="branding">KoreaFestival Live · @visitkorea</div>
+</div>
+</body>
+</html>
