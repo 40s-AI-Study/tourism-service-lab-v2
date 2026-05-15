@@ -1,0 +1,16 @@
+{
+  "title": "[승인] 한국관광공사_생태 관광 정보_GW",
+  "base": "https://apis.data.go.kr/B551011/GreenTourService1",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/GreenTourService1",
+    "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1",
+    "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedSyncList1",
+    "http://apis.data.go.kr/B551011/GreenTourService1/areaCode1"
+  ],
+  "operations_attempted": [
+    "areaBasedList1",
+    "areaBasedSyncList1",
+    "areaCode1"
+  ],
+  "serviceKey_present": true
+}

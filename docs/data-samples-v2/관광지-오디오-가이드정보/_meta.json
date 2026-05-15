@@ -1,0 +1,26 @@
+{
+  "title": "[승인] 한국관광공사_관광지 오디오 가이드정보_GW",
+  "base": "https://apis.data.go.kr/B551011/Odii",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/Odii",
+    "http://apis.data.go.kr/B551011/Odii/themeBasedList",
+    "http://apis.data.go.kr/B551011/Odii/themeLocationBasedList",
+    "http://apis.data.go.kr/B551011/Odii/themeSearchList",
+    "http://apis.data.go.kr/B551011/Odii/storyBasedList",
+    "http://apis.data.go.kr/B551011/Odii/storyLocationBasedList",
+    "http://apis.data.go.kr/B551011/Odii/storySearchList",
+    "http://apis.data.go.kr/B551011/Odii/themeBasedSyncList",
+    "http://apis.data.go.kr/B551011/Odii/storyBasedSyncList"
+  ],
+  "operations_attempted": [
+    "storyBasedList",
+    "storyBasedSyncList",
+    "storyLocationBasedList",
+    "storySearchList",
+    "themeBasedList",
+    "themeBasedSyncList",
+    "themeLocationBasedList",
+    "themeSearchList"
+  ],
+  "serviceKey_present": true
+}

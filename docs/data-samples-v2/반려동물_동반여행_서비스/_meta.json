@@ -1,0 +1,36 @@
+{
+  "title": "[승인] 한국관광공사_반려동물_동반여행_서비스",
+  "base": "https://apis.data.go.kr/B551011/KorPetTourService2",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/KorPetTourService2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/detailImage2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/categoryCode2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/areaBasedList2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/searchKeyword2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/detailCommon2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/detailIntro2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/detailInfo2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/detailPetTour2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/petTourSyncList2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/areaCode2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/locationBasedList2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/ldongCode2",
+    "http://apis.data.go.kr/B551011/KorPetTourService2/lclsSystmCode2"
+  ],
+  "operations_attempted": [
+    "areaBasedList2",
+    "areaCode2",
+    "categoryCode2",
+    "detailCommon2",
+    "detailImage2",
+    "detailInfo2",
+    "detailIntro2",
+    "detailPetTour2",
+    "lclsSystmCode2",
+    "ldongCode2",
+    "locationBasedList2",
+    "petTourSyncList2",
+    "searchKeyword2"
+  ],
+  "serviceKey_present": true
+}

@@ -1,0 +1,88 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySyncDetailList1?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "galContentId": "",
+              "galContentTypeId": "17",
+              "galTitle": "가리왕산",
+              "galWebImageUrl": "",
+              "galCreatedtime": "20241231134753",
+              "galModifiedtime": "20260311132611",
+              "galPhotographyMonth": "202410",
+              "galPhotographyLocation": "강원특별자치도 정선군 정선읍",
+              "galPhotographer": "홍정표",
+              "galSearchKeyword": "가리왕산, 강원특별자치도 정선군, 강원도, 케이블카, 파노라마, 10월 추천여행지, 사진기자단, 프레임코리아2기",
+              "galUseFlag": "1"
+            },
+            {
+              "galContentId": "1002124",
+              "galContentTypeId": "17",
+              "galTitle": "청설모",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/24/1002124.jpg",
+              "galCreatedtime": "20100420023750",
+              "galModifiedtime": "20240709172021",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 경복궁",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "청설모, 동물",
+              "galUseFlag": "1"
+            },
+            {
+              "galContentId": "1002129",
+              "galContentTypeId": "17",
+              "galTitle": "청설모",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/29/1002129.jpg",
+              "galCreatedtime": "20100420024205",
+              "galModifiedtime": "20150818231430",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 경복궁",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "청설모, 동물",
+              "galUseFlag": "1"
+            },
+            {
+              "galContentId": "1002133",
+              "galContentTypeId": "17",
+              "galTitle": "청설모",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/33/1002133.jpg",
+              "galCreatedtime": "20100420024401",
+              "galModifiedtime": "20150818231415",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 경복궁",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "청설모, 동물",
+              "galUseFlag": "1"
+            },
+            {
+              "galContentId": "1002136",
+              "galContentTypeId": "17",
+              "galTitle": "청설모",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/36/1002136.jpg",
+              "galCreatedtime": "20100420024557",
+              "galModifiedtime": "20150818231354",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 경복궁",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "청설모, 동물",
+              "galUseFlag": "1"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 107605
+      }
+    }
+  }
+}

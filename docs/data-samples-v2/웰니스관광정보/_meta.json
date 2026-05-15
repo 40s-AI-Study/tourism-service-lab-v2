@@ -1,0 +1,28 @@
+{
+  "title": "[승인] 한국관광공사_웰니스관광정보",
+  "base": "https://apis.data.go.kr/B551011/WellnessTursmService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/WellnessTursmService",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/ldongCode",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/areaBasedList",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/locationBasedList",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/searchKeyword",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/wellnessTursmSyncList",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/detailCommon",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/detailIntro",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/detailInfo",
+    "http://apis.data.go.kr/B551011/WellnessTursmService/detailImage"
+  ],
+  "operations_attempted": [
+    "areaBasedList",
+    "detailCommon",
+    "detailImage",
+    "detailInfo",
+    "detailIntro",
+    "ldongCode",
+    "locationBasedList",
+    "searchKeyword",
+    "wellnessTursmSyncList"
+  ],
+  "serviceKey_present": true
+}

@@ -1,0 +1,18 @@
+{
+  "title": "[승인] 한국관광공사_관광사진 정보_GW",
+  "base": "https://apis.data.go.kr/B551011/PhotoGalleryService1",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/PhotoGalleryService1",
+    "http://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1",
+    "http://apis.data.go.kr/B551011/PhotoGalleryService1/galleryDetailList1",
+    "http://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySyncDetailList1",
+    "http://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1"
+  ],
+  "operations_attempted": [
+    "galleryDetailList1",
+    "galleryList1",
+    "gallerySearchList1",
+    "gallerySyncDetailList1"
+  ],
+  "serviceKey_present": true
+}

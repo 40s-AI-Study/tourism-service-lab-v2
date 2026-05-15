@@ -1,0 +1,14 @@
+{
+  "title": "[승인] 한국관광공사_지역별 관광 수요 강도",
+  "base": "https://apis.data.go.kr/B551011/AreaTarDemDsService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/AreaTarDemDsService",
+    "http://apis.data.go.kr/B551011/AreaTarDemDsService/areaTarSjrnDsList",
+    "http://apis.data.go.kr/B551011/AreaTarDemDsService/areaTarExpDsList"
+  ],
+  "operations_attempted": [
+    "areaTarExpDsList",
+    "areaTarSjrnDsList"
+  ],
+  "serviceKey_present": true
+}

@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "status": 200,
+  "url": "https://apis.data.go.kr/B551011/Odii/themeBasedList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langCode=ko",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "tid": "1",
+              "tlid": "1",
+              "themeCategory": "백제역사여행",
+              "addr1": "충청남도",
+              "addr2": "부여군",
+              "title": "백제문화단지",
+              "mapX": "126.905507",
+              "mapY": "36.306984",
+              "langCheck": "11110",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923193941",
+              "modifiedtime": "20241206125533"
+            },
+            {
+              "tid": "2",
+              "tlid": "5",
+              "themeCategory": "신라역사여행",
+              "addr1": "경상북도",
+              "addr2": "경주시",
+              "title": "경주 불국사",
+              "mapX": "129.332099",
+              "mapY": "35.790122",
+              "langCheck": "11111",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194000",
+              "modifiedtime": "20250609183759"
+            },
+            {
+              "tid": "4",
+              "tlid": "13",
+              "themeCategory": "신라역사여행",
+              "addr1": "경상북도",
+              "addr2": "경주시",
+              "title": "괘릉",
+              "mapX": "129.320083",
+              "mapY": "35.759648",
+              "langCheck": "11110",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194001",
+              "modifiedtime": "20200921110253"
+            },
+            {
+              "tid": "6",
+              "tlid": "20",
+              "themeCategory": "신라역사여행",
+              "addr1": "경상북도",
+              "addr2": "경주시",
+              "title": "감은사지",
+              "mapX": "129.477159",
+              "mapY": "35.74826",
+              "langCheck": "11100",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194001",
+              "modifiedtime": "20200615150033"
+            },
+            {
+              "tid": "7",
+              "tlid": "23",
+              "themeCategory": "오쾌남",
+              "addr1": "경상북도",
+              "addr2": "경주시",
+              "title": "문무대왕릉",
+              "mapX": "129.486853",
+              "mapY": "35.738213",
+              "langCheck": "11100",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194001",
+              "modifiedtime": "20200615150235"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 2231
+      }
+    }
+  }
+}

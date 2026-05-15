@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/KorService2/ldongCode2?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "rnum": 1,
+              "code": "11",
+              "name": "서울특별시"
+            },
+            {
+              "rnum": 2,
+              "code": "26",
+              "name": "부산광역시"
+            },
+            {
+              "rnum": 3,
+              "code": "27",
+              "name": "대구광역시"
+            },
+            {
+              "rnum": 4,
+              "code": "28",
+              "name": "인천광역시"
+            },
+            {
+              "rnum": 5,
+              "code": "29",
+              "name": "광주광역시"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 17
+      }
+    }
+  }
+}

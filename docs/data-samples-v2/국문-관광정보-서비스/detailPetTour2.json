@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/KorService2/detailPetTour2?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "contentid": "1019041",
+              "relaAcdntRiskMtr": "",
+              "acmpyTypeCd": "전구역 동반가능",
+              "relaPosesFclty": "",
+              "relaFrnshPrdlst": "",
+              "etcAcmpyInfo": "- 맹견의 경우, 입마개 착용 필수\n- 배변봉투 지참 및 배변처리 필수",
+              "relaPurcPrdlst": "",
+              "acmpyPsblCpam": "전 견종 동반 가능",
+              "relaRntlPrdlst": "",
+              "acmpyNeedMtr": "목줄 착용"
+            },
+            {
+              "contentid": "1021339",
+              "relaAcdntRiskMtr": "",
+              "acmpyTypeCd": "전구역 동반가능",
+              "relaPosesFclty": "",
+              "relaFrnshPrdlst": "",
+              "etcAcmpyInfo": "- 맹견의 경우, 입마개 착용 필수\n- 배변봉투 지참 및 배변처리 필수",
+              "relaPurcPrdlst": "",
+              "acmpyPsblCpam": "전 견종 동반 가능",
+              "relaRntlPrdlst": "",
+              "acmpyNeedMtr": "목줄 착용"
+            },
+            {
+              "contentid": "1032715",
+              "relaAcdntRiskMtr": "전 견종 출입 가능(맹견의 경우, 입마개 착용 필수)",
+              "acmpyTypeCd": "일부구역 동반가능",
+              "relaPosesFclty": "",
+              "relaFrnshPrdlst": "",
+              "etcAcmpyInfo": "별도의 쓰레기 처리 시설이 없으므로 배변봉투 지참 및 수거 필수",
+              "relaPurcPrdlst": "",
+              "acmpyPsblCpam": "전 견종 출입 가능(맹견의 경우, 입마개 착용 필수)",
+              "relaRntlPrdlst": "",
+              "acmpyNeedMtr": "목줄 착용"
+            },
+            {
+              "contentid": "1037031",
+              "relaAcdntRiskMtr": "",
+              "acmpyTypeCd": "전구역 동반가능",
+              "relaPosesFclty": "",
+              "relaFrnshPrdlst": "",
+              "etcAcmpyInfo": "- 맹견의 경우, 입마개 착용 필수\n- 배변봉투 지참 및 배변처리 필수",
+              "relaPurcPrdlst": "",
+              "acmpyPsblCpam": "전 견종 동반 가능",
+              "relaRntlPrdlst": "",
+              "acmpyNeedMtr": "목줄 착용"
+            },
+            {
+              "contentid": "1039170",
+              "relaAcdntRiskMtr": "이동장(켄넬)에 들어가는 전 견종 동반 가능",
+              "acmpyTypeCd": "전구역 동반가능",
+              "relaPosesFclty": "",
+              "relaFrnshPrdlst": "",
+              "etcAcmpyInfo": "반려동물의 몸이 외부에 노출되면 동반 불가",
+              "relaPurcPrdlst": "",
+              "acmpyPsblCpam": "이동장(켄넬)에 들어가는 전 견종 동반 가능",
+              "relaRntlPrdlst": "",
+              "acmpyNeedMtr": "반려동물 유모차 탑승,이동장(켄넬)사용"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 9992
+      }
+    }
+  }
+}

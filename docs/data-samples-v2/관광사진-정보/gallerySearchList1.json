@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&keyword=%EA%B2%BD%EB%B3%B5%EA%B6%81&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "galContentId": "1002175",
+              "galContentTypeId": "17",
+              "galTitle": "경복궁 수문장 교대의식",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/75/1002175.jpg",
+              "galCreatedtime": "20100420030247",
+              "galModifiedtime": "20230422223324",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울특별시 종로구",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "경복궁 수문장 교대의식, 서울특별시 종로구, 전통 행사, 전통 의식"
+            },
+            {
+              "galContentId": "1002211",
+              "galContentTypeId": "17",
+              "galTitle": "국립민속박물관",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/11/1002211.jpg",
+              "galCreatedtime": "20100420181930",
+              "galModifiedtime": "20150818232140",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "경복궁, 자경전, 꽃담, 봄, 살구꽃"
+            },
+            {
+              "galContentId": "1002218",
+              "galContentTypeId": "17",
+              "galTitle": "국립민속박물관",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/18/1002218.jpg",
+              "galCreatedtime": "20100420182658",
+              "galModifiedtime": "20150818232111",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "경복궁, 자경전, 꽃담, 봄, 살구꽃"
+            },
+            {
+              "galContentId": "1002228",
+              "galContentTypeId": "17",
+              "galTitle": "국립민속박물관",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/28/1002228.jpg",
+              "galCreatedtime": "20100420182855",
+              "galModifiedtime": "20150818232023",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "국립민속박물관, 경복궁, 고궁, 벚꽃 , 봄꽃, 봄"
+            },
+            {
+              "galContentId": "1002244",
+              "galContentTypeId": "17",
+              "galTitle": "국립민속박물관",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/44/1002244.jpg",
+              "galCreatedtime": "20100420183113",
+              "galModifiedtime": "20150818232007",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "국립민속박물관, 경복궁, 고궁, 개나리, 봄꽃, 봄"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 532
+      }
+    }
+  }
+}

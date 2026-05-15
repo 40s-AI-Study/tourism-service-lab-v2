@@ -1,0 +1,52 @@
+{
+  "ok": true,
+  "status": 200,
+  "url": "https://apis.data.go.kr/B551011/Odii/themeSearchList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langCode=ko&keyword=%EA%B2%BD%EB%B3%B5%EA%B6%81",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "tid": "2573",
+              "tlid": "2573",
+              "themeCategory": "",
+              "addr1": "서울",
+              "addr2": "종로구",
+              "title": "경복궁",
+              "mapX": "126.977041",
+              "mapY": "37.579651",
+              "langCheck": "11111",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20191108125351",
+              "modifiedtime": "20250609173523"
+            },
+            {
+              "tid": "3375",
+              "tlid": "5093",
+              "themeCategory": "",
+              "addr1": "서울",
+              "addr2": "종로구",
+              "title": "경복궁(고궁 스토리텔링)",
+              "mapX": "126.97704",
+              "mapY": "37.579617",
+              "langCheck": "10000",
+              "langCode": "ko",
+              "imageUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/sightImage/service/3375.jpg",
+              "createdtime": "20240125120046",
+              "modifiedtime": "20240125120100"
+            }
+          ]
+        },
+        "numOfRows": 2,
+        "pageNo": 1,
+        "totalCount": 2
+      }
+    }
+  }
+}

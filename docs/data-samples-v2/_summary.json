@@ -1,0 +1,785 @@
+[
+  {
+    "slug": "고캠핑-정보-조회서비스",
+    "title": "[승인] 한국관광공사_고캠핑 정보 조회서비스_GW",
+    "base": "https://apis.data.go.kr/B551011/GoCamping",
+    "ops_total": 5,
+    "ops_with_data": 3,
+    "samples": [
+      {
+        "op": "basedList",
+        "items": 5,
+        "totalCount": 3091,
+        "status": "OK"
+      },
+      {
+        "op": "basedSyncList",
+        "items": 5,
+        "totalCount": 5187,
+        "status": "OK"
+      },
+      {
+        "op": "imageList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "searchList",
+        "items": 5,
+        "totalCount": 1474,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "관광사진-정보",
+    "title": "[승인] 한국관광공사_관광사진 정보_GW",
+    "base": "https://apis.data.go.kr/B551011/PhotoGalleryService1",
+    "ops_total": 4,
+    "ops_with_data": 3,
+    "samples": [
+      {
+        "op": "galleryDetailList1",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "galleryList1",
+        "items": 5,
+        "totalCount": 6119,
+        "status": "OK"
+      },
+      {
+        "op": "gallerySearchList1",
+        "items": 5,
+        "totalCount": 532,
+        "status": "OK"
+      },
+      {
+        "op": "gallerySyncDetailList1",
+        "items": 5,
+        "totalCount": 107605,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "관광지-오디오-가이드정보",
+    "title": "[승인] 한국관광공사_관광지 오디오 가이드정보_GW",
+    "base": "https://apis.data.go.kr/B551011/Odii",
+    "ops_total": 8,
+    "ops_with_data": 6,
+    "samples": [
+      {
+        "op": "storyBasedList",
+        "items": 5,
+        "totalCount": 6281,
+        "status": "OK"
+      },
+      {
+        "op": "storyBasedSyncList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "storyLocationBasedList",
+        "items": 5,
+        "totalCount": 625,
+        "status": "OK"
+      },
+      {
+        "op": "storySearchList",
+        "items": 5,
+        "totalCount": 27,
+        "status": "OK"
+      },
+      {
+        "op": "themeBasedList",
+        "items": 5,
+        "totalCount": 2231,
+        "status": "OK"
+      },
+      {
+        "op": "themeBasedSyncList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "themeLocationBasedList",
+        "items": 5,
+        "totalCount": 158,
+        "status": "OK"
+      },
+      {
+        "op": "themeSearchList",
+        "items": 2,
+        "totalCount": 2,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "관광지-집중률-방문자-추이-예측-정보",
+    "title": "[승인] 한국관광공사_관광지 집중률 방문자 추이 예측 정보",
+    "base": "https://apis.data.go.kr/B551011/TatsCnctrRateService",
+    "ops_total": 1,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "tatsCnctrRatedList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "국문-관광정보-서비스",
+    "title": "[승인] 한국관광공사_국문 관광정보 서비스_GW",
+    "base": "https://apis.data.go.kr/B551011/KorService2",
+    "ops_total": 15,
+    "ops_with_data": 14,
+    "samples": [
+      {
+        "op": "areaBasedList2",
+        "items": 5,
+        "totalCount": 50872,
+        "status": "OK"
+      },
+      {
+        "op": "areaBasedSyncList2",
+        "items": 5,
+        "totalCount": 68236,
+        "status": "OK"
+      },
+      {
+        "op": "areaCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "categoryCode2",
+        "items": 5,
+        "totalCount": 7,
+        "status": "OK"
+      },
+      {
+        "op": "detailCommon2",
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK"
+      },
+      {
+        "op": "detailImage2",
+        "items": 5,
+        "totalCount": 6,
+        "status": "OK"
+      },
+      {
+        "op": "detailInfo2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailIntro2",
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK"
+      },
+      {
+        "op": "detailPetTour2",
+        "items": 5,
+        "totalCount": 9992,
+        "status": "OK"
+      },
+      {
+        "op": "lclsSystmCode2",
+        "items": 5,
+        "totalCount": 10,
+        "status": "OK"
+      },
+      {
+        "op": "ldongCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList2",
+        "items": 5,
+        "totalCount": 501,
+        "status": "OK"
+      },
+      {
+        "op": "searchFestival2",
+        "items": 5,
+        "totalCount": 383,
+        "status": "OK"
+      },
+      {
+        "op": "searchKeyword2",
+        "items": 5,
+        "totalCount": 15,
+        "status": "OK"
+      },
+      {
+        "op": "searchStay2",
+        "items": 5,
+        "totalCount": 3475,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "기초지자체-중심-관광지-정보",
+    "title": "[승인] 한국관광공사_기초지자체 중심 관광지 정보",
+    "base": "https://apis.data.go.kr/B551011/LocgoHubTarService1",
+    "ops_total": 1,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "areaBasedList1",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "두루누비-정보-서비스",
+    "title": "[승인] 한국관광공사_두루누비 정보 서비스_GW",
+    "base": "https://apis.data.go.kr/B551011/Durunubi",
+    "ops_total": 2,
+    "ops_with_data": 2,
+    "samples": [
+      {
+        "op": "courseList",
+        "items": 5,
+        "totalCount": 261,
+        "status": "OK"
+      },
+      {
+        "op": "routeList",
+        "items": 4,
+        "totalCount": 4,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "무장애-여행-정보",
+    "title": "[승인] 한국관광공사_무장애 여행 정보",
+    "base": "https://apis.data.go.kr/B551011/KorWithService2",
+    "ops_total": 13,
+    "ops_with_data": 11,
+    "samples": [
+      {
+        "op": "areaBasedList2",
+        "items": 5,
+        "totalCount": 10002,
+        "status": "OK"
+      },
+      {
+        "op": "areaBasedSyncList2",
+        "items": 5,
+        "totalCount": 11344,
+        "status": "OK"
+      },
+      {
+        "op": "areaCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "categoryCode2",
+        "items": 5,
+        "totalCount": 7,
+        "status": "OK"
+      },
+      {
+        "op": "detailCommon2",
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK"
+      },
+      {
+        "op": "detailImage2",
+        "items": 5,
+        "totalCount": 6,
+        "status": "OK"
+      },
+      {
+        "op": "detailInfo2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailIntro2",
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK"
+      },
+      {
+        "op": "detailWithTour2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "lclsSystmCode2",
+        "items": 5,
+        "totalCount": 10,
+        "status": "OK"
+      },
+      {
+        "op": "ldongCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList2",
+        "items": 5,
+        "totalCount": 168,
+        "status": "OK"
+      },
+      {
+        "op": "searchKeyword2",
+        "items": 2,
+        "totalCount": 2,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "반려동물_동반여행_서비스",
+    "title": "[승인] 한국관광공사_반려동물_동반여행_서비스",
+    "base": "https://apis.data.go.kr/B551011/KorPetTourService2",
+    "ops_total": 13,
+    "ops_with_data": 8,
+    "samples": [
+      {
+        "op": "areaBasedList2",
+        "items": 5,
+        "totalCount": 9781,
+        "status": "OK"
+      },
+      {
+        "op": "areaCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "categoryCode2",
+        "items": 5,
+        "totalCount": 7,
+        "status": "OK"
+      },
+      {
+        "op": "detailCommon2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailImage2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailInfo2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailIntro2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailPetTour2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "lclsSystmCode2",
+        "items": 5,
+        "totalCount": 10,
+        "status": "OK"
+      },
+      {
+        "op": "ldongCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList2",
+        "items": 5,
+        "totalCount": 14,
+        "status": "OK"
+      },
+      {
+        "op": "petTourSyncList2",
+        "items": 5,
+        "totalCount": 10166,
+        "status": "OK"
+      },
+      {
+        "op": "searchKeyword2",
+        "items": 3,
+        "totalCount": 3,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "빅데이터_지역별-방문자수",
+    "title": "[승인] 한국관광공사_빅데이터_지역별 방문자수_GW",
+    "base": "https://apis.data.go.kr/B551011/DataLabService",
+    "ops_total": 2,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "locgoRegnVisitrDDList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "metcoRegnVisitrDDList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "생태-관광-정보",
+    "title": "[승인] 한국관광공사_생태 관광 정보_GW",
+    "base": "https://apis.data.go.kr/B551011/GreenTourService1",
+    "ops_total": 3,
+    "ops_with_data": 3,
+    "samples": [
+      {
+        "op": "areaBasedList1",
+        "items": 5,
+        "totalCount": 5,
+        "status": "OK"
+      },
+      {
+        "op": "areaBasedSyncList1",
+        "items": 5,
+        "totalCount": 230,
+        "status": "OK"
+      },
+      {
+        "op": "areaCode1",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "웰니스관광정보",
+    "title": "[승인] 한국관광공사_웰니스관광정보",
+    "base": "https://apis.data.go.kr/B551011/WellnessTursmService",
+    "ops_total": 9,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "areaBasedList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailCommon",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailImage",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailInfo",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailIntro",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "ldongCode",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "searchKeyword",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "wellnessTursmSyncList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "의료관광정보",
+    "title": "[승인] 한국관광공사_의료관광정보",
+    "base": "https://apis.data.go.kr/B551011/MdclTursmService",
+    "ops_total": 8,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "areaBasedList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailCommon",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailIntro",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailMdclTursm",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "ldongCode",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "mdclTursmSyncList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "searchKeyword",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "일문-관광정보서비스",
+    "title": "[승인] 한국관광공사_일문 관광정보서비스_GW",
+    "base": "https://apis.data.go.kr/B551011/JpnService2",
+    "ops_total": 14,
+    "ops_with_data": 10,
+    "samples": [
+      {
+        "op": "areaBasedList2",
+        "items": 5,
+        "totalCount": 15770,
+        "status": "OK"
+      },
+      {
+        "op": "areaBasedSyncList2",
+        "items": 5,
+        "totalCount": 24729,
+        "status": "OK"
+      },
+      {
+        "op": "areaCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "categoryCode2",
+        "items": 5,
+        "totalCount": 7,
+        "status": "OK"
+      },
+      {
+        "op": "detailCommon2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailImage2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailInfo2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "detailIntro2",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "lclsSystmCode2",
+        "items": 5,
+        "totalCount": 9,
+        "status": "OK"
+      },
+      {
+        "op": "ldongCode2",
+        "items": 5,
+        "totalCount": 17,
+        "status": "OK"
+      },
+      {
+        "op": "locationBasedList2",
+        "items": 5,
+        "totalCount": 188,
+        "status": "OK"
+      },
+      {
+        "op": "searchFestival2",
+        "items": 5,
+        "totalCount": 103,
+        "status": "OK"
+      },
+      {
+        "op": "searchKeyword2",
+        "items": 5,
+        "totalCount": 6,
+        "status": "OK"
+      },
+      {
+        "op": "searchStay2",
+        "items": 5,
+        "totalCount": 514,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-다양성",
+    "title": "[승인] 한국관광공사_지역별 관광 다양성",
+    "base": "https://apis.data.go.kr/B551011/AreaTarDivService",
+    "ops_total": 3,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "areaExpDivList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "areaIntlDivList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "areaTouDivList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-수요-강도",
+    "title": "[승인] 한국관광공사_지역별 관광 수요 강도",
+    "base": "https://apis.data.go.kr/B551011/AreaTarDemDsService",
+    "ops_total": 2,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "areaTarExpDsList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "areaTarSjrnDsList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "slug": "지역별-관광-자원-수요",
+    "title": "[승인] 한국관광공사_지역별 관광 자원 수요",
+    "base": "https://apis.data.go.kr/B551011/AreaTarResDemService",
+    "ops_total": 2,
+    "ops_with_data": 0,
+    "samples": [
+      {
+        "op": "areaCulResDemList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      },
+      {
+        "op": "areaTarSvcDemList",
+        "items": 0,
+        "totalCount": 0,
+        "status": "OK"
+      }
+    ]
+  }
+]

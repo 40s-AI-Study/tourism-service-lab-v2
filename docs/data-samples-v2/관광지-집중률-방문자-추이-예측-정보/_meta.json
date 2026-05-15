@@ -1,0 +1,12 @@
+{
+  "title": "[승인] 한국관광공사_관광지 집중률 방문자 추이 예측 정보",
+  "base": "https://apis.data.go.kr/B551011/TatsCnctrRateService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/TatsCnctrRateService",
+    "http://apis.data.go.kr/B551011/TatsCnctrRateService/tatsCnctrRatedList"
+  ],
+  "operations_attempted": [
+    "tatsCnctrRatedList"
+  ],
+  "serviceKey_present": true
+}

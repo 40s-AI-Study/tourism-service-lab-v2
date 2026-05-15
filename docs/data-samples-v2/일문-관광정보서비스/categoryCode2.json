@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/JpnService2/categoryCode2?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "code": "A01",
+              "name": "自然",
+              "rnum": 1
+            },
+            {
+              "code": "A02",
+              "name": "人文（文化／芸術／歴史）",
+              "rnum": 2
+            },
+            {
+              "code": "A03",
+              "name": "レジャースポーツ",
+              "rnum": 3
+            },
+            {
+              "code": "A04",
+              "name": "ショッピング",
+              "rnum": 4
+            },
+            {
+              "code": "A05",
+              "name": "グルメ",
+              "rnum": 5
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 7
+      }
+    }
+  }
+}

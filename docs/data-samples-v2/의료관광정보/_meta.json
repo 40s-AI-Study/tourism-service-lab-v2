@@ -1,0 +1,26 @@
+{
+  "title": "[승인] 한국관광공사_의료관광정보",
+  "base": "https://apis.data.go.kr/B551011/MdclTursmService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/MdclTursmService",
+    "http://apis.data.go.kr/B551011/MdclTursmService/ldongCode",
+    "http://apis.data.go.kr/B551011/MdclTursmService/areaBasedList",
+    "http://apis.data.go.kr/B551011/MdclTursmService/locationBasedList",
+    "http://apis.data.go.kr/B551011/MdclTursmService/searchKeyword",
+    "http://apis.data.go.kr/B551011/MdclTursmService/mdclTursmSyncList",
+    "http://apis.data.go.kr/B551011/MdclTursmService/detailCommon",
+    "http://apis.data.go.kr/B551011/MdclTursmService/detailIntro",
+    "http://apis.data.go.kr/B551011/MdclTursmService/detailMdclTursm"
+  ],
+  "operations_attempted": [
+    "areaBasedList",
+    "detailCommon",
+    "detailIntro",
+    "detailMdclTursm",
+    "ldongCode",
+    "locationBasedList",
+    "mdclTursmSyncList",
+    "searchKeyword"
+  ],
+  "serviceKey_present": true
+}

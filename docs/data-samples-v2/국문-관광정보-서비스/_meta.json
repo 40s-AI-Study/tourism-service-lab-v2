@@ -1,0 +1,40 @@
+{
+  "title": "[승인] 한국관광공사_국문 관광정보 서비스_GW",
+  "base": "https://apis.data.go.kr/B551011/KorService2",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/KorService2",
+    "http://apis.data.go.kr/B551011/KorService2/locationBasedList2",
+    "http://apis.data.go.kr/B551011/KorService2/searchKeyword2",
+    "http://apis.data.go.kr/B551011/KorService2/searchFestival2",
+    "http://apis.data.go.kr/B551011/KorService2/searchStay2",
+    "http://apis.data.go.kr/B551011/KorService2/detailCommon2",
+    "http://apis.data.go.kr/B551011/KorService2/detailIntro2",
+    "http://apis.data.go.kr/B551011/KorService2/detailInfo2",
+    "http://apis.data.go.kr/B551011/KorService2/detailImage2",
+    "http://apis.data.go.kr/B551011/KorService2/areaBasedSyncList2",
+    "http://apis.data.go.kr/B551011/KorService2/areaCode2",
+    "http://apis.data.go.kr/B551011/KorService2/detailPetTour2",
+    "http://apis.data.go.kr/B551011/KorService2/categoryCode2",
+    "http://apis.data.go.kr/B551011/KorService2/areaBasedList2",
+    "http://apis.data.go.kr/B551011/KorService2/ldongCode2",
+    "http://apis.data.go.kr/B551011/KorService2/lclsSystmCode2"
+  ],
+  "operations_attempted": [
+    "areaBasedList2",
+    "areaBasedSyncList2",
+    "areaCode2",
+    "categoryCode2",
+    "detailCommon2",
+    "detailImage2",
+    "detailInfo2",
+    "detailIntro2",
+    "detailPetTour2",
+    "lclsSystmCode2",
+    "ldongCode2",
+    "locationBasedList2",
+    "searchFestival2",
+    "searchKeyword2",
+    "searchStay2"
+  ],
+  "serviceKey_present": true
+}

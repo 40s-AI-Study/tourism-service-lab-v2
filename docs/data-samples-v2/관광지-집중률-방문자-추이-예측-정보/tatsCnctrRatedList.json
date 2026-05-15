@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "status": 200,
+  "url": "https://apis.data.go.kr/B551011/TatsCnctrRateService/tatsCnctrRatedList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYmd=20240301&areaCd=11&signguCd=11680&tAtsNm=%EA%B2%BD%EB%B3%B5%EA%B6%81",
+  "json": {
+    "responseTime": "2026-05-16T04:28:59.990",
+    "resultCode": "10",
+    "resultMsg": "INVALID_REQUEST_PARAMETER_ERROR(baseYmd)"
+  }
+}

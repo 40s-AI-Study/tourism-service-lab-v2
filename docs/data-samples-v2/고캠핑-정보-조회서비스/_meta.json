@@ -1,0 +1,20 @@
+{
+  "title": "[승인] 한국관광공사_고캠핑 정보 조회서비스_GW",
+  "base": "https://apis.data.go.kr/B551011/GoCamping",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/GoCamping",
+    "http://apis.data.go.kr/B551011/GoCamping/basedList",
+    "http://apis.data.go.kr/B551011/GoCamping/locationBasedList",
+    "http://apis.data.go.kr/B551011/GoCamping/searchList",
+    "http://apis.data.go.kr/B551011/GoCamping/imageList",
+    "http://apis.data.go.kr/B551011/GoCamping/basedSyncList"
+  ],
+  "operations_attempted": [
+    "basedList",
+    "basedSyncList",
+    "imageList",
+    "locationBasedList",
+    "searchList"
+  ],
+  "serviceKey_present": true
+}

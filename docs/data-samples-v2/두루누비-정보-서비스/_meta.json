@@ -1,0 +1,14 @@
+{
+  "title": "[승인] 한국관광공사_두루누비 정보 서비스_GW",
+  "base": "https://apis.data.go.kr/B551011/Durunubi",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/Durunubi",
+    "http://apis.data.go.kr/B551011/Durunubi/courseList",
+    "http://apis.data.go.kr/B551011/Durunubi/routeList"
+  ],
+  "operations_attempted": [
+    "courseList",
+    "routeList"
+  ],
+  "serviceKey_present": true
+}

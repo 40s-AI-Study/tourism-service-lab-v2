@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/KorWithService2/searchKeyword2?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&keyword=%EA%B2%BD%EB%B3%B5%EA%B6%81&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "addr1": "서울특별시 종로구 사직로 161 (세종로)",
+              "addr2": "",
+              "zipcode": "03045",
+              "areacode": "1",
+              "cat1": "A02",
+              "cat2": "A0201",
+              "cat3": "A02010100",
+              "contentid": "126508",
+              "contenttypeid": "12",
+              "createdtime": "20041230090000",
+              "firstimage": "http://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
+              "firstimage2": "http://tong.visitkorea.or.kr/cms/resource/98/3487598_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "mapx": "126.9767375783",
+              "mapy": "37.5760836609",
+              "mlevel": "6",
+              "modifiedtime": "20251112134824",
+              "sigungucode": "23",
+              "tel": "",
+              "title": "경복궁",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "110",
+              "lclsSystm1": "HS",
+              "lclsSystm2": "HS01",
+              "lclsSystm3": "HS010100"
+            },
+            {
+              "addr1": "경상북도 김천시 대항면 황학동길 11-8",
+              "addr2": "",
+              "zipcode": "39565",
+              "areacode": "35",
+              "cat1": "A05",
+              "cat2": "A0502",
+              "cat3": "A05020100",
+              "contentid": "2629723",
+              "contenttypeid": "39",
+              "createdtime": "20191024004003",
+              "firstimage": "http://tong.visitkorea.or.kr/cms/resource/44/2630244_image2_1.jpg",
+              "firstimage2": "http://tong.visitkorea.or.kr/cms/resource/44/2630244_image2_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapx": "128.0164320969",
+              "mapy": "36.1148427197",
+              "mlevel": "6",
+              "modifiedtime": "20250918141914",
+              "sigungucode": "6",
+              "tel": "",
+              "title": "[백년가게]경복궁식당",
+              "lDongRegnCd": "47",
+              "lDongSignguCd": "150",
+              "lclsSystm1": "FD",
+              "lclsSystm2": "FD01",
+              "lclsSystm3": "FD010100"
+            }
+          ]
+        },
+        "numOfRows": 2,
+        "pageNo": 1,
+        "totalCount": 2
+      }
+    }
+  }
+}

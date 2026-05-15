@@ -1,0 +1,12 @@
+{
+  "title": "[승인] 한국관광공사_기초지자체 중심 관광지 정보",
+  "base": "https://apis.data.go.kr/B551011/LocgoHubTarService1",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/LocgoHubTarService1",
+    "http://apis.data.go.kr/B551011/LocgoHubTarService1/areaBasedList1"
+  ],
+  "operations_attempted": [
+    "areaBasedList1"
+  ],
+  "serviceKey_present": true
+}

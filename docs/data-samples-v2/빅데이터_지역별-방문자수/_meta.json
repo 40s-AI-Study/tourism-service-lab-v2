@@ -1,0 +1,14 @@
+{
+  "title": "[승인] 한국관광공사_빅데이터_지역별 방문자수_GW",
+  "base": "https://apis.data.go.kr/B551011/DataLabService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/DataLabService",
+    "http://apis.data.go.kr/B551011/DataLabService/metcoRegnVisitrDDList",
+    "http://apis.data.go.kr/B551011/DataLabService/locgoRegnVisitrDDList"
+  ],
+  "operations_attempted": [
+    "locgoRegnVisitrDDList",
+    "metcoRegnVisitrDDList"
+  ],
+  "serviceKey_present": true
+}

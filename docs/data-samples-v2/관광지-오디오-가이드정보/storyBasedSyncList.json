@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/Odii/storyBasedSyncList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "responseTime": "2026-05-16T04:26:48.458",
+    "resultCode": "11",
+    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(langCode)"
+  }
+}

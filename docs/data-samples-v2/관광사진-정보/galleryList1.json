@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "galContentId": "1002144",
+              "galContentTypeId": "17",
+              "galTitle": "청설모",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/44/1002144.jpg",
+              "galCreatedtime": "20100420024817",
+              "galModifiedtime": "20240709171727",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 경복궁",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "청설모, 동물"
+            },
+            {
+              "galContentId": "1002619",
+              "galContentTypeId": "17",
+              "galTitle": "경복궁 꽃담",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/19/1002619.jpg",
+              "galCreatedtime": "20100420222711",
+              "galModifiedtime": "20150818233000",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "경복궁 자경전 꽃담 문양, 고궁"
+            },
+            {
+              "galContentId": "1004457",
+              "galContentTypeId": "17",
+              "galTitle": "국립고궁박물관",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/57/1004457.jpg",
+              "galCreatedtime": "20100421150936",
+              "galModifiedtime": "20150818154827",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 경복궁",
+              "galPhotographer": "한국관광공사 김지호",
+              "galSearchKeyword": "국립고궁박물관"
+            },
+            {
+              "galContentId": "1005600",
+              "galContentTypeId": "17",
+              "galTitle": "한국전통음식연구소",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/00/1005600.jpg",
+              "galCreatedtime": "20100422144432",
+              "galModifiedtime": "20150818171447",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 종로 한국전통음식연구소",
+              "galPhotographer": "한국관광공사 이범수",
+              "galSearchKeyword": "한국전통음식연구소, 한식조리체험관광, FIT, FIT"
+            },
+            {
+              "galContentId": "1005783",
+              "galContentTypeId": "17",
+              "galTitle": "김성수선생 옛집",
+              "galWebImageUrl": "http://tong.visitkorea.or.kr/cms2/website/83/1005783.jpg",
+              "galCreatedtime": "20100422153550",
+              "galModifiedtime": "20150818172820",
+              "galPhotographyMonth": "201004",
+              "galPhotographyLocation": "서울 ",
+              "galPhotographer": "한국관광공사 이범수",
+              "galSearchKeyword": "북촌한옥마을, 김성수선생 옛집, 장독대, 항아리 "
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 6119
+      }
+    }
+  }
+}

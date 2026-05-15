@@ -1,0 +1,103 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/GreenTourService1/areaBasedSyncList1?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "addr": "충청북도 제천시 청전동 240-1 일원",
+              "areacode": "33",
+              "contentid": "2547353",
+              "createdtime": "20180513211140",
+              "mainimage": "http://tong.visitkorea.or.kr/cms/resource/33/2547233_image2_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "modifiedtime": "20251211113506",
+              "sigungucode": "7",
+              "subtitle": "",
+              "summary": "2005년 11월부터 2006년 11월까지 1년간 청전제천 21 실천협의회 연구분과위원회에서 연구, 조사를 위탁하고 모니터링하여 사업비 14억 6천7백만 원 을 들여 시내권 내에 조성한 생태공원이다. 솔방죽의 저수 유입은 비룡담(제2 의림지)으로부터 농업용수를 사용 후 잠시 이곳에 저장된다. 원래의 연못은 1872년에 제작된 군, 현 지도에 ‘유등지’로 표기되었으나 ‘작은 연못’으로 불렸는데 청정제천 21 실천협의회에서 공원화 조성에 따라 ‘솔방죽’으로 이름을 붙였으며 제천시에서 처음으로 생태공원이라는 이름을 붙여 조성한 곳이다. 생태공원의 규모는 연면적 28,096㎡ 로 동서 220m, 남북 80~100m의 크기 저수지에 3개의 지역으로 나누어 조성되었다.\n\n\n* 문의 : 043-641-6731~3 \n* 휴무일 : 연중무휴 \n \n\n◎이용안내\n- 이용요금 : 무료\n- 화장실 : 있음(남녀구분) \n- 장애인 편의시설 : 장애인화장실 있음(남녀공용)\n- 주차시설 : 불가능",
+              "tel": "043-641-6731~3",
+              "telname": "제천시청 문화관광과",
+              "title": "제천솔방죽 생태공원",
+              "showflag": "0"
+            },
+            {
+              "addr": "충청북도 단양군 대강면 방곡리 일대",
+              "areacode": "33",
+              "contentid": "2547350",
+              "createdtime": "20180513210229",
+              "mainimage": "http://tong.visitkorea.or.kr/cms/resource/27/2547227_image2_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "modifiedtime": "20251211113317",
+              "sigungucode": "2",
+              "subtitle": "",
+              "summary": "신선이 노닐다 간 자리라고 하여 퇴계 이황 선생이 친히 ‘삼선구곡(三仙九曲)’이라는 이름을 붙여 준 선암계곡은 10km에 이르는 청정계곡으로 농촌풍경길(사인암∼단성생활체육공원 8.4㎞) 등로와 가까이 있어서 시원하게 드라이브를 즐기면서 맑은 물과 눈부시게 하얀 너럭바위가 옹기종기 모인 풍경을 감상할 수 있는 코스이다. \n\n* 문의 : 043-420-2552\n* 관련 홈페이지 : <a href=\"https://www.danyang.go.kr/tour/527\" target=\"_blank\" title=\"새창 : 단양군 문화관광 홈페이지로 이동\">https://www.danyang.go.kr/tour/527</a>\n\n◎ 이용안내\n- 이용요금 : 무료 \n- 화장실 : 없음\n- 장애인 편의시설 : 없음\n- 주차시설 : 불가",
+              "tel": "043-420-2552",
+              "telname": "단양군청 문화관광과",
+              "title": "선암골생태유람길(숲소리길)",
+              "showflag": "0"
+            },
+            {
+              "addr": "충청북도 보은군 속리산면 법주사로 84",
+              "areacode": "33",
+              "contentid": "2547328",
+              "createdtime": "20180513203608",
+              "mainimage": "http://tong.visitkorea.or.kr/cms/resource/95/2547195_image2_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "modifiedtime": "20251211113302",
+              "sigungucode": "3",
+              "subtitle": "",
+              "summary": "1970년 6번째 국립공원으로 지정되었으며 예로부터 제2금강 또는 소금강이라 불릴 만큼 경관이 빼어나다.\n총면적 274.766k㎡에 달하는 속리산국립공원은 충북과 경북의 여러 지역에 걸쳐 바위로 이루어진 산으로, 주요 봉우리인 천왕봉과 비로봉, 문장대는 백두대간의 장엄한 산줄기를 잇고 있어 암봉과 암릉이 잘 발달되어 있다. 속리산에는 많은 산들이 접해 있으며, 남쪽의 천왕봉(1,058m)을 중심으로 비로봉, 문장대, 관음봉 등 8개의 봉우리가 활처럼 휘어져 뻗어나간다.\n\n\n* 문의 : 043-542-5267\n* 관련 홈페이지 : <a href=\"http://songni.knps.or.kr/\" target=\"_blank\" title=\"새창 : 속리산국립공원 홈페이지로 이동\">http://songni.knps.or.kr/</a>\n\n◎이용안내\n- 이용요금 : 시설 이용료 상이, 홈페이지 참조\n- 화장실 : 있음(남녀구분)\n- 장애인 편의시설 : 장애인 주차장 있음(10여 대)\n- 주차시설 : 가능",
+              "tel": "043-542-5267",
+              "telname": "속리산국립공원관리사무소",
+              "title": "속리산국립공원",
+              "showflag": "0"
+            },
+            {
+              "addr": "충청북도 단양군 단성면 하방리 일대",
+              "areacode": "33",
+              "contentid": "2547346",
+              "createdtime": "20180513205633",
+              "mainimage": "http://tong.visitkorea.or.kr/cms/resource/14/2547214_image2_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "modifiedtime": "20251211113226",
+              "sigungucode": "2",
+              "subtitle": "",
+              "summary": "선암골생태유람길의 1구간은 물소리길로, 선암계곡을 따라 걷는 산책코스다. 선암골생태유람길의 물소리길은 남한강의 지류인 단양천을 따라 화강암과 사암이 아름다운 경관을 이루고, 단양팔경으로 꼽히는 하선암, 중선암, 상선암이 차례로 등장한다. 신선이 노닐다 간 자리라고 하여 퇴계 이황 선생이 친히 ‘삼선구곡(三仙九曲)’이라는 이름을 붙여 준 선암계곡은 10km에 이르는 청정계곡으로 도로와 가까이 있어서 시원하게 드라이브를 즐기면서 맑은 물과 눈부시게 하얀 너럭바위가 옹기종기 모인 풍경을 감상할 수 있는 코스이다.\n\n◎이용안내\n- 이용요금 : 무료\n- 화장실 : 없음\n- 장애인 편의시설 : 없음\n- 주차시설 : 가능 (무료)",
+              "tel": "043-420-2552",
+              "telname": "단양군청 문화관광과",
+              "title": "선암골생태유람길(물소리길)",
+              "showflag": "0"
+            },
+            {
+              "addr": "충청북도 제천시 한수면 미륵송계로 1647",
+              "areacode": "33",
+              "contentid": "2547330",
+              "createdtime": "20180513203908",
+              "mainimage": "http://tong.visitkorea.or.kr/cms/resource/04/2547204_image2_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "modifiedtime": "20251211113038",
+              "sigungucode": "7",
+              "subtitle": "",
+              "summary": "1984년 17번째 국립공원으로 지정되었으며 면적은 287.571k㎡이다. 소백산을 지나 속리산으로 연결되는 백두대간의 중간에 위치하고 있다. 월악산은 기암절벽이 치솟아 산세가 험준하고 예로부터 신령스러운 산으로 여겨져 주봉은 영봉(1,097m)으로 불리고 있다. 만수봉, 금수산, 신선봉, 도락산 등 22개가 넘는 크고 작은 산과 봉우리를 거느리고 있다. 충북 제천시, 단양군, 충주시와 경북 문경시가 접해 있으며 수도권에서 가깝고 충주 호반과 어우러진 탐방지로 사계절 탐방객의 발길이 끊이지 않는 곳이다.<br /><br />* 문의 : 043-653-3250<br />* 관련 홈페이지 : <a href=\"http://www.knps.or.kr/\"title=\"새창: \n국립공원\"target=\"_blank\">http://www.knps.or.kr/</a><br /><br />◎이용안내<br />- 이용요금 : 시설 이용료 상이, 홈페이지 참조<br />- 화장실 : 있음(남녀구분)<br />- 장애인 편의시설 : 장애인주차장(8대)<br />- 주차시설 : 있음(일반 100여대)<br>",
+              "tel": "043-653-3250",
+              "telname": "월악산국립공원관리사무소",
+              "title": "월악산국립공원",
+              "showflag": "0"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 230
+      }
+    }
+  }
+}

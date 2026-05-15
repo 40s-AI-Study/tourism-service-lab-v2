@@ -1,0 +1,36 @@
+{
+  "title": "[승인] 한국관광공사_무장애 여행 정보",
+  "base": "https://apis.data.go.kr/B551011/KorWithService2",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/KorWithService2",
+    "http://apis.data.go.kr/B551011/KorWithService2/areaCode2",
+    "http://apis.data.go.kr/B551011/KorWithService2/categoryCode2",
+    "http://apis.data.go.kr/B551011/KorWithService2/areaBasedList2",
+    "http://apis.data.go.kr/B551011/KorWithService2/locationBasedList2",
+    "http://apis.data.go.kr/B551011/KorWithService2/searchKeyword2",
+    "http://apis.data.go.kr/B551011/KorWithService2/detailCommon2",
+    "http://apis.data.go.kr/B551011/KorWithService2/detailIntro2",
+    "http://apis.data.go.kr/B551011/KorWithService2/detailInfo2",
+    "http://apis.data.go.kr/B551011/KorWithService2/detailImage2",
+    "http://apis.data.go.kr/B551011/KorWithService2/detailWithTour2",
+    "http://apis.data.go.kr/B551011/KorWithService2/areaBasedSyncList2",
+    "http://apis.data.go.kr/B551011/KorWithService2/ldongCode2",
+    "http://apis.data.go.kr/B551011/KorWithService2/lclsSystmCode2"
+  ],
+  "operations_attempted": [
+    "areaBasedList2",
+    "areaBasedSyncList2",
+    "areaCode2",
+    "categoryCode2",
+    "detailCommon2",
+    "detailImage2",
+    "detailInfo2",
+    "detailIntro2",
+    "detailWithTour2",
+    "lclsSystmCode2",
+    "ldongCode2",
+    "locationBasedList2",
+    "searchKeyword2"
+  ],
+  "serviceKey_present": true
+}

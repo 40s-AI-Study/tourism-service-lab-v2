@@ -1,0 +1,16 @@
+{
+  "title": "[승인] 한국관광공사_지역별 관광 다양성",
+  "base": "https://apis.data.go.kr/B551011/AreaTarDivService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/AreaTarDivService",
+    "http://apis.data.go.kr/B551011/AreaTarDivService/areaTouDivList",
+    "http://apis.data.go.kr/B551011/AreaTarDivService/areaExpDivList",
+    "http://apis.data.go.kr/B551011/AreaTarDivService/areaIntlDivList"
+  ],
+  "operations_attempted": [
+    "areaExpDivList",
+    "areaIntlDivList",
+    "areaTouDivList"
+  ],
+  "serviceKey_present": true
+}

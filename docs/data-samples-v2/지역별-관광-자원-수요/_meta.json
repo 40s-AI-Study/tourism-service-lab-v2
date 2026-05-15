@@ -1,0 +1,14 @@
+{
+  "title": "[승인] 한국관광공사_지역별 관광 자원 수요",
+  "base": "https://apis.data.go.kr/B551011/AreaTarResDemService",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/AreaTarResDemService",
+    "http://apis.data.go.kr/B551011/AreaTarResDemService/areaTarSvcDemList",
+    "http://apis.data.go.kr/B551011/AreaTarResDemService/areaCulResDemList"
+  ],
+  "operations_attempted": [
+    "areaCulResDemList",
+    "areaTarSvcDemList"
+  ],
+  "serviceKey_present": true
+}

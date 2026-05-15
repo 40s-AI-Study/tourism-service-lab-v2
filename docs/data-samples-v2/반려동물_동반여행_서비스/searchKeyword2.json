@@ -1,0 +1,104 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/KorPetTourService2/searchKeyword2?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&keyword=%EA%B2%BD%EB%B3%B5%EA%B6%81&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "addr1": "서울특별시 종로구 자하문로2길 4 (적선동)",
+              "addr2": "",
+              "zipcode": "03044",
+              "areacode": "",
+              "cat1": "",
+              "cat2": "",
+              "cat3": "",
+              "contentid": "4025882",
+              "contenttypeid": "38",
+              "createdtime": "20260227134741",
+              "firstimage": "https://tong.visitkorea.or.kr/cms/resource/67/4029467_image2_1.jpg",
+              "firstimage2": "https://tong.visitkorea.or.kr/cms/resource/67/4029467_image3_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapx": "126.972859321085",
+              "mapy": "37.576377886406",
+              "mlevel": "",
+              "modifiedtime": "20260319042713",
+              "sigungucode": "",
+              "tel": "",
+              "title": "다이소 경복궁역점",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "110",
+              "lclsSystm1": "SH",
+              "lclsSystm2": "SH04",
+              "lclsSystm3": "SH040300"
+            },
+            {
+              "addr1": "서울특별시 종로구 윤보선길 42 (안국동)",
+              "addr2": "",
+              "zipcode": "03060",
+              "areacode": "",
+              "cat1": "",
+              "cat2": "",
+              "cat3": "",
+              "contentid": "4012713",
+              "contenttypeid": "38",
+              "createdtime": "20260207004013",
+              "firstimage": "https://tong.visitkorea.or.kr/cms/resource/17/4024517_image2_1.jpg",
+              "firstimage2": "https://tong.visitkorea.or.kr/cms/resource/17/4024517_image3_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapx": "126.983821068557",
+              "mapy": "37.5779865507226",
+              "mlevel": "",
+              "modifiedtime": "20260318101005",
+              "sigungucode": "",
+              "tel": "",
+              "title": "앤더슨벨 경복궁 플래그쉽 스토어",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "110",
+              "lclsSystm1": "SH",
+              "lclsSystm2": "SH04",
+              "lclsSystm3": "SH040300"
+            },
+            {
+              "addr1": "서울특별시 종로구 자하문로 9 (체부동)",
+              "addr2": "1,2층",
+              "zipcode": "03041",
+              "areacode": "",
+              "cat1": "",
+              "cat2": "",
+              "cat3": "",
+              "contentid": "4009449",
+              "contenttypeid": "38",
+              "createdtime": "20260130201705",
+              "firstimage": "https://tong.visitkorea.or.kr/cms/resource/98/4028798_image2_1.png",
+              "firstimage2": "https://tong.visitkorea.or.kr/cms/resource/98/4028798_image3_1.png",
+              "cpyrhtDivCd": "Type3",
+              "mapx": "126.972141061212",
+              "mapy": "37.5769157929272",
+              "mlevel": "",
+              "modifiedtime": "20260309093631",
+              "sigungucode": "",
+              "tel": "",
+              "title": "올리브영 경복궁역점",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "110",
+              "lclsSystm1": "SH",
+              "lclsSystm2": "SH04",
+              "lclsSystm3": "SH040300"
+            }
+          ]
+        },
+        "numOfRows": 3,
+        "pageNo": 1,
+        "totalCount": 3
+      }
+    }
+  }
+}

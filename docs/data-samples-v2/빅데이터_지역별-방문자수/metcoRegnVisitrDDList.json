@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "status": 200,
+  "url": "https://apis.data.go.kr/B551011/DataLabService/metcoRegnVisitrDDList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&startYmd=20240101&endYmd=20240131&areaCd=11&signguCd=11680",
+  "json": {
+    "responseTime": "2026-05-16T04:28:59.919",
+    "resultCode": "10",
+    "resultMsg": "INVALID_REQUEST_PARAMETER_ERROR(areaCd)"
+  }
+}

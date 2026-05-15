@@ -1,0 +1,38 @@
+{
+  "title": "[승인] 한국관광공사_일문 관광정보서비스_GW",
+  "base": "https://apis.data.go.kr/B551011/JpnService2",
+  "endpoints": [
+    "https://apis.data.go.kr/B551011/JpnService2",
+    "http://apis.data.go.kr/B551011/JpnService2/searchKeyword2",
+    "http://apis.data.go.kr/B551011/JpnService2/searchFestival2",
+    "http://apis.data.go.kr/B551011/JpnService2/searchStay2",
+    "http://apis.data.go.kr/B551011/JpnService2/detailIntro2",
+    "http://apis.data.go.kr/B551011/JpnService2/detailInfo2",
+    "http://apis.data.go.kr/B551011/JpnService2/detailImage2",
+    "http://apis.data.go.kr/B551011/JpnService2/areaBasedSyncList2",
+    "http://apis.data.go.kr/B551011/JpnService2/areaCode2",
+    "http://apis.data.go.kr/B551011/JpnService2/detailCommon2",
+    "http://apis.data.go.kr/B551011/JpnService2/categoryCode2",
+    "http://apis.data.go.kr/B551011/JpnService2/areaBasedList2",
+    "http://apis.data.go.kr/B551011/JpnService2/locationBasedList2",
+    "http://apis.data.go.kr/B551011/JpnService2/ldongCode2",
+    "http://apis.data.go.kr/B551011/JpnService2/lclsSystmCode2"
+  ],
+  "operations_attempted": [
+    "areaBasedList2",
+    "areaBasedSyncList2",
+    "areaCode2",
+    "categoryCode2",
+    "detailCommon2",
+    "detailImage2",
+    "detailInfo2",
+    "detailIntro2",
+    "lclsSystmCode2",
+    "ldongCode2",
+    "locationBasedList2",
+    "searchFestival2",
+    "searchKeyword2",
+    "searchStay2"
+  ],
+  "serviceKey_present": true
+}

@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "status": 200,
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/KorWithService2/detailImage2?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&contentId=126508&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "contentid": "126508",
+              "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/94/3487594_image2_1.jpg",
+              "imgname": "경복궁",
+              "smallimageurl": "http://tong.visitkorea.or.kr/cms/resource/94/3487594_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "serialnum": "3487594_5"
+            },
+            {
+              "contentid": "126508",
+              "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/95/3487595_image2_1.jpg",
+              "imgname": "경복궁",
+              "smallimageurl": "http://tong.visitkorea.or.kr/cms/resource/95/3487595_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "serialnum": "3487595_1"
+            },
+            {
+              "contentid": "126508",
+              "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/97/3487597_image2_1.jpg",
+              "imgname": "경복궁",
+              "smallimageurl": "http://tong.visitkorea.or.kr/cms/resource/97/3487597_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "serialnum": "3487597_3"
+            },
+            {
+              "contentid": "126508",
+              "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/99/3487599_image2_1.jpg",
+              "imgname": "경복궁",
+              "smallimageurl": "http://tong.visitkorea.or.kr/cms/resource/99/3487599_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "serialnum": "3487599_2"
+            },
+            {
+              "contentid": "126508",
+              "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/01/3487601_image2_1.jpg",
+              "imgname": "경복궁",
+              "smallimageurl": "http://tong.visitkorea.or.kr/cms/resource/01/3487601_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "serialnum": "3487601_6"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 6
+      }
+    }
+  }
+}

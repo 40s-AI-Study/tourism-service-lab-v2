@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "status": 200,
+  "url": "https://apis.data.go.kr/B551011/Odii/themeLocationBasedList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langCode=ko&mapX=126.9779692&mapY=37.566535&radius=5000",
+  "json": {
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "tid": "43",
+              "tlid": "135",
+              "themeCategory": "조선역사여행",
+              "addr1": "서울",
+              "addr2": "종로구",
+              "title": "종묘",
+              "mapX": "126.994611",
+              "mapY": "37.572056",
+              "langCheck": "11111",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194007",
+              "modifiedtime": "20250609195754"
+            },
+            {
+              "tid": "47",
+              "tlid": "151",
+              "themeCategory": "박물관",
+              "addr1": "서울",
+              "addr2": "용산구",
+              "title": "국립중앙박물관",
+              "mapX": "126.980477",
+              "mapY": "37.524024",
+              "langCheck": "11000",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194008",
+              "modifiedtime": "20240904114345"
+            },
+            {
+              "tid": "52",
+              "tlid": "164",
+              "themeCategory": "",
+              "addr1": "서울",
+              "addr2": "종로구",
+              "title": "청계광장",
+              "mapX": "126.977909",
+              "mapY": "37.569235",
+              "langCheck": "11110",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194009",
+              "modifiedtime": "20250221145953"
+            },
+            {
+              "tid": "53",
+              "tlid": "168",
+              "themeCategory": "청계천 다리",
+              "addr1": "서울",
+              "addr2": "종로구",
+              "title": "광통교",
+              "mapX": "126.981086",
+              "mapY": "37.568937",
+              "langCheck": "11110",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194009",
+              "modifiedtime": "20191022154836"
+            },
+            {
+              "tid": "54",
+              "tlid": "172",
+              "themeCategory": "",
+              "addr1": "서울",
+              "addr2": "종로구",
+              "title": "정조능행반차도",
+              "mapX": "126.983167",
+              "mapY": "37.568835",
+              "langCheck": "11110",
+              "langCode": "ko",
+              "imageUrl": "",
+              "createdtime": "20190923194009",
+              "modifiedtime": "20250221150129"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 158
+      }
+    }
+  }
+}
