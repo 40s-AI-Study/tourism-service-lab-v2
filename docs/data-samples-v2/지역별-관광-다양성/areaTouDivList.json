@@ -1,7 +1,8 @@
 {
   "ok": true,
   "status": 200,
-  "url": "https://apis.data.go.kr/B551011/AreaTarDivService/areaTouDivList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202401&areaCd=11&signguCd=11680",
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/AreaTarDivService/areaTouDivList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202509&areaCd=11&signguCd=11530&touDivIxCd=3101",
   "json": {
     "response": {
       "header": {
@@ -9,10 +10,23 @@
         "resultMsg": "OK"
       },
       "body": {
-        "items": "",
-        "numOfRows": 0,
+        "items": {
+          "item": [
+            {
+              "baseYm": "202509",
+              "areaCd": "11",
+              "areaNm": "서울특별시",
+              "signguCd": "11530",
+              "signguNm": "구로구",
+              "touDivIxCd": "3101",
+              "touDivIxNm": "10대 방문객수",
+              "touDivIxVal": "84.2"
+            }
+          ]
+        },
+        "numOfRows": 1,
         "pageNo": 1,
-        "totalCount": 0
+        "totalCount": 1
       }
     }
   }

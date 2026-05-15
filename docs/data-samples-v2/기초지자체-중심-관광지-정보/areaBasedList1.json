@@ -1,7 +1,8 @@
 {
   "ok": true,
   "status": 200,
-  "url": "https://apis.data.go.kr/B551011/LocgoHubTarService1/areaBasedList1?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202401&areaCd=11&signguCd=11680",
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/LocgoHubTarService1/areaBasedList1?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYm=202509&areaCd=51&signguCd=51130",
   "json": {
     "response": {
       "header": {
@@ -9,10 +10,83 @@
         "resultMsg": "OK"
       },
       "body": {
-        "items": "",
-        "numOfRows": 0,
+        "items": {
+          "item": [
+            {
+              "baseYm": "202509",
+              "mapX": "127.813714745281000",
+              "mapY": "37.438066364365100",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "hubTatsCd": "0b37553854f416b46ded92602ff89444",
+              "hubTatsNm": "오크밸리CC",
+              "hubCtgryLclsNm": "관광지",
+              "hubCtgryMclsNm": "레저스포츠",
+              "hubRank": "1"
+            },
+            {
+              "baseYm": "202509",
+              "mapX": "127.819130966451000",
+              "mapY": "37.434205734466800",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "hubTatsCd": "3816e6ec41e2c0ccbb821954d69a1e95",
+              "hubTatsNm": "오크밸리리조트/빌리지센터",
+              "hubCtgryLclsNm": "관광지",
+              "hubCtgryMclsNm": "문화관광",
+              "hubRank": "2"
+            },
+            {
+              "baseYm": "202509",
+              "mapX": "127.822991893812000",
+              "mapY": "37.418901966829300",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "hubTatsCd": "0bfeca2105aa7bf8d83e4622e5da19ec",
+              "hubTatsNm": "뮤지엄산",
+              "hubCtgryLclsNm": "관광지",
+              "hubCtgryMclsNm": "문화관광",
+              "hubRank": "3"
+            },
+            {
+              "baseYm": "202509",
+              "mapX": "127.930733015399000",
+              "mapY": "37.344800112887500",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "hubTatsCd": "b7744a42d79f430cbe6d0e5d41744964",
+              "hubTatsNm": "원주종합버스터미널",
+              "hubCtgryLclsNm": "관광지",
+              "hubCtgryMclsNm": "기타관광",
+              "hubRank": "4"
+            },
+            {
+              "baseYm": "202509",
+              "mapX": "127.818963485479570",
+              "mapY": "37.434140451294880",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "hubTatsCd": "1f250ebcd8acd43c9eeb8bb3bed83baa",
+              "hubTatsNm": "오크밸리리조트/밸리빌리지",
+              "hubCtgryLclsNm": "숙박",
+              "hubCtgryMclsNm": "숙박",
+              "hubRank": "5"
+            }
+          ]
+        },
+        "numOfRows": 5,
         "pageNo": 1,
-        "totalCount": 0
+        "totalCount": 100
       }
     }
   }

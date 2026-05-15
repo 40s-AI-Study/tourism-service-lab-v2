@@ -1,10 +1,68 @@
 {
   "ok": true,
   "status": 200,
-  "url": "https://apis.data.go.kr/B551011/TatsCnctrRateService/tatsCnctrRatedList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYmd=20240301&areaCd=11&signguCd=11680&tAtsNm=%EA%B2%BD%EB%B3%B5%EA%B6%81",
+  "contentType": "application/json",
+  "url": "https://apis.data.go.kr/B551011/TatsCnctrRateService/tatsCnctrRatedList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&areaCd=51&signguCd=51130&tAtsNm=%EA%B0%84%ED%98%84%EA%B4%80%EA%B4%91%EC%A7%80",
   "json": {
-    "responseTime": "2026-05-16T04:28:59.990",
-    "resultCode": "10",
-    "resultMsg": "INVALID_REQUEST_PARAMETER_ERROR(baseYmd)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "baseYmd": "20260515",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "tAtsNm": "간현관광지",
+              "cnctrRate": "46.71"
+            },
+            {
+              "baseYmd": "20260516",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "tAtsNm": "간현관광지",
+              "cnctrRate": "90.49"
+            },
+            {
+              "baseYmd": "20260517",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "tAtsNm": "간현관광지",
+              "cnctrRate": "98.2"
+            },
+            {
+              "baseYmd": "20260518",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "tAtsNm": "간현관광지",
+              "cnctrRate": "21.67"
+            },
+            {
+              "baseYmd": "20260519",
+              "areaCd": "51",
+              "areaNm": "강원특별자치도",
+              "signguCd": "51130",
+              "signguNm": "원주시",
+              "tAtsNm": "간현관광지",
+              "cnctrRate": "39.03"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 30
+      }
+    }
   }
 }

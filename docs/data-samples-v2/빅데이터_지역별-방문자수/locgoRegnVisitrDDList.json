@@ -2,10 +2,72 @@
   "ok": true,
   "status": 200,
   "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/DataLabService/locgoRegnVisitrDDList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&baseYmd=20241201&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/DataLabService/locgoRegnVisitrDDList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&startYmd=20210513&endYmd=20210513",
   "json": {
-    "responseTime": "2026-05-16T04:26:49.268",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(startYmd)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "signguCode": "11110",
+              "signguNm": "종로구",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "176473.5",
+              "baseYmd": "20210513"
+            },
+            {
+              "signguCode": "11110",
+              "signguNm": "종로구",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "2",
+              "touDivNm": "외지인(b)",
+              "touNum": "317425.5",
+              "baseYmd": "20210513"
+            },
+            {
+              "signguCode": "11110",
+              "signguNm": "종로구",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "3",
+              "touDivNm": "외국인(c)",
+              "touNum": "153.60999999999996",
+              "baseYmd": "20210513"
+            },
+            {
+              "signguCode": "11140",
+              "signguNm": "중구",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "179354.0",
+              "baseYmd": "20210513"
+            },
+            {
+              "signguCode": "11140",
+              "signguNm": "중구",
+              "daywkDivCd": "4",
+              "daywkDivNm": "목요일",
+              "touDivCd": "2",
+              "touDivNm": "외지인(b)",
+              "touNum": "322980.0",
+              "baseYmd": "20210513"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 772
+      }
+    }
   }
 }

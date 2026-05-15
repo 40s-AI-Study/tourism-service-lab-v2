@@ -1,10 +1,78 @@
 {
   "ok": true,
   "status": 200,
-  "url": "https://apis.data.go.kr/B551011/DataLabService/metcoRegnVisitrDDList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&startYmd=20240101&endYmd=20240131&areaCd=11&signguCd=11680",
+  "url": "https://apis.data.go.kr/B551011/DataLabService/metcoRegnVisitrDDList?serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e&MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&startYmd=20240101&endYmd=20240131",
+  "params_used": {
+    "startYmd": "20240101",
+    "endYmd": "20240131"
+  },
+  "items_count": 5,
+  "totalCount": 1581,
   "json": {
-    "responseTime": "2026-05-16T04:28:59.919",
-    "resultCode": "10",
-    "resultMsg": "INVALID_REQUEST_PARAMETER_ERROR(areaCd)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "areaCode": "11",
+              "areaNm": "서울특별시",
+              "daywkDivCd": "1",
+              "daywkDivNm": "월요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "3595560.5",
+              "baseYmd": "20240101"
+            },
+            {
+              "areaCode": "11",
+              "areaNm": "서울특별시",
+              "daywkDivCd": "1",
+              "daywkDivNm": "월요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "4420433.5",
+              "baseYmd": "20240108"
+            },
+            {
+              "areaCode": "11",
+              "areaNm": "서울특별시",
+              "daywkDivCd": "1",
+              "daywkDivNm": "월요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "4413286.5",
+              "baseYmd": "20240115"
+            },
+            {
+              "areaCode": "11",
+              "areaNm": "서울특별시",
+              "daywkDivCd": "1",
+              "daywkDivNm": "월요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "4334876.0",
+              "baseYmd": "20240122"
+            },
+            {
+              "areaCode": "11",
+              "areaNm": "서울특별시",
+              "daywkDivCd": "1",
+              "daywkDivNm": "월요일",
+              "touDivCd": "1",
+              "touDivNm": "현지인(a)",
+              "touNum": "4456973.5",
+              "baseYmd": "20240129"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 1581
+      }
+    }
   }
 }

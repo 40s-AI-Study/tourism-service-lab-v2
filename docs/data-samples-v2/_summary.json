@@ -133,13 +133,14 @@
     "title": "[승인] 한국관광공사_관광지 집중률 방문자 추이 예측 정보",
     "base": "https://apis.data.go.kr/B551011/TatsCnctrRateService",
     "ops_total": 1,
-    "ops_with_data": 0,
+    "ops_with_data": 1,
     "samples": [
       {
         "op": "tatsCnctrRatedList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 5,
+        "totalCount": 30,
+        "status": "OK",
+        "note": "retried TOU-107"
       }
     ]
   },
@@ -247,13 +248,14 @@
     "title": "[승인] 한국관광공사_기초지자체 중심 관광지 정보",
     "base": "https://apis.data.go.kr/B551011/LocgoHubTarService1",
     "ops_total": 1,
-    "ops_with_data": 0,
+    "ops_with_data": 1,
     "samples": [
       {
         "op": "areaBasedList1",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 5,
+        "totalCount": 100,
+        "status": "OK",
+        "note": "retried TOU-107"
       }
     ]
   },
@@ -457,19 +459,21 @@
     "title": "[승인] 한국관광공사_빅데이터_지역별 방문자수_GW",
     "base": "https://apis.data.go.kr/B551011/DataLabService",
     "ops_total": 2,
-    "ops_with_data": 0,
+    "ops_with_data": 2,
     "samples": [
       {
         "op": "locgoRegnVisitrDDList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 5,
+        "totalCount": 772,
+        "status": "OK",
+        "note": "retried TOU-107"
       },
       {
         "op": "metcoRegnVisitrDDList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 5,
+        "totalCount": 51,
+        "status": "OK",
+        "note": "retried TOU-107"
       }
     ]
   },
@@ -718,25 +722,28 @@
     "title": "[승인] 한국관광공사_지역별 관광 다양성",
     "base": "https://apis.data.go.kr/B551011/AreaTarDivService",
     "ops_total": 3,
-    "ops_with_data": 0,
+    "ops_with_data": 3,
     "samples": [
       {
         "op": "areaExpDivList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       },
       {
         "op": "areaIntlDivList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       },
       {
         "op": "areaTouDivList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       }
     ]
   },
@@ -745,19 +752,21 @@
     "title": "[승인] 한국관광공사_지역별 관광 수요 강도",
     "base": "https://apis.data.go.kr/B551011/AreaTarDemDsService",
     "ops_total": 2,
-    "ops_with_data": 0,
+    "ops_with_data": 2,
     "samples": [
       {
         "op": "areaTarExpDsList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       },
       {
         "op": "areaTarSjrnDsList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       }
     ]
   },
@@ -766,19 +775,21 @@
     "title": "[승인] 한국관광공사_지역별 관광 자원 수요",
     "base": "https://apis.data.go.kr/B551011/AreaTarResDemService",
     "ops_total": 2,
-    "ops_with_data": 0,
+    "ops_with_data": 2,
     "samples": [
       {
         "op": "areaCulResDemList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       },
       {
         "op": "areaTarSvcDemList",
-        "items": 0,
-        "totalCount": 0,
-        "status": "OK"
+        "items": 1,
+        "totalCount": 1,
+        "status": "OK",
+        "note": "retried TOU-107"
       }
     ]
   }
