@@ -1,11 +1,48 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/MdclTursmService/detailMdclTursm?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/MdclTursmService/detailMdclTursm?MobileOS=ETC&MobileApp=AppTest&_type=json&numOfRows=10&pageNo=1&langDivCd=ENG&contentId=3364920&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "AppTest",
+    "_type": "json",
+    "numOfRows": "10",
+    "pageNo": "1",
+    "langDivCd": "ENG",
+    "contentId": "3364920",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:52.053",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(contentId)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "contentId": "3364920",
+              "mdclTursmDivInfo": "Medical Institution",
+              "svcLangInfo": "English,Japanese,Chinese,Kazakh,Mongolian",
+              "hmpgInfo": "",
+              "prSnsInfo": "blog.naver.com/woojooclinic",
+              "histrCn": "Woojooyon Clinic provided care in Jongno 3-ga for 10 years and recently relocated to Bukchon, where it has evolved into a clinic focused on refreshing, curing, rehabilitation, and recovery. Before establishing its base in Jongno, Woojooyon Clinic operated by appointment for about a year in a boutique hotel in Nonhyeon-dong, alongside a dermatology clinic and a spa. During that time, we treated only five patients per day, which allowed us to offer highly satisfying and meticulous medical services-an experience that remains a source of great pride for us.",
+              "onlineRsvtPsblYn": "N",
+              "gdsCnselCn": "",
+              "insttDevInfo": "Clinic",
+              "mainMdlcSubjInfo": "Traditional Korean Medicine",
+              "specProcMdlcInfo": "Traditional Korean treatment (Chuna manual therapy, acupuncture therapy)\nTraditional Korean beauty care (weight loss, detox therapy)\nWomen's disease (menopausal symptoms, infertility treatment)",
+              "coorResidYn": "Y",
+              "specFcltyInfo": "Offers PR materials in foreign languages",
+              "corprHsptlInfo": "",
+              "trtmntGdsKndInfo": ""
+            }
+          ]
+        },
+        "numOfRows": 1,
+        "pageNo": 1,
+        "totalCount": 1
+      }
+    }
   }
 }

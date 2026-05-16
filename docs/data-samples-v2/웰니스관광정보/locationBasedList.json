@@ -1,11 +1,99 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/locationBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/locationBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&mapX=126.9779692&mapY=37.566535&radius=10000&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "mapX": "126.9779692",
+    "mapY": "37.566535",
+    "radius": "10000",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:54.165",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(mapX)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "baseAddr": "서울특별시 용산구 후암로35길 39",
+              "detailAddr": "",
+              "zipCd": "04332",
+              "contentId": "2932122",
+              "contentTypeId": "12",
+              "regDt": "20221209150822",
+              "dist": "1868.8288446117376",
+              "orgImage": "http://tong.visitkorea.or.kr/cms/resource/15/3542815_image2_1.jpg",
+              "thumbImage": "http://tong.visitkorea.or.kr/cms/resource/15/3542815_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "mapX": "126.9761522655",
+              "mapY": "37.5497617088",
+              "mlevel": "6",
+              "mdfcnDt": "20250924173632",
+              "tel": "",
+              "title": "후암별채",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "170",
+              "wellnessThemaCd": "EX050400",
+              "langDivCd": "KOR"
+            },
+            {
+              "baseAddr": "서울특별시 서초구 강남대로107길 5 (잠원동)",
+              "detailAddr": "",
+              "zipCd": "06524",
+              "contentId": "584698",
+              "contentTypeId": "12",
+              "regDt": "20080709222510",
+              "dist": "6444.356090486823",
+              "orgImage": "http://tong.visitkorea.or.kr/cms/resource/72/2024972_image2_1.jpg",
+              "thumbImage": "http://tong.visitkorea.or.kr/cms/resource/72/2024972_image3_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapX": "127.0182965393",
+              "mapY": "37.5182911216",
+              "mlevel": "6",
+              "mdfcnDt": "20251117154601",
+              "tel": "",
+              "title": "스파레이",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "wellnessThemaCd": "EX050200",
+              "langDivCd": "KOR"
+            },
+            {
+              "baseAddr": "서울특별시 서초구 강남대로 503 (반포동)",
+              "detailAddr": "청하빌딩 4,5,6층",
+              "zipCd": "06536",
+              "contentId": "3591228",
+              "contentTypeId": "12",
+              "regDt": "20260102151742",
+              "dist": "7727.300621957538",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "127.0228270043",
+              "mapY": "37.5069064137",
+              "mlevel": "6",
+              "mdfcnDt": "20260102151937",
+              "tel": "",
+              "title": "차민성형외과의원",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "wellnessThemaCd": "EX050800",
+              "langDivCd": "KOR"
+            }
+          ]
+        },
+        "numOfRows": 3,
+        "pageNo": 1,
+        "totalCount": 3
+      }
+    }
   }
 }

@@ -1,11 +1,135 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/areaBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/areaBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:53.524",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(langDivCd)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "baseAddr": "강원특별자치도 삼척시 가곡면 가곡천로 1510",
+              "detailAddr": "",
+              "zipCd": "25954",
+              "contentId": "2994116",
+              "contentTypeId": "12",
+              "regDt": "20230717155822",
+              "orgImage": "http://tong.visitkorea.or.kr/cms/resource/54/2994054_image2_1.jpg",
+              "thumbImage": "http://tong.visitkorea.or.kr/cms/resource/54/2994054_image3_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapX": "129.2064490523",
+              "mapY": "37.1509022547",
+              "mlevel": "6",
+              "mdfcnDt": "20251216111035",
+              "tel": "033-572-1800",
+              "title": "가곡유황온천&스파",
+              "lDongRegnCd": "51",
+              "lDongSignguCd": "230",
+              "wellnessThemaCd": "EX050100",
+              "langDivCd": "KOR"
+            },
+            {
+              "baseAddr": "경상남도 거창군 가조면 온천길 161",
+              "detailAddr": "",
+              "zipCd": "50118",
+              "contentId": "127956",
+              "contentTypeId": "12",
+              "regDt": "20040127090000",
+              "orgImage": "https://tong.visitkorea.or.kr/cms/resource/83/3414283_image2_1.jpg",
+              "thumbImage": "https://tong.visitkorea.or.kr/cms/resource/83/3414283_image3_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapX": "128.022909347583",
+              "mapY": "35.6984908704128",
+              "mlevel": "6",
+              "mdfcnDt": "20260420145016",
+              "tel": "",
+              "title": "가조 백두산천지온천",
+              "lDongRegnCd": "48",
+              "lDongSignguCd": "880",
+              "wellnessThemaCd": "EX050100",
+              "langDivCd": "KOR"
+            },
+            {
+              "baseAddr": "서울특별시 광진구 구의강변로 45 (구의동)",
+              "detailAddr": "",
+              "zipCd": "05049",
+              "contentId": "128961",
+              "contentTypeId": "12",
+              "regDt": "20060508090000",
+              "orgImage": "http://tong.visitkorea.or.kr/cms/resource/98/3401698_image2_1.JPG",
+              "thumbImage": "http://tong.visitkorea.or.kr/cms/resource/98/3401698_image3_1.JPG",
+              "cpyrhtDivCd": "Type3",
+              "mapX": "127.0913227521",
+              "mapY": "37.5349377239",
+              "mlevel": "6",
+              "mdfcnDt": "20250328153350",
+              "tel": "",
+              "title": "강변스파랜드",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "215",
+              "wellnessThemaCd": "EX050200",
+              "langDivCd": "KOR"
+            },
+            {
+              "baseAddr": "인천광역시 강화군 길상면 해안남로 13-12",
+              "detailAddr": "",
+              "zipCd": "23052",
+              "contentId": "662637",
+              "contentTypeId": "12",
+              "regDt": "20081206001811",
+              "orgImage": "http://tong.visitkorea.or.kr/cms/resource/77/3040477_image2_1.jpg",
+              "thumbImage": "http://tong.visitkorea.or.kr/cms/resource/77/3040477_image3_1.jpg",
+              "cpyrhtDivCd": "Type3",
+              "mapX": "126.5337766252",
+              "mapY": "37.6260699674",
+              "mlevel": "6",
+              "mdfcnDt": "20250521165954",
+              "tel": "",
+              "title": "강화해수랜드",
+              "lDongRegnCd": "28",
+              "lDongSignguCd": "710",
+              "wellnessThemaCd": "EX050100",
+              "langDivCd": "KOR"
+            },
+            {
+              "baseAddr": "경상남도 거제시 수양로 507",
+              "detailAddr": "(양정동)",
+              "zipCd": "53235",
+              "contentId": "127966",
+              "contentTypeId": "12",
+              "regDt": "20031111090000",
+              "orgImage": "https://tong.visitkorea.or.kr/cms/resource/00/3516400_image2_1.jpg",
+              "thumbImage": "https://tong.visitkorea.or.kr/cms/resource/00/3516400_image3_1.jpg",
+              "cpyrhtDivCd": "Type1",
+              "mapX": "128.6347",
+              "mapY": "34.8917",
+              "mlevel": "6",
+              "mdfcnDt": "20260313112249",
+              "tel": "",
+              "title": "거제도해수보양온천",
+              "lDongRegnCd": "48",
+              "lDongSignguCd": "310",
+              "wellnessThemaCd": "EX050100",
+              "langDivCd": "KOR"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 173
+      }
+    }
   }
 }

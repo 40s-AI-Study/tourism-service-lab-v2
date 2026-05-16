@@ -1,0 +1,16 @@
+{
+  "ok": false,
+  "url": "https://apis.data.go.kr/B551011/MdclTursmService/detailInfo?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&contentTypeId=12&contentId=3365278&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "contentTypeId": "12",
+    "contentId": "3365278",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
+  "text": "__ERR__ HTTP Error 404: Not Found"
+}

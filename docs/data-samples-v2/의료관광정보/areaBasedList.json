@@ -1,11 +1,125 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/MdclTursmService/areaBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/MdclTursmService/areaBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:51.820",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(langDivCd)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "baseAddr": "(12th Floor, Cheongho Building), 483 Gangnam-daero, Seocho-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "06541",
+              "contentId": "3365278",
+              "regDt": "20240911141750",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "127.0236686375",
+              "mapY": "37.5053871607",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "1stbutton Rhinoplasty clinic (첫단추의원)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "2F, 151 Dogok-ro, Gangnam-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "06255",
+              "contentId": "3366672",
+              "regDt": "20240912130650",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "127.0365178650",
+              "mapY": "37.4913529096",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "201Company (이공일컴퍼니)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "680",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "39 Seochojungang-ro, Seocho-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "06654",
+              "contentId": "3364714",
+              "regDt": "20240910201845",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "127.0157254829",
+              "mapY": "37.4853310133",
+              "mlevel": "6",
+              "mdfcnDt": "20260102160306",
+              "tel": "",
+              "title": "21 Century Hospital (서울21세기병원)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "126 Seochojungang-ro, Seocho-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "06634",
+              "contentId": "3451988",
+              "regDt": "20241219112720",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "127.0141309657",
+              "mapY": "37.4930439782",
+              "mlevel": "6",
+              "mdfcnDt": "20251126105220",
+              "tel": "",
+              "title": "365mc (365엠씨(mc)병원)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "(2nd-4th Floors, BLOCK77), 17 Seocho-daero 77-gil, Seocho-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "06614",
+              "contentId": "3367052",
+              "regDt": "20240912145934",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "127.0257686102",
+              "mapY": "37.4996073141",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "AB Plastic Surgery (에이비성형외과)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "langDivCd": "ENG"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 335
+      }
+    }
   }
 }

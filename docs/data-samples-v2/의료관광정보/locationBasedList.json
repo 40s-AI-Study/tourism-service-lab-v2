@@ -1,11 +1,133 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/MdclTursmService/locationBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/MdclTursmService/locationBasedList?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&mapX=126.9779692&mapY=37.566535&radius=10000&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "mapX": "126.9779692",
+    "mapY": "37.566535",
+    "radius": "10000",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:52.190",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(mapX)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "baseAddr": "10F, Unit B1031, 8, Gangnam-daero 69-gil, Seocho-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "04521",
+              "contentId": "3366498",
+              "regDt": "20240912102023",
+              "dist": "397.84654181924543",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "126.9816428989",
+              "mapY": "37.5685818430",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "Mediround.Corp (주식회사 메디라운드)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "#809, 8F, 40 Cheonggyecheon-ro, Jung-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "04521",
+              "contentId": "3441528",
+              "regDt": "20241210180247",
+              "dist": "397.84654181924543",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "126.9816428989",
+              "mapY": "37.5685818430",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "MJ FLB ((주)엠제이에프엘비)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "140",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "15th Floor, 1 Jongno (Kyobo Life Building), Jongno-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "03154",
+              "contentId": "3547594",
+              "regDt": "20251014101500",
+              "dist": "495.41681878054953",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "126.9779959406",
+              "mapY": "37.5709981632",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "Stenlee (스텐리)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "110",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "#F301, 3rd Floor, Timewalk Myeong-dong Building, 78 Namdaemun-ro, Jung-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "04534",
+              "contentId": "3562474",
+              "regDt": "20251106105623",
+              "dist": "516.4121745059712",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "126.9830206742",
+              "mapY": "37.5642379283",
+              "mlevel": "6",
+              "mdfcnDt": "20251124111914",
+              "tel": "",
+              "title": "YOU&I Clinic Myeongdong (유앤아이의원 명동점)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "140",
+              "langDivCd": "ENG"
+            },
+            {
+              "baseAddr": "#401-#403, 21 Myeongdong 7-gil, Jung-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "04534",
+              "contentId": "3453344",
+              "regDt": "20241219171333",
+              "dist": "559.4356723676716",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "mapX": "126.9838705814",
+              "mapY": "37.5647851014",
+              "mlevel": "6",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "title": "WIZ & MI Clinic (위즈앤미의원)",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "140",
+              "langDivCd": "ENG"
+            }
+          ]
+        },
+        "numOfRows": 5,
+        "pageNo": 1,
+        "totalCount": 190
+      }
+    }
   }
 }

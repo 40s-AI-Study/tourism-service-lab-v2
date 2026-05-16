@@ -1,0 +1,176 @@
+{
+  "의료관광정보": [
+    {
+      "op": "ldongCode",
+      "n": 0,
+      "rc": "0000"
+    },
+    {
+      "op": "areaBasedList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "locationBasedList",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "searchKeyword",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "mdclTursmSyncList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "detailCommon",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailIntro",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailMdclTursm",
+      "n": 1,
+      "rc": "0000"
+    },
+    {
+      "op": "ldongCode",
+      "n": 0,
+      "rc": "0000"
+    },
+    {
+      "op": "areaBasedList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "locationBasedList",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "searchKeyword",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "mdclTursmSyncList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "detailCommon",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailIntro",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailMdclTursm",
+      "n": 1,
+      "rc": "0000"
+    }
+  ],
+  "웰니스관광정보": [
+    {
+      "op": "ldongCode",
+      "n": 0,
+      "rc": "0000"
+    },
+    {
+      "op": "areaBasedList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "locationBasedList",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "searchKeyword",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "wellnessTursmSyncList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "detailCommon",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailIntro",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailInfo",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailImage",
+      "n": 0,
+      "rc": "0000"
+    },
+    {
+      "op": "ldongCode",
+      "n": 0,
+      "rc": "0000"
+    },
+    {
+      "op": "areaBasedList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "locationBasedList",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "searchKeyword",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "wellnessTursmSyncList",
+      "n": 5,
+      "rc": "0000"
+    },
+    {
+      "op": "detailCommon",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailIntro",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailInfo",
+      "n": 0,
+      "rc": null
+    },
+    {
+      "op": "detailImage",
+      "n": 0,
+      "rc": "0000"
+    }
+  ]
+}

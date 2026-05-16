@@ -1,11 +1,46 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/detailIntro?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/detailIntro?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&contentTypeId=12&contentId=2994116&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "contentTypeId": "12",
+    "contentId": "2994116",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:54.008",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(contentId)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "contentId": "2994116",
+              "contentTypeId": "12",
+              "accomcount": "",
+              "expagerange": "",
+              "expguide": "",
+              "heritage1": "0",
+              "infocenter": "033-572-1800",
+              "opendate": "",
+              "parking": "가능 (약 소형 61대 / 대형 4대 / 장애인 4대)",
+              "restdate": "매월 넷째 월요일",
+              "useseason": "",
+              "usetime": "- 온천(사우나) 07:00~19:00<br>\n- 스파 10:00~18:00"
+            }
+          ]
+        },
+        "numOfRows": 1,
+        "pageNo": 1,
+        "totalCount": 1
+      }
+    }
   }
 }

@@ -1,11 +1,52 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/MdclTursmService/detailCommon?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/MdclTursmService/detailCommon?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&contentId=3365278&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "contentId": "3365278",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:51.893",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(contentId)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "contentId": "3365278",
+              "title": "1stbutton Rhinoplasty clinic (첫단추의원)",
+              "regDt": "20240911141750",
+              "mdfcnDt": "20251023143000",
+              "tel": "",
+              "telname": "",
+              "homepage": "",
+              "orgImage": "",
+              "thumbImage": "",
+              "cpyrhtDivCd": "",
+              "lDongRegnCd": "11",
+              "lDongSignguCd": "650",
+              "baseAddr": "(12th Floor, Cheongho Building), 483 Gangnam-daero, Seocho-gu, Seoul",
+              "detailAddr": "",
+              "zipCd": "06541",
+              "mapX": "127.0236686375",
+              "mapY": "37.5053871607",
+              "mlevel": "6",
+              "overview": "1stbutton Rhinoplasty clinic meets all of our patients' expectations in terms of both functionality and aesthetics. Dr. Kim Tae-hwan, an otolaryngologist with over 20 years of experience, treats patients directly and makes every effort to provide the best results. Dr. Kim specializes not only in cosmetic nose surgery but also in treating diverse functional problems related to nose, and which allows him to provide customized treatment according to each patient&rsquo;s needs. Please visit and experience a safe and satisfactory cosmetic nose surgery at our clinic? We will continue to do our best to improve your confidence."
+            }
+          ]
+        },
+        "numOfRows": 1,
+        "pageNo": 1,
+        "totalCount": 1
+      }
+    }
   }
 }

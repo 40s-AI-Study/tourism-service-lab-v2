@@ -1,11 +1,64 @@
 {
   "ok": true,
-  "status": 200,
-  "contentType": "application/json",
-  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/detailInfo?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "url": "https://apis.data.go.kr/B551011/WellnessTursmService/detailInfo?MobileOS=ETC&MobileApp=TripCraftKorea&_type=json&numOfRows=5&pageNo=1&langDivCd=Ko&contentTypeId=12&contentId=2994116&serviceKey=e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e",
+  "params_from_page": {
+    "MobileOS": "ETC",
+    "MobileApp": "TripCraftKorea",
+    "_type": "json",
+    "numOfRows": "5",
+    "pageNo": "1",
+    "langDivCd": "Ko",
+    "contentTypeId": "12",
+    "contentId": "2994116",
+    "serviceKey": "e8422cf7d5e4738694576c32619297b2e82236329a46046ad5d64cdfef74756e"
+  },
   "json": {
-    "responseTime": "2026-05-16T04:26:53.941",
-    "resultCode": "11",
-    "resultMsg": "NO_MANDATORY_REQUEST_PARAMETERS_ERROR1(contentId)"
+    "response": {
+      "header": {
+        "resultCode": "0000",
+        "resultMsg": "OK"
+      },
+      "body": {
+        "items": {
+          "item": [
+            {
+              "contentId": "2994116",
+              "contentTypeId": "12",
+              "serialnum": "0",
+              "infoname": "화장실",
+              "infotext": "있음",
+              "fldgubun": "3"
+            },
+            {
+              "contentId": "2994116",
+              "contentTypeId": "12",
+              "serialnum": "1",
+              "infoname": "시설이용료",
+              "infotext": "[온천, 사우나]<br>\n- 일반 (대인) 10,000원 / (소인) 7,000원<br>\n- 지역, 경로 할인 (대인) 7,000원 / (소인) 5,000원<br>\n- 단체(30인 이상) 할인 (대인) 8,000원 / (소인) 6,000원<br>\n<br>\n[스파천국]<br>\n- 일반 (대인) 30,000원 / (소인) 20,000원<br>\n- 지역, 경로 할인 (대인) 21,000원 / (소인) 14,000원<br>\n- 단체(30인 이상) 할인 (대인) 24,000원 / (소인) 16,000원<br>\n※ 30% 할인 : 삼척시민 / 폐광지역 시민(태백시, 정선군, 영월군) / 경로우대자(만 65세 이상) / 장애인(보호자 1인) / 국가유공자 / 관내군인 (동반가족 2명까지)<br>\n※ 면제 : 보호자를 동반한 만 36개월 미만 영아<br>\n※ 대인 : 만 13세 이상 / 소인 : 만 36개월 이상",
+              "fldgubun": "3"
+            },
+            {
+              "contentId": "2994116",
+              "contentTypeId": "12",
+              "serialnum": "2",
+              "infoname": "이용가능시설",
+              "infotext": "키즈 스파 / 인피니티 풀 / 자쿠지풀 등",
+              "fldgubun": "3"
+            },
+            {
+              "contentId": "2994116",
+              "contentTypeId": "12",
+              "serialnum": "3",
+              "infoname": "주차요금",
+              "infotext": "무료",
+              "fldgubun": "3"
+            }
+          ]
+        },
+        "numOfRows": 4,
+        "pageNo": 1,
+        "totalCount": 4
+      }
+    }
   }
 }
